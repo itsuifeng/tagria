@@ -1,0 +1,63 @@
+iframe {
+	border : 0;
+	width : 100%;
+	height : 0px;
+	overflow : hidden;
+}
+
+.bs-button-group > a.btn,button.btn,div.btn {
+	margin-left : 3px;
+	margin-top: 3px;
+}
+
+th,td {
+	cursor: pointer;
+}
+
+.m-5 {
+	margin : 5px;	
+}
+
+.m-t-20 {
+	margin-top: 20px;
+}
+
+.m-b-20 {
+	margin-bottom: 20px;
+}
+
+.rounded-corner {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.border-primary {
+	border: 1px solid #2e6da4;
+}
+
+.bs-menu-image {
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.bs-treeview {
+  width: 100%;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.bs-treeview-has-error {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}

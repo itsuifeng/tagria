@@ -1,0 +1,13 @@
+.navbar-default {
+   background-color: #337ab7;
+   border-color: #22547d;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.btn-default {
+  border-color: #c5c5c5;
+  background-color: #f6f6f6;
+}

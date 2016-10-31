@@ -1,0 +1,2105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>Tagria html library</description>
+	<display-name>Tagria html library</display-name>
+	<tlib-version>3.0</tlib-version>
+	<short-name>html</short-name>
+	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
+
+
+	<tag>
+		<description>Renderiza um bloco de código fonte de uma determinada linguagem sem executá-la</description>
+		<display-name>Misc</display-name>
+		<name>code</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CodeTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:code&gt;
+				private class Java {
+					private String id;
+					private String name;
+				}
+			&lt;/html:code&gt; </example>
+			
+	</tag>
+
+	<tag>
+		<description>Renderiza um bloco css</description>
+		<display-name>Css</display-name>
+		<name>cssCode</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CssCodeTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:cssCode&gt;
+			.red  {
+				border :1px solid red;
+			}
+			&lt;/html:cssCode&gt;
+			&lt;html:div cssClass="red"&gt;
+			    Conteudo
+			&lt;/html:div&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma tabela</description>
+		<display-name>Table</display-name>
+		<name>table</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn>Coluna 1&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn>Valor 1&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+			&lt;/html:table>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma linha de uma tabela</description>
+		<display-name>Table</display-name>
+		<name>tableLine</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TableLineTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn>Coluna 1&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn>Valor 1&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+			&lt;/html:table>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma coluna de tabela</description>
+		<display-name>Table</display-name>
+		<name>tableColumn</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TableColumnTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se a coluna deve ser renderizada com um destaque</description>
+			<name>header</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica um format em que o value deve ser convertido . Opções : date,timestamp,hour,currency,cep,cnpj,tel,cpf</description>
+			<name>format</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o numero de colunas que essa coluna deve preencher</description>
+			<name>colspan</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:table&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn header="true">Coluna 1&lt;/html:tableColumn&gt;
+					&lt;html:tableColumn header="true">Coluna 2&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn>Valor 1&lt;/html:tableColumn&gt;
+					&lt;html:tableColumn>Valor 2&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+				&lt;html:tableLine&gt;
+					&lt;html:tableColumn colspan="2">Valor 3&lt;/html:tableColumn&gt;
+				&lt;/html:tableLine&gt;
+			&lt;/html:table>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um evento disparado para um determinado componente</description>
+		<display-name>Javascript</display-name>
+		<name>jsEvent</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.JsEventTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o name do componente a ser atingido</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o evento javascript a ser disparado</description>
+			<name>event</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" placeholder="Entre e saia do campo" /&gt;
+			
+			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			    alert('blur');
+			&lt;/html:jsEvent&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um bloco modal</description>
+		<display-name>Misc</display-name>
+		<name>modal</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ModalTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o id do modal para manipulacao direta de eventos</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label do titulo do modal</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o componente que dispara a tela de modal</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:button id="botao" label="Abrir modal"/&gt;
+			&lt;html:modal label="Titulo do modal" attachTo="botao"&gt;
+				Outros componentes 
+			&lt;/html:modal&gt; </example>
+	</tag>
+
+
+	<tag>
+		<description>Renderiza um picker de horario para um componente</description>
+		<display-name>Picker</display-name>
+		<name>timePicker</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TimePickerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o componente que dispara o componente</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" placeholder="Horario" /&gt;
+			&lt;html:timePicker attachTo="input1"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um dateTimePicker para um componente</description>
+		<display-name>Picker</display-name>
+		<name>dateTimePicker</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DateTimePickerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o componente que dispara o componente</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" placeholder="Data e horario" /&gt;
+			&lt;html:dateTimePicker attachTo="input1"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um datePicker para um componente</description>
+		<display-name>Picker</display-name>
+		<name>datePicker</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o componente que dispara o componente</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o dia mínimo para escolha da data</description>
+			<name>min</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:input name="input1" placeholder="Data" /&gt;
+			&lt;html:datePicker attachTo="input1" min="0"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um evento ao selecionar uma data</description>
+		<display-name>Picker</display-name>
+		<name>datePickerOnSelect</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DatePickerOnSelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:input name="input1" placeholder="Data" /&gt;
+			&lt;html:datePicker attachTo="input1" min="0"&gt;
+				&lt;html:datePickerOnSelect&gt;
+					/* Nesse ponto fica disponivel as variaveis dateText,inst  */
+					alert(dateText);
+				&lt;/html:datePickerOnSelect&gt;
+			&lt;/html:datePicker&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um icone</description>
+		<display-name>Image</display-name>
+		<name>icon</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.IconTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o icone a ser renderizado. Lista disponível em http://getbootstrap.com/components/#glyphicons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:icon icon="cog" /&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza a view com todo cabeçalho . Essa view deve ser declarada APENAS UMA VEZ e como tag principal em toda view utilizada</description>
+		<display-name>Misc</display-name>
+		<name>view</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ViewTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o title da pagina corrente</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:view&gt;
+				Todos os componentes necessários
+			&lt;/html:view&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um bloco de container principal com uma margem padrao</description>
+		<display-name>Layout</display-name>
+		<name>container</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ContainerTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se o container deve ser responsivo para 100% da tela</description>
+			<name>fluid</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			
+			&lt;html:alert state="info"&gt;
+				Componente fora do container
+			&lt;/html:alert&gt;
+			
+			&lt;html:container&gt;
+				&lt;html:alert state="info"&gt;
+					Componente dentro do container
+				&lt;/html:alert&gt;
+			&lt;/html:container&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um painel</description>
+		<display-name>Panel</display-name>
+		<name>panel</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PanelTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o estado do painel. Default : primary. Opções : success,danger,info,default,primary</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:panel&gt;
+				&lt;html:panelHead label="Titulo"/&gt;
+				&lt;html:panelBody&gt;
+					Outros componentes
+				&lt;/html:panelBody&gt;
+			&lt;/html:panel>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um titulo no painel</description>
+		<display-name>Panel</display-name>
+		<name>panelHead</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PanelHeadTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o titulo do painel</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:panel&gt;
+				&lt;html:panelHead label="Titulo"/&gt;
+				&lt;html:panelBody&gt;
+					Outros componentes
+				&lt;/html:panelBody&gt;
+			&lt;/html:panel>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza o corpo do painel</description>
+		<display-name>Panel</display-name>
+		<name>panelBody</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PanelBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:panel&gt;
+				&lt;html:panelHead label="Titulo"/&gt;
+				&lt;html:panelBody&gt;
+					Outros componentes
+				&lt;/html:panelBody&gt;
+			&lt;/html:panel>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma caixa de alerta</description>
+		<display-name>Misc</display-name>
+		<name>alert</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AlertTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se o componente pode ser fechada. Default : false</description>
+			<name>dismissible</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o estado em que a caixa deve ser renderizada. Default : warning. Opções : warning,success,danger,info</description>
+			<name>state</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:alert state="info"&gt;
+				Caixa de informação
+			&lt;/html:alert&gt; </example>
+	</tag>
+
+
+
+	<tag>
+		<description>Renderiza um formulario</description>
+		<display-name>Form</display-name>
+		<name>form</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.FormTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a action de submissao</description>
+			<name>action</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o method a ser utilizado. Default : post. Opções : post,get</description>
+			<name>method</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica uma validacao a ser executada com os dados do formulario</description>
+			<name>validation</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label do formulario</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o formulario deve possuir suporte a arquivos</description>
+			<name>multipart</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+		
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroup label="Campo 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Campo 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+			&lt;/html:form&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um agrupamento de componente no formulario</description>
+		<display-name>Form</display-name>
+		<name>formGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.FormGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label do agrupamento</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o id do agrupamento</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o elemento a ser orientado o label</description>
+			<name>forElement</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o preenchimento do componente interno deve ser obrigatório</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente dever ser visivel</description>
+			<name>visible</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroup forElement="field1" label="Campo 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Campo 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+			&lt;/html:form&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma linha de subdivisao de colunas (dividida em 12 seções combinada com a tag col)</description>
+		<display-name>Form</display-name>
+		<name>row</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.RowTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroup forElement="field1" label="Campo 1" required="true"&gt;
+					&lt;html:row&gt;
+						&lt;html:col size="6"&gt;
+							&lt;html:input required="true" name="field1"/&gt;
+						&lt;/html:col&gt;
+						&lt;html:col size="6"&gt;
+							&lt;html:input name="field2"/&gt;
+						&lt;/html:col&gt;
+					&lt;/html:row>
+				&lt;/html:formGroup&gt;
+			&lt;/html:form&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma coluna dentro de uma linha</description>
+		<display-name>Form</display-name>
+		<name>col</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ColTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o número de colunas a preencher . Opções : 1 a 12</description>
+			<name>size</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroup forElement="field1" label="Campo 1" required="true"&gt;
+					&lt;html:row&gt;
+						&lt;html:col size="3"&gt;
+							&lt;html:input required="true" name="field1"/&gt;
+						&lt;/html:col&gt;
+						&lt;html:col size="9"&gt;
+							&lt;html:input name="field2"/&gt;
+						&lt;/html:col&gt;
+					&lt;/html:row>
+				&lt;/html:formGroup&gt;
+			&lt;/html:form&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um input</description>
+		<display-name>Input</display-name>
+		<name>input</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.InputTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica uma classe css para o componente</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica um title para o componente</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica um format em que o value deve ser convertido . Opções : date,timestamp,hour,currency,cep,cnpj,tel,cpf</description>
+			<name>format</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o type do input. Default : text. Opções : button,checkbox,color,date,datetime,datetime-local,email,file,hidden,image,month,number,password,radio,range,reset,search,submit,tel,text,time ,url,week</description>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o id do componente</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o name do componente</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a marca de preenchimento do componente</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o value do componente</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ganhar o focus do cursor</description>
+			<name>focus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente tem preenchimento obrigatório dentro de um formulário</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o padra a ser seguido em um determinado campo</description>
+			<name>pattern</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser desativado . Default : false</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o número maximo de caracteres a serem preenchidos</description>
+			<name>maxLength</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica no caso (radio,checkbox) se o componente deve ser marcado</description>
+			<name>checked</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente aceita inputs multiplos</description>
+			<name>multiple</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica quais as extensões suportadas no caso (file)</description>
+			<name>accept</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="field1"/&gt; 
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma div</description>
+		<display-name>Layout</display-name>
+		<name>div</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DivTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o id do componente</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica uma classe css para o componente</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado. Default : true.</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:div&gt;
+				Conteudo
+			&lt;/html:div&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza a importacao de um arquivo js ou css</description>
+		<display-name>Misc</display-name>
+		<name>import</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ImportTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o tipo do arquivo a ser importado. Opções : js,css</description>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url onde se encontra o arquivo</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:import type="css" url="/css/example.css"/&gt;
+			&lt;html:import type="js" url="/js/example.js"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma imagem</description>
+		<display-name>Image</display-name>
+		<name>img</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ImageTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label caso o componente nao consiga ser carregado</description>
+			<name>alt</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve seguir um cdn configurado nas propriedades</description>
+			<name>cdn</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser responsivo</description>
+			<name>responsive</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica a altura do componente</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url da imagem</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a largura da imagem</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica um formato para o componente. Opções : rounded,circle,thumbnail</description>
+			<name>shape</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica uma classe css para o componente</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:img url="/image/person.png" alt="logo" responsive="true"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um link</description>
+		<display-name>Html</display-name>
+		<name>link</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.LinkTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a url do componente</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label do componente</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o target do componente. Default : _self. Opções : _blank, _newtab ,nomedoiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:link label="Meu link" url="#"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um h1</description>
+		<display-name>Html</display-name>
+		<name>h1</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H1Tag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:h1&gt; Cabecalho &lt;/html:h1&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um small</description>
+		<display-name>Html</display-name>
+		<name>small</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SmallTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:small&gt; texto pequeno &lt;/html:small&gt; </example>
+	</tag>
+
+	<tag>
+	    <description>Renderiza um span</description>
+		<display-name>Html</display-name>
+		<name>span</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SpanTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o id do componente</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:span&gt; texto &lt;/html:span&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um tooltip</description>
+		<display-name>Misc</display-name>
+		<name>tooltip</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TooltipTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o name do componente a ser atingido</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:input name="field1"/&gt;	
+			
+			&lt;html:tooltip attachTo="field1"&gt;	
+			     Meu tooltip para o campo field 1
+			&lt;/html:tooltip&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um iframe</description>
+		<display-name>Misc</display-name>
+		<name>iframe</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.IframeTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o name do iframe</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o id do iframe</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url em que o iframe</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:iframe url="/app/welcome" name="conteudo"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um menu dropdown com ativacao em ícone</description>
+		<display-name>Menu</display-name>
+		<name>menuImage</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuImageTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o caminho da image a ser utilizada</description>
+			<name>image</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a classe css para o menu</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a altura da image</description>
+			<name>height</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica a largura da imagem</description>
+			<name>width</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+				&lt;html:menuImage cssClass="pull-right" image="/image/person.png" width="35" height="35" &gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:menuItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:menuImage&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um item de menu</description>
+		<display-name>Menu</display-name>
+		<name>menuItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o icone a ser utilizado no icone de menu . Lista disponível em http://getbootstrap.com/components/#glyphicons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url a ser utilizada</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label a ser utilizado</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o target do navegador . Default : _self . Opções : _self,_parent,_blank,namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:nav&gt;
+				&lt;html:menuButton icon="cog" align="right"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:menuItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:menuButton&gt;
+			&lt;/html:nav&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um menu dropdown com ativacao em botao</description>
+		<display-name>Menu</display-name>
+		<name>menuButton</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuButtonTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o icone a ser utilizado no botao. Lista disponível em http://getbootstrap.com/components/#glyphicons</description>
+			<name>icon</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica uma classe css a ser utilizada</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o alinhamento do botao no menu . Default : left. Opções : left,right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label do botão</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o title do botão</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:nav&gt;
+				&lt;html:menuButton icon="cog" align="right"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" url="#"/&gt;
+					&lt;html:menuItem label="Item 3" url="#"/&gt;
+				&lt;/html:menuButton&gt;
+			&lt;/html:nav&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um menu horizontal</description>
+		<display-name>Menu</display-name>
+		<name>nav</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.NavTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:nav&gt;
+				&lt;html:menuButton icon="cog" align="right"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" url="#"/&gt;
+					&lt;html:menuItem label="Item 3" url="#"/&gt;
+				&lt;/html:menuButton&gt;
+			&lt;/html:nav&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um logotipo no menu de navegação em formato de texto</description>
+		<display-name>Menu</display-name>
+		<name>brand</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.BrandTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a url a ser chamada ao clicar no logo</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label a ser utilizado no logo</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:nav&gt;
+				&lt;html:brand label="Meu titulo" url="#"/&gt;
+			&lt;/html:nav&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma grid</description>
+		<display-name>Grid</display-name>
+		<name>grid</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.GridTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a colecao a ser iterada pelo componente</description>
+			<name>data</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indica o nome da variavel java a ser disponibilizada o objeto da iteracao</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o nome da variavel a ser disponibilizada a iteracao corrente</description>
+			<name>varStatus</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label do componente</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o número total de registros no componente</description>
+			<name>totalResults</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica o número padrao de resultados por pagina . Default : 60 . Opções : 20,40,60,80,100</description>
+			<name>resultsPerPage</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica se a grid é simples e sem widgets padrão (paginacao,exportacao,pesquisa,etc)</description>
+			<name>simple</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser paginado</description>
+			<name>paginate</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url do componente a ser utilizada caso haja paginação</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o titulo do componente quando não há linhas disponíveis</description>
+			<name>noRowText</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o suporte a marcar todos é ativado</description>
+			<name>checkAll</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:grid label="Pessoas" url="/component/grid" data="${ pessoas }" var="pessoa" noRowText="Não há pessoas disponíveis"&gt;
+				&lt;html:gridColumn label="Identificação" exportable="true"&gt;
+					${ pessoa.id }
+				&lt;/html:gridColumn&gt;
+				&lt;html:gridColumn label="Nome" exportable="true"&gt;
+					${ pessoa.nome }
+				&lt;/html:gridColumn&gt;
+			&lt;/html:grid&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma coluna de grid</description>
+		<display-name>Grid</display-name>
+		<name>gridColumn</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.GridColumnTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label do componente</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o valor do componente é do tipo booleano</description>
+			<name>booleanType</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se a coluna deve ser collapsable</description>
+			<name>collapsable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se a coluna deve ser exportada</description>
+			<name>exportable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o alinhamento do conteudo. Default : left. Opções : left,center,right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description></description>
+			<name>hideOnViewport</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica um formato em que o conteudo deve ser convertido . Opções : date,timestamp,hour,currency,cep,cnpj,tel,cpf</description>
+			<name>format</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o estado do componente . Default : default. Opções : danger,info,success,default</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:grid label="Pessoas" url="/component/grid" data="${ pessoas }" var="pessoa" noRowText="Não há pessoas disponíveis"&gt;
+				&lt;html:gridColumn label="Identificação" exportable="true"&gt;
+					${ pessoa.id }
+				&lt;/html:gridColumn&gt;
+				&lt;html:gridColumn label="Nome" exportable="true"&gt;
+					${ pessoa.nome }
+				&lt;/html:gridColumn&gt;
+			&lt;/html:grid&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um botao</description>
+		<display-name>Button</display-name>
+		<name>button</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ButtonTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o estado do botao. Default : default. Opções : default,primary,danger,info,success</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o type do button . Default : button. Opções : button,submit </description>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica uma classe css para o componente</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url a ser executada pelo componente</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o icone a ser utilizado pelo componente. Lista disponível em http://getbootstrap.com/components/#glyphicons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o id do componente</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o label do componente</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o target do componente. Default : _self. Opções : _blank,_newtab,_parent,nomedoiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o title do botão</description>
+			<name>title</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente exibe uma confirmação antes da execução</description>
+			<name>confirm</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o texto a ser exibido caso uma confirmação seja lançada</description>
+			<name>confirmText</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser desabilitado. Default : false.</description>
+			<name>disabled</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:button url="#" confirm="true" confirmText="Tem certeza ?" icon="cog" label="botao" state="info"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma toolbar para o componente (Disponível para grid,formulario e card)</description>
+		<display-name>Misc</display-name>
+		<name>toolbar</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ToolbarTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#"&gt;
+				&lt;html:formGroup label="Campo 1" required="true"&gt;
+					&lt;html:input required="true" name="field1"/&gt;
+				&lt;/html:formGroup&gt;
+				&lt;html:formGroup label="Campo 2"&gt;
+					&lt;html:input name="field2"/&gt;
+				&lt;/html:formGroup&gt;
+				
+				&lt;html:toolbar&gt;
+				    &lt;html:button state="primary" type="submit" label="Alterando label padrao"/&gt;
+				&lt;/html:toolbar&gt;
+			&lt;/html:form&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um separador de menu</description>
+		<display-name>Menu</display-name>
+		<name>menuSeparator</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuSeparatorTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:nav&gt;
+				&lt;html:menuButton icon="cog" align="right"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" url="#"/&gt;
+					&lt;html:menuItem label="Item 3" url="#"/&gt;
+				&lt;/html:menuButton&gt;
+			&lt;/html:nav&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um bloco javascript</description>
+		<display-name>Javascript</display-name>
+		<name>jsCode</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.JsCodeTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado. Default : true.</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:jsCode&gt;
+				test();
+				function test(){
+					alert('oi');
+				}
+			&lt;/html:jsCode&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma lista</description>
+		<display-name>Groupments</display-name>
+		<name>listGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ListGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:listGroup&gt;
+				&lt;html:listGroupItem&gt;
+					Item 1
+				&lt;/html:listGroupItem&gt;
+				&lt;html:listGroupItem&gt;
+					Item 2
+				&lt;/html:listGroupItem&gt;
+			&lt;/html:listGroup&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um item de lista</description>
+		<display-name>Groupments</display-name>
+		<name>listGroupItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ListGroupItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:listGroup&gt;
+				&lt;html:listGroupItem&gt;
+					Item 1
+				&lt;/html:listGroupItem&gt;
+				&lt;html:listGroupItem&gt;
+					Item 2
+				&lt;/html:listGroupItem&gt;
+			&lt;/html:listGroup&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma area de texto</description>
+		<display-name>Input</display-name>
+		<name>textarea</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TextareaTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o name do componente</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a marcacao padrao do componente</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o valor do componente</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente é obrigatório preenchimento no formulário</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o numero de linhas do componente</description>
+			<name>rows</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:textarea name="textarea1" rows="3"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um select no navegador</description>
+		<display-name>Input</display-name>
+		<name>select</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica uma classe css para o componente</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a collection a ser iterada no componente</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indica o valor selecionado no componente</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o name do componente</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o nome da variavel java a ser disponibilizada o objeto da iteracao</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o preenchimento do componente é obrigatório no formulário</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+		
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma option de um select</description>
+		<display-name>Input</display-name>
+		<name>option</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.OptionTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o value do component</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example></example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma tabela detalhe</description>
+		<display-name>Detail table</display-name>
+		<name>detailTable</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label do componente</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a coleção a ser iterada no componente</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indica o nome da variavel java a ser disponibilizada o objeto da iteracao</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o número mínimo de linhas a serem preenchidas</description>
+			<name>atLeast</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve iniciar sem linhas</description>
+			<name>empty</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica uma funcao javascript a ser executada após a inserção de uma linha </description>
+			<name>afterInsert</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#" label="Formulario com detalhes"&gt;
+				&lt;html:formGroup&gt;
+					&lt;html:detailTable atLeast="1"&gt;
+						&lt;html:detailTableColumn label="Nome" required="true"&gt;
+							&lt;html:input name="nomes[]" required="true"/&gt;
+						&lt;/html:detailTableColumn&gt;
+						&lt;html:detailTableColumn label="Idade" required="true"&gt;
+							&lt;html:input name="idades[]" type="number" required="true"/&gt;
+						&lt;/html:detailTableColumn>
+					&lt;/html:detailTable>
+				&lt;/html:formGroup>
+			&lt;/html:form>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma coluna na tabela detalhe</description>
+		<display-name>Detail table</display-name>
+		<name>detailTableColumn</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DetailTableColumnTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label do componente</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente tem seu preenchimento obrigatório em um formulário</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:form action="#" label="Formulario com detalhes"&gt;
+				&lt;html:formGroup&gt;
+					&lt;html:detailTable atLeast="1"&gt;
+						&lt;html:detailTableColumn label="Nome" required="true"&gt;
+							&lt;html:input name="nomes[]" required="true"/&gt;
+						&lt;/html:detailTableColumn&gt;
+						&lt;html:detailTableColumn label="Idade" required="true"&gt;
+							&lt;html:input name="idades[]" type="number" required="true"/&gt;
+						&lt;/html:detailTableColumn>
+					&lt;/html:detailTable>
+				&lt;/html:formGroup>
+			&lt;/html:form>
+		</example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um auto completar</description>
+		<display-name>Input</display-name>
+		<name>autoComplete</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AutoCompleteTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a url a ser executada pelo componente</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o name do auto completar</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o campo de valor a ser preenchido</description>
+			<name>dataValue</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o texto a ser preenchido ao selecionar algum valor</description>
+			<name>dataText</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o value do componente</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o texto do componente</description>
+			<name>text</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o numero minimo de letras para disparar o auto completar</description>
+			<name>minLength</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indica a marcacao padrao do componente</description>
+			<name>placeholder</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente tem seu preenchimento obrigatório no formulario</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:autoComplete name="autocomplete" url="/app/autoComplete" dataValue="id" dataText="nome"&gt;
+			
+			&lt;/html:autoComplete&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um calendário</description>
+		<display-name>Calendar</display-name>
+		<name>calendar</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CalendarTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a url responsável pela construção do json</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:calendar url="/app/calendar"&gt;
+				
+			&lt;/html:calendar&gt; </example>
+	</tag>
+
+
+
+	<tag>
+		<description>Renderiza um componente com efeito sanfona</description>
+		<display-name>Misc</display-name>
+		<name>collapsable</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CollapsableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label a ser utilizado no agrupamento</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o estado no agrupamento. Default : primary. Opções : default,primary,danger,info,success</description>
+			<name>state</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:collapsable label="Label 1"&gt;
+				Outros componentes
+			&lt;/html:collapsable&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma mascara no formato monetário em um determinado componente</description>
+		<display-name>Mask</display-name>
+		<name>currencyMask</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CurrencyMaskTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o name do componente a ser incorporado a mascara no formato monetário</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:input name="teste" value="0" format="currency"/&gt;
+			&lt;html:currencyMask attachTo="teste"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma mascara em um determinado componente</description>
+		<display-name>Mask</display-name>
+		<name>mask</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MaskTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a mascara a ser utilizada</description>
+			<name>mask</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o name do componente a ser incorporado a mascara</description>
+			<name>attachTo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o preenchimento deve ocorrer de tras pra frente</description>
+			<name>reverse</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:input name="teste"/&gt;
+			&lt;html:mask mask="99/99/9999" attachTo="teste"/&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um bloco na mascara ao pressionar uma tecla</description>
+		<display-name>Mask</display-name>
+		<name>maskOnKeyPress</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MaskTagOnKeyPress</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:input name="teste"/&gt;
+			&lt;html:mask mask="(00) 0000-00000" attachTo="teste"&gt;
+				&lt;html:maskOnKeyPress&gt;
+				    var masks = ['(00) 0000-00000', '(00) 00000-0000'];
+					mask = (value.length > 14) ? masks[1] : masks[0];
+					$('#'+$(field[0]).attr('id')).mask(mask,options);
+				&lt;/html:maskOnKeyPress&gt;
+			&lt;/html:mask&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um painel de abas</description>
+		<display-name>Tab</display-name>
+		<name>tabPanel</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabPanelTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:tabPanel&gt;
+				&lt;html:tab label="Aba 1" active="true"&gt;
+					Conteúdo aba 1
+				&lt;/html:tab&gt;
+				&lt;html:tab label="Aba 2" url="/app/welcome"/&gt;
+			&lt;/html:tabPanel&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza uma aba dentro de um painel de abas</description>
+		<display-name>Tab</display-name>
+		<name>tab</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label da aba</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url a ser incorporada na aba. Caso não seja indicada é renderizado o conteúdo no corpo do componente.</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se a aba deve ser renderizada</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se a aba deve ser iniciada selecionada</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se a aba deve ser recarregada ao clicar.Default : true.</description>
+			<name>reloadOnSelect</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:tabPanel&gt;
+				&lt;html:tab label="Aba 1" active="true"&gt;
+					Conteúdo aba 1
+				&lt;/html:tab&gt;
+				&lt;html:tab label="Aba 2" url="/app/welcome"/&gt;
+			&lt;/html:tabPanel&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um componente em arvore</description>
+		<display-name>Treeview</display-name>
+		<name>treeView</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TreeViewTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a url que o componente deve executar</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o name do componente</description>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a colecao a ser iterada no componente</description>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>Indica o nome da variavel java a ser disponibilizada o objeto da iteracao</description>
+			<name>var</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o preenchimento da arvoce deve ser obrigatório no formulário</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente permite seleção multipla. Default : false.</description>
+			<name>multiple</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+		
+			&lt;html:treeView url="/app/treeView"&gt;
+			
+			&lt;/html:treeView&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza a selecao de nos de uma arvore</description>
+		<display-name>Treeview</display-name>
+		<name>treeViewNodeSelect</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TreeViewNodeSelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o id do no selecionado</description>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o texto do no selecionado</description>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:treeView url="/app/treeView" name="treeview" data="${ pessoas }" var="pessoa"&gt;
+				&lt;html:treeViewNodeSelect id="${ pessoa.id }" text="${ pessoa.nome }"/&gt;
+			&lt;/html:treeView&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um bloco com espaçamento de topo e rodapé</description>
+		<display-name>Misc</display-name>
+		<name>block</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.BlockTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o alinhamento dos componentes internos. Default : left. Opções : left,center,right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica se o componente deve ser renderizado . Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:block&gt;
+				Meu bloco de componentes
+			&lt;/html:block&gt; </example>
+	</tag>
+
+	<tag>
+		<description>Renderiza um agrupamento de botões</description>
+		<display-name>Button</display-name>
+		<name>buttonGroup</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ButtonGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se os botões devem ser espaçados . Default false</description>
+			<name>spaced</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:buttonGroup&gt;
+				&lt;html:button label="Botao 1" state="primary" url="#"/&gt;
+				&lt;html:button label="Botao 3" state="danger" url="#"/&gt;
+			&lt;/html:buttonGroup&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renderiza uma barra de progresso</description>
+		<display-name>Progress</display-name>
+		<name>progressBar</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ProgressBarTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica se a barra deve ter uma posição determinada. Default false</description>
+			<name>determinate</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indica o valor que a barra deve assumir de porcentagem. Default 0.Opções : 0 a 100</description>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:progressBar determinate="true" value="70"&gt;&lt;/html:progressBar&gt; 
+			&lt;html:progressBar determinate="true" value="30"&gt;&lt;/html:progressBar&gt; 
+			&lt;html:progressBar&gt;&lt;/html:progressBar&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renderiza uma barra de progresso circular</description>
+		<display-name>Progress</display-name>
+		<name>progressCircle</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ProgressCircleTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica a cor do progresso circular. Default blue. Opções : red,green,yellow,blue</description>
+			<name>color</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o tamanho do progresso circular. Default big. Opções : big,small,medium</description>
+			<name>size</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:progressCircle&gt;&lt;/html:progressCircle&gt; 
+			&lt;html:progressCircle color="red" size="small"&gt;&lt;/html:progressCircle&gt; 
+			&lt;html:progressCircle color="yellow" size="medium"&gt;&lt;/html:progressCircle&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renderiza um card</description>
+		<display-name>Card</display-name>
+		<name>card</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardBody&gt;
+					Componentes
+				&lt;/html:cardBody&gt;
+				 &lt;html:toolbar&gt;
+					Componentes
+				&lt;/html:toolbar&gt;
+			&lt;/html:card&gt; 
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renderiza um corpo no card</description>
+		<display-name>Card</display-name>
+		<name>cardBody</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CardBodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:card&gt;
+				&lt;html:cardBody&gt;
+					Componentes
+				&lt;/html:cardBody&gt;
+				 &lt;html:toolbar&gt;
+					Componentes
+				&lt;/html:toolbar&gt;
+			&lt;/html:card&gt; 
+		</example>
+	</tag>
+
+</taglib>  

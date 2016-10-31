@@ -1,0 +1,17 @@
+<%@include file="../app/taglibs.jsp"%>										<html:view title="TagriaLib Documentação">																	<html:panel>																									<html:panelHead label="menuItem"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renderiza um item de menu																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:table><html:tableLine><html:tableColumn header="true">Atributo</html:tableColumn><html:tableColumn header="true">Obrigatório</html:tableColumn><html:tableColumn header="true">Tipo</html:tableColumn><html:tableColumn header="true">Descrição</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>icon</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o icone a ser utilizado no icone de menu . Lista disponível em http://getbootstrap.com/components/#glyphicons</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>url</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica a url a ser utilizada</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>label</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o label a ser utilizado</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>target</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o target do navegador . Default : _self . Opções : _self,_parent,_blank,namedeumiframe</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>rendered</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>Indica se o componente deve ser renderizado</html:tableColumn></html:tableLine></html:table>																																	</html:tab>																									<html:tab label="{demo}">																						
+			<html:nav>
+				<html:menuButton icon="cog" align="right">
+					<html:menuItem label="Item 1" url="#"/>
+					<html:menuSeparator/>
+					<html:menuItem label="Item 2" target="_blank" url="#"/>
+					<html:menuItem icon="trash" label="Item 3" url="#"/>
+				</html:menuButton>
+			</html:nav> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			&lt;html:nav&gt;
+				&lt;html:menuButton icon="cog" align="right"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" target="_blank" url="#"/&gt;
+					&lt;html:menuItem icon="trash" label="Item 3" url="#"/&gt;
+				&lt;/html:menuButton&gt;
+			&lt;/html:nav&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

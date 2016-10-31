@@ -1,0 +1,17 @@
+<%@include file="../app/taglibs.jsp"%>										<html:view title="TagriaLib Documentação">																	<html:panel>																									<html:panelHead label="maskOnKeyPress"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renderiza um bloco na mascara ao pressionar uma tecla																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:alert state="info">Essa tag não possui atributos</html:alert>																																	</html:tab>																									<html:tab label="{demo}">																						
+			<html:input name="teste"/>
+			<html:mask mask="(00) 0000-00000" attachTo="teste">
+				<html:maskOnKeyPress>
+				    var masks = ['(00) 0000-00000', '(00) 00000-0000'];
+					mask = (value.length > 14) ? masks[1] : masks[0];
+					$('#'+$(field[0]).attr('id')).mask(mask,options);
+				</html:maskOnKeyPress>
+			</html:mask> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			&lt;html:input name="teste"/&gt;
+			&lt;html:mask mask="(00) 0000-00000" attachTo="teste"&gt;
+				&lt;html:maskOnKeyPress&gt;
+				    var masks = ['(00) 0000-00000', '(00) 00000-0000'];
+					mask = (value.length &gt; 14) ? masks[1] : masks[0];
+					\$('#'+\$(field[0]).attr('id')).mask(mask,options);
+				&lt;/html:maskOnKeyPress&gt;
+			&lt;/html:mask&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

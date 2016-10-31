@@ -1,0 +1,11 @@
+<%@include file="../app/taglibs.jsp"%>										<html:view title="TagriaLib Documentação">																	<html:panel>																									<html:panelHead label="jsEvent"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renderiza um evento disparado para um determinado componente																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:table><html:tableLine><html:tableColumn header="true">Atributo</html:tableColumn><html:tableColumn header="true">Obrigatório</html:tableColumn><html:tableColumn header="true">Tipo</html:tableColumn><html:tableColumn header="true">Descrição</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>attachTo</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o name do componente a ser atingido</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>event</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o evento javascript a ser disparado</html:tableColumn></html:tableLine></html:table>																																	</html:tab>																									<html:tab label="{demo}">																						
+			<html:input name="input1" placeholder="Entre e saia do campo" />
+			
+			<html:jsEvent attachTo="input1" event="blur">
+			    alert('blur');
+			</html:jsEvent> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			&lt;html:input name="input1" placeholder="Entre e saia do campo" /&gt;
+			
+			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
+			    alert('blur');
+			&lt;/html:jsEvent&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

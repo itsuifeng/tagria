@@ -1,0 +1,17 @@
+<%@include file="../app/taglibs.jsp"%>										<html:view title="TagriaLib Documentação">																	<html:panel>																									<html:panelHead label="menuButton"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renderiza um menu dropdown com ativacao em botao																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:table><html:tableLine><html:tableColumn header="true">Atributo</html:tableColumn><html:tableColumn header="true">Obrigatório</html:tableColumn><html:tableColumn header="true">Tipo</html:tableColumn><html:tableColumn header="true">Descrição</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>icon</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o icone a ser utilizado no botao. Lista disponível em http://getbootstrap.com/components/#glyphicons</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>cssClass</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica uma classe css a ser utilizada</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>align</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o alinhamento do botao no menu . Default : left. Opções : left,right</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>label</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o label do botão</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>title</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o title do botão</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>rendered</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>Indica se o componente deve ser renderizado</html:tableColumn></html:tableLine></html:table>																																	</html:tab>																									<html:tab label="{demo}">																						
+			<html:nav>
+				<html:menuButton icon="cog" align="right">
+					<html:menuItem label="Item 1" url="#"/>
+					<html:menuSeparator/>
+					<html:menuItem label="Item 2" url="#"/>
+					<html:menuItem label="Item 3" url="#"/>
+				</html:menuButton>
+			</html:nav> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			&lt;html:nav&gt;
+				&lt;html:menuButton icon="cog" align="right"&gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+					&lt;html:menuSeparator/&gt;
+					&lt;html:menuItem label="Item 2" url="#"/&gt;
+					&lt;html:menuItem label="Item 3" url="#"/&gt;
+				&lt;/html:menuButton&gt;
+			&lt;/html:nav&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

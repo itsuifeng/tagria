@@ -1,0 +1,15 @@
+<%@include file="../app/taglibs.jsp"%>										<html:view title="TagriaLib Documentação">																	<html:panel>																									<html:panelHead label="datePickerOnSelect"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renderiza um evento ao selecionar uma data																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:alert state="info">Essa tag não possui atributos</html:alert>																																	</html:tab>																									<html:tab label="{demo}">																						
+			<html:input name="input1" placeholder="Data" />
+			<html:datePicker attachTo="input1" min="0">
+				<html:datePickerOnSelect>
+					/* Nesse ponto fica disponivel as variaveis dateText,inst  */
+					alert(dateText);
+				</html:datePickerOnSelect>
+			</html:datePicker> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			&lt;html:input name="input1" placeholder="Data" /&gt;
+			&lt;html:datePicker attachTo="input1" min="0"&gt;
+				&lt;html:datePickerOnSelect&gt;
+					/* Nesse ponto fica disponivel as variaveis dateText,inst  */
+					alert(dateText);
+				&lt;/html:datePickerOnSelect&gt;
+			&lt;/html:datePicker&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

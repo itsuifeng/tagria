@@ -1,0 +1,83 @@
+.panel-primary {
+    border-color: #6d8168;
+}
+
+.panel-primary > .panel-heading {
+    background-color: #839b7c;
+    border-color: #6d8168;
+}
+
+.btn-primary,btn-primary:focus,.btn-primary.focus,.btn-primary:hover {
+  background-color: #EB8F00;
+  border-color: #D46A0B;
+}
+
+.btn-default {
+  border-color: #c5c5c5;
+   background-color: #f6f6f6;
+}
+
+
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-color: #EB8F00;
+  border-color: #D46A0B;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  background-color: #EB8F00;
+  border-color: #D46A0B;
+}
+
+.navbar-default {
+   background-color: #839b7c;
+   border-color: #6d8168;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #839b7c;
+    border-color: #6d8168;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+   background-color: #839b7c;
+}
+
+.ui-widget-header {
+    border-color: #6d8168;
+    background-color: #839b7c;
+    color: #ffffff;
+}
+
+.nav-tabs {
+   border-color: #6d8168;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	border-color: #6d8168;
+	color: #EB8F00;
+	border-bottom-color: transparent;
+}
+
+.ui-state-default {
+    border-color: #c5c5c5;
+    background-color: #f6f6f6;
+}
+
+.ui-state-active {
+    color: #EB8F00;
+}
