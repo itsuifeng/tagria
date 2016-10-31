@@ -1,4 +1,4 @@
-package br.com.jslsolucoes.tagria.doc.controller;
+package com.jslsolucoes.tagria.doc.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.commons.lang.RandomStringUtils;
 import org.joda.time.DateTime;
 
+import com.jslsolucoes.tagria.doc.model.Pessoa;
+import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
 import com.jslsolucoes.tagria.lib.calendar.CalendarEvent;
 import com.jslsolucoes.tagria.lib.tree.view.TreeViewNode;
 
@@ -16,8 +18,6 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
-import br.com.jslsolucoes.tagria.doc.model.Pessoa;
-import br.com.jslsolucoes.tagria.doc.repository.PessoaRepository;
 
 @Controller 
 public class AppController {

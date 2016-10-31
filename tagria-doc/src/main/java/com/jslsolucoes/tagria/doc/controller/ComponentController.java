@@ -1,11 +1,12 @@
-package br.com.jslsolucoes.tagria.doc.controller;
+package com.jslsolucoes.tagria.doc.controller;
 
 import javax.inject.Inject;
+
+import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
-import br.com.jslsolucoes.tagria.doc.repository.PessoaRepository;
 
 @Controller 
 @Path("component")

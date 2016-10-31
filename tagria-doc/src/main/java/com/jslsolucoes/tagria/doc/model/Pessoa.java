@@ -1,4 +1,4 @@
-package br.com.jslsolucoes.tagria.doc.model;
+package com.jslsolucoes.tagria.doc.model;
 
 import java.util.Date;
 

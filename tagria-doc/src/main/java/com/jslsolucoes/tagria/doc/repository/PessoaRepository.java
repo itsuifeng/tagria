@@ -1,8 +1,8 @@
-package br.com.jslsolucoes.tagria.doc.repository;
+package com.jslsolucoes.tagria.doc.repository;
 
 import java.util.List;
 
-import br.com.jslsolucoes.tagria.doc.model.Pessoa;
+import com.jslsolucoes.tagria.doc.model.Pessoa;
 
 public interface PessoaRepository {
 	public List<Pessoa> listAll();

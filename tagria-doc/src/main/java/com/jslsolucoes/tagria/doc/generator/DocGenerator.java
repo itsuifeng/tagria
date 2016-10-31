@@ -1,4 +1,4 @@
-package br.com.jslsolucoes.tagria.doc.generator;
+package com.jslsolucoes.tagria.doc.generator;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,6 @@ import java.util.TreeSet;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.SystemUtils;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -24,13 +23,8 @@ public class DocGenerator {
 	public static void main(String[] args) throws IOException {
 		
 		
+		String workspace = args[0];
 		Map<String,List<Tag>> groupments = new HashMap<String,List<Tag>>();
-		
-		
-		String workspace = "/Volumes/Macintosh HD 2/workspace/jslsolucoes";
-		if(SystemUtils.IS_OS_WINDOWS){
-			workspace = "D:/workspace/gov-stack/tagria";
-		} 
 		
 		String html = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/html.tld"),"utf-8");
 		String ajax = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/ajax.tld"),"utf-8");

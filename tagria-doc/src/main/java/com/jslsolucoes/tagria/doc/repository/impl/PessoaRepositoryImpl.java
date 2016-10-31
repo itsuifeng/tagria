@@ -1,4 +1,4 @@
-package br.com.jslsolucoes.tagria.doc.repository.impl;
+package com.jslsolucoes.tagria.doc.repository.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,8 +8,8 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.apache.commons.lang.RandomStringUtils;
 
-import br.com.jslsolucoes.tagria.doc.model.Pessoa;
-import br.com.jslsolucoes.tagria.doc.repository.PessoaRepository;
+import com.jslsolucoes.tagria.doc.model.Pessoa;
+import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
 
 @ApplicationScoped
 public class PessoaRepositoryImpl implements PessoaRepository {

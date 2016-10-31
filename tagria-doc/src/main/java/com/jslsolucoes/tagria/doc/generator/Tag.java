@@ -1,4 +1,4 @@
-package br.com.jslsolucoes.tagria.doc.generator;
+package com.jslsolucoes.tagria.doc.generator;
 
 import java.util.List;
 
