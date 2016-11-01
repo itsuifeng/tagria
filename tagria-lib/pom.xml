@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>tagria-lib</artifactId>
 
@@ -108,8 +108,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-  <scm>
-    <tag>tagria-1.0.0</tag>
-  </scm>
 </project>
