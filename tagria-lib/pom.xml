@@ -108,4 +108,8 @@
 			</plugin>
 		</plugins>
 	</build>
+
+  <scm>
+    <tag>tagria-1.0.0</tag>
+  </scm>
 </project>
