@@ -1,4 +1,19 @@
-package br.com.jslsolucoes.tagria.doc.generator;
+/*******************************************************************************
+ * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
+package com.jslsolucoes.tagria.doc.generator;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +27,6 @@ import java.util.TreeSet;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.SystemUtils;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -24,13 +38,8 @@ public class DocGenerator {
 	public static void main(String[] args) throws IOException {
 		
 		
+		String workspace = args[0];
 		Map<String,List<Tag>> groupments = new HashMap<String,List<Tag>>();
-		
-		
-		String workspace = "/Volumes/Macintosh HD 2/workspace/jslsolucoes";
-		if(SystemUtils.IS_OS_WINDOWS){
-			workspace = "D:/workspace/gov-stack/tagria";
-		} 
 		
 		String html = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/html.tld"),"utf-8");
 		String ajax = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/ajax.tld"),"utf-8");
