@@ -21,9 +21,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.jslsolucoes</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tagria-lib</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 	

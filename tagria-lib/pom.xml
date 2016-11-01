@@ -87,7 +87,7 @@
 							<mainClass>com.jslsolucoes.tagria.lib.compressor.ResourceCompressor</mainClass>
 							<arguments>
 								<argument>${project.basedir}</argument>
-								<argument>true</argument>
+								<argument>false</argument>
 							</arguments>
 						</configuration>
 					</execution>
