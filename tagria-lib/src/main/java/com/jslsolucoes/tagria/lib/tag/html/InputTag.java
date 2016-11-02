@@ -75,7 +75,7 @@ public class InputTag extends SimpleTagSupport {
 			input.add(Attribute.MAXLENGTH,maxLength);
 		}
 		if(!StringUtils.isEmpty(placeholder)){
-			input.add(Attribute.PLACEHOLDER,placeholder);
+			input.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder));
 		}
 		
 		if (!StringUtils.isEmpty(format)) {
