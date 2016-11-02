@@ -20,19 +20,23 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Button;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.H4;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class ModalTag extends SimpleTagSupport {
+public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	private String id;
 	private String label;
 	private String attachTo;
+	private String toolbar;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -66,6 +70,13 @@ public class ModalTag extends SimpleTagSupport {
 		body.add(Attribute.CLASS,"modal-body");
 		body.add(TagUtil.getBody(getJspBody()));
 		content.add(body);
+		
+		if (!StringUtils.isEmpty(toolbar)) {
+			Div footer = new Div();
+			footer.add(Attribute.CLASS, "modal-footer");
+			footer.add(toolbar);
+			content.add(footer);
+		}
 		
 		dialog.add(content);
 		modal.add(dialog);
@@ -105,6 +116,11 @@ public class ModalTag extends SimpleTagSupport {
 
 	public void setAttachTo(String attachTo) {
 		this.attachTo = attachTo;
+	}
+	
+	@Override
+	public void setToolbar(String html) {
+		this.toolbar = html;
 	}
 
 

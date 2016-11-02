@@ -154,6 +154,43 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			    alert('blur');
 			&lt;/html:jsEvent&gt; </example>
 	</tag>
+	
+	<tag>
+		<description>Renderiza um modal de confirmação</description>
+		<display-name>Misc</display-name>
+		<name>confirm</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ConfirmTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indica o label do titulo do modal</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica a url ao confirmar a operação</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o target do componente. Default : _self. Opções : _blank, _newtab ,nomedoiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indica o componente que dispara a tela de modal</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+		    &lt;html:button id="botao" label="Confirmar algo"/&gt;
+			&lt;html:confirm url="#" label="Titulo do modal" attachTo="botao"&gt;
+								
+			&lt;/html:confirm&gt; </example>
+	</tag>
 
 	<tag>
 		<description>Renderiza um bloco modal</description>
@@ -184,6 +221,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		    &lt;html:button id="botao" label="Abrir modal"/&gt;
 			&lt;html:modal label="Titulo do modal" attachTo="botao"&gt;
 				Outros componentes 
+				
+				&lt;html:toolbar&gt;
+					Componentes
+				&lt;/html:toolbar&gt;
+				
 			&lt;/html:modal&gt; </example>
 	</tag>
 
@@ -1295,6 +1337,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indica o dismiss do componente atrelado ao botão . Opções : modal </description>
+			<name>dismiss</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indica uma classe css para o componente</description>
 			<name>cssClass</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1343,18 +1391,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indica se o componente exibe uma confirmação antes da execução</description>
-			<name>confirm</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>Indica o texto a ser exibido caso uma confirmação seja lançada</description>
-			<name>confirmText</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>Indica se o componente deve ser desabilitado. Default : false.</description>
 			<name>disabled</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1365,7 +1401,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 
 	<tag>
-		<description>Renderiza uma toolbar para o componente (Disponível para grid,formulario e card)</description>
+		<description>Renderiza uma toolbar para o componente (Disponível para grid,formulario,card e modal)</description>
 		<display-name>Misc</display-name>
 		<name>toolbar</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ToolbarTag</tag-class>
