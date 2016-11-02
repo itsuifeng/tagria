@@ -390,6 +390,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AlertTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indica um label para o alerta.</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indica se o componente pode ser fechada. Default : false</description>
 			<name>dismissible</name>
 			<rtexprvalue>true</rtexprvalue>
