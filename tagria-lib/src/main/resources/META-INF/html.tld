@@ -1397,7 +1397,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:button url="#" confirm="true" confirmText="Tem certeza ?" icon="cog" label="botao" state="info"/&gt; </example>
+			&lt;html:button url="#" icon="cog" label="botao" state="info"/&gt; </example>
 	</tag>
 
 	<tag>

@@ -20,7 +20,7 @@ public enum TagriaConfigParameter {
 	ENCODING("encoding","utf-8"), 
 	CDN_URL("cdn.url"), 
 	SKIN("skin", "default"),
-	LOCALE("locale", "pt-br");
+	LOCALE("locale", "en");
 	private String name;
 	private String defaultValue;
 
