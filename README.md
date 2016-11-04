@@ -9,9 +9,6 @@
 [maven]:http://search.maven.org/#search|gav|1|g:"com.jslsolucoes"%20AND%20a:"tagria"
 [maven img]:https://maven-badges.herokuapp.com/maven-central/com.jslsolucoes/tagria/badge.svg
 
-[release]:https://github.com/jslsolucoes/tagria/releases
-[release img]:https://img.shields.io/github/release/jslsolucoes/tagria.svg
-
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/License-Apache%202-blue.svg
 
