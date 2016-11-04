@@ -6,37 +6,37 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 	<description>Tagria ajax library</description>
 	<display-name>Tagria ajax</display-name>
-	<tlib-version>3.0</tlib-version>
+	<tlib-version>1.0</tlib-version>
 	<short-name>ajax</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/ajax</uri>
 
 	<tag>
-		<description>Renderiza uma função ajax</description>
+		<description>Renders an ajax function</description>
 		<display-name>Ajax</display-name>
 		<name>function</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.FunctionTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indica o tipo de retorno esperado pela requisição ajax. Default : json. Opções : xml, json, script, html,jsonp,text</description>
+			<description>Indicates the type of return expected by ajax request. Default: json. Options: xml, json, script, html, jsonp, text</description>
 			<name>dataType</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica se a funcao ajax deve ser executa ao carregar o DOM. Default : false.</description>
+			<description>It indicates whether the ajax function should be run to load the DOM. Default: false.</description>
 			<name>executeOnDocumentLoad</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indica o nome da função ajax</description>
+			<description>It indicates the name of the ajax function</description>
 			<name>name</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica a url a ser chamada pela requisicao ajax</description>
+			<description>Indicates the url to be called by the Ajax request</description>
 			<name>url</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -65,27 +65,27 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 
 	<tag>
-		<description>Renderiza a escrita em um determinado componente</description>
+		<description>Renders writing in a particular component</description>
 		<display-name>Ajax</display-name>
 		<name>target</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.TargetTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indica qual atributo do objeto deve ser utilizado</description>
+			<description>Indicates which attribute of the object must be used</description>
 			<name>data</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica o tipo de iteracao a ser utilizada . Opções : val,html </description>
+			<description>It indicates the type of iteration being used. Options: val, html</description>
 			<name>type</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica o name do componente a ser atingido</description>
+			<description>Indicates the component name to be achieved</description>
 			<name>target</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -116,7 +116,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 
 	<tag>
-		<description>Renderiza o bloco de erros caso ocorram na requisição ajax</description>
+		<description>Renders the error block if they occur in ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>onError</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnErrorTag</tag-class>
@@ -137,7 +137,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 
 	<tag>
-		<description>Renderiza o bloco de sucesso caso a requisição ajax execute sem problemas</description>
+		<description>Renders success block if the ajax request run smoothly</description>
 		<display-name>Ajax</display-name>
 		<name>onSuccess</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.OnSuccessTag</tag-class>
@@ -163,7 +163,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 	
 	<tag>
-		<description>Renderiza o bloco de parametros a serem enviados pela requisição ajax </description>
+		<description>Renders the parameter block to be sent by ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>parameters</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.ParametersTag</tag-class>
@@ -186,34 +186,34 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 	
 	<tag>
-		<description>Renderiza um parametro que deve ser enviado pela requisição ajax</description>
+		<description>Renders a parameter that must be sent by ajax request</description>
 		<display-name>Ajax</display-name>
 		<name>parameter</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.ParameterTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indica o name do componente a ser utilizado como origem</description>
+			<description>Indicates the component of the name to be used as the source</description>
 			<name>src</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica o tipo de iteracao a ser utilizada . Opções : val,html</description>
+			<description>It indicates the type of iteration being used. Options: val, html</description>
 			<name>type</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indica o nome do parametro enviado</description>
+			<description>It indicates the name of the uploaded parameter</description>
 			<name>name</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica se o preeenchimento do valor é opcional para ocorrer a chamada da função. Default : false.</description>
+			<description>It indicates if the value is optional preeenchimento occur to the function call. Default: false.</description>
 			<name>required</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
@@ -242,27 +242,27 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 	
 	<tag>
-		<description>Renderiza um mapeamento de uma lista de options para um componente select </description>
+		<description>Renders a mapping of an options list to select a component</description>
 		<display-name>Ajax</display-name>
 		<name>mapOptions</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.ajax.MapOptionsTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indica o name do componente a ser atingido</description>
+			<description>Indicates the component name to be achieved</description>
 			<name>target</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indica o conteudo da option a ser exibido</description>
+			<description>It indicates the contents of the option to be displayed</description>
 			<name>text</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>Indica o value da option a ser preenchida</description>
+			<description>Indicates the value of the option to be filled</description>
 			<name>value</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>

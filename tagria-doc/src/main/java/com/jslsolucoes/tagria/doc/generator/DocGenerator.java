@@ -60,7 +60,7 @@ public class DocGenerator {
 			groupments.get(tag.getGroup()).add(tag);
 			
 			String template = "<%@include file=\"../app/taglibs.jsp\"%>										"+
-					"<html:view title=\"TagriaLib Documentação\">											"+
+					"<html:view title=\"{title}\">											"+
 "						<html:panel>																		"+
 "							<html:panelHead label=\""+tag.getName()+"\"></html:panelHead>					"+
 "							<html:panelBody>																"+
@@ -73,15 +73,15 @@ public class DocGenerator {
 "									<html:tab label=\"{attributes}\">										";
 			
 			if(CollectionUtils.isEmpty(tag.getAttributes())){
-				template += "<html:alert state=\"info\">Essa tag não possui atributos</html:alert>"; 
+				template += "<html:alert state=\"info\" label=\"{tag.empty.attributes}\"></html:alert>"; 
 			} else {
 				
 				
 				template += "<html:table><html:tableLine>"+
-					"<html:tableColumn header=\"true\">Atributo</html:tableColumn>"+
-					"<html:tableColumn header=\"true\">Obrigatório</html:tableColumn>"+
-					"<html:tableColumn header=\"true\">Tipo</html:tableColumn>"+
-					"<html:tableColumn header=\"true\">Descrição</html:tableColumn>"+
+					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.attribute\"/></html:tableColumn>"+
+					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.required\"/></html:tableColumn>"+
+					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.type\"/></html:tableColumn>"+
+					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.description\"/></html:tableColumn>"+
 					
 				"</html:tableLine>";
 				

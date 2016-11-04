@@ -1,11 +1,9 @@
 <%@include file="../app/taglibs.jsp"%>
-<html:view title="TagriaLib Documentação">	
+<html:view title="{title}">	
 	<html:panel>
-		<html:panelHead label="Bem vindo"></html:panelHead>
+		<html:panelHead label="{welcome}"></html:panelHead>
 		<html:panelBody>
-			<html:alert state="info">
-				Bem vindo a documentação TagriaLib
-			</html:alert>
+			<html:alert state="info" label="{welcome}"></html:alert>
 		</html:panelBody>
 	</html:panel>
 </html:view>

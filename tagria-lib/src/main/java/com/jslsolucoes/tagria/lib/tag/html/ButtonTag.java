@@ -24,10 +24,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jslsolucoes.tagria.lib.html.A;
 import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Button;
-import com.jslsolucoes.tagria.lib.html.Div;
-import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
@@ -38,11 +34,10 @@ public class ButtonTag extends SimpleTagSupport {
 	private String url = "#";
 	private String icon;
 	private String title;
+	private String dismiss;
 	private String label;
 	private String target = "_self";
 	private Boolean rendered = Boolean.TRUE;
-	private Boolean confirm = Boolean.FALSE;
-	private String confirmText = TagUtil.getLocalizedForLib("button.confirm.text");
 	private String cssClass;
 	private Boolean disabled = Boolean.FALSE;
 	private String state = "default";
@@ -70,74 +65,11 @@ public class ButtonTag extends SimpleTagSupport {
 				a.add(Attribute.TITLE, TagUtil.getLocalized(title));
 			}
 			
-			if(confirm){
-				
-				String id = TagUtil.getId();
-				a.add(Attribute.HREF,"#");
-				a.add(Attribute.DATA_TOGGLE,"modal");
-				a.add(Attribute.DATA_TARGET,"#" + id);
-				
-				Div modal = new Div();
-				modal.add(Attribute.CLASS,"modal fade");
-				modal.add(Attribute.ID,id);
-				
-				Div dialog = new Div();
-				dialog.add(Attribute.CLASS,"modal-dialog modal-sm");
-				
-				Div content = new Div();
-				content.add(Attribute.CLASS,"modal-content");
-				
-				Div header = new Div();
-				header.add(Attribute.CLASS,"modal-header");
-				Button close = new Button();
-				close.add(Attribute.CLASS,"close");
-				close.add(Attribute.DATA_DISMISS,"modal");
-				close.add(new Span().add("&times;"));
-				header.add(close);
-				
-				H4 h4 = new H4();
-				h4.add(Attribute.CLASS,"modal-title");
-				h4.add(TagUtil.getLocalizedForLib("button.confirm.title"));
-				header.add(h4);
-				
-				content.add(header);
-				
-				Div body = new Div();
-				body.add(Attribute.CLASS,"modal-body");
-				body.add(TagUtil.getLocalized(confirmText));
-				content.add(body);
-				
-				Div footer = new Div();
-				footer.add(Attribute.CLASS,"modal-footer");
-				Button cancel = new Button();
-				cancel.add(Attribute.CLASS,"btn btn-danger waves-effect waves-light cancel");
-				cancel.add(Attribute.DATA_DISMISS,"modal");
-				cancel.add(TagUtil.getLocalizedForLib("button.confirm.cancel"));
-				footer.add(cancel);
-				
-				A confirm = new A();
-				confirm.add(Attribute.ID,id);
-				confirm.add(Attribute.CLASS,"btn btn-primary waves-effect waves-light sure");
-				confirm.add(TagUtil.getLocalizedForLib("button.confirm.confirm"));
-				confirm.add(Attribute.HREF,TagUtil.getPathForUrl(getJspContext(), url));
-				confirm.add(Attribute.TARGET, target);
-				
-				Script script = new Script();
-				script.add(Attribute.TYPE, "text/javascript");
-				script.add(" $('#"+confirm+"').click(function(){ $('#" + modal + "').modal('hide'); });");
-				
-				
-				
-				footer.add(confirm);		
-				content.add(footer);
-				
-				dialog.add(content);
-				modal.add(dialog);
-				TagUtil.out(getJspContext(), modal);
-				
-			} else {
-				a.add(Attribute.HREF,TagUtil.getPathForUrl(getJspContext(), url));
+			if(!StringUtils.isEmpty(dismiss)){
+				a.add(Attribute.DATA_DISMISS,"modal");
 			}
+			
+			a.add(Attribute.HREF,TagUtil.getPathForUrl(getJspContext(), url));
 			
 			if(!StringUtils.isEmpty(icon)){
 				Span span = new Span();
@@ -193,22 +125,6 @@ public class ButtonTag extends SimpleTagSupport {
 		this.target = target;
 	}
 
-	public Boolean getConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(Boolean confirm) {
-		this.confirm = confirm;
-	}
-
-	public String getConfirmText() {
-		return confirmText;
-	}
-
-	public void setConfirmText(String confirmText) {
-		this.confirmText = confirmText;
-	}
-
 	public String getCssClass() {
 		return cssClass;
 	}
@@ -259,5 +175,15 @@ public class ButtonTag extends SimpleTagSupport {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+	public String getDismiss() {
+		return dismiss;
+	}
+
+
+	public void setDismiss(String dismiss) {
+		this.dismiss = dismiss;
 	}
 }

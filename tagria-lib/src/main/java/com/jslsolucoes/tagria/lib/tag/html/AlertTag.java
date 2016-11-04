@@ -20,6 +20,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Button;
 import com.jslsolucoes.tagria.lib.html.Div;
@@ -31,6 +33,7 @@ public class AlertTag extends SimpleTagSupport {
 	private Boolean dismissible = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
 	private String state;
+	private String label;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -51,7 +54,11 @@ public class AlertTag extends SimpleTagSupport {
 				button.add(span);
 				div.add(button);
 			}
-			div.add(TagUtil.getBody(getJspBody()));
+			if(!StringUtils.isEmpty(label)){
+				div.add(TagUtil.getLocalized(label));
+			} else { 
+				div.add(TagUtil.getBody(getJspBody()));
+			}
 			TagUtil.out(getJspContext(), div);
 		}
 	}
@@ -84,5 +91,15 @@ public class AlertTag extends SimpleTagSupport {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+	public String getLabel() {
+		return label;
+	}
+
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 }

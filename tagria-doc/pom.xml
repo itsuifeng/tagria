@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</parent>
 	<artifactId>tagria-doc</artifactId>
 	<packaging>war</packaging>
@@ -21,9 +21,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.jslsolucoes</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tagria-lib</artifactId>
-			<version>1.0.0</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 	
