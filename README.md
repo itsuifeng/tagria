@@ -1,3 +1,17 @@
+[![][travis img]][travis]
+[![][maven img]][maven]
+[![][license img]][license]
+
+[travis]:https://travis-ci.org/jslsolucoes/tagria
+[travis img]:https://travis-ci.org/jslsolucoes/tagria.svg?branch=master
+
+[maven]:http://search.maven.org/#search|gav|1|g:"com.jslsolucoes"%20AND%20a:"tagria"
+[maven img]:https://maven-badges.herokuapp.com/maven-central/com.jslsolucoes/tagria/badge.svg
+
+[license]:LICENSE
+[license img]:https://img.shields.io/badge/License-Apache%202-blue.svg
+
+
 # tagria
 Tagria is an open source component suit framework that help build beautiful view in minutes. Tagria integrates perfectly with any action based mvc framework for java : 
 Tagria it`s easy , fast and productive.
