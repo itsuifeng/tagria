@@ -71,8 +71,16 @@ Create an jsp for example index.jsp
 </code>
 </pre>
 
-Some configuration can be change by creating an tagrialib.properties file in source folder :
-
+Some configuration can be change by creating an tagrialib.properties file in source folder like :
+<pre>
+	<code>
+encoding=ISO-8859-1
+locale=pt-BR
+cdn.enabled=true
+cdn.url=fdsfds.cloudfront.net
+skin=green
+	</code>
+</pre>
 
 <table>
 	<tbody>
