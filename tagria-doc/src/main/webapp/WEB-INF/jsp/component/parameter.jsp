@@ -1,18 +1,18 @@
-<%@include file="../app/taglibs.jsp"%>										<html:view title="{title}">																	<html:panel>																									<html:panelHead label="parameter"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Renderiza um parametro que deve ser enviado pela requisição ajax																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:table><html:tableLine><html:tableColumn header="true"><fmt:message key="tag.attribute"/></html:tableColumn><html:tableColumn header="true"><fmt:message key="tag.required"/></html:tableColumn><html:tableColumn header="true"><fmt:message key="tag.type"/></html:tableColumn><html:tableColumn header="true"><fmt:message key="tag.description"/></html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>src</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o name do componente a ser utilizado como origem</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>type</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>Indica o tipo de iteracao a ser utilizada . Opções : val,html</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>name</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o nome do parametro enviado</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>required</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>Indica se o preeenchimento do valor é opcional para ocorrer a chamada da função. Default : false.</html:tableColumn></html:tableLine></html:table>																																	</html:tab>																									<html:tab label="{demo}">																						
+<%@include file="../app/taglibs.jsp"%>										<html:view title="{title}">																	<html:panel>																									<html:panelHead label="parameter"></html:panelHead>												<html:panelBody>																								<html:tabPanel>																									<html:tab label="{about}" active="true">																	<html:alert state="warning">																				     	Render a parameter that must be sent by ajax request																			</html:alert>																							</html:tab>																									<html:tab label="{attributes}">										<html:table><html:tableLine><html:tableColumn header="true"><fmt:message key="tag.attribute"/></html:tableColumn><html:tableColumn header="true"><fmt:message key="tag.required"/></html:tableColumn><html:tableColumn header="true"><fmt:message key="tag.type"/></html:tableColumn><html:tableColumn header="true"><fmt:message key="tag.description"/></html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>src</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>Indica o name do componente a ser utilizado como origem</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>type</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>Indicates the component name to be used as source . Options : val,html</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>name</html:tableColumn><html:tableColumn>true</html:tableColumn><html:tableColumn>java.lang.String</html:tableColumn><html:tableColumn>It indicates the name of the uploaded parameter</html:tableColumn></html:tableLine><html:tableLine><html:tableColumn>required</html:tableColumn><html:tableColumn>false</html:tableColumn><html:tableColumn>java.lang.Boolean</html:tableColumn><html:tableColumn>Indicates whether the value of the fill to occur is optional function call. Default : false.</html:tableColumn></html:tableLine></html:table>																																	</html:tab>																									<html:tab label="{demo}">																						
 			<html:input name="input1" value="Valor 0"/>
 			<html:input name="input2" value="" />
 			
 			<html:jsEvent attachTo="input1" event="blur">
-			     dados();
+			     data();
 			</html:jsEvent>
 		
-			<ajax:function name="dados" url="/app/ajax">
+			<ajax:function name="data" url="/app/ajax">
 				<ajax:parameters>
 					<ajax:parameter name="input1" src="input1" type="val" />
 					<ajax:parameter name="input2" src="input2" type="val" required="false" />
 				</ajax:parameters>
 			    <ajax:onSuccess>
-			          alert('Executada');
+			          alert('Executed');
 			    </ajax:onSuccess>
 			    <ajax:onError>
 			           
@@ -23,16 +23,16 @@
 			&lt;html:input name="input2" value="" /&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
-			     dados();
+			     data();
 			&lt;/html:jsEvent&gt;
 		
-			&lt;ajax:function name="dados" url="/app/ajax"&gt;
+			&lt;ajax:function name="data" url="/app/ajax"&gt;
 				&lt;ajax:parameters&gt;
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 					&lt;ajax:parameter name="input2" src="input2" type="val" required="false" /&gt;
 				&lt;/ajax:parameters&gt;
 			    &lt;ajax:onSuccess&gt;
-			          alert('Executada');
+			          alert('Executed');
 			    &lt;/ajax:onSuccess&gt;
 			    &lt;ajax:onError&gt;
 			           

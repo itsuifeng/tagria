@@ -20,6 +20,18 @@ Tested at moment in applications servers :
 	<li>Websphere</li>
 </ul>
 
+
+Features :
+<ul>
+	<li>Full html5,css3 support</li>
+	<li>Cross browser support components</li>
+	<li>Responsive</li>
+	<li>Over 50 projects in production</li>
+	<li>W3C compatible</li>
+	<li>Support for i18n (internationalization)</li>
+</ul>
+
+
 <hr/>
 
 The demo and documentation about components of tagria is hosted in : 
