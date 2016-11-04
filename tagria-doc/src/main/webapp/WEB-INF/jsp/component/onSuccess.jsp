@@ -6,7 +6,7 @@
 					<ajax:parameter name="input1" src="input1" type="val" />
 				</ajax:parameters>
 			    <ajax:onSuccess>
-			    	    /*Available is this part javascript variables ( Object data, String textStatus, jqXHR jqXHR )*/
+			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
 			           alert(textStatus);
 			           alert(data);
 			           alert(jqXHR);
@@ -23,7 +23,7 @@
 					&lt;ajax:parameter name="input1" src="input1" type="val" /&gt;
 				&lt;/ajax:parameters&gt;
 			    &lt;ajax:onSuccess&gt;
-			    	    /*Available is this part javascript variables ( Object data, String textStatus, jqXHR jqXHR )*/
+			    	    /*Nesse trecho está disponivel as variaveis javascript ( Object data, String textStatus, jqXHR jqXHR )*/
 			           alert(textStatus);
 			           alert(data);
 			           alert(jqXHR);
