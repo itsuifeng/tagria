@@ -43,7 +43,7 @@ Register servlet in your web.xml
 <pre>
 	<code>
 &lt;servlet&gt;
-	&lt;servlet-name&gt;tagria</servlet-name&gt;
+	&lt;servlet-name&gt;tagria&lt;/servlet-name&gt;
 	&lt;servlet-class&gt;com.jslsolucoes.tagria.lib.servlet.Tagria&lt;/servlet-class&gt;
 &lt;/servlet&gt;
 &lt;servlet-mapping&gt;
