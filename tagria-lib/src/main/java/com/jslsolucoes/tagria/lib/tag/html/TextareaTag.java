@@ -42,7 +42,7 @@ public class TextareaTag extends SimpleTagSupport {
 		textarea.add(Attribute.ID,TagUtil.getId(name, null,this));
 		textarea.add(Attribute.CLASS,"form-control");
 		if(!StringUtils.isEmpty(placeholder)){
-			textarea.add(Attribute.PLACEHOLDER,placeholder);
+			textarea.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder));
 		}
 		if (!StringUtils.isEmpty(value)) {
 			textarea.add(value);

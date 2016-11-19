@@ -37,6 +37,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	private String method = "post";
 	private String action = "#";
+	private String name;
 	private String validation;
 	private String label;
 	private String toolbar;
@@ -64,6 +65,10 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			panelBody.add(Attribute.CLASS, "panel-body");
 
 			Form form = new Form();
+			form.add(Attribute.NOVALIDATE,"novalidate");
+			if(!StringUtils.isEmpty(name)){
+				form.add(Attribute.NAME,name);
+			}
 			form.add(Attribute.ID, TagUtil.getId());
 			form.add(Attribute.METHOD, method);
 			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
@@ -124,9 +129,14 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
-			script.add("$('#" + form.get(Attribute.ID) + "').form({ validation : '"
-					+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
-					+ "'});");
+			script.add("$('#" + form.get(Attribute.ID) + "').form({ " + 
+						"	validation : '"+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "'," +
+						"   invalid : { " + 
+						"		email : '"+TagUtil.getLocalizedForLib("email.invalid")+"',"+
+						"		max : '"+TagUtil.getLocalizedForLib("max.invalid")+"',"+
+						"		min : '"+TagUtil.getLocalizedForLib("min.invalid")+"'"+
+						"	}"+
+					"});");
 
 			TagUtil.out(getJspContext(), script);
 		}
@@ -183,5 +193,13 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setMultipart(Boolean multipart) {
 		this.multipart = multipart;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
