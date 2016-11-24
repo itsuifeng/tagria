@@ -6,7 +6,6 @@
 		_create: function() {
 			var self = this;
 			var iframe = self.element;
-			self.minHeight = $(document).height() - iframe.offset().top;
 			iframe.load(function(){
 				self._reset();
 				self._resize();
@@ -25,10 +24,9 @@
 			var iframe = self.element;
 			if(iframe && iframe.contents() && iframe.contents().outerHeight()){
 				var height = iframe.contents().outerHeight();
-				if(height < self.minHeight){
-					height = self.minHeight;
+				if(iframe.height() < height) {
+					iframe.css('height', height +'px');
 				}
-				iframe.css('height', height +'px');
 			}
 		}
 	});

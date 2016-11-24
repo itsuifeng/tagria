@@ -31047,7 +31047,7 @@ var effectsEffectTransfer = effect;
 		_create: function() {
 			var self = this;
 			var iframe = self.element;
-			self.minHeight = $(document).height() - iframe.offset().top;
+			//self.minHeight = $(document).height() - iframe.offset().top;
 			iframe.load(function(){
 				self._reset();
 				self._resize();
@@ -31066,10 +31066,14 @@ var effectsEffectTransfer = effect;
 			var iframe = self.element;
 			if(iframe && iframe.contents() && iframe.contents().outerHeight()){
 				var height = iframe.contents().outerHeight();
+				/*
 				if(height < self.minHeight){
 					height = self.minHeight;
 				}
-				iframe.css('height', height +'px');
+				*/
+				if(iframe.height() < height) {
+					iframe.css('height', height +'px');
+				}
 			}
 		}
 	});
