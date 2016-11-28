@@ -880,6 +880,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the component target. Default: _self. Options: _blank, _newtab, nomedoiframe</description>
 			<name>target</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -1219,16 +1225,28 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the grid is simple and standard widgets (pagination, exportacao, research, etc.)</description>
+			<description>It indicates whether the grid is simple without standard widgets (pagination, exportacao, search, etc.). Default: false</description>
 			<name>simple</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the component should be paginated</description>
+			<description>It indicates whether the component should be search feature. Default: false</description>
+			<name>search</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be paginated. Default: true</description>
 			<name>paginate</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Integer</type>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be export feature. Default: true</description>
+			<name>export</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the url component a ser utilizada caso haja paginação</description>

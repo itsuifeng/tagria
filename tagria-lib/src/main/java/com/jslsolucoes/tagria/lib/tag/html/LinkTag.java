@@ -31,18 +31,21 @@ public class LinkTag extends SimpleTagSupport {
 	private String url;
 	private String label;
 	private String target = "_self";
+	private Boolean rendered = Boolean.TRUE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
-			A a = new A();
-			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-			a.add(Attribute.TARGET, target);
-			if (!StringUtils.isEmpty(label)) {
-				a.add(TagUtil.getLocalized(label));
-			} else {
-				a.add(TagUtil.getBody(getJspBody()));
+			if(rendered){
+				A a = new A();
+				a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+				a.add(Attribute.TARGET, target);
+				if (!StringUtils.isEmpty(label)) {
+					a.add(TagUtil.getLocalized(label));
+				} else {
+					a.add(TagUtil.getBody(getJspBody()));
+				}
+				TagUtil.out(getJspContext(),a);
 			}
-			TagUtil.out(getJspContext(),a);
 	}
 
 	
@@ -73,6 +76,18 @@ public class LinkTag extends SimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 	
 }
