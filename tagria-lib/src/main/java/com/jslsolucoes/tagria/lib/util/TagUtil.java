@@ -55,7 +55,7 @@ public class TagUtil {
 	}
 
 	public static String getVersion() {
-		return "1.0.2";
+		return "1.0.3";
 	}
 	
 	public static String format(String type,String value){
