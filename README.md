@@ -40,7 +40,6 @@ Features :
 	<li>Full html5,css3 support</li>
 	<li>Cross browser support components</li>
 	<li>Responsive</li>
-	<li>Over 50 projects in production</li>
 	<li>W3C compatible</li>
 	<li>Support for i18n (internationalization)</li>
 </ul>
@@ -60,10 +59,14 @@ Add maven dependency to your project :
 &lt;dependency&gt;
 	&lt;groupId&gt;com.jslsolucoes&lt;/groupId&gt;
 	&lt;artifactId&gt;tagria-lib&lt;/artifactId&gt;
-	&lt;version&gt;1.0.1&lt;/version&gt;
+	&lt;version&gt;1.0.2&lt;/version&gt;
 &lt;/dependency&gt;
 	</code>
 </pre>
+
+or download binary and dependencies hosted on <a href='https://bintray.com/jslsolucoes/tagria/com.jslsolucoes.tagria'>bintray</a> 
+
+
 
 Register servlet in your web.xml
 <pre>
