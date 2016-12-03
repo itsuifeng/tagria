@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +41,7 @@ import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("serial")
+@WebServlet(name="tagria", urlPatterns="/tagria/*",loadOnStartup=1)
 public class Tagria extends HttpServlet {
 
 	private static String CHARSET = "utf-8";

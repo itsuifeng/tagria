@@ -66,23 +66,7 @@ Add maven dependency to your project :
 
 or download binary and dependencies hosted on <a href='https://bintray.com/jslsolucoes/tagria/com.jslsolucoes.tagria'>bintray</a> 
 
-
-
-Register servlet in your web.xml
-<pre>
-	<code>
-&lt;servlet&gt;
-	&lt;servlet-name&gt;tagria&lt;/servlet-name&gt;
-	&lt;servlet-class&gt;com.jslsolucoes.tagria.lib.servlet.Tagria&lt;/servlet-class&gt;
-&lt;/servlet&gt;
-&lt;servlet-mapping&gt;
-	&lt;servlet-name&gt;tagria&lt;/servlet-name&gt;
-	&lt;url-pattern&gt;/tagria/*&lt;/url-pattern&gt;
-&lt;/servlet-mapping&gt;
-	</code>
-</pre>
-
-Create an jsp for example index.jsp
+Create an jsp for example index.jsp and import directives
 <pre>
 	<code>
 	
