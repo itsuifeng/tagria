@@ -56,7 +56,7 @@ public class Compressor {
 				"jquery/ui/jquery.ui.form.js", "jquery/ui/jquery.ui.iframe.js", "jquery/ui/jquery.ui.grid.js",
 				"jquery/ui/jquery.ui.detail.table.js", "jquery/ui/jquery.ui.auto.complete.js",
 				"jquery/ui/jquery.ui.moment.js", "jquery/ui/jquery.ui.calendar.js",
-				"jquery/ui/jquery.ui.calendar.pt.br.js", "jquery/ui/jquery.ui.input.mask.js",
+				"jquery/ui/jquery.ui.input.mask.js",
 				"jquery/ui/jquery.ui.treeview.js", "jquery/ui/jquery.ui.tabs.js",
 				"jquery/ui/jquery.ui.treeview.widget.js", "jquery/ui/jquery.ui.time.picker.js",
 				"jquery/ui/jquery.ui.input.currency.mask.js","jquery/ui/jquery.ui.wave.js",};

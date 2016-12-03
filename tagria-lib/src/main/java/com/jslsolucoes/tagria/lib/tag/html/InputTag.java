@@ -44,12 +44,23 @@ public class InputTag extends SimpleTagSupport {
 	private Integer maxLength;
 	private String format;
 	private String cssClass;
+	private Integer max;
+	private Integer min;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
 		Input input = new Input();
 		input.add(Attribute.TYPE,type);
 		input.add(Attribute.NAME,name);
+		
+		
+		if(max != null){
+			input.add(Attribute.MAX,max);
+		}
+		
+		if(min != null){
+			input.add(Attribute.MIN,max);
+		}
 		
 		if(multiple){
 			input.add(Attribute.MULTIPLE,"multiple");
@@ -235,6 +246,22 @@ public class InputTag extends SimpleTagSupport {
 
 	public void setAccept(String accept) {
 		this.accept = accept;
+	}
+
+	public Integer getMax() {
+		return max;
+	}
+
+	public void setMax(Integer max) {
+		this.max = max;
+	}
+
+	public Integer getMin() {
+		return min;
+	}
+
+	public void setMin(Integer min) {
+		this.min = min;
 	}
 
 

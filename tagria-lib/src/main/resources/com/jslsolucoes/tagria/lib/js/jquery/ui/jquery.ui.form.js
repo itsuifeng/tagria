@@ -1,7 +1,12 @@
 (function($) {
 	$.widget("bs.form", {
 		options: {
-			validation : ''
+			validation : '',
+			invalid : {
+				email : 'Invalid email',
+				max : 'Must not be greater than',
+				min : 'Must not be less than'
+			}
 		},
 		_create: function() {
 			var self = this;
@@ -52,7 +57,7 @@
 			self._clean();
 			self._block();
 			
-			if(!self._hasRequiredFieldBlank()){
+			if(!self._hasRequiredFieldBlank() && !self._hasValidationError()){
 				if(self.options.validation == '') {
 					self._submit();
 				} else {
@@ -112,6 +117,61 @@
          		$('.bs-form-empty-field',form).show();
          	 }
         	 return empty;
+		},
+		_hasValidationError : function() {
+			var self = this;
+			var form = self.element;
+			var error = false;
+			$('input[type=email]',form).each(function(){
+				if(!/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test( $(this).val() )){
+					$(this).parent().addClass('has-error');
+					$(this).popover({
+					       content : self.options.invalid.email,
+					       html : true,
+					       placement : 'bottom',
+					       container : 'body',
+					       trigger : 'manual'
+					})
+					.popover('show');	
+					error = true;
+				} else {
+					$(this).popover('destroy');
+		        }
+			});
+			
+			$('input[type=number][max]',form).each(function(){
+				if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
+					$(this).parent().addClass('has-error');
+					$(this).popover({
+					       content : self.options.invalid.max + ' ' + $(this).attr("max"),
+					       html : true,
+					       placement : 'bottom',
+					       container : 'body',
+					       trigger : 'manual'
+					}).popover('show');
+					error = true;
+				} else {
+					$(this).popover('destroy');
+		        }
+			});
+			
+			$('input[type=number][min]',form).each(function(){
+				if(parseInt($(this).val()) < parseInt($(this).attr("min"))){
+					$(this).parent().addClass('has-error');
+					$(this).popover({
+					       content : self.options.invalid.min + ' ' + $(this).attr("min"),
+					       html : true,
+					       placement : 'bottom',
+					       container : 'body',
+					       trigger : 'manual'
+					}).popover('show');
+					error = true;
+				} else {
+					$(this).popover('destroy');
+		        }
+			});
+			
+			return error;
 		}
 	});
 })(jQuery);
