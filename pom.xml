@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
 	<artifactId>tagria</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -52,16 +52,6 @@
 		<module>tagria-lib</module>
 		<module>tagria-doc</module>
 	</modules>
-
-
-	<distributionManagement>
-		<repository>
-			<id>bintray-jslsolucoes-tagria</id>
-			<name>jslsolucoes-tagria</name>
-			<url>https://api.bintray.com/maven/jslsolucoes/tagria/tagria/;publish=1</url>
-		</repository>
-	</distributionManagement>
-
 
 	<properties>
 		<java.version>1.8</java.version>
