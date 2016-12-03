@@ -103,7 +103,6 @@
 							<goal>attached</goal>
 						</goals>
 						<configuration>
-							<finalName>tagria-lib</finalName>
 							<descriptors>
 								<descriptor>dist/full.xml</descriptor>
 							</descriptors>
