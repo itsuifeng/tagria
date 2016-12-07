@@ -105,7 +105,7 @@ template += "																								"+
 "										"+tag.getExample()	+"														"+
 "									</html:tab>																"+
 "									<html:tab label=\"{source}\">											"+
-"										<html:code>"+tag.getExampleEscaped()+"</html:code>											"+
+"										<html:code>&ly;html:view&gt;"+tag.getExampleEscaped()+"&ly;/html:view&gt;</html:code>											"+
 "									</html:tab>																"+
 "								</html:tabPanel>															"+
 "							</html:panelBody>																"+

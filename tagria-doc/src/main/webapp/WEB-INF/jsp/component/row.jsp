@@ -10,7 +10,7 @@
 						</html:col>
 					</html:row>
 				</html:formGroup>
-			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:form action="#"&gt;
 				&lt;html:formGroup forElement="field1" label="Campo 1" required="true"&gt;
 					&lt;html:row&gt;
@@ -22,4 +22,4 @@
 						&lt;/html:col&gt;
 					&lt;/html:row&gt;
 				&lt;/html:formGroup&gt;
-			&lt;/html:form&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:form&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

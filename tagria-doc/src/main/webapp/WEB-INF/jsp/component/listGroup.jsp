@@ -6,7 +6,7 @@
 				<html:listGroupItem>
 					Item 2
 				</html:listGroupItem>
-			</html:listGroup> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:listGroup> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:listGroup&gt;
 				&lt;html:listGroupItem&gt;
 					Item 1
@@ -14,4 +14,4 @@
 				&lt;html:listGroupItem&gt;
 					Item 2
 				&lt;/html:listGroupItem&gt;
-			&lt;/html:listGroup&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:listGroup&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

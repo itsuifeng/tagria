@@ -4,10 +4,10 @@
 				function test(){
 					alert('oi');
 				}
-			</html:jsCode> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:jsCode> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:jsCode&gt;
 				test();
 				function test(){
 					alert('oi');
 				}
-			&lt;/html:jsCode&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:jsCode&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

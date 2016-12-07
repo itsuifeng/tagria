@@ -4,10 +4,10 @@
 					Conteúdo aba 1
 				</html:tab>
 				<html:tab label="Aba 2" url="/app/welcome"/>
-			</html:tabPanel> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:tabPanel> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:tabPanel&gt;
 				&lt;html:tab label="Aba 1" active="true"&gt;
 					Conteúdo aba 1
 				&lt;/html:tab&gt;
 				&lt;html:tab label="Aba 2" url="/app/welcome"/&gt;
-			&lt;/html:tabPanel&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:tabPanel&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

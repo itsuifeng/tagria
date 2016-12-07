@@ -4,10 +4,10 @@
 					private String id;
 					private String name;
 				}
-			</html:code> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:code> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:code&gt;
 				private class Java {
 					private String id;
 					private String name;
 				}
-			&lt;/html:code&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:code&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

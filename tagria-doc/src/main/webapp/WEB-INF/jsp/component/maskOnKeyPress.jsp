@@ -6,7 +6,7 @@
 					mask = (value.length > 14) ? masks[1] : masks[0];
 					$('#'+$(field[0]).attr('id')).mask(mask,options);
 				</html:maskOnKeyPress>
-			</html:mask> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:mask> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:input name="teste"/&gt;
 			&lt;html:mask mask="(00) 0000-00000" attachTo="teste"&gt;
 				&lt;html:maskOnKeyPress&gt;
@@ -14,4 +14,4 @@
 					mask = (value.length &gt; 14) ? masks[1] : masks[0];
 					\$('#'+\$(field[0]).attr('id')).mask(mask,options);
 				&lt;/html:maskOnKeyPress&gt;
-			&lt;/html:mask&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:mask&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

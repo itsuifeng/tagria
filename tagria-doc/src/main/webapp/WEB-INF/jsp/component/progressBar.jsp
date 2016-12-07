@@ -2,8 +2,8 @@
 			<html:progressBar determinate="true" value="70"></html:progressBar> 
 			<html:progressBar determinate="true" value="30"></html:progressBar> 
 			<html:progressBar></html:progressBar> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:progressBar determinate="true" value="70"&gt;&lt;/html:progressBar&gt; 
 			&lt;html:progressBar determinate="true" value="30"&gt;&lt;/html:progressBar&gt; 
 			&lt;html:progressBar&gt;&lt;/html:progressBar&gt; 
-		</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

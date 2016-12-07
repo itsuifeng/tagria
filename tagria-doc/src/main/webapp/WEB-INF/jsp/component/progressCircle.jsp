@@ -2,8 +2,8 @@
 			<html:progressCircle></html:progressCircle> 
 			<html:progressCircle color="red" size="small"></html:progressCircle> 
 			<html:progressCircle color="yellow" size="medium"></html:progressCircle> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:progressCircle&gt;&lt;/html:progressCircle&gt; 
 			&lt;html:progressCircle color="red" size="small"&gt;&lt;/html:progressCircle&gt; 
 			&lt;html:progressCircle color="yellow" size="medium"&gt;&lt;/html:progressCircle&gt; 
-		</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

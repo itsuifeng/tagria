@@ -7,7 +7,7 @@
 					<html:tableColumn>Valor 1</html:tableColumn>
 				</html:tableLine>
 			</html:table>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
 			&lt;html:table&gt;
 				&lt;html:tableLine&gt;
 					&lt;html:tableColumn&gt;Coluna 1&lt;/html:tableColumn&gt;
@@ -16,4 +16,4 @@
 					&lt;html:tableColumn&gt;Valor 1&lt;/html:tableColumn&gt;
 				&lt;/html:tableLine&gt;
 			&lt;/html:table&gt;
-		</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
