@@ -3,14 +3,17 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import model.Person;
 
+@ApplicationScoped
 public class PersonDao {
 
 	private static PersonDao instance;
 	private List<Person> persons = new ArrayList<Person>();
 
-	private PersonDao() {
+	public PersonDao() {
 
 	}
 
