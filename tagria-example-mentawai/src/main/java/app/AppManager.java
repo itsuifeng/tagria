@@ -1,11 +1,11 @@
-package example.app;
+package app;
 
 import org.mentawai.core.ApplicationManager;
 import org.mentawai.filter.MentaContainerFilter;
 
+import action.AppAction;
+import action.PersonAction;
 import dao.PersonDao;
-import example.action.AppAction;
-import example.action.PersonAction;
 
 public class AppManager extends ApplicationManager {
 	

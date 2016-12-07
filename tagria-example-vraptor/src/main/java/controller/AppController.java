@@ -1,4 +1,4 @@
-package example.controller;
+package controller;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;

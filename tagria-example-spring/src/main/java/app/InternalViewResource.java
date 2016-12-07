@@ -1,4 +1,4 @@
-package example.app;
+package app;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;

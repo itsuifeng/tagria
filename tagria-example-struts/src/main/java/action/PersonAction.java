@@ -1,4 +1,4 @@
-package example.action;
+package action;
 
 import java.util.List;
 
@@ -12,8 +12,7 @@ import model.Person;
 @Namespace(value = "/person")
 public class PersonAction {
 
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
+	
 	private Person person;
 	private List<Person> persons;
 	private PersonDao daoPerson;

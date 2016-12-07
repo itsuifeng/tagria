@@ -12,7 +12,7 @@
     <servlet-class>org.mentawai.core.Controller</servlet-class>
     <init-param>
       <param-name>applicationManager</param-name>
-      <param-value>example.app.AppManager</param-value>
+      <param-value>app.AppManager</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

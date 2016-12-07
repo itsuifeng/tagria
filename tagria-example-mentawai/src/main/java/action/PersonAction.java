@@ -1,4 +1,4 @@
-package example.action;
+package action;
 
 import org.mentawai.core.BaseAction;
 
