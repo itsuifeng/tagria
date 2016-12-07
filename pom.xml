@@ -51,6 +51,12 @@
 	<modules>
 		<module>tagria-lib</module>
 		<module>tagria-doc</module>
+		<module>tagria-example-core</module>
+		<module>tagria-example-mentawai</module>
+		<module>tagria-example-servlet</module>
+		<module>tagria-example-spring</module>
+		<module>tagria-example-struts</module>
+		<module>tagria-example-vraptor</module>
 	</modules>
 
 	<properties>
