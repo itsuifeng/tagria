@@ -18,7 +18,7 @@
 			           
 			    </ajax:onError>
 			</ajax:function>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 			&lt;html:input name="input2" value="" /&gt;
 			
@@ -38,4 +38,4 @@
 			           
 			    &lt;/ajax:onError&gt;
 			&lt;/ajax:function&gt;
-		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

@@ -7,7 +7,7 @@
 					Componentes
 				</html:toolbar>
 			</html:card> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:card&gt;
 				&lt;html:cardBody&gt;
 					Componentes
@@ -16,4 +16,4 @@
 					Componentes
 				&lt;/html:toolbar&gt;
 			&lt;/html:card&gt; 
-		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

@@ -12,7 +12,7 @@
 					<html:tableColumn colspan="2">Valor 3</html:tableColumn>
 				</html:tableLine>
 			</html:table>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:table&gt;
 				&lt;html:tableLine&gt;
 					&lt;html:tableColumn header="true"&gt;Coluna 1&lt;/html:tableColumn&gt;
@@ -26,4 +26,4 @@
 					&lt;html:tableColumn colspan="2"&gt;Valor 3&lt;/html:tableColumn&gt;
 				&lt;/html:tableLine&gt;
 			&lt;/html:table&gt;
-		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

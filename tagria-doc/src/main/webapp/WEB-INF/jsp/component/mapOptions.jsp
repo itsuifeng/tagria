@@ -11,7 +11,7 @@
 			           
 			    </ajax:onError>
 			</ajax:function>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:select name="input2"&gt;
 				&lt;html:option value=""&gt;- - -&lt;/html:option&gt;
 			&lt;/html:select&gt;
@@ -24,4 +24,4 @@
 			           
 			    &lt;/ajax:onError&gt;
 			&lt;/ajax:function&gt;
-		&ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

@@ -2,8 +2,8 @@
 		    <html:button id="botao" label="Confirmar algo"/>
 			<html:confirm url="#" label="Titulo do modal" attachTo="botao">
 								
-			</html:confirm> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
+			</html:confirm> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 		    &lt;html:button id="botao" label="Confirmar algo"/&gt;
 			&lt;html:confirm url="#" label="Titulo do modal" attachTo="botao"&gt;
 								
-			&lt;/html:confirm&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:confirm&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

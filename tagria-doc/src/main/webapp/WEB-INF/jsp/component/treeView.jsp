@@ -2,8 +2,8 @@
 		
 			<html:treeView url="/app/treeView">
 			
-			</html:treeView> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>&ly;html:view&gt;
+			</html:treeView> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 		
 			&lt;html:treeView url="/app/treeView"&gt;
 			
-			&lt;/html:treeView&gt; &ly;/html:view&gt;</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:treeView&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
