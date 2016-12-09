@@ -254,7 +254,6 @@ public class TagUtil {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static String queryString(HttpServletRequest request, List<String> excludesParams)
 			throws UnsupportedEncodingException {
 		List<String> queryString = new ArrayList<String>();
