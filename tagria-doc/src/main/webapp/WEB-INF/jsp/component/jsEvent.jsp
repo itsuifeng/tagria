@@ -3,9 +3,9 @@
 			
 			<html:jsEvent attachTo="input1" event="blur">
 			    alert('blur');
-			</html:jsEvent> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:jsEvent> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:input name="input1" placeholder="Entre e saia do campo" /&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
 			    alert('blur');
-			&lt;/html:jsEvent&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:jsEvent&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

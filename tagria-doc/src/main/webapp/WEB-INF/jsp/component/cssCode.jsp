@@ -6,7 +6,7 @@
 			</html:cssCode>
 			<html:div cssClass="red">
 			    Conteudo
-			</html:div> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>
+			</html:div> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:cssCode&gt;
 			.red  {
 				border :1px solid red;
@@ -14,4 +14,4 @@
 			&lt;/html:cssCode&gt;
 			&lt;html:div cssClass="red"&gt;
 			    Conteudo
-			&lt;/html:div&gt; </html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+			&lt;/html:div&gt; &lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

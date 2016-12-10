@@ -5,11 +5,11 @@
 					Outros componentes
 				</html:panelBody>
 			</html:panel>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:panel&gt;
 				&lt;html:panelHead label="Titulo"/&gt;
 				&lt;html:panelBody&gt;
 					Outros componentes
 				&lt;/html:panelBody&gt;
 			&lt;/html:panel&gt;
-		</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

@@ -20,6 +20,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.A;
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
@@ -37,12 +39,15 @@ public class BrandTag extends SimpleTagSupport {
 		A a = new A();
 		a.add(Attribute.CLASS,"navbar-brand");
 		a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-		a.add(TagUtil.getLocalized(label));
+		if(!StringUtils.isEmpty(label)){
+			a.add(TagUtil.getLocalized(label));
+		} else {
+			a.add(TagUtil.getBody(getJspBody()));
+		}
 		div.add(a);
 		
 		TagUtil.out(getJspContext(), div);
 	}
-
 	
 
 	public String getLabel() {

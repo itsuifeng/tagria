@@ -10,7 +10,7 @@
 			           alert(jqXHR);
 			    </ajax:onError>
 			</ajax:function>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;ajax:function name="dados" url="/app/url/nao/existe" executeOnDocumentLoad="true"&gt;
 			    &lt;ajax:onSuccess&gt;
 			    	      
@@ -22,4 +22,4 @@
 			           alert(jqXHR);
 			    &lt;/ajax:onError&gt;
 			&lt;/ajax:function&gt;
-		</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			

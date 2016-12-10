@@ -15,7 +15,7 @@
 			          
 			    </ajax:onError>
 			</ajax:function>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
 			&lt;html:input name="input1" value="Valor 0"/&gt;
 		
 			&lt;ajax:function name="dados" url="/app/ajax" executeOnDocumentLoad="true"&gt;
@@ -32,4 +32,4 @@
 			          
 			    &lt;/ajax:onError&gt;
 			&lt;/ajax:function&gt;
-		</html:code>																				</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
+		&lt;/html:view&gt;																					</html:code>																							</html:tab>																								</html:tabPanel>																						</html:panelBody>																						</html:panel>																							</html:view>																			
