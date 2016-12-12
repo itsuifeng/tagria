@@ -1523,6 +1523,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>listGroupItem</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ListGroupItemTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			&lt;html:listGroup&gt;
 				&lt;html:listGroupItem&gt;
