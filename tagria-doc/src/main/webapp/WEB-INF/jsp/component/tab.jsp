@@ -4,7 +4,7 @@
 					Conteúdo aba 1
 				</html:tab>
 				<html:tab label="Aba 2" url="/app/welcome"/>
-			</html:tabPanel> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:tabPanel> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:tabPanel&gt;
 				&lt;html:tab label="Aba 1" active="true"&gt;
 					Conteúdo aba 1

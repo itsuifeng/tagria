@@ -10,7 +10,7 @@
 				<html:toolbar>
 				    <html:button state="primary" type="submit" label="Alterando label padrao"/>
 				</html:toolbar>
-			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:form action="#"&gt;
 				&lt;html:formGroup label="Campo 1" required="true"&gt;
 					&lt;html:input required="true" name="field1"/&gt;

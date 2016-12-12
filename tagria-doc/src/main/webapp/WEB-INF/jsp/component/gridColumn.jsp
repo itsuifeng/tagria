@@ -6,7 +6,7 @@
 				<html:gridColumn label="Nome" exportable="true">
 					${ pessoa.nome }
 				</html:gridColumn>
-			</html:grid> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:grid> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:grid label="Pessoas" url="/component/grid" data="\${ pessoas }" var="pessoa" noRowText="Não há pessoas disponíveis"&gt;
 				&lt;html:gridColumn label="Identificação" exportable="true"&gt;
 					\${ pessoa.id }

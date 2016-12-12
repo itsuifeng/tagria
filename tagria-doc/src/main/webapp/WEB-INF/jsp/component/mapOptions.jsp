@@ -11,7 +11,7 @@
 			           
 			    </ajax:onError>
 			</ajax:function>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:select name="input2"&gt;
 				&lt;html:option value=""&gt;- - -&lt;/html:option&gt;
 			&lt;/html:select&gt;

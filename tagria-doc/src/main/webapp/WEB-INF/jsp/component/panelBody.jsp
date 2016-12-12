@@ -5,7 +5,7 @@
 					Outros componentes
 				</html:panelBody>
 			</html:panel>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:panel&gt;
 				&lt;html:panelHead label="Titulo"/&gt;
 				&lt;html:panelBody&gt;

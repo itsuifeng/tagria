@@ -7,7 +7,7 @@
 					Componentes
 				</html:toolbar>
 			</html:card> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:card&gt;
 				&lt;html:cardBody&gt;
 					Componentes

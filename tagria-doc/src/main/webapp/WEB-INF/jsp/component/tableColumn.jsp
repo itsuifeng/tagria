@@ -12,7 +12,7 @@
 					<html:tableColumn colspan="2">Valor 3</html:tableColumn>
 				</html:tableLine>
 			</html:table>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:table&gt;
 				&lt;html:tableLine&gt;
 					&lt;html:tableColumn header="true"&gt;Coluna 1&lt;/html:tableColumn&gt;

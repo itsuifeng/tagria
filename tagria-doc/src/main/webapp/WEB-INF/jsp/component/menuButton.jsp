@@ -6,7 +6,7 @@
 					<html:menuItem label="Item 2" url="#"/>
 					<html:menuItem label="Item 3" url="#"/>
 				</html:menuButton>
-			</html:nav> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:nav> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:nav&gt;
 				&lt;html:menuButton icon="cog" align="right"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;

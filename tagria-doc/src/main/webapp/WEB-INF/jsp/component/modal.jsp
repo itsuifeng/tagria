@@ -7,7 +7,7 @@
 					Componentes
 				</html:toolbar>
 				
-			</html:modal> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:modal> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 		    &lt;html:button id="botao" label="Abrir modal"/&gt;
 			&lt;html:modal label="Titulo do modal" attachTo="botao"&gt;
 				Outros componentes 
