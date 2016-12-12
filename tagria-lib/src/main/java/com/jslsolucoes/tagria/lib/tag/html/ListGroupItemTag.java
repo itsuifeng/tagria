@@ -26,12 +26,25 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ListGroupItemTag extends SimpleTagSupport {
 	
+
+	private Boolean rendered = Boolean.TRUE;
+	
 	@Override
 	public void doTag() throws JspException, IOException {
-		Li li = new Li();
-		li.add(Attribute.CLASS,"list-group-item");
-		li.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), li);
+		if (rendered) {
+			Li li = new Li();
+			li.add(Attribute.CLASS,"list-group-item");
+			li.add(TagUtil.getBody(getJspBody()));
+			TagUtil.out(getJspContext(), li);
+		}
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 
 }
