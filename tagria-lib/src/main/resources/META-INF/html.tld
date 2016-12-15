@@ -217,6 +217,24 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>Indicates if modal can be closeable. Default : true. Options : true,false</description>
+			<name>closeable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component is opened on load. Default : false. Options : true,false</description>
+			<name>open</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 		    &lt;html:button id="botao" label="Abrir modal"/&gt;
 			&lt;html:modal label="Titulo do modal" attachTo="botao"&gt;

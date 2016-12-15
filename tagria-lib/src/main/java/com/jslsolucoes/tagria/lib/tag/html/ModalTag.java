@@ -36,56 +36,77 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	private String id;
 	private String label;
 	private String attachTo;
+	private Boolean closeable = Boolean.TRUE;
+	private Boolean open = Boolean.FALSE;
+	private Boolean rendered = Boolean.TRUE;
 	private String toolbar;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		
-		Div modal = new Div();
-		modal.add(Attribute.CLASS,"modal fade");
-		modal.add(Attribute.ID,TagUtil.getId(id));
-		
-		Div dialog = new Div();
-		dialog.add(Attribute.CLASS,"modal-dialog");
-		
-		Div content = new Div();
-		content.add(Attribute.CLASS,"modal-content");
-		
-		Div header = new Div();
-		header.add(Attribute.CLASS,"modal-header");
-		Button close = new Button();
-		close.add(Attribute.CLASS,"close");
-		close.add(Attribute.DATA_DISMISS,"modal");
-		close.add(new Span().add("&times;"));
-		header.add(close);
-		
-		H4 h4 = new H4();
-		h4.add(Attribute.CLASS,"modal-title");
-		h4.add(TagUtil.getLocalized(label));
-		header.add(h4);
-		
-		content.add(header);
-		
-		Div body = new Div();
-		body.add(Attribute.CLASS,"modal-body");
-		body.add(TagUtil.getBody(getJspBody()));
-		content.add(body);
-		
-		if (!StringUtils.isEmpty(toolbar)) {
-			Div footer = new Div();
-			footer.add(Attribute.CLASS, "modal-footer");
-			footer.add(toolbar);
-			content.add(footer);
+		if (rendered) {
+			Div modal = new Div();
+			modal.add(Attribute.CLASS,"modal fade");
+			modal.add(Attribute.ID,TagUtil.getId(id));
+			
+			if(!closeable){
+				modal.add(Attribute.DATA_KEYBOARD,"false");
+				modal.add(Attribute.DATA_BACKDROP,"static");
+			}
+			
+			Div dialog = new Div();
+			dialog.add(Attribute.CLASS,"modal-dialog");
+			
+			Div content = new Div();
+			content.add(Attribute.CLASS,"modal-content");
+			
+			Div header = new Div();
+			header.add(Attribute.CLASS,"modal-header");
+			
+			if(closeable){
+				Button close = new Button();
+				close.add(Attribute.CLASS,"close");
+				close.add(Attribute.DATA_DISMISS,"modal");
+				close.add(new Span().add("&times;"));
+				header.add(close);
+			}
+			
+			H4 h4 = new H4();
+			h4.add(Attribute.CLASS,"modal-title");
+			h4.add(TagUtil.getLocalized(label));
+			header.add(h4);
+			
+			content.add(header);
+			
+			Div body = new Div();
+			body.add(Attribute.CLASS,"modal-body");
+			body.add(TagUtil.getBody(getJspBody()));
+			content.add(body);
+			
+			if (!StringUtils.isEmpty(toolbar)) {
+				Div footer = new Div();
+				footer.add(Attribute.CLASS, "modal-footer");
+				footer.add(toolbar);
+				content.add(footer);
+			}
+			
+			dialog.add(content);
+			modal.add(dialog);
+			TagUtil.out(getJspContext(), modal);
+			
+			if(!StringUtils.isEmpty(attachTo)){
+				Script script = new Script();
+				script.add(Attribute.TYPE, "text/javascript");
+				script.add("$('#" + attachTo + "').attr('data-toggle','modal').attr('data-target','#"+modal.get(Attribute.ID)+"');");
+				TagUtil.out(getJspContext(), script);
+			}
+			
+			if(open){
+				Script script = new Script();
+				script.add(Attribute.TYPE, "text/javascript");
+				script.add("$('#" + modal.get(Attribute.ID) + "').modal('show')");
+				TagUtil.out(getJspContext(), script);
+			}
 		}
-		
-		dialog.add(content);
-		modal.add(dialog);
-		TagUtil.out(getJspContext(), modal);
-		
-		Script script = new Script();
-		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('#" + attachTo + "').attr('data-toggle','modal').attr('data-target','#"+modal.get(Attribute.ID)+"');");
-		TagUtil.out(getJspContext(), script);
 	}
 
 
@@ -121,6 +142,36 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	@Override
 	public void setToolbar(String html) {
 		this.toolbar = html;
+	}
+
+
+	public Boolean getCloseable() {
+		return closeable;
+	}
+
+
+	public void setCloseable(Boolean closeable) {
+		this.closeable = closeable;
+	}
+
+
+	public Boolean getOpen() {
+		return open;
+	}
+
+
+	public void setOpen(Boolean open) {
+		this.open = open;
+	}
+
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 
 
