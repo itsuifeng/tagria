@@ -7,7 +7,7 @@
 				<html:formGroup label="Campo 2">
 					<html:input name="field2"/>
 				</html:formGroup>
-			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:form> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 		
 			&lt;html:form action="#"&gt;
 				&lt;html:formGroup label="Campo 1" required="true"&gt;

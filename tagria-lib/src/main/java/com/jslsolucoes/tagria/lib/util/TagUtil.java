@@ -55,7 +55,7 @@ public class TagUtil {
 	}
 
 	public static String getVersion() {
-		return "1.0.4";
+		return "1.0.5";
 	}
 	
 	public static String format(String type,String value){
@@ -138,7 +138,7 @@ public class TagUtil {
 		if (label.matches("\\{(.*?)\\}")) {
 			String key = label.replaceAll("(\\{|\\})", "").trim();
 			try {
-				return ResourceBundle.getBundle("messages").getString(key);
+				return ResourceBundle.getBundle("messages",locale()).getString(key);
 			} catch (MissingResourceException e) {
 				return '!' + key + '!';
 			}
@@ -247,7 +247,7 @@ public class TagUtil {
 	
 	public static String getLocalizedForLib(String key, Object... args) {
 		try {
-			MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle("messages_tagrialib").getString(key));
+			MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle("messages_tagrialib",locale()).getString(key));
 		    return messageFormat.format(args);
 		} catch (MissingResourceException e) {
 			return '!' + key + '!';

@@ -3,7 +3,7 @@
 			
 			<html:tooltip attachTo="field1">	
 			     Meu tooltip para o campo field 1
-			</html:tooltip> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:tooltip> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:input name="field1"/&gt;	
 			
 			&lt;html:tooltip attachTo="field1"&gt;	

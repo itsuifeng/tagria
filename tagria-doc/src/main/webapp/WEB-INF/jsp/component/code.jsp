@@ -4,7 +4,7 @@
 					private String id;
 					private String name;
 				}
-			</html:code> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:code> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:code&gt;
 				private class Java {
 					private String id;

@@ -4,7 +4,7 @@
 				function test(){
 					alert('oi');
 				}
-			</html:jsCode> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:jsCode> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:jsCode&gt;
 				test();
 				function test(){

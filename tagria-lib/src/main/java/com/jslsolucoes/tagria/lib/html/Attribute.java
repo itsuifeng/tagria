@@ -31,6 +31,8 @@ public enum Attribute {
 	DATA_TARGET("data-target"),
 	DATA_TYPE("data-type"),
 	DATA_URL("data-url"),
+	DATA_KEYBOARD("data-keyboard"),
+	DATA_BACKDROP("data-backdrop"),
 	DISABLED("disabled"),
 	ENCTYPE("enctype"),
 	FOR("for"),

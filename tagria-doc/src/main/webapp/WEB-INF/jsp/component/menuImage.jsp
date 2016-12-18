@@ -4,7 +4,7 @@
 					<html:menuSeparator/>
 					<html:menuItem label="Item 2" target="_blank" url="#"/>
 					<html:menuItem icon="trash" label="Item 3" url="#"/>
-				</html:menuImage> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+				</html:menuImage> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 				&lt;html:menuImage cssClass="pull-right" image="/image/person.png" width="35" height="35" &gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;

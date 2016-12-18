@@ -11,7 +11,7 @@
 					</html:detailTable>
 				</html:formGroup>
 			</html:form>
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:form action="#" label="Formulario com detalhes"&gt;
 				&lt;html:formGroup&gt;
 					&lt;html:detailTable atLeast="1"&gt;

@@ -2,7 +2,7 @@
 			<html:progressCircle></html:progressCircle> 
 			<html:progressCircle color="red" size="small"></html:progressCircle> 
 			<html:progressCircle color="yellow" size="medium"></html:progressCircle> 
-																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+																									</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:progressCircle&gt;&lt;/html:progressCircle&gt; 
 			&lt;html:progressCircle color="red" size="small"&gt;&lt;/html:progressCircle&gt; 
 			&lt;html:progressCircle color="yellow" size="medium"&gt;&lt;/html:progressCircle&gt; 

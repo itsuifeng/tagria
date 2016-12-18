@@ -8,7 +8,7 @@
 				<html:alert state="info">
 					Componente dentro do container
 				</html:alert>
-			</html:container> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:container> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			
 			&lt;html:alert state="info"&gt;
 				Componente fora do container

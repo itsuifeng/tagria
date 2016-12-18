@@ -3,7 +3,7 @@
 			
 			<html:jsEvent attachTo="input1" event="blur">
 			    alert('blur');
-			</html:jsEvent> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;		
+			</html:jsEvent> 																							</html:tab>																									<html:tab label="{source}">																					<html:code>																										&lt;html:view&gt;
 			&lt;html:input name="input1" placeholder="Entre e saia do campo" /&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
