@@ -57,6 +57,7 @@
 		<module>tagria-example-spring</module>
 		<module>tagria-example-struts</module>
 		<module>tagria-example-vraptor</module>
+		<module>tagria-distro</module>
 	</modules>
 
 	<properties>
