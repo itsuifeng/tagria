@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.jslsolucoes.tagria.lib.tag.x;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
+
 public class StringUtil {
 
 	public static String concat(String left,String right) {
@@ -23,6 +25,10 @@ public class StringUtil {
 	
 	public static Integer length(Long value) {
 		return String.valueOf(value).length();
+	}
+	
+	public static String fullStackTrace(Exception exception){
+		return ExceptionUtils.getFullStackTrace(exception).replaceAll("\n","<br/>");
 	}
 
 }

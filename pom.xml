@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
 	<artifactId>tagria</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -45,7 +45,7 @@
 		<url>http://github.com/jslsolucoes/tagria</url>
 		<connection>scm:git:git://github.com/jslsolucoes/tagria</connection>
 		<developerConnection>scm:git:git@github.com:jslsolucoes/tagria.git</developerConnection>
-		<tag>v.1.0.5</tag>
+		<tag>v.1.0.6</tag>
 	</scm>
 
 	<modules>
@@ -57,6 +57,7 @@
 		<module>tagria-example-spring</module>
 		<module>tagria-example-struts</module>
 		<module>tagria-example-vraptor</module>
+		<module>tagria-distro</module>
 	</modules>
 
 	<properties>
