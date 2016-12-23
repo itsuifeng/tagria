@@ -3,10 +3,9 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.6</version>
+		<version>1.0.7</version>
 	</parent>
 	<artifactId>tagria-distro</artifactId>
-	<packaging>pom</packaging>
 
 	<dependencies>
 		<dependency>
@@ -16,15 +15,16 @@
 		</dependency>
 	</dependencies>
 
-	<distributionManagement>
-		<repository>
-			<id>bintray-repo-maven</id>
-			<url>https://api.bintray.com/maven/jslsolucoes/tagria/com.jslsolucoes.tagria/v.${project.version};publish=1</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>

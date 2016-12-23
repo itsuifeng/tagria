@@ -76,6 +76,12 @@ public class ViewTag extends SimpleTagSupport {
 
 		head.add(bsJs);
 		
+		Link favicon = new Link();
+		favicon.add(Attribute.REL, "icon");
+		favicon.add(Attribute.TYPE, "image/x-icon");
+		favicon.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(),"/favicon.ico"));
+		head.add(favicon);
+		
 		
 		
 		StringBuilder jsReady = new StringBuilder();
