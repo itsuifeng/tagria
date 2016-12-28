@@ -91,6 +91,8 @@
 		},
         _submit : function() {
         	var self = this;
+        	var form = this.element;
+        	$('.disabled',form).attr('disabled',false);
         	self.element[0].submit();
         },
 		_hasRequiredFieldBlank: function() {
