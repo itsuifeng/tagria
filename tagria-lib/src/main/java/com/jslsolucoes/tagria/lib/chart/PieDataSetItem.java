@@ -12,7 +12,7 @@ public class PieDataSetItem {
 	}
 
 	public PieDataSetItem(String label, Long data) {
-		this(label, data, ChartUtil.backgroundColor(), ChartUtil.backgroundHoverColor());
+		this(label, data, ChartUtil.backgroundColor(), ChartUtil.backgroundColor());
 	}
 
 	public PieDataSetItem(String label, Long data, String backgroundColor, String hoverBackgroundColor) {

@@ -8,7 +8,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.chart.BarDataSet;
+import com.jslsolucoes.tagria.lib.chart.BarChartData;
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Canvas;
 import com.jslsolucoes.tagria.lib.html.Div;
@@ -20,7 +20,7 @@ public class BarChartTag extends SimpleTagSupport {
 	private Integer width = 400;
 	private Integer height = 400;
 	private Boolean responsive = Boolean.TRUE;
-	private BarDataSet dataset;
+	private BarChartData dataset;
 	private String label;
 	private Boolean horizontal = Boolean.FALSE;
 	
@@ -44,46 +44,51 @@ public class BarChartTag extends SimpleTagSupport {
 		   "			type : '"+(horizontal ? "horizontalBar" : "bar")+"',					"+
 		   "			data : {																"+
 		   " 				labels: [															"+
-						StringUtils.join(dataset
-						.getItems()
-						.stream()
-						.map(slice -> "'"+slice.getLabel()+"'")
-						.collect(Collectors.toSet())
-						,",") +
+								StringUtils.join(dataset
+								.getLabels()
+								.stream()
+								.map(label -> "'"+label+"'")
+								.collect(Collectors.toSet())
+								,",") +
 		   " 				],																	"+
-		   " 				datasets: [{														"+
-		   "         			data: [															"+
-		   				StringUtils.join(dataset
-		   						.getItems()
-		   						.stream()
-		   						.map(slice -> slice.getData())
-		   						.collect(Collectors.toSet()),",") +
-		   "					],																"+
-		   "         			backgroundColor: [												"+
-						StringUtils.join(dataset
-										.getItems()
-											.stream()
-											.map(slice -> "'"+slice.getBackgroundColor()+"'")
-											.collect(Collectors.toSet()),",") +
-		   "         			],																"+
-		   "         			borderColor: [											"+
-						   StringUtils.join(dataset
-									.getItems()
-										.stream()
-										.map(slice -> "'"+slice.getBorderColor()+"'")
-										.collect(Collectors.toSet()),",") +
-		   "         			],																"+
-		   "					borderWidth: 1													"+
-		   "     			}]																	"+
-		   "			},																		"+
-	       "			options: {																	"+
+		   " 				datasets: [															"+
+		   
+					StringUtils.join(dataset
+						.getDatasets()
+		   				.stream()
+		   				.map(barChatDataSet -> {
+		   					return "{"+
+						"         		label: '"+TagUtil.getLocalized(barChatDataSet.getLabel())+"',		"+
+						"         		data: [																"+
+										StringUtils.join(barChatDataSet.getData(),",") 						+
+						"					],																"+
+						"         			backgroundColor: [												"+
+												StringUtils.join(
+														barChatDataSet.getBackgroundColor()
+														.stream()
+														.map(backgroudColor -> "'"+backgroudColor+"'")
+														.collect(Collectors.toSet()),",") 					+
+						"         			],																"+
+						"         			borderColor: [													"+
+												StringUtils.join(barChatDataSet.getBorderColor()
+														.stream()
+														.map(borderColor -> "'"+borderColor+"'")
+														.collect(Collectors.toSet()),",") 					+
+						"         			],																"+
+						"					borderWidth: "+barChatDataSet.getBorderWidth()					+	   							
+		   				"			}																		";
+		   				})
+		   				.collect(Collectors.toSet()),",") 		+
+		   "     			]																				"+
+		   "			},																					"+
+	       "			options: {																			"+
 		      (!StringUtils.isEmpty(label) ? 
-		   "				title: {																"+
-	       "      				display: true,														"+
-	       "     				text: '"+TagUtil.getLocalized(label)+"'								"+
-	       " 				}																		" : "")+
-		   "			}																			"+   
-		   "		});																			");
+		   "				title: {																		"+
+	       "      				display: true,																"+
+	       "     				text: '"+TagUtil.getLocalized(label)+"'										"+
+	       " 				}																				" : "")+
+		   "			}																					"+   
+		   "		});																						");
 		
 		TagUtil.out(getJspContext(), script);
 	}
@@ -104,13 +109,6 @@ public class BarChartTag extends SimpleTagSupport {
 		this.height = height;
 	}
 
-	public BarDataSet getDataset() {
-		return dataset;
-	}
-
-	public void setDataset(BarDataSet dataset) {
-		this.dataset = dataset;
-	}
 
 	public Boolean getResponsive() {
 		return responsive;
@@ -126,6 +124,22 @@ public class BarChartTag extends SimpleTagSupport {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	public BarChartData getDataset() {
+		return dataset;
+	}
+
+	public void setDataset(BarChartData dataset) {
+		this.dataset = dataset;
+	}
+
+	public Boolean getHorizontal() {
+		return horizontal;
+	}
+
+	public void setHorizontal(Boolean horizontal) {
+		this.horizontal = horizontal;
 	}
 
 
