@@ -26,6 +26,100 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:code&gt; </example>
 			
 	</tag>
+	
+	<tag>
+		<description>Renders a bar vertical or horizontal chart</description>
+		<display-name>Chart</display-name>
+		<name>barChart</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.BarChartTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the width of chart if responsive set to false. Default : 400</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height of chart if responsive set to false. Default : 400</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dataset to be rendered</description>
+			<name>dataset</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.jslsolucoes.tagria.lib.chart.BarDataSet</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if chart is responsive. Default : true</description>
+			<name>responsive</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if chart is horizontal way. Default : false</description>
+			<name>horizontal</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title of chart</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:barChart dataset="${ pieDataSet }"&gt;
+			
+			&lt;/html:barChart&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a pie chart</description>
+		<display-name>Chart</display-name>
+		<name>pieChart</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PieChartTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the width of chart if responsive is set to false. Default : 400</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height of chart if responsive is set to false. Default : 400</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dataset to be rendered</description>
+			<name>dataset</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.jslsolucoes.tagria.lib.chart.PieDataSet</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if chart is responsive size. Default : true</description>
+			<name>responsive</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title of chart</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:pieChart dataset="${ pieDataSet }"&gt;
+			
+			&lt;/html:pieChart&gt;
+		</example>
+	</tag>
 
 	<tag>
 		<description>Renders a css block</description>

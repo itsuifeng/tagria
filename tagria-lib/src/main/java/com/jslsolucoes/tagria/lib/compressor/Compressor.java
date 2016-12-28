@@ -59,7 +59,8 @@ public class Compressor {
 				"jquery/ui/jquery.ui.input.mask.js",
 				"jquery/ui/jquery.ui.treeview.js", "jquery/ui/jquery.ui.tabs.js",
 				"jquery/ui/jquery.ui.treeview.widget.js", "jquery/ui/jquery.ui.time.picker.js",
-				"jquery/ui/jquery.ui.input.currency.mask.js","jquery/ui/jquery.ui.wave.js",};
+				"jquery/ui/jquery.ui.input.currency.mask.js","jquery/ui/jquery.ui.wave.js",
+				"jquery/ui/jquery.ui.chart.js"};
 
 		File minified = new File(jsFolder + "tagria-ui.js");
 		if (minified.exists()) {
