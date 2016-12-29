@@ -56,26 +56,26 @@ public class BarChartTag extends SimpleTagSupport {
 					StringUtils.join(dataset
 						.getDatasets()
 		   				.stream()
-		   				.map(barChatDataSet -> {
+		   				.map(dataset -> {
 		   					return "{"+
-						"         		label: '"+TagUtil.getLocalized(barChatDataSet.getLabel())+"',		"+
+						"         		label: '"+TagUtil.getLocalized(dataset.getLabel())+"',		"+
 						"         		data: [																"+
-										StringUtils.join(barChatDataSet.getData(),",") 						+
+										StringUtils.join(dataset.getData(),",") 						+
 						"					],																"+
 						"         			backgroundColor: [												"+
 												StringUtils.join(
-														barChatDataSet.getBackgroundColor()
+														dataset.getBackgroundColor()
 														.stream()
-														.map(backgroudColor -> "'"+backgroudColor+"'")
+														.map(color -> "'"+color+"'")
 														.collect(Collectors.toSet()),",") 					+
 						"         			],																"+
 						"         			borderColor: [													"+
-												StringUtils.join(barChatDataSet.getBorderColor()
+												StringUtils.join(dataset.getBorderColor()
 														.stream()
-														.map(borderColor -> "'"+borderColor+"'")
+														.map(color -> "'"+color+"'")
 														.collect(Collectors.toSet()),",") 					+
 						"         			],																"+
-						"					borderWidth: "+barChatDataSet.getBorderWidth()					+	   							
+						"					borderWidth: "+dataset.getBorderWidth()					+	   							
 		   				"			}																		";
 		   				})
 		   				.collect(Collectors.toSet()),",") 		+

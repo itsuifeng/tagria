@@ -8,7 +8,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.chart.PieDataSet;
+import com.jslsolucoes.tagria.lib.chart.PieChartData;
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Canvas;
 import com.jslsolucoes.tagria.lib.html.Div;
@@ -20,7 +20,7 @@ public class PieChartTag extends SimpleTagSupport {
 	private Integer width = 400;
 	private Integer height = 400;
 	private Boolean responsive = Boolean.TRUE;
-	private PieDataSet dataset;
+	private PieChartData dataset;
 	private String label;
 	
 	@Override
@@ -44,35 +44,40 @@ public class PieChartTag extends SimpleTagSupport {
 		   "			data : {																"+
 		   " 				labels: [															"+
 						StringUtils.join(dataset
-						.getItems()
+						.getLabels()
 						.stream()
-						.map(slice -> "'"+slice.getLabel()+"'")
+						.map(label -> "'"+label+"'")
 						.collect(Collectors.toSet())
 						,",") +
 		   " 				],																	"+
-		   " 				datasets: [{														"+
-		   "         			data: [															"+
-		   				StringUtils.join(dataset
-		   						.getItems()
-		   						.stream()
-		   						.map(slice -> slice.getData())
-		   						.collect(Collectors.toSet()),",") +
-		   "					],																"+
-		   "         			backgroundColor: [												"+
-						StringUtils.join(dataset
-										.getItems()
-											.stream()
-											.map(slice -> "'"+slice.getBackgroundColor()+"'")
-											.collect(Collectors.toSet()),",") +
-		   "         			],																"+
-		   "         			hoverBackgroundColor: [											"+
-						   StringUtils.join(dataset
-									.getItems()
-										.stream()
-										.map(slice -> "'"+slice.getHoverBackgroundColor()+"'")
-										.collect(Collectors.toSet()),",") +
-		   "         			]																"+
-		   "     			}]																	"+
+		   " 				datasets: [														"+
+		   		StringUtils.join(dataset
+					.getDatasets()
+	   				.stream()
+	   				.map(dataset -> {
+	   					return "{"+
+	   							
+					"         		data: [																"+
+									StringUtils.join(dataset.getData(),",") 						+
+					"					],																"+
+					"         			backgroundColor: [												"+
+											StringUtils.join(
+													dataset.getBackgroundColor()
+													.stream()
+													.map(color -> "'"+color+"'")
+													.collect(Collectors.toSet()),",") 					+
+					"         			],																"+
+					"         			hoverBackgroundColor: [													"+
+											StringUtils.join(dataset.getHoverBackgroundColor()
+													.stream()
+													.map(color -> "'"+color+"'")
+													.collect(Collectors.toSet()),",") 					+
+					"         			]																"+
+											
+	   				"			}																		";
+	   				})
+	   				.collect(Collectors.toSet()),",") 		+
+		   "     			]																	"+
 		   "			},																		"+
 	       "			options: {																	"+
 		      (!StringUtils.isEmpty(label) ? 
@@ -102,11 +107,11 @@ public class PieChartTag extends SimpleTagSupport {
 		this.height = height;
 	}
 
-	public PieDataSet getDataset() {
+	public PieChartData getDataset() {
 		return dataset;
 	}
 
-	public void setDataset(PieDataSet dataset) {
+	public void setDataset(PieChartData dataset) {
 		this.dataset = dataset;
 	}
 

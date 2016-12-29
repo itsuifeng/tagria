@@ -100,7 +100,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>dataset</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>com.jslsolucoes.tagria.lib.chart.PieDataSet</type>
+			<type>com.jslsolucoes.tagria.lib.chart.PieChartData</type>
 		</attribute>
 		<attribute>
 			<description>Indicates if chart is responsive size. Default : true</description>
