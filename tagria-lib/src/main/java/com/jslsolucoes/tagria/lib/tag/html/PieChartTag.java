@@ -47,7 +47,7 @@ public class PieChartTag extends SimpleTagSupport {
 						.getLabels()
 						.stream()
 						.map(label -> "'"+label+"'")
-						.collect(Collectors.toSet())
+						.collect(Collectors.toList())
 						,",") +
 		   " 				],																	"+
 		   " 				datasets: [														"+
@@ -65,18 +65,18 @@ public class PieChartTag extends SimpleTagSupport {
 													dataset.getBackgroundColor()
 													.stream()
 													.map(color -> "'"+color+"'")
-													.collect(Collectors.toSet()),",") 					+
+													.collect(Collectors.toList()),",") 					+
 					"         			],																"+
 					"         			hoverBackgroundColor: [													"+
 											StringUtils.join(dataset.getHoverBackgroundColor()
 													.stream()
 													.map(color -> "'"+color+"'")
-													.collect(Collectors.toSet()),",") 					+
+													.collect(Collectors.toList()),",") 					+
 					"         			]																"+
 											
 	   				"			}																		";
 	   				})
-	   				.collect(Collectors.toSet()),",") 		+
+	   				.collect(Collectors.toList()),",") 		+
 		   "     			]																	"+
 		   "			},																		"+
 	       "			options: {																	"+

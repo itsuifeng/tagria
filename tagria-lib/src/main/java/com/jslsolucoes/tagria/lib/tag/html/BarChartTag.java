@@ -48,7 +48,7 @@ public class BarChartTag extends SimpleTagSupport {
 								.getLabels()
 								.stream()
 								.map(label -> "'"+label+"'")
-								.collect(Collectors.toSet())
+								.collect(Collectors.toList())
 								,",") +
 		   " 				],																	"+
 		   " 				datasets: [															"+
@@ -67,18 +67,18 @@ public class BarChartTag extends SimpleTagSupport {
 														dataset.getBackgroundColor()
 														.stream()
 														.map(color -> "'"+color+"'")
-														.collect(Collectors.toSet()),",") 					+
+														.collect(Collectors.toList()),",") 					+
 						"         			],																"+
 						"         			borderColor: [													"+
 												StringUtils.join(dataset.getBorderColor()
 														.stream()
 														.map(color -> "'"+color+"'")
-														.collect(Collectors.toSet()),",") 					+
+														.collect(Collectors.toList()),",") 					+
 						"         			],																"+
 						"					borderWidth: "+dataset.getBorderWidth()					+	   							
 		   				"			}																		";
 		   				})
-		   				.collect(Collectors.toSet()),",") 		+
+		   				.collect(Collectors.toList()),",") 		+
 		   "     			]																				"+
 		   "			},																					"+
 	       "			options: {																			"+
