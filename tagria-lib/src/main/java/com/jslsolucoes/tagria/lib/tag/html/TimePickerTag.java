@@ -27,6 +27,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class TimePickerTag extends SimpleTagSupport {
 
 	private String attachTo;
+	private String pattern = "HH:mm";
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -44,7 +45,7 @@ public class TimePickerTag extends SimpleTagSupport {
 				"				timezoneText: '"+TagUtil.getLocalizedForLib("time.picker.timezone")+"', 				"+
 				"				currentText: '"+TagUtil.getLocalizedForLib("time.picker.now")+"', 						"+
 				"				closeText: '"+TagUtil.getLocalizedForLib("time.picker.close")+"', 						"+
-				"				timeFormat: 'HH:mm', 						"+
+				"				timeFormat: '"+pattern+"', 						"+
 				"				controlType : 'select',					    "+
 				"				timeSuffix: '', 							"+
 				"				amNames: ['"+TagUtil.getLocalizedForLib("time.picker.am")+"', '"+TagUtil.getLocalizedForLib("time.picker.am.uppercase")+"', '"+TagUtil.getLocalizedForLib("time.picker.am.lowecase")+"'], 				"+
@@ -65,6 +66,14 @@ public class TimePickerTag extends SimpleTagSupport {
 
 	public void setAttachTo(String attachTo) {
 		this.attachTo = attachTo;
+	}
+
+	public String getPattern() {
+		return pattern;
+	}
+
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
 	}
 
 }

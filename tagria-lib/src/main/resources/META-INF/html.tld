@@ -367,6 +367,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>Indicates the pattern of time. Default : HH:mm. Format reference : http://trentrichardson.com/examples/timepicker/#tp-formatting</description>
+			<name>pattern</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:input name="input1" placeholder="Horario" /&gt;
 			&lt;html:timePicker attachTo="input1"/&gt; </example>
