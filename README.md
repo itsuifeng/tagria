@@ -123,7 +123,7 @@ skin=green
 		</tr>
 		<tr>
 			<td>cdn.url</td>
-			<td>Ur of cdn host</td>
+			<td>Url of cdn host</td>
 			<td align="center">-</td>
 			<td>Host endpoint</td>
 		</tr>
