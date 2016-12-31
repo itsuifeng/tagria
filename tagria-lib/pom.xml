@@ -86,6 +86,7 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
+							<includeProjectDependencies>true</includeProjectDependencies>
 							<mainClass>com.jslsolucoes.tagria.lib.compressor.ResourceCompressor</mainClass>
 							<arguments>
 								<argument>${project.basedir}</argument>
