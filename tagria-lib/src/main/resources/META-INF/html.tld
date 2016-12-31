@@ -26,6 +26,112 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:code&gt; </example>
 			
 	</tag>
+	
+	<tag>
+		<description>Renders a bar vertical or horizontal chart</description>
+		<display-name>Chart</display-name>
+		<name>barChart</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.BarChartTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the width of chart if responsive set to false. Default : 400</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height of chart if responsive set to false. Default : 400</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dataset to be rendered</description>
+			<name>dataset</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.jslsolucoes.tagria.lib.chart.BarChartData</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if chart is responsive. Default : true</description>
+			<name>responsive</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if chart is horizontal way. Default : false</description>
+			<name>horizontal</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title of chart</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:barChart dataset="${ pieDataSet }"&gt;
+			
+			&lt;/html:barChart&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a pie chart</description>
+		<display-name>Chart</display-name>
+		<name>pieChart</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PieChartTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the width of chart if responsive is set to false. Default : 400</description>
+			<name>width</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the height of chart if responsive is set to false. Default : 400</description>
+			<name>height</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the dataset to be rendered</description>
+			<name>dataset</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.jslsolucoes.tagria.lib.chart.PieChartData</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if chart is responsive size. Default : true</description>
+			<name>responsive</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the title of chart</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:pieChart dataset="${ pieDataSet }"&gt;
+			
+			&lt;/html:pieChart&gt;
+		</example>
+	</tag>
 
 	<tag>
 		<description>Renders a css block</description>
@@ -69,7 +175,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TableLineTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates whether the component should be rendered</description>
+			<description>It indicates whether the component should be rendered. Default : true</description>
 			<name>rendered</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
@@ -258,6 +364,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<description>Indicates the component that triggers the component</description>
 			<name>attachTo</name>
 			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the pattern of time. Default : HH:mm. Format reference : http://trentrichardson.com/examples/timepicker/#tp-formatting</description>
+			<name>pattern</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -2030,7 +2142,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates whether the filling of arvoce should be mandatory on the form</description>
+			<description>Indicates whether the filling of treeview should be mandatory on the form</description>
 			<name>required</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>

@@ -13,29 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.jslsolucoes.tagria.lib.tag.x;
+package com.jslsolucoes.tagria.lib.html;
 
-import java.util.Collection;
+public class Canvas extends Element {
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
-
-public class StringUtil {
-	
-	public static String join(Collection<?> collection,String separator) {
-		return StringUtils.join(collection, separator);
-	}
-
-	public static String concat(String left,String right) {
-		return left.concat(right);
+	@Override
+	public String getTag() {
+		return "canvas";
 	}
 	
-	public static Integer length(Long value) {
-		return String.valueOf(value).length();
+	@Override
+	public boolean forceCloseTagWithEmptyBody() {
+		return true;
 	}
-	
-	public static String fullStackTrace(Exception exception){
-		return ExceptionUtils.getFullStackTrace(exception).replaceAll("\n","<br/>");
-	}
-
 }
