@@ -63,7 +63,7 @@ public class GridColumnTag extends SimpleTagSupport {
 				th.add(Attribute.CLASS,"bs-grid-column-exportable");
 			}
 			if(!StringUtils.isEmpty(label)){
-				th.add(TagUtil.getLocalized(label));
+				th.add(TagUtil.getLocalized(label,getJspContext()));
 			}
 			grid.addTh(th);
 	
@@ -94,7 +94,7 @@ public class GridColumnTag extends SimpleTagSupport {
 				
 				
 				if (!StringUtils.isEmpty(format)) {
-					container.add(TagUtil.format(format, body));
+					container.add(TagUtil.format(format, body,getJspContext()));
 				} else if (booleanType) {
 					if (body.equals("1") || body.equals("true")) {
 						Span icon = new Span();

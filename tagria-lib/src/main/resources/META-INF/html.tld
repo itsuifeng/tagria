@@ -12,6 +12,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
+		<description>Renders a locale switcher to change current language</description>
+		<display-name>Misc</display-name>
+		<name>localeSwitch</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.LocaleSwitchTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:localeSwitch &gt;
+				
+			&lt;/html:localeSwitch&gt; </example>
+			
+	</tag>
+
+
+	<tag>
 		<description>Renders a source block of a particular language without executing it</description>
 		<display-name>Misc</display-name>
 		<name>code</name>

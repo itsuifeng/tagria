@@ -35,21 +35,21 @@ public class TimePickerTag extends SimpleTagSupport {
 		StringBuilder builder = new StringBuilder();
 		builder.append("$(document).ready(function(){ "+
 				"			$('#" + TagUtil.getId(attachTo, null,this) + "').timepicker({ "+
-				"				timeOnlyTitle: '"+TagUtil.getLocalizedForLib("time.picker.title")+"', 		"+
-				"				timeText: '"+TagUtil.getLocalizedForLib("time.picker.time")+"', 						"+
-				"				hourText: '"+TagUtil.getLocalizedForLib("time.picker.hour")+"', 							"+
-				"				minuteText: '"+TagUtil.getLocalizedForLib("time.picker.minute")+"', 						"+
-				"				secondText: '"+TagUtil.getLocalizedForLib("time.picker.second")+"', 					"+
-				"				millisecText: '"+TagUtil.getLocalizedForLib("time.picker.milisecond")+"', 				"+
-				"				microsecText: '"+TagUtil.getLocalizedForLib("time.picker.microsecond")+"', 			"+
-				"				timezoneText: '"+TagUtil.getLocalizedForLib("time.picker.timezone")+"', 				"+
-				"				currentText: '"+TagUtil.getLocalizedForLib("time.picker.now")+"', 						"+
-				"				closeText: '"+TagUtil.getLocalizedForLib("time.picker.close")+"', 						"+
+				"				timeOnlyTitle: '"+TagUtil.getLocalizedForLib("time.picker.title",getJspContext())+"', 		"+
+				"				timeText: '"+TagUtil.getLocalizedForLib("time.picker.time",getJspContext())+"', 						"+
+				"				hourText: '"+TagUtil.getLocalizedForLib("time.picker.hour",getJspContext())+"', 							"+
+				"				minuteText: '"+TagUtil.getLocalizedForLib("time.picker.minute",getJspContext())+"', 						"+
+				"				secondText: '"+TagUtil.getLocalizedForLib("time.picker.second",getJspContext())+"', 					"+
+				"				millisecText: '"+TagUtil.getLocalizedForLib("time.picker.milisecond",getJspContext())+"', 				"+
+				"				microsecText: '"+TagUtil.getLocalizedForLib("time.picker.microsecond",getJspContext())+"', 			"+
+				"				timezoneText: '"+TagUtil.getLocalizedForLib("time.picker.timezone",getJspContext())+"', 				"+
+				"				currentText: '"+TagUtil.getLocalizedForLib("time.picker.now",getJspContext())+"', 						"+
+				"				closeText: '"+TagUtil.getLocalizedForLib("time.picker.close",getJspContext())+"', 						"+
 				"				timeFormat: '"+pattern+"', 						"+
 				"				controlType : 'select',					    "+
 				"				timeSuffix: '', 							"+
-				"				amNames: ['"+TagUtil.getLocalizedForLib("time.picker.am")+"', '"+TagUtil.getLocalizedForLib("time.picker.am.uppercase")+"', '"+TagUtil.getLocalizedForLib("time.picker.am.lowecase")+"'], 				"+
-				"				pmNames: ['"+TagUtil.getLocalizedForLib("time.picker.pm")+"', '"+TagUtil.getLocalizedForLib("time.picker.pm.uppercase")+"', '"+TagUtil.getLocalizedForLib("time.picker.pm.lowercase")+"'], 				"+
+				"				amNames: ['"+TagUtil.getLocalizedForLib("time.picker.am",getJspContext())+"', '"+TagUtil.getLocalizedForLib("time.picker.am.uppercase",getJspContext())+"', '"+TagUtil.getLocalizedForLib("time.picker.am.lowecase",getJspContext())+"'], 				"+
+				"				pmNames: ['"+TagUtil.getLocalizedForLib("time.picker.pm",getJspContext())+"', '"+TagUtil.getLocalizedForLib("time.picker.pm.uppercase",getJspContext())+"', '"+TagUtil.getLocalizedForLib("time.picker.pm.lowercase",getJspContext())+"'], 				"+
 				"				isRTL: false 								"+
 				"	   		}); 											"+
 				"		});													");

@@ -61,11 +61,11 @@ public class MenuButtonTag extends SimpleTagSupport {
 			}
 
 			if (!StringUtils.isEmpty(label)) {
-				button.add(TagUtil.getLocalized(label));
+				button.add(TagUtil.getLocalized(label,getJspContext()));
 			}
 
 			if (!StringUtils.isEmpty(title)) {
-				button.add(Attribute.TITLE, TagUtil.getLocalized(title));
+				button.add(Attribute.TITLE, TagUtil.getLocalized(title,getJspContext()));
 			}
 
 			div.add(button);

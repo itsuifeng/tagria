@@ -54,7 +54,7 @@ public class TabTag extends SimpleTagSupport {
 			A a = new A();
 			a.add(Attribute.HREF,"#" + id);
 			a.add(Attribute.DATA_TOGGLE,"tab");
-			a.add(TagUtil.getLocalized(label));
+			a.add(TagUtil.getLocalized(label,getJspContext()));
 			li.add(a);
 			
 			panel.addLi(li);

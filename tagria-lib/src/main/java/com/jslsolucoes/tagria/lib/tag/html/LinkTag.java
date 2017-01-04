@@ -40,7 +40,7 @@ public class LinkTag extends SimpleTagSupport {
 				a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 				a.add(Attribute.TARGET, target);
 				if (!StringUtils.isEmpty(label)) {
-					a.add(TagUtil.getLocalized(label));
+					a.add(TagUtil.getLocalized(label,getJspContext()));
 				} else {
 					a.add(TagUtil.getBody(getJspBody()));
 				}

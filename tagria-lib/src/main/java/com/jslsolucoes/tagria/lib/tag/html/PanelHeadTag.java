@@ -35,7 +35,7 @@ public class PanelHeadTag extends SimpleTagSupport {
 		div.add(Attribute.CLASS,"panel-heading");
 		H3 h3 = new H3();
 		h3.add(Attribute.CLASS,"panel-title");
-		h3.add(TagUtil.getLocalized(label));
+		h3.add(TagUtil.getLocalized(label,getJspContext()));
 		div.add(h3);
 		TagUtil.out(getJspContext(), div);
 	}

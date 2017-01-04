@@ -35,6 +35,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -50,15 +51,20 @@ import com.jslsolucoes.tagria.lib.tag.html.DetailTableTag;
 
 public class TagUtil {
 	
-	public static Locale locale(){
-		return Locale.forLanguageTag(getInitParam(TagriaConfigParameter.LOCALE));
+	public static Locale locale(JspContext jspContext){
+		HttpSession httpSession = ((PageContext) jspContext).getSession();
+		if(httpSession.getAttribute("tagria-locale") == null){
+			return Locale.forLanguageTag(getInitParam(TagriaConfigParameter.LOCALE));
+		} else {
+			return Locale.forLanguageTag((String)httpSession.getAttribute("tagria-locale"));
+		}	
 	}
 
 	public static String getVersion() {
 		return "1.0.9";
 	}
 	
-	public static String format(String type,String value){
+	public static String format(String type,String value,JspContext jspContext){
 		
 		if(StringUtils.isEmpty(value)){
 			return value;
@@ -66,11 +72,11 @@ public class TagUtil {
 			
 			DateFormat dateFormat = DateFormat.getDateTimeInstance();
 			if(type.equals("timestamp")){
-				dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, locale());
+				dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, locale(jspContext));
 			} else if(type.equals("date")){
-				dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale());
+				dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale(jspContext));
 			} else if(type.equals("hour")){
-				dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale());
+				dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale(jspContext));
 			}
 			List<String> patterns = new ArrayList<String>();
 			patterns.add("yyyy-MM-dd HH:mm:ss");
@@ -84,7 +90,7 @@ public class TagUtil {
 			}
 			return value; 
 		} else if (type.equals("currency")) {
-			DecimalFormat nf = new DecimalFormat("#,##0.00",new DecimalFormatSymbols(locale()));
+			DecimalFormat nf = new DecimalFormat("#,##0.00",new DecimalFormatSymbols(locale(jspContext)));
 			return nf.format(new Double(value));
 		} else if(type.equals("cep")){
 			return String.format("%08d", Long.valueOf(value)).replaceAll("^([0-9]{5})([0-9]{3})$", "$1-$2");
@@ -134,11 +140,11 @@ public class TagUtil {
 		return value.replaceAll("(\n|\r|\t)", "");
 	}
 
-	public static String getLocalized(String label) {
+	public static String getLocalized(String label,JspContext jspContext) {
 		if (label.matches("\\{(.*?)\\}")) {
 			String key = label.replaceAll("(\\{|\\})", "").trim();
 			try {
-				return ResourceBundle.getBundle("messages",locale()).getString(key);
+				return ResourceBundle.getBundle("messages",locale(jspContext)).getString(key);
 			} catch (MissingResourceException e) {
 				return '!' + key + '!';
 			}
@@ -241,13 +247,13 @@ public class TagUtil {
 		jspContext.getOut().print(content);
 	}
 
-	public static String getLocalizedForLib(String key) {
-		return getLocalizedForLib(key, (Object[]) null);
+	public static String getLocalizedForLib(String key,JspContext jspContext) {
+		return getLocalizedForLib(key,jspContext,(Object[]) null);
 	}
 	
-	public static String getLocalizedForLib(String key, Object... args) {
+	public static String getLocalizedForLib(String key,JspContext jspContext, Object... args) {
 		try {
-			MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle("messages_tagrialib",locale()).getString(key));
+			MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle("messages_tagrialib",locale(jspContext)).getString(key));
 		    return messageFormat.format(args);
 		} catch (MissingResourceException e) {
 			return '!' + key + '!';
@@ -280,5 +286,9 @@ public class TagUtil {
 			css.append(" hidden-"+device);
 		}
 		return css.toString();
+	}
+
+	public static String getPathForLocale(JspContext jspContext) {
+		return getPathForUrl(jspContext,"/tagria/locale");
 	}
 }

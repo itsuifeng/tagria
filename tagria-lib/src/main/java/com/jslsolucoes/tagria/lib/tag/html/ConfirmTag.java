@@ -18,7 +18,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ConfirmTag extends SimpleTagSupport {
 	
-	private String label = TagUtil.getLocalizedForLib("button.confirm.text");
+	private String label;
 	private String url = "#";
 	private String target = "_self";
 	private String attachTo;
@@ -46,7 +46,7 @@ public class ConfirmTag extends SimpleTagSupport {
 		
 		H4 h4 = new H4();
 		h4.add(Attribute.CLASS,"modal-title");
-		h4.add(TagUtil.getLocalizedForLib("button.confirm.title"));
+		h4.add(TagUtil.getLocalizedForLib("button.confirm.title",getJspContext()));
 		header.add(h4);
 		
 		content.add(header);
@@ -58,8 +58,10 @@ public class ConfirmTag extends SimpleTagSupport {
 		
 		if(!StringUtils.isEmpty(bodyContent)){
 			body.add(bodyContent);
+		} else if(StringUtils.isEmpty(label)){
+			body.add(TagUtil.getLocalizedForLib("button.confirm.text",getJspContext()));
 		} else {
-			body.add(TagUtil.getLocalized(label));
+			body.add(TagUtil.getLocalized(label,getJspContext()));
 		}
 		content.add(body);
 		
@@ -68,12 +70,12 @@ public class ConfirmTag extends SimpleTagSupport {
 		Button cancel = new Button();
 		cancel.add(Attribute.CLASS,"btn btn-danger waves-effect waves-light cancel");
 		cancel.add(Attribute.DATA_DISMISS,"modal");
-		cancel.add(TagUtil.getLocalizedForLib("button.confirm.cancel"));
+		cancel.add(TagUtil.getLocalizedForLib("button.confirm.cancel",getJspContext()));
 		footer.add(cancel);
 		
 		A confirm = new A();
 		confirm.add(Attribute.CLASS,"btn btn-primary waves-effect waves-light sure");
-		confirm.add(TagUtil.getLocalizedForLib("button.confirm.confirm"));
+		confirm.add(TagUtil.getLocalizedForLib("button.confirm.confirm",getJspContext()));
 		confirm.add(Attribute.HREF,TagUtil.getPathForUrl(getJspContext(), url));
 		confirm.add(Attribute.TARGET, target);
 		

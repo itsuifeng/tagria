@@ -59,7 +59,7 @@ public class BarChartTag extends SimpleTagSupport {
 			   				.stream()
 			   				.map(dataset -> {
 			   					return "{"+
-							"         		label: '"+TagUtil.getLocalized(dataset.getLabel())+"',		"+
+							"         		label: '"+TagUtil.getLocalized(dataset.getLabel(),getJspContext())+"',		"+
 							"         		data: [																"+
 											StringUtils.join(dataset.getData(),",") 						+
 							"					],																"+
@@ -86,7 +86,7 @@ public class BarChartTag extends SimpleTagSupport {
 			      (!StringUtils.isEmpty(label) ? 
 			   "				title: {																		"+
 		       "      				display: true,																"+
-		       "     				text: '"+TagUtil.getLocalized(label)+"'										"+
+		       "     				text: '"+TagUtil.getLocalized(label,getJspContext())+"'										"+
 		       " 				}																				" : "")+
 			   "			}																					"+   
 			   "		});																						");

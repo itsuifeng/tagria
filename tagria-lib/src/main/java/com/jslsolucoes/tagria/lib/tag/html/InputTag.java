@@ -79,22 +79,22 @@ public class InputTag extends SimpleTagSupport {
 		}
 		
 		if(!StringUtils.isEmpty(title)){
-			input.add(Attribute.TITLE,TagUtil.getLocalized(title));
+			input.add(Attribute.TITLE,TagUtil.getLocalized(title,getJspContext()));
 		}
 		
 		if(maxLength != null){
 			input.add(Attribute.MAXLENGTH,maxLength);
 		}
 		if(!StringUtils.isEmpty(placeholder)){
-			input.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder));
+			input.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder,getJspContext()));
 		}
 		
 		if (!StringUtils.isEmpty(format)) {
-			value = TagUtil.format(format, value);
+			value = TagUtil.format(format, value,getJspContext());
 		}
 		
 		if (!StringUtils.isEmpty(value)) {
-			input.add(Attribute.VALUE, TagUtil.getLocalized(value));
+			input.add(Attribute.VALUE, TagUtil.getLocalized(value,getJspContext()));
 		}
 		if(!StringUtils.isEmpty(pattern)){
 			input.add(Attribute.PATTERN, pattern);

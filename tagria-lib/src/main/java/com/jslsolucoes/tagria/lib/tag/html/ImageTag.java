@@ -51,7 +51,7 @@ public class ImageTag extends SimpleTagSupport {
 				img.add(Attribute.CLASS, cssClass);
 			}
 			img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-			img.add(Attribute.ALT, TagUtil.getLocalized(alt));
+			img.add(Attribute.ALT, TagUtil.getLocalized(alt,getJspContext()));
 			if(width != null){
 				img.add(Attribute.WIDTH, width);
 			}

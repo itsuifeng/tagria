@@ -49,7 +49,7 @@ public class MenuItemTag extends SimpleTagSupport {
 			}
 			
 			if (!StringUtils.isEmpty(label)) {
-				a.add(TagUtil.getLocalized(label));
+				a.add(TagUtil.getLocalized(label,getJspContext()));
 			} else {
 				a.add(TagUtil.getBody(getJspBody()));
 			}

@@ -46,7 +46,7 @@ public class CollapsableTag extends SimpleTagSupport {
 		A a  = new A();
 		a.add(Attribute.HREF,"#"+id);
 		a.add(Attribute.DATA_TOGGLE,"collapse");
-		a.add(TagUtil.getLocalized(label));
+		a.add(TagUtil.getLocalized(label,getJspContext()));
 		h3.add(a);
 		panelHead.add(h3);
 		panel.add(panelHead);

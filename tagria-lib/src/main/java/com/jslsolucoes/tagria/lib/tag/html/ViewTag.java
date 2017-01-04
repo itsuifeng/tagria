@@ -47,7 +47,7 @@ public class ViewTag extends SimpleTagSupport {
 		Head head = new Head();
 		html.add(head);
 		Title title = new Title();
-		title.add(TagUtil.getLocalized(this.title));
+		title.add(TagUtil.getLocalized(this.title,getJspContext()));
 		head.add(title);
 
 		Meta meta = new Meta();
