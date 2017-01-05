@@ -35,67 +35,88 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.google.common.collect.Lists;
 import com.jslsolucoes.tagria.lib.html.Element;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.html.DetailTableTag;
 
 public class TagUtil {
 	
-	public static Locale locale(){
-		return Locale.forLanguageTag(getInitParam(TagriaConfigParameter.LOCALE));
+	
+	public static String localization(JspContext jspContext) {
+		Locale locale = locale(jspContext);
+		List<String> fullLocale = Lists.newArrayList(locale.getLanguage());
+		if (!StringUtils.isEmpty(locale.getCountry())) {
+			fullLocale.add(locale.getCountry());
+		}
+		return StringUtils.join(fullLocale, "-");
+	}
+
+	public static Locale locale(JspContext jspContext) {
+		HttpSession httpSession = ((PageContext) jspContext).getSession();
+		Locale locale = Locale.forLanguageTag(getInitParam(TagriaConfigParameter.LOCALE));
+		if (Config.get(httpSession, Config.FMT_LOCALE) != null) {
+			locale = (Locale) Config.get(httpSession, Config.FMT_LOCALE);
+		}
+		return locale;
 	}
 
 	public static String getVersion() {
 		return "1.0.9";
 	}
-	
-	public static String format(String type,String value){
-		
-		if(StringUtils.isEmpty(value)){
+
+	public static String format(String type, String value, JspContext jspContext) {
+
+		if (StringUtils.isEmpty(value)) {
 			return value;
 		} else if (type.equals("date") || type.equals("timestamp") || type.equals("hour")) {
-			
+
 			DateFormat dateFormat = DateFormat.getDateTimeInstance();
-			if(type.equals("timestamp")){
-				dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, locale());
-			} else if(type.equals("date")){
-				dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale());
-			} else if(type.equals("hour")){
-				dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale());
+			if (type.equals("timestamp")) {
+				dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, locale(jspContext));
+			} else if (type.equals("date")) {
+				dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale(jspContext));
+			} else if (type.equals("hour")) {
+				dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale(jspContext));
 			}
 			List<String> patterns = new ArrayList<String>();
 			patterns.add("yyyy-MM-dd HH:mm:ss");
 			patterns.add("yyyy-MM-dd");
-			for(String pattern : patterns){
+			for (String pattern : patterns) {
 				try {
 					return dateFormat.format(new SimpleDateFormat(pattern).parse(value));
 				} catch (ParseException pe) {
-					
+
 				}
 			}
-			return value; 
+			return value;
 		} else if (type.equals("currency")) {
-			DecimalFormat nf = new DecimalFormat("#,##0.00",new DecimalFormatSymbols(locale()));
+			DecimalFormat nf = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(locale(jspContext)));
 			return nf.format(new Double(value));
-		} else if(type.equals("cep")){
+		} else if (type.equals("cep")) {
 			return String.format("%08d", Long.valueOf(value)).replaceAll("^([0-9]{5})([0-9]{3})$", "$1-$2");
-		} else if(type.equals("cpf")){
-			return String.format("%011d", Long.valueOf(value)).replaceAll("^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$", "$1.$2.$3-$4");
-		} else if(type.equals("cnpj")){
-			return String.format("%014d", Long.valueOf(value)).replaceAll("^([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})$", "$1.$2.$3/$4-$5");
-		} else if(type.equals("tel")){
-			return String.format("%010d", Long.valueOf(value)).replaceAll("^([0-9]{2})([0-9]{4,5})([0-9]{4})$", "($1) $2-$3");
+		} else if (type.equals("cpf")) {
+			return String.format("%011d", Long.valueOf(value)).replaceAll("^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$",
+					"$1.$2.$3-$4");
+		} else if (type.equals("cnpj")) {
+			return String.format("%014d", Long.valueOf(value))
+					.replaceAll("^([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})$", "$1.$2.$3/$4-$5");
+		} else if (type.equals("tel")) {
+			return String.format("%010d", Long.valueOf(value)).replaceAll("^([0-9]{2})([0-9]{4,5})([0-9]{4})$",
+					"($1) $2-$3");
 		}
-		return value;	
+		return value;
 	}
 
 	public static String getId(String name, String id, SimpleTagSupport simpleTagSupport) {
@@ -107,9 +128,9 @@ public class TagUtil {
 		}
 		return idForComponent + complementForDetailTable(simpleTagSupport);
 	}
-	
+
 	public static String complementForDetailTable(SimpleTagSupport simpleTagSupport) {
-		if(simpleTagSupport == null){
+		if (simpleTagSupport == null) {
 			return "";
 		} else {
 			DetailTableTag detailTable = (DetailTableTag) SimpleTagSupport.findAncestorWithClass(simpleTagSupport,
@@ -119,26 +140,26 @@ public class TagUtil {
 	}
 
 	public static String getId(String name, String id) {
-		return TagUtil.getId(name, id,null);
+		return TagUtil.getId(name, id, null);
 	}
 
 	public static String getId() {
-		return TagUtil.getId(null, null,null);
+		return TagUtil.getId(null, null, null);
 	}
 
 	public static String getId(String id) {
-		return TagUtil.getId(null, id,null);
+		return TagUtil.getId(null, id, null);
 	}
 
 	public static String clean(String value) {
 		return value.replaceAll("(\n|\r|\t)", "");
 	}
 
-	public static String getLocalized(String label) {
+	public static String getLocalized(String label, JspContext jspContext) {
 		if (label.matches("\\{(.*?)\\}")) {
 			String key = label.replaceAll("(\\{|\\})", "").trim();
 			try {
-				return ResourceBundle.getBundle("messages",locale()).getString(key);
+				return ResourceBundle.getBundle("messages", locale(jspContext)).getString(key);
 			} catch (MissingResourceException e) {
 				return '!' + key + '!';
 			}
@@ -220,7 +241,8 @@ public class TagUtil {
 	private static String getUrlBaseForStaticFile(JspContext jspContext) {
 		String url = TagUtil.getInitParam(TagriaConfigParameter.CDN_URL) != null
 				&& Boolean.valueOf(TagUtil.getInitParam(TagriaConfigParameter.CDN_ENABLED))
-						? getScheme((HttpServletRequest)((PageContext) jspContext).getRequest()) + "://" + TagUtil.getInitParam(TagriaConfigParameter.CDN_URL)
+						? getScheme((HttpServletRequest) ((PageContext) jspContext).getRequest()) + "://"
+								+ TagUtil.getInitParam(TagriaConfigParameter.CDN_URL)
 						: TagUtil.getContextPath(jspContext);
 		return url;
 	}
@@ -234,26 +256,27 @@ public class TagUtil {
 	}
 
 	public static void out(JspContext jspContext, Element element) throws IOException {
-		out(jspContext,element.getHtml());
+		out(jspContext, element.getHtml());
 	}
-	
+
 	public static void out(JspContext jspContext, String content) throws IOException {
 		jspContext.getOut().print(content);
 	}
 
-	public static String getLocalizedForLib(String key) {
-		return getLocalizedForLib(key, (Object[]) null);
+	public static String getLocalizedForLib(String key, JspContext jspContext) {
+		return getLocalizedForLib(key, jspContext, (Object[]) null);
 	}
-	
-	public static String getLocalizedForLib(String key, Object... args) {
+
+	public static String getLocalizedForLib(String key, JspContext jspContext, Object... args) {
 		try {
-			MessageFormat messageFormat = new MessageFormat(ResourceBundle.getBundle("messages_tagrialib",locale()).getString(key));
-		    return messageFormat.format(args);
+			MessageFormat messageFormat = new MessageFormat(
+					ResourceBundle.getBundle("messages_tagrialib", locale(jspContext)).getString(key));
+			return messageFormat.format(args);
 		} catch (MissingResourceException e) {
 			return '!' + key + '!';
 		}
 	}
-	
+
 	public static String queryString(HttpServletRequest request, List<String> excludesParams)
 			throws UnsupportedEncodingException {
 		List<String> queryString = new ArrayList<String>();
@@ -271,14 +294,18 @@ public class TagUtil {
 	}
 
 	public static String getPathForBlank(JspContext jspContext) {
-		return getPathForUrl(jspContext,"/tagria/blank");
+		return getPathForUrl(jspContext, "/tagria/blank");
 	}
 
 	public static String cssForHideViewport(String hideOnViewport) {
 		StringBuilder css = new StringBuilder();
-		for(String device : hideOnViewport.split(",")){
-			css.append(" hidden-"+device);
+		for (String device : hideOnViewport.split(",")) {
+			css.append(" hidden-" + device);
 		}
 		return css.toString();
+	}
+
+	public static String getPathForLocale(JspContext jspContext) {
+		return getPathForUrl(jspContext, "/tagria/locale");
 	}
 }

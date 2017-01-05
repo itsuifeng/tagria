@@ -62,7 +62,7 @@ public class ButtonTag extends SimpleTagSupport {
 			}
 			
 			if (!StringUtils.isEmpty(title)) {
-				a.add(Attribute.TITLE, TagUtil.getLocalized(title));
+				a.add(Attribute.TITLE, TagUtil.getLocalized(title,getJspContext()));
 			}
 			
 			if(!StringUtils.isEmpty(dismiss)){
@@ -78,7 +78,7 @@ public class ButtonTag extends SimpleTagSupport {
 			}
 			
 			if(!StringUtils.isEmpty(label)){
-				a.add(" " + TagUtil.getLocalized(label));
+				a.add(" " + TagUtil.getLocalized(label,getJspContext()));
 			}
 			TagUtil.out(getJspContext(), a);
 		}

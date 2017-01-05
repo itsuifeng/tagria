@@ -43,11 +43,11 @@ public class ViewTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		Html html = new Html();
 		html.add(Attribute.XMLNS, "http://www.w3.org/1999/xhtml");
-		html.add(Attribute.LANG,TagUtil.getInitParam(TagriaConfigParameter.LOCALE));
+		html.add(Attribute.LANG,TagUtil.localization(getJspContext()));
 		Head head = new Head();
 		html.add(head);
 		Title title = new Title();
-		title.add(TagUtil.getLocalized(this.title));
+		title.add(TagUtil.getLocalized(this.title,getJspContext()));
 		head.add(title);
 
 		Meta meta = new Meta();

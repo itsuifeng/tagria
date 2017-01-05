@@ -25,6 +25,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
@@ -54,6 +55,12 @@ public class Tagria extends HttpServlet {
 		String etag = DigestUtils.sha256Hex(uri);
 		
 		if (uri.endsWith("blank")) {
+			response.setStatus(HttpServletResponse.SC_OK);
+			return;
+		}
+		
+		if (uri.endsWith("locale")) {
+			Config.set(request.getSession(), Config.FMT_LOCALE, Locale.forLanguageTag(request.getParameter("locale")));
 			response.setStatus(HttpServletResponse.SC_OK);
 			return;
 		}

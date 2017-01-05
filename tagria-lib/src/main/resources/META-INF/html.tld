@@ -12,6 +12,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
+		<description>Renders a locale switcher to change current language</description>
+		<display-name>Misc</display-name>
+		<name>localeSwitch</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.LocaleSwitchTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:localeSwitch &gt;
+				
+			&lt;/html:localeSwitch&gt; </example>
+			
+	</tag>
+
+
+	<tag>
 		<description>Renders a source block of a particular language without executing it</description>
 		<display-name>Misc</display-name>
 		<name>code</name>
@@ -364,12 +378,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<description>Indicates the component that triggers the component</description>
 			<name>attachTo</name>
 			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the pattern of time. Default : HH:mm. Format reference : http://trentrichardson.com/examples/timepicker/#tp-formatting</description>
-			<name>pattern</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>

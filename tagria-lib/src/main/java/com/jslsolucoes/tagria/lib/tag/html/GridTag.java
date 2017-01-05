@@ -97,7 +97,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				panelHead.add(Attribute.CLASS, "panel-heading");
 				H3 h3 = new H3();
 				h3.add(Attribute.CLASS, "panel-title");
-				h3.add(TagUtil.getLocalized(label));
+				h3.add(TagUtil.getLocalized(label,getJspContext()));
 				panelHead.add(h3);
 				panel.add(panelHead);
 			}
@@ -116,7 +116,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				input.add(Attribute.TYPE,"checkbox");
 				input.add(Attribute.CLASS,"bs-grid-check-all");
 				li.add(input);
-				li.add(" " + TagUtil.getLocalizedForLib("grid.check.all"));
+				li.add(" " + TagUtil.getLocalizedForLib("grid.check.all",getJspContext()));
 				ul.add(li);
 				checkAll.add(ul);
 				panelBody.add(checkAll);
@@ -151,25 +151,25 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 					Button pdf = new Button();
 					pdf.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-pdf");
-					pdf.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.pdf"));
+					pdf.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.pdf",getJspContext()));
 					pdf.add(new Span().add(Attribute.CLASS, "fa fa-file-pdf-o"));
 					buttonGroup.add(pdf);
 
 					Button excel = new Button();
 					excel.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-excel");
-					excel.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xls"));
+					excel.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xls",getJspContext()));
 					excel.add(new Span().add(Attribute.CLASS, "fa fa-file-excel-o"));
 					buttonGroup.add(excel);
 
 					Button csv = new Button();
 					csv.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-csv");
-					csv.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.csv"));
+					csv.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.csv",getJspContext()));
 					csv.add(new Span().add(Attribute.CLASS, "fa fa-file-text-o"));
 					buttonGroup.add(csv);
 
 					Button xml = new Button();
 					xml.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-xml");
-					xml.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xml"));
+					xml.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xml",getJspContext()));
 					xml.add(new Span().add(Attribute.CLASS, "fa fa-file-code-o"));
 					buttonGroup.add(xml);
 
@@ -183,7 +183,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					Input input = new Input();
 					input.add(Attribute.TYPE, "search");
 					input.add(Attribute.CLASS, "bs-grid-search form-control");
-					input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("grid.search"));
+					input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("grid.search",getJspContext()));
 					divForSearch.add(input);
 					div.add(divForSearch);
 				}
@@ -237,7 +237,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	
 					Div display = new Div();
 					display.add(Attribute.CLASS, "pull-left m-5");
-					display.add(new H5().add(TagUtil.getLocalizedForLib("grid.page.viewing", fromResult,
+					display.add(new H5().add(TagUtil.getLocalizedForLib("grid.page.viewing",getJspContext(), fromResult,
 							toResult, totalResults)));
 					clearfix.add(display);
 	
@@ -247,7 +247,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	
 						Div dropdown = new Div();
 						dropdown.add(Attribute.CLASS, "dropup");
-						dropdown.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.results.per.page"));
+						dropdown.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.results.per.page",getJspContext()));
 	
 						Button button = new Button();
 						button.add(Attribute.CLASS, "btn btn-default waves-effect waves-light dropdown-toggle");
@@ -314,8 +314,8 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				Div noRow = new Div();
 				noRow.add(Attribute.CLASS, "alert alert-info");
 				noRow.add(Attribute.ROLE, "alert");
-				noRow.add((!StringUtils.isEmpty(noRowText) ? TagUtil.getLocalized(noRowText)
-						: TagUtil.getLocalizedForLib("grid.no.row")));
+				noRow.add((!StringUtils.isEmpty(noRowText) ? TagUtil.getLocalized(noRowText,getJspContext())
+						: TagUtil.getLocalizedForLib("grid.no.row",getJspContext())));
 				panelBody.add(noRow);
 			}
 			

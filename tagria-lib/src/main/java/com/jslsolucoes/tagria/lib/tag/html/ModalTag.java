@@ -72,7 +72,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			
 			H4 h4 = new H4();
 			h4.add(Attribute.CLASS,"modal-title");
-			h4.add(TagUtil.getLocalized(label));
+			h4.add(TagUtil.getLocalized(label,getJspContext()));
 			header.add(h4);
 			
 			content.add(header);
