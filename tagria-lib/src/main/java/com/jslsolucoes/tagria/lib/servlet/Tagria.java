@@ -25,6 +25,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
@@ -51,7 +52,6 @@ public class Tagria extends HttpServlet {
 			throws ServletException, IOException {
 
 		String uri = request.getRequestURI().replaceAll(";jsessionid=.*", "");
-		System.out.println(uri);
 		String etag = DigestUtils.sha256Hex(uri);
 		
 		if (uri.endsWith("blank")) {
@@ -60,12 +60,8 @@ public class Tagria extends HttpServlet {
 		}
 		
 		if (uri.endsWith("locale")) {
-			
-			System.out.println(request.getParameter("locale"));
-			
+			Config.set(request.getSession(), Config.FMT_LOCALE, Locale.forLanguageTag(request.getParameter("locale")));
 			response.setStatus(HttpServletResponse.SC_OK);
-			request.getSession().setAttribute("tagria-locale", 
-					request.getParameter("locale"));
 			return;
 		}
 		
