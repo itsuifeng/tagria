@@ -93,6 +93,9 @@
         	var self = this;
         	var form = this.element;
         	$('.disabled',form).attr('disabled',false);
+        	if(form.attr('target') != '_self'){
+        		self._unblock();
+        	}
         	self.element[0].submit();
         },
 		_hasRequiredFieldBlank: function() {

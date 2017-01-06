@@ -615,6 +615,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates the target of submission. Default : _self. Options : _blank,_self,_parent,_top,iframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates the method to be used. Default: post. Options: post, get</description>
 			<name>method</name>
 			<rtexprvalue>true</rtexprvalue>

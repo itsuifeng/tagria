@@ -43,6 +43,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	private String toolbar;
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean multipart = Boolean.FALSE;
+	private String target = "_self";
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -69,6 +70,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			if(!StringUtils.isEmpty(name)){
 				form.add(Attribute.NAME,name);
 			}
+			form.add(Attribute.TARGET,target);
 			form.add(Attribute.ID, TagUtil.getId());
 			form.add(Attribute.METHOD, method);
 			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
@@ -201,5 +203,13 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
 	}
 }
