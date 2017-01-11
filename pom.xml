@@ -43,7 +43,7 @@
 
 	<scm>
 		<url>https://github.com/jslsolucoes/tagria</url>
-		<connection>scm:git:https://github.com/jslsolucoes/tagria.git</connection>
+		<connection>scm:git:https://github.com/jslsolucoes/tagria</connection>
 		<developerConnection>scm:git:https://github.com/jslsolucoes/tagria.git</developerConnection>
 		<tag>v.1.0.9</tag>
 	</scm>
