@@ -70,12 +70,12 @@ public class DetailTableTag extends SimpleTagSupport {
 		Div panel = new Div();
 		panel.add(Attribute.CLASS, "panel panel-primary");
 		
-		if(!StringUtils.isEmpty(getLabel())){
+		if(!StringUtils.isEmpty(label)){
 			Div panelHead = new Div();
 			panelHead.add(Attribute.CLASS, "panel-heading");
 			H3 h3 = new H3();
 			h3.add(Attribute.CLASS, "panel-title");
-			h3.add(TagUtil.getLocalized(getLabel()));
+			h3.add(TagUtil.getLocalized(label,getJspContext()));
 			panelHead.add(h3);
 			panel.add(panelHead);
 		}

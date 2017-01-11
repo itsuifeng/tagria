@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
 	<artifactId>tagria</artifactId>
-	<version>1.0.8</version>
+	<version>1.0.9</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -42,10 +42,10 @@
 	</licenses>
 
 	<scm>
-		<url>http://github.com/jslsolucoes/tagria</url>
-		<connection>scm:git:git://github.com/jslsolucoes/tagria</connection>
-		<developerConnection>scm:git:git@github.com:jslsolucoes/tagria.git</developerConnection>
-		<tag>v.1.0.8</tag>
+		<url>https://github.com/jslsolucoes/tagria</url>
+		<connection>scm:git:https://github.com/jslsolucoes/tagria</connection>
+		<developerConnection>scm:git:https://github.com/jslsolucoes/tagria.git</developerConnection>
+		<tag>v.1.0.9</tag>
 	</scm>
 
 	<modules>
@@ -63,6 +63,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.scm.id>github</project.scm.id>
 	</properties>
 
 	<build>

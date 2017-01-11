@@ -84,7 +84,7 @@ public class PieChartTag extends SimpleTagSupport {
 			      (!StringUtils.isEmpty(label) ? 
 			   "				title: {																"+
 		       "      				display: true,														"+
-		       "     				text: '"+TagUtil.getLocalized(label)+"'								"+
+		       "     				text: '"+TagUtil.getLocalized(label,getJspContext())+"'								"+
 		       " 				}																		" : "")+
 			   "			}																			"+   
 			   "		});																			");

@@ -55,7 +55,7 @@ public class FormGroupTag extends SimpleTagSupport {
 				if(!StringUtils.isEmpty(forElement)){
 					title.add(Attribute.FOR,TagUtil.getId(forElement,null));
 				}
-				title.add(TagUtil.getLocalized(label));
+				title.add(TagUtil.getLocalized(label,getJspContext()));
 				
 				if(required){
 					Span span = new Span();

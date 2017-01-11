@@ -37,6 +37,7 @@ public class AlertTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
+		
 		if(rendered){
 			Div div = new Div();
 			div.add(Attribute.CLASS,"alert alert-"+state);
@@ -55,7 +56,7 @@ public class AlertTag extends SimpleTagSupport {
 				div.add(button);
 			}
 			if(!StringUtils.isEmpty(label)){
-				div.add(TagUtil.getLocalized(label));
+				div.add(TagUtil.getLocalized(label,getJspContext()));
 			} else { 
 				div.add(TagUtil.getBody(getJspBody()));
 			}

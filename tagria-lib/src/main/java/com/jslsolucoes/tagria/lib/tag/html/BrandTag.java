@@ -40,7 +40,7 @@ public class BrandTag extends SimpleTagSupport {
 		a.add(Attribute.CLASS,"navbar-brand");
 		a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 		if(!StringUtils.isEmpty(label)){
-			a.add(TagUtil.getLocalized(label));
+			a.add(TagUtil.getLocalized(label,getJspContext()));
 		} else {
 			a.add(TagUtil.getBody(getJspBody()));
 		}

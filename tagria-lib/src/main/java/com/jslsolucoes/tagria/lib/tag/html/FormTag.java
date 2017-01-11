@@ -43,6 +43,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 	private String toolbar;
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean multipart = Boolean.FALSE;
+	private String target = "_self";
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -56,7 +57,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 				panelHead.add(Attribute.CLASS, "panel-heading");
 				H3 h3 = new H3();
 				h3.add(Attribute.CLASS, "panel-title");
-				h3.add(TagUtil.getLocalized(getLabel()));
+				h3.add(TagUtil.getLocalized(getLabel(),getJspContext()));
 				panelHead.add(h3);
 				panel.add(panelHead);
 			}
@@ -69,6 +70,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			if(!StringUtils.isEmpty(name)){
 				form.add(Attribute.NAME,name);
 			}
+			form.add(Attribute.TARGET,target);
 			form.add(Attribute.ID, TagUtil.getId());
 			form.add(Attribute.METHOD, method);
 			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
@@ -89,13 +91,13 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			Div info = new Div();
 			info.add(Attribute.CLASS, "text-center");
 			H4 h4 = new H4();
-			h4.add(TagUtil.getLocalizedForLib("form.required.title", span.getHtml()));
+			h4.add(TagUtil.getLocalizedForLib("form.required.title",getJspContext(), span.getHtml()));
 			info.add(h4);
 			head.add(info);
 
 			Div div = new Div();
 			div.add(Attribute.CLASS, "collapse alert alert-danger alert-dismissible bs-form-empty-field");
-			div.add(TagUtil.getLocalizedForLib("form.empty.field.message"));
+			div.add(TagUtil.getLocalizedForLib("form.empty.field.message",getJspContext()));
 			head.add(div);
 
 			Div errors = new Div();
@@ -116,7 +118,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 				A button = new A();
 				button.add(Attribute.CLASS, "btn btn-primary waves-effect waves-light");
 				button.add(Attribute.DATA_TYPE,"submit");
-				button.add(TagUtil.getLocalizedForLib("form.submit.button"));
+				button.add(TagUtil.getLocalizedForLib("form.submit.button",getJspContext()));
 				divForToolbar.add(button);
 			}
 			
@@ -132,9 +134,9 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			script.add("$('#" + form.get(Attribute.ID) + "').form({ " + 
 						"	validation : '"+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "'," +
 						"   invalid : { " + 
-						"		email : '"+TagUtil.getLocalizedForLib("email.invalid")+"',"+
-						"		max : '"+TagUtil.getLocalizedForLib("max.invalid")+"',"+
-						"		min : '"+TagUtil.getLocalizedForLib("min.invalid")+"'"+
+						"		email : '"+TagUtil.getLocalizedForLib("email.invalid",getJspContext())+"',"+
+						"		max : '"+TagUtil.getLocalizedForLib("max.invalid",getJspContext())+"',"+
+						"		min : '"+TagUtil.getLocalizedForLib("min.invalid",getJspContext())+"'"+
 						"	}"+
 					"});");
 
@@ -201,5 +203,13 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
 	}
 }

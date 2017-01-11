@@ -61,7 +61,7 @@ public class AutoCompleteTag extends SimpleTagSupport {
 			input.add(Attribute.REQUIRED,"required");
 		}
 		if(!StringUtils.isEmpty(text)){
-			input.add(Attribute.VALUE,TagUtil.getLocalized(text));
+			input.add(Attribute.VALUE,TagUtil.getLocalized(text,getJspContext()));
 		}
 		if(!StringUtils.isEmpty(placeholder)){
 			input.add(Attribute.PLACEHOLDER,placeholder);
@@ -76,7 +76,7 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		script.add(Attribute.TYPE, "text/javascript");
 		script.add("$('#"+input.get(Attribute.ID)+"').autoComplete({							"+
 				    "	minLength : "+ minLength +",															"+
-				    "	resultsNotFound : '"+ TagUtil.getLocalizedForLib("auto.complete.no.results") +"',"+
+				    "	resultsNotFound : '"+ TagUtil.getLocalizedForLib("auto.complete.no.results",getJspContext()) +"',"+
 				    "	display : function (item) {													"+
 					"		return item."+dataText+";													"+
 					"	},"+

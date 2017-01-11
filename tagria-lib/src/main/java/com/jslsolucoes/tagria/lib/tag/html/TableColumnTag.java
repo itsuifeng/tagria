@@ -44,7 +44,7 @@ public class TableColumnTag extends SimpleTagSupport {
 		
 		String body = TagUtil.getBody(getJspBody());
 		if (!StringUtils.isEmpty(format)) {
-			body = TagUtil.format(format, body);
+			body = TagUtil.format(format, body,getJspContext());
 		}
 		td.add(body);
 		

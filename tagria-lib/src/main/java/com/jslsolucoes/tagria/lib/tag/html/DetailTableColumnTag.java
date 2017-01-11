@@ -37,7 +37,7 @@ public class DetailTableColumnTag extends SimpleTagSupport {
 		DetailTableTag detail = (DetailTableTag) findAncestorWithClass(this, DetailTableTag.class);
 		
 		Th th = new Th();
-		th.add(TagUtil.getLocalized(label));
+		th.add(TagUtil.getLocalized(label,getJspContext()));
 		if(required){
 			Span span = new Span();
 			span.add(Attribute.CLASS,"text-danger");
