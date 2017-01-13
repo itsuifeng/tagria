@@ -17,21 +17,17 @@ package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
 
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.jslsolucoes.tagria.lib.filter.CsfrManager;
 import com.jslsolucoes.tagria.lib.html.A;
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.Form;
 import com.jslsolucoes.tagria.lib.html.H3;
 import com.jslsolucoes.tagria.lib.html.H4;
-import com.jslsolucoes.tagria.lib.html.Input;
 import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
@@ -83,21 +79,6 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			if (multipart) {
 				form.add(Attribute.ENCTYPE, "multipart/form-data");
 			}
-			
-			
-			String csrfToken = RandomStringUtils.randomAlphanumeric(30);
-			String csrfId = RandomStringUtils.randomAlphanumeric(30);
-			CsfrManager.persist(csrfId, csrfToken);
-
-			form.add(new Input()
-						.add(Attribute.TYPE,"hidden")
-							.add(Attribute.NAME,"csrf")
-								.add(Attribute.VALUE,csrfToken));
-			
-			form.add(new Input()
-					.add(Attribute.TYPE,"hidden")
-						.add(Attribute.NAME,"csrf_id")
-							.add(Attribute.VALUE,csrfId));
 			
 			Div head = new Div();
 			head.add(Attribute.CLASS,"form-group");
