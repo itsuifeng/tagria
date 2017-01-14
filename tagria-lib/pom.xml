@@ -81,7 +81,7 @@
 				<version>1.1.1</version>
 				<executions>
 					<execution>
-						<phase>process-sources</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>java</goal>
 						</goals>
@@ -89,8 +89,9 @@
 							<includeProjectDependencies>true</includeProjectDependencies>
 							<mainClass>com.jslsolucoes.tagria.lib.compressor.ResourceCompressor</mainClass>
 							<arguments>
-								<argument>${project.basedir}</argument>
-								<argument>false</argument>
+								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
+								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
+								<argument>true</argument>
 							</arguments>
 						</configuration>
 					</execution>
@@ -105,6 +106,7 @@
 						<exclude>**/compressor/**</exclude>
 						<exclude>**/bootstrap/**</exclude>
 						<exclude>**/jquery/**</exclude>
+						<exclude>**/base/**</exclude>
 						<exclude>**/tagria.*.css</exclude>
 					</excludes>
 				</configuration>
