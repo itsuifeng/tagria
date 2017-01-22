@@ -73,7 +73,7 @@ public class TagUtil {
 	}
 
 	public static String getVersion() {
-		return "1.0.10";
+		return "1.0.11";
 	}
 
 	public static String format(String type, String value, JspContext jspContext) {
