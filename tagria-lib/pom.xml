@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.9</version>
+		<version>1.0.10</version>
 	</parent>
 	<artifactId>tagria-lib</artifactId>
 
@@ -89,7 +89,8 @@
 							<includeProjectDependencies>true</includeProjectDependencies>
 							<mainClass>com.jslsolucoes.tagria.lib.compressor.ResourceCompressor</mainClass>
 							<arguments>
-								<argument>${project.basedir}</argument>
+								<argument>${project.basedir}/src/main/resources/com/jslsolucoes/tagria/lib</argument>
+								<argument>${project.build.directory}/classes/com/jslsolucoes/tagria/lib</argument>
 								<argument>true</argument>
 							</arguments>
 						</configuration>
@@ -105,6 +106,7 @@
 						<exclude>**/compressor/**</exclude>
 						<exclude>**/bootstrap/**</exclude>
 						<exclude>**/jquery/**</exclude>
+						<exclude>**/base/**</exclude>
 						<exclude>**/tagria.*.css</exclude>
 					</excludes>
 				</configuration>

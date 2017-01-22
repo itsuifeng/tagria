@@ -20,65 +20,59 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.mozilla.javascript.EvaluatorException;
 
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
-import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.google.javascript.jscomp.JSSourceFile;
+import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.yahoo.platform.yui.compressor.CssCompressor;
 
 @SuppressWarnings("deprecation")
 public class Compressor {
 
 	private List<String> themes = Arrays.asList(new String[] { "default", "green" });
-	private String workspace;
-	private Boolean minify;
+	private String source;
+	private Boolean compress;
+	private String destination;
 
-	public Compressor(String workspace, Boolean minify) {
-		this.workspace = workspace;
-		this.minify = minify;
+	public Compressor(String source, String destination, Boolean compress) {
+		this.source = source;
+		this.compress = compress;
+		this.destination = destination;
 	}
 
 	public void compressJs() throws IOException {
 
-		String jsFolder = getPackageBase() + "js" + File.separator;
-
-		String[] jsSequence = new String[] { "jquery/jquery.js", "bootstrap/bootstrap.js", "jquery/ui/jquery.ui.js",
+		String[] files = new String[] { "jquery/jquery.js", "bootstrap/bootstrap.js", "jquery/ui/jquery.ui.js",
 				"jquery/ui/jquery.ui.form.js", "jquery/ui/jquery.ui.iframe.js", "jquery/ui/jquery.ui.grid.js",
 				"jquery/ui/jquery.ui.detail.table.js", "jquery/ui/jquery.ui.auto.complete.js",
-				"jquery/ui/jquery.ui.moment.js", "jquery/ui/jquery.ui.calendar.js",
-				"jquery/ui/jquery.ui.input.mask.js",
+				"jquery/ui/jquery.ui.moment.js", "jquery/ui/jquery.ui.calendar.js", "jquery/ui/jquery.ui.input.mask.js",
 				"jquery/ui/jquery.ui.treeview.js", "jquery/ui/jquery.ui.tabs.js",
 				"jquery/ui/jquery.ui.treeview.widget.js", "jquery/ui/jquery.ui.time.picker.js",
-				"jquery/ui/jquery.ui.input.currency.mask.js","jquery/ui/jquery.ui.wave.js",
-				"jquery/ui/jquery.ui.chart.js"};
+				"jquery/ui/jquery.ui.input.currency.mask.js", "jquery/ui/jquery.ui.wave.js",
+				"jquery/ui/jquery.ui.chart.js" };
 
-		File minified = new File(jsFolder + "tagria-ui.js");
-		if (minified.exists()) {
-			minified.delete();
+		List<String> contents = new ArrayList<String>();
+		for (String file : files) {
+			contents.add(FileUtils.readFileToString(new File(new File(source, "js"), file), "UTF-8"));
 		}
 
-		StringBuilder finalFile = new StringBuilder();
-		for (String js : jsSequence) {
-			File jsFile = new File(jsFolder + File.separator + js);
-			finalFile.append(FileUtils.readFileToString(jsFile, "UTF-8"));
-			finalFile.append("\n");
-		}
-
-		String js = finalFile.toString();
-		if (minify) {
-			js = minifyJs(finalFile.toString(), CompilationLevel.SIMPLE_OPTIMIZATIONS);
-		}
-		FileUtils.writeStringToFile(minified, js, "UTF-8");
+		String content = StringUtils.join(contents, "\n");
+		FileUtils.writeStringToFile(new File(new File(destination, "js"), "tagria-ui.js"),
+				(compress ? minifyJs(content, CompilationLevel.SIMPLE_OPTIMIZATIONS) : content), "UTF-8");
 		System.out.println("JS COMPRESSED");
 	}
 
@@ -92,23 +86,26 @@ public class Compressor {
 		return compiler.toSource();
 	}
 
-	private String getPackageBase() {
-		return workspace + "/src/main/resources/com/jslsolucoes/tagria/lib/";
-	}
-	
-	private void copyFileToDirectory(String resource) throws IOException{
-		File themeFolder = new File(new File(getPackageBase(), resource), "theme");
-		File baseThemeFolder = new File(themeFolder, "base");
+	private void copyFileToDirectory(String resource) throws IOException {
 		
-		for (File file : baseThemeFolder.listFiles()) {
-			for (String theme : themes) {
-				File folder = new File(themeFolder,theme);
-				File resourceFile = new File(folder,file.getName());
-				if(!resourceFile.exists()) {
-					FileUtils.copyFileToDirectory(file,folder);
-				}
+		File root = new File(new File(source, resource), "theme");
+		
+		for (String theme : themes) {
+			File themeFolder = new File(root, theme);
+			if(!themeFolder.exists()){
+				themeFolder.mkdir();
 			}
+			Stream.concat(Arrays.asList(new File(root, "base").listFiles())
+			.stream(),Arrays.asList(themeFolder.listFiles()).stream())
+			.forEach(file -> {
+				try {
+					FileUtils.copyFileToDirectory(file, new File(new File(new File(destination, resource), "theme"),theme));
+				} catch(Exception exception){
+					throw new RuntimeException(exception);
+				}
+			});
 		}
+		
 	}
 
 	public void compressFonts() throws IOException {
@@ -123,35 +120,28 @@ public class Compressor {
 
 	public void compressCss() throws IOException, FileNotFoundException {
 
-		File cssThemeFolder = new File(new File(getPackageBase(), "css"), "theme");
-		File baseThemeFolder = new File(cssThemeFolder, "base");
-
+		File root = new File(new File(source, "css"), "theme");
+		
 		for (String theme : themes) {
-			File themeFolder = new File(cssThemeFolder, theme);
-
-			String[] cssSequence = new String[] { "tagria.bootstrap.css", "tagria.bootstrap.extension.css", "tagria.common.css",
-					"tagria.font.awesome.css", "tagria.fullcalendar.css", "tagria.jquery.ui.css", "tagria.jquery.ui.theme.css",
-					"tagria.jquery.ui.treeview.css", "tagria.jquery.ui.timepicker.css","tagria.jquery.ui.wave.css",
-					"tagria.jquery.ui.loading.css","tagria.jquery.ui.card.css" };
-
-			File full = new File(themeFolder, "tagria-ui.css");
-			if (full.exists())
-				full.delete();
-
-			StringBuilder merged = new StringBuilder();
-			for (String css : cssSequence) {
-				File cssFile = new File(themeFolder, css);
-				if (!cssFile.exists()) {
-					cssFile = new File(baseThemeFolder, css);
-				}
-				merged.append(normalizeCssFile(cssFile, theme));
-			}
-
-			for (File file : themeFolder.listFiles()) {
-				merged.append(normalizeCssFile(file, theme));
-			}
-
-			FileUtils.writeStringToFile(full, (minify ? minifyCss(merged.toString()) : merged.toString()), "UTF-8");
+			
+			String[] files = new String[] { "tagria.bootstrap.css", "tagria.bootstrap.extension.css",
+					"tagria.common.css", "tagria.font.awesome.css", "tagria.fullcalendar.css", "tagria.jquery.ui.css",
+					"tagria.jquery.ui.theme.css", "tagria.jquery.ui.treeview.css", "tagria.jquery.ui.timepicker.css",
+					"tagria.jquery.ui.wave.css", "tagria.jquery.ui.loading.css", "tagria.jquery.ui.card.css" };
+			
+			String content = StringUtils.join(Stream.concat(Arrays
+			.asList(files)
+			.stream()
+			.map(file -> {
+				return new File(new File(root, "base"), file);
+			}), Arrays.asList(new File(root, theme).listFiles())
+			.stream()).map(file -> {
+				return normalizeCssFile(file, theme);
+			})
+			.collect(Collectors.toList()),"\n");
+			
+			FileUtils.writeStringToFile(new File(new File(new File(new File(destination, "css"), "theme"), theme), "tagria-ui.css")
+					, (compress ? minifyCss(content) : content), "UTF-8");
 			System.out.println("CSS THEME " + theme.toUpperCase() + " COMPRESSED");
 		}
 	}
@@ -160,29 +150,33 @@ public class Compressor {
 		StringWriter minified = new StringWriter();
 		try {
 			CssCompressor cssCompressor = new CssCompressor(new StringReader(code));
-			cssCompressor.compress(minified,-1);
+			cssCompressor.compress(minified, -1);
 			return minified.toString();
 		} finally {
 			minified.close();
 		}
 	}
 
-	private String normalizeCssFile(File cssFile, String theme) throws IOException {
-		String normalized = FileUtils.readFileToString(cssFile, "UTF-8")
-				.replaceAll("\\$\\{theme\\}", theme);
-		
-		Set<String> extensions = new HashSet<String>();
-		extensions.add("png");
-		extensions.add("gif");
-		extensions.add("eot");
-		extensions.add("svg");
-		extensions.add("ttf");
-		extensions.add("woff");
-		extensions.add("woff2");
-		extensions.add("otf");
-		for(String extension : extensions){
-			normalized = normalized.replaceAll("\\." + extension + "('|\")", "."+extension+"?ver=" + TagUtil.getVersion() + "$1");
+	private String normalizeCssFile(File cssFile, String theme) {
+		try {
+			String normalized = FileUtils.readFileToString(cssFile, "UTF-8").replaceAll("\\$\\{theme\\}", theme);
+	
+			Set<String> extensions = new HashSet<String>();
+			extensions.add("png");
+			extensions.add("gif");
+			extensions.add("eot");
+			extensions.add("svg");
+			extensions.add("ttf");
+			extensions.add("woff");
+			extensions.add("woff2");
+			extensions.add("otf");
+			for (String extension : extensions) {
+				normalized = normalized.replaceAll("\\." + extension + "('|\")",
+						"." + extension + "?ver=" + TagUtil.getVersion() + "$1");
+			}
+			return normalized;
+		} catch(Exception exception){
+			throw new RuntimeException(exception);
 		}
-		return normalized;
 	}
 }

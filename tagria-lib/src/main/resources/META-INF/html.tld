@@ -91,7 +91,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:barChart dataset="${ pieDataSet }"&gt;
+			&lt;html:barChart dataset="${ barDataSet }"&gt;
 			
 			&lt;/html:barChart&gt;
 		</example>

@@ -80,7 +80,6 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 				form.add(Attribute.ENCTYPE, "multipart/form-data");
 			}
 			
-			
 			Div head = new Div();
 			head.add(Attribute.CLASS,"form-group");
 			
