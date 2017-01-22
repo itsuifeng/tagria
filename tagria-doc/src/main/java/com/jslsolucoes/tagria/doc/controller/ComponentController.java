@@ -18,6 +18,10 @@ package com.jslsolucoes.tagria.doc.controller;
 import javax.inject.Inject;
 
 import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
+import com.jslsolucoes.tagria.lib.chart.BarChartData;
+import com.jslsolucoes.tagria.lib.chart.BarChartDataSet;
+import com.jslsolucoes.tagria.lib.chart.PieChartData;
+import com.jslsolucoes.tagria.lib.chart.PieChartDataSet;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
@@ -44,7 +48,33 @@ public class ComponentController {
 	@Path("{component}")
 	public void component(String component){
 		
-		if(component.equals("grid") || component.equals("gridColumn") || component.equals("treeViewNodeSelect")){
+		if(component.equals("pieChart")){
+			PieChartData pieChartData = new PieChartData();
+			pieChartData.addLabel("Label 1");
+			pieChartData.addLabel("Label 2");
+			PieChartDataSet pieChartDataSet = new PieChartDataSet();
+			pieChartDataSet.addData(1L);
+			pieChartDataSet.addData(5L);
+			pieChartData.addDataSet(pieChartDataSet );
+			this.result.include("pieDataSet",pieChartData);
+		} else if(component.equals("barChart")){
+			BarChartData barChartData = new BarChartData();
+			barChartData.addLabel("Label 1");
+			barChartData.addLabel("Label 2");
+			BarChartDataSet barChartDataSet = new BarChartDataSet();
+			barChartDataSet.setLabel("Series 1");
+			barChartDataSet.addData(1L);
+			barChartDataSet.addData(5L);
+			barChartData.addDataSet(barChartDataSet);
+	
+			BarChartDataSet barChartDataSet2 = new BarChartDataSet();
+			barChartDataSet2.setLabel("Series 2");
+			barChartDataSet2.addData(3L);
+			barChartDataSet2.addData(10L);
+			barChartData.addDataSet(barChartDataSet2);
+			
+			this.result.include("barDataSet",barChartData);
+		} else if(component.equals("grid") || component.equals("gridColumn") || component.equals("treeViewNodeSelect")){
 			this.result.include("pessoas",pessoaRepository.listAll());
 		}
 		this.result.forwardTo("/WEB-INF/jsp/component/"+component+".jsp");
