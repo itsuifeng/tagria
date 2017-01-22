@@ -91,8 +91,12 @@ public class Compressor {
 		File root = new File(new File(source, resource), "theme");
 		
 		for (String theme : themes) {
+			File themeFolder = new File(root, theme);
+			if(!themeFolder.exists()){
+				themeFolder.mkdir();
+			}
 			Stream.concat(Arrays.asList(new File(root, "base").listFiles())
-			.stream(),Arrays.asList(new File(root, theme).listFiles()).stream())
+			.stream(),Arrays.asList(themeFolder.listFiles()).stream())
 			.forEach(file -> {
 				try {
 					FileUtils.copyFileToDirectory(file, new File(new File(new File(destination, resource), "theme"),theme));
