@@ -33,6 +33,7 @@ public class TextareaTag extends SimpleTagSupport {
 	private String placeholder;
 	private Boolean required = Boolean.FALSE;
 	private Integer rows = 4;
+	private String cssClass;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -41,6 +42,11 @@ public class TextareaTag extends SimpleTagSupport {
 		textarea.add(Attribute.ROWS, rows);
 		textarea.add(Attribute.ID,TagUtil.getId(name, null,this));
 		textarea.add(Attribute.CLASS,"form-control");
+		
+		if(!StringUtils.isEmpty(cssClass)){
+		    textarea.add(Attribute.CLASS,cssClass);
+		}
+		
 		if(!StringUtils.isEmpty(placeholder)){
 			textarea.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder,getJspContext()));
 		}
@@ -92,6 +98,14 @@ public class TextareaTag extends SimpleTagSupport {
 
 	public void setRows(Integer rows) {
 		this.rows = rows;
+	}
+
+	public String getCssClass() {
+	    return cssClass;
+	}
+
+	public void setCssClass(String cssClass) {
+	    this.cssClass = cssClass;
 	}
 
 }
