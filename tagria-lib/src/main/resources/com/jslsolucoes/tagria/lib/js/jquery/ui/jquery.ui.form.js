@@ -93,7 +93,8 @@
         	var self = this;
         	var form = this.element;
         	$('.disabled',form).attr('disabled',false);
-        	if(form.attr('target') != '_self' || form.attr('action').indexOf('javascript:')){
+        	
+        	if(form.attr('target') != '_self' || !$('form').attr('action').indexOf('javascript:')){
         		self._unblock();
         	}
         	self.element[0].submit();

@@ -37,5 +37,9 @@ public class StringUtil {
 	public static String fullStackTrace(Exception exception){
 		return ExceptionUtils.getFullStackTrace(exception).replaceAll("\n","<br/>");
 	}
+	
+	public static String lineBreak(String value){
+	    return value.replaceAll("\n", "<br>");
+	}
 
 }

@@ -562,6 +562,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;/html:panel>
 		</example>
 	</tag>
+	
+	<tag>
+		<description>Renders the footer panel</description>
+		<display-name>Panel</display-name>
+		<name>panelFooter</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PanelFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:panel&gt;
+				&lt;html:panelHead label="Titulo"/&gt;
+				&lt;html:panelBody&gt;
+					Outros componentes
+				&lt;/html:panelBody&gt;
+				&lt;html:panelFooter&gt;
+					Outros componentes
+				&lt;/html:panelFooter&gt;
+			&lt;/html:panel>
+		</example>
+	</tag>
 
 	<tag>
 		<description>Renders an alert box</description>
@@ -1650,6 +1669,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>listGroup</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			&lt;html:listGroup&gt;
 				&lt;html:listGroupItem&gt;
