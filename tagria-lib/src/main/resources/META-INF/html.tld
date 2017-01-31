@@ -2004,17 +2004,23 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
-		<description>Renders a component with concertina effect</description>
+		<description>Renders a component with collapsable effect</description>
 		<display-name>Misc</display-name>
 		<name>collapsable</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CollapsableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates the label to be used no agrupamento</description>
+			<description>It indicates the label to be used in collapsable</description>
 			<name>label</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if component must be opened. Default : false. Options : true,false</description>
+			<name>opened</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the status of the group. Default: primary. Options: default, primary, danger, info, success</description>
