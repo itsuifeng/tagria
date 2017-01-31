@@ -61,7 +61,7 @@ public class CollapsableTag extends SimpleTagSupport {
 		
 		Div content = new Div();
 		content.add(Attribute.ID,TagUtil.getId());
-		content.add(Attribute.CLASS,"panel-collapse collapse"+(opened ? ".in" : ""));
+		content.add(Attribute.CLASS,"panel-collapse collapse "+(opened ? "in" : ""));
 		
 		
 		Div panelBody = new Div();
