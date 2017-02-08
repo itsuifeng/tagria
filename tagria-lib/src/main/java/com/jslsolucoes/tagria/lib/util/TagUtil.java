@@ -75,7 +75,7 @@ public class TagUtil {
 	public static String getVersion() {
 		return "1.0.11";
 	}
-
+	
 	public static String format(String type, String value, JspContext jspContext) {
 
 		if (StringUtils.isEmpty(value)) {
@@ -93,9 +93,10 @@ public class TagUtil {
 			List<String> patterns = new ArrayList<String>();
 			patterns.add("yyyy-MM-dd HH:mm:ss");
 			patterns.add("yyyy-MM-dd");
+			patterns.add("E MMM dd HH:mm:ss zzz yyyy");
 			for (String pattern : patterns) {
 				try {
-					return dateFormat.format(new SimpleDateFormat(pattern).parse(value));
+					return dateFormat.format(new SimpleDateFormat(pattern,Locale.ENGLISH).parse(value));
 				} catch (ParseException pe) {
 
 				}
