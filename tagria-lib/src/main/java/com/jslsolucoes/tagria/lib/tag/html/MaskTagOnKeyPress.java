@@ -21,6 +21,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MaskTagOnKeyPress extends SimpleTagSupport {
 	
+	@Override
 	public void doTag() throws javax.servlet.jsp.JspException ,java.io.IOException {
 		
 		StringBuilder builder = new StringBuilder();

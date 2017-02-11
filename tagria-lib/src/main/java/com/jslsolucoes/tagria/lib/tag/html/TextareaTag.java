@@ -83,14 +83,15 @@ public class TextareaTag extends SimpleTagSupport {
 	public void setRequired(Boolean required) {
 		this.required = required;
 	}
+	
+	public void setValue(String value) {
+		this.value = value;
+	}
 
 	public String getValue() {
 		return value;
 	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
+	
 
 	public Integer getRows() {
 		return rows;

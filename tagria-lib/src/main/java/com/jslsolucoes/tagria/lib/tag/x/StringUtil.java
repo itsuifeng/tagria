@@ -22,6 +22,10 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 
 public class StringUtil {
 	
+	private StringUtil(){
+		
+	}
+	
 	public static String join(Collection<?> collection,String separator) {
 		return StringUtils.join(collection, separator);
 	}

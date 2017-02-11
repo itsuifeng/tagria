@@ -62,7 +62,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	private Boolean paginate = Boolean.TRUE;
 	private String label;
 	private Collection data;
-	private List<Element> ths = new ArrayList<Element>();
+	private List<Element> ths = new ArrayList<>();
 	private Integer resultsPerPage = 60;
 	private Integer totalResults;
 	private String toolbar;

@@ -22,6 +22,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 public class ResourceCompressor {
+	
+	private ResourceCompressor(){
+		
+	}
 
 	public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 

@@ -66,14 +66,14 @@ public enum Attribute {
 	XMLNS("xmlns"),
 	WIDTH("width");
 
-	private String attribute;
+	private String name;
 
-	private Attribute(String attribute) {
-		this.attribute = attribute;
+	private Attribute(String name) {
+		this.name = name;
 	}
 
-	public String getAttribute() {
-		return attribute;
+	public String getName() {
+		return name;
 	}
 
 }

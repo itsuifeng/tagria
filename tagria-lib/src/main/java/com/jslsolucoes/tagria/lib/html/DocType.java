@@ -16,9 +16,11 @@
 package com.jslsolucoes.tagria.lib.html;
 
 public class DocType {
-
-	public static String html5() {
-		return "<!DOCTYPE html> \n";
+	
+	public static final String HTML5 = "<!DOCTYPE html> \n";
+	
+	private DocType(){
+		
 	}
 
 }

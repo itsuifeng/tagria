@@ -3,6 +3,10 @@ package com.jslsolucoes.tagria.lib.chart;
 import java.util.Random;
 
 public class ChartUtil {
+	
+	private ChartUtil(){
+		
+	}
 
 	public static String backgroundColor(){
 		return random();

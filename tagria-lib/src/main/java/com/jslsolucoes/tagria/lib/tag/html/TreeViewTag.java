@@ -44,8 +44,8 @@ public class TreeViewTag extends SimpleTagSupport {
 	private Boolean required = Boolean.FALSE;
 	private Boolean multiple = Boolean.FALSE;
 	
-	private List<String> ids = new ArrayList<String>();
-	private List<String> texts = new ArrayList<String>();
+	private List<String> ids = new ArrayList<>();
+	private List<String> texts = new ArrayList<>();
 
 	@Override
 	public void doTag() throws JspException, IOException {

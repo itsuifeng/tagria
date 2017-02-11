@@ -16,9 +16,6 @@
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -31,12 +28,6 @@ public class DatePickerTag extends SimpleTagSupport {
 
 	private String attachTo;
 	private Integer min;
-	
-	public static void main(String[] args) {
-		DateFormat formatter = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
-		System.out.println(((SimpleDateFormat)formatter).toPattern());
-		System.out.println(((SimpleDateFormat)formatter).toLocalizedPattern());
-	}
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -70,12 +61,12 @@ public class DatePickerTag extends SimpleTagSupport {
 
 	}
 
-	public String getAttachTo() {
-		return attachTo;
-	}
-
 	public void setAttachTo(String attachTo) {
 		this.attachTo = attachTo;
+	}
+	
+	public String getAttachTo() {
+		return attachTo;
 	}
 
 	public Integer getMin() {

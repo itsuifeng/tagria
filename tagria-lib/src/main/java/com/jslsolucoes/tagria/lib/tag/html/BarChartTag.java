@@ -48,7 +48,7 @@ public class BarChartTag extends SimpleTagSupport {
 									StringUtils.join(dataset
 									.getLabels()
 									.stream()
-									.map(label -> "'"+label+"'")
+									.map(datasetLabel -> "'"+datasetLabel+"'")
 									.collect(Collectors.toList())
 									,",") +
 			   " 				],																	"+
@@ -57,28 +57,28 @@ public class BarChartTag extends SimpleTagSupport {
 						StringUtils.join(dataset
 							.getDatasets()
 			   				.stream()
-			   				.map(dataset -> {
-			   					return "{"+
-							"         		label: '"+TagUtil.getLocalized(dataset.getLabel(),getJspContext())+"',		"+
+			   				.map(datasetGroup -> 
+			   					 "{"+
+							"         		label: '"+TagUtil.getLocalized(datasetGroup.getLabel(),getJspContext())+"',		"+
 							"         		data: [																"+
-											StringUtils.join(dataset.getData(),",") 						+
+											StringUtils.join(datasetGroup.getData(),",") 						+
 							"					],																"+
 							"         			backgroundColor: [												"+
 													StringUtils.join(
-															dataset.getBackgroundColor()
+															datasetGroup.getBackgroundColor()
 															.stream()
 															.map(color -> "'"+color+"'")
 															.collect(Collectors.toList()),",") 					+
 							"         			],																"+
 							"         			borderColor: [													"+
-													StringUtils.join(dataset.getBorderColor()
+													StringUtils.join(datasetGroup.getBorderColor()
 															.stream()
 															.map(color -> "'"+color+"'")
 															.collect(Collectors.toList()),",") 					+
 							"         			],																"+
-							"					borderWidth: "+dataset.getBorderWidth()					+	   							
-			   				"			}																		";
-			   				})
+							"					borderWidth: "+datasetGroup.getBorderWidth()					+	   							
+			   				"			}																		"
+			   				)
 			   				.collect(Collectors.toList()),",") 		+
 			   "     			]																				"+
 			   "			},																					"+

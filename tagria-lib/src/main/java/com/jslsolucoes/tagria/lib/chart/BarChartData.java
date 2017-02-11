@@ -5,8 +5,8 @@ import java.util.List;
 
 public class BarChartData {
 
-	private List<String> labels = new ArrayList<String>();
-	private List<BarChartDataSet> datasets = new ArrayList<BarChartDataSet>();
+	private List<String> labels = new ArrayList<>();
+	private List<BarChartDataSet> datasets = new ArrayList<>();
 	
 	public List<String> getLabels() {
 		return labels;

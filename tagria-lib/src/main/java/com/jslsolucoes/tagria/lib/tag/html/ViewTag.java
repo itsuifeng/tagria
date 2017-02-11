@@ -46,9 +46,9 @@ public class ViewTag extends SimpleTagSupport {
 		html.add(Attribute.LANG,TagUtil.localization(getJspContext()));
 		Head head = new Head();
 		html.add(head);
-		Title title = new Title();
-		title.add(TagUtil.getLocalized(this.title,getJspContext()));
-		head.add(title);
+		Title titleForPage = new Title();
+		titleForPage.add(TagUtil.getLocalized(this.title,getJspContext()));
+		head.add(titleForPage);
 
 		Meta meta = new Meta();
 		meta.add(Attribute.HTTP_EQUIV, "content-type");
@@ -112,7 +112,7 @@ public class ViewTag extends SimpleTagSupport {
 		body.add(TagUtil.clean(TagUtil.getBody(getJspBody())));
 		html.add(body);
 		
-		TagUtil.out(getJspContext(), DocType.html5());
+		TagUtil.out(getJspContext(), DocType.HTML5);
 		TagUtil.out(getJspContext(), html);
 	}
 

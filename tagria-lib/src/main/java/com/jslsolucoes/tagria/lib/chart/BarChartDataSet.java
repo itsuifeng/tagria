@@ -6,10 +6,10 @@ import java.util.List;
 public class BarChartDataSet {
 
 	private String label;
-	private List<String> backgroundColor = new ArrayList<String>();
-	private List<String> borderColor = new ArrayList<String>();
+	private List<String> backgroundColor = new ArrayList<>();
+	private List<String> borderColor = new ArrayList<>();
 	private Integer borderWidth = 1;
-	private List<Long> data = new ArrayList<Long>();
+	private List<Long> data = new ArrayList<>();
 	
 	public void addData(Long data){
 		this.data.add(data);
