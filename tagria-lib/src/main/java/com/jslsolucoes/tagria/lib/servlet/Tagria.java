@@ -31,6 +31,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Seconds;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,9 +47,10 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 @WebServlet(name="tagria", urlPatterns="/tagria/*",loadOnStartup=1)
 public class Tagria extends HttpServlet {
 
-	private static String CHARSET = "utf-8";
-	private static Integer CACHE_EXPIRES_DAY = 365;
+	private static final Integer CACHE_EXPIRES_DAY = 365;
+	private static Logger logger = LoggerFactory.getLogger(Tagria.class);
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -71,9 +74,11 @@ public class Tagria extends HttpServlet {
 			return;
 		}
 		
-		if (TagUtil.getInitParam(TagriaConfigParameter.ENCODING) != null)
-			CHARSET = TagUtil.getInitParam(TagriaConfigParameter.ENCODING);
-		response.setCharacterEncoding(CHARSET);
+		String charset = "utf-8";
+		if (TagUtil.getInitParam(TagriaConfigParameter.ENCODING) != null){
+			charset = TagUtil.getInitParam(TagriaConfigParameter.ENCODING);
+		}
+		response.setCharacterEncoding(charset);
 		try {
 			
 			DateTime today = new DateTime();
@@ -104,7 +109,8 @@ public class Tagria extends HttpServlet {
 			IOUtils.copy(in, response.getOutputStream());
 			in.close();
 
-		} catch (Exception e) {
+		} catch (Exception exception) {
+			logger.error("Could not load resource", exception);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -117,24 +123,25 @@ public class Tagria extends HttpServlet {
 			String type = request.getParameter("type");
 			Table table = gson.fromJson(json, Table.class);
 			response.setHeader("Content-Disposition", "attachment; filename=grid."+type);
-			if (request.getParameter("type").equals("pdf")) {
+			if ("pdf".equals(type)) {
 				response.setContentType("application/pdf");
 				PdfExporter exporter = new PdfExporter(table);
 				exporter.doExport(response.getOutputStream());
-			} else if (request.getParameter("type").equals("csv")) {
+			} else if ("csv".equals(type)) {
 				response.setContentType("text/csv");
 				CsvExporter exporter = new CsvExporter(table);
 				exporter.doExport(response.getOutputStream());
-			} else if (request.getParameter("type").equals("xml")) {
+			} else if ("xml".equals(type)) {
 				response.setContentType("text/xml");
 				XmlExporter exporter = new XmlExporter(table);
 				exporter.doExport(response.getOutputStream());
-			} else if (request.getParameter("type").equals("xls")) {
+			} else if ("xls".equals(type)) {
 				response.setContentType("application/vnd.ms-excel");
 				ExcelExporter exporter = new ExcelExporter(table);
 				exporter.doExport(response.getOutputStream());
 			}
-		} catch(Exception e){
+		} catch(Exception exception){
+			logger.error("Could not export data", exception);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}

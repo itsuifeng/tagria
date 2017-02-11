@@ -45,6 +45,8 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.jslsolucoes.tagria.lib.html.Element;
@@ -53,6 +55,12 @@ import com.jslsolucoes.tagria.lib.tag.html.DetailTableTag;
 
 public class TagUtil {
 	
+	public static final String VERSION = "1.0.11";
+	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
+	
+	private TagUtil() {
+		
+	}
 	
 	public static String localization(JspContext jspContext) {
 		Locale locale = locale(jspContext);
@@ -72,25 +80,22 @@ public class TagUtil {
 		return locale;
 	}
 
-	public static String getVersion() {
-		return "1.0.11";
-	}
 	
 	public static String format(String type, String value, JspContext jspContext) {
 
 		if (StringUtils.isEmpty(value)) {
 			return value;
-		} else if (type.equals("date") || type.equals("timestamp") || type.equals("hour")) {
+		} else if ("date".equals(type) || "timestamp".equals(type) || "hour".equals(type)) {
 
 			DateFormat dateFormat = DateFormat.getDateTimeInstance();
-			if (type.equals("timestamp")) {
+			if ("timestamp".equals(type)) {
 				dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, locale(jspContext));
-			} else if (type.equals("date")) {
+			} else if ("date".equals(type)) {
 				dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale(jspContext));
-			} else if (type.equals("hour")) {
+			} else if ("hour".equals(type)) {
 				dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale(jspContext));
 			}
-			List<String> patterns = new ArrayList<String>();
+			List<String> patterns = new ArrayList<>();
 			patterns.add("yyyy-MM-dd HH:mm:ss");
 			patterns.add("yyyy-MM-dd");
 			patterns.add("E MMM dd HH:mm:ss zzz yyyy");
@@ -98,22 +103,22 @@ public class TagUtil {
 				try {
 					return dateFormat.format(new SimpleDateFormat(pattern,Locale.ENGLISH).parse(value));
 				} catch (ParseException pe) {
-
+					//Try another format
 				}
 			}
 			return value;
-		} else if (type.equals("currency")) {
+		} else if ("currency".equals(type)) {
 			DecimalFormat nf = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(locale(jspContext)));
 			return nf.format(new Double(value));
-		} else if (type.equals("cep")) {
+		} else if ("cep".equals(type)) {
 			return String.format("%08d", Long.valueOf(value)).replaceAll("^([0-9]{5})([0-9]{3})$", "$1-$2");
-		} else if (type.equals("cpf")) {
+		} else if ("cpf".equals(type)) {
 			return String.format("%011d", Long.valueOf(value)).replaceAll("^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$",
 					"$1.$2.$3-$4");
-		} else if (type.equals("cnpj")) {
+		} else if ("cnpj".equals(type)) {
 			return String.format("%014d", Long.valueOf(value))
 					.replaceAll("^([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})$", "$1.$2.$3/$4-$5");
-		} else if (type.equals("tel")) {
+		} else if ("tel".equals(type)) {
 			return String.format("%010d", Long.valueOf(value)).replaceAll("^([0-9]{2})([0-9]{4,5})([0-9]{4})$",
 					"($1) $2-$3");
 		}
@@ -136,7 +141,7 @@ public class TagUtil {
 		} else {
 			DetailTableTag detailTable = (DetailTableTag) SimpleTagSupport.findAncestorWithClass(simpleTagSupport,
 					DetailTableTag.class);
-			return (detailTable != null ? "_" + detailTable.getIteration() : "");
+			return detailTable != null ? "_" + detailTable.getIteration() : "";
 		}
 	}
 
@@ -162,6 +167,7 @@ public class TagUtil {
 			try {
 				return ResourceBundle.getBundle("messages", locale(jspContext)).getString(key);
 			} catch (MissingResourceException e) {
+				logger.error("could not find key resource",  e);
 				return '!' + key + '!';
 			}
 		}
@@ -189,8 +195,8 @@ public class TagUtil {
 				if (value == null)
 					return tagriaConfigParameter.getDefaultValue();
 				return value;
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (IOException exception) {
+				logger.error("Could not load tagrialib.properties", exception);
 			}
 		}
 		return null;
@@ -198,16 +204,16 @@ public class TagUtil {
 
 	public static String getPathForCssLibResource(JspContext jspContext, String css) {
 		return TagUtil.getUrlBaseForStaticFile(jspContext) + "/tagria/lib/css/theme/"
-				+ TagUtil.getInitParam(TagriaConfigParameter.SKIN) + "/" + css + "?ver=" + getVersion();
+				+ TagUtil.getInitParam(TagriaConfigParameter.SKIN) + "/" + css + "?ver=" + VERSION;
 	}
 
 	public static String getPathForJsLibResource(JspContext jspContext, String js) {
-		return TagUtil.getUrlBaseForStaticFile(jspContext) + "/tagria/lib/js/" + js + "?ver=" + getVersion();
+		return TagUtil.getUrlBaseForStaticFile(jspContext) + "/tagria/lib/js/" + js + "?ver=" + VERSION;
 	}
 
 	public static String getPathForImageLibResource(JspContext jspContext, String image) {
 		return TagUtil.getUrlBaseForStaticFile(jspContext) + "/tagria/lib/image/theme/"
-				+ TagUtil.getInitParam(TagriaConfigParameter.SKIN) + "/" + image + "?ver=" + getVersion();
+				+ TagUtil.getInitParam(TagriaConfigParameter.SKIN) + "/" + image + "?ver=" + VERSION;
 	}
 
 	public static String getPathForStatic(JspContext jspContext, String src, Boolean cdn) {
@@ -226,13 +232,13 @@ public class TagUtil {
 		return urlBase + url;
 	}
 
-	public static String getPathForUrl(JspContext jspContext, String url) {
+	public static String getPathForUrl(JspContext jspContext, String path) {
+		String url = path;
 		if (!url.startsWith("javascript") && !url.startsWith("#") && !url.startsWith("http")
 				&& !url.startsWith("https")) {
 			url = TagUtil.getContextPath(jspContext) + url;
 		}
-		url = url.replaceAll("\"", "'");
-		return url;
+		return url.replaceAll("\"", "'");
 	}
 
 	private static String getContextPath(JspContext jspContext) {
@@ -240,12 +246,11 @@ public class TagUtil {
 	}
 
 	private static String getUrlBaseForStaticFile(JspContext jspContext) {
-		String url = TagUtil.getInitParam(TagriaConfigParameter.CDN_URL) != null
+		return TagUtil.getInitParam(TagriaConfigParameter.CDN_URL) != null
 				&& Boolean.valueOf(TagUtil.getInitParam(TagriaConfigParameter.CDN_ENABLED))
 						? getScheme((HttpServletRequest) ((PageContext) jspContext).getRequest()) + "://"
 								+ TagUtil.getInitParam(TagriaConfigParameter.CDN_URL)
 						: TagUtil.getContextPath(jspContext);
-		return url;
 	}
 
 	public static String getScheme(HttpServletRequest request) {
@@ -274,13 +279,14 @@ public class TagUtil {
 					ResourceBundle.getBundle("messages_tagrialib", locale(jspContext)).getString(key));
 			return messageFormat.format(args);
 		} catch (MissingResourceException e) {
+			logger.error("could not find key resource",  e);
 			return '!' + key + '!';
 		}
 	}
 
 	public static String queryString(HttpServletRequest request, List<String> excludesParams)
 			throws UnsupportedEncodingException {
-		List<String> queryString = new ArrayList<String>();
+		List<String> queryString = new ArrayList<>();
 		Enumeration<String> en = request.getParameterNames();
 		while (en.hasMoreElements()) {
 			String paramName = en.nextElement();

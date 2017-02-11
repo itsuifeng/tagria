@@ -16,6 +16,7 @@
 package com.jslsolucoes.tagria.lib.grid.exporter.impl;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,31 +37,31 @@ public class CsvExporter {
 		this.table = table;
 	}
 
-	public void doExport(OutputStream outputStream) throws Exception {
-		IOUtils.copy(new ByteArrayInputStream(export()), outputStream);
+	public void doExport(OutputStream outputStream) throws IOException  {
+		IOUtils.copy(export(), outputStream);
 	}
 
 	
-	private byte[] export(){
-		StringBuffer csv = new StringBuffer();
+	private ByteArrayInputStream export(){
+		StringBuilder csv = new StringBuilder();
 		header(csv);
 		body(csv);
-		return csv.toString().getBytes();
+		return new ByteArrayInputStream(csv.toString().getBytes());
 	}
 	
-	private void header(StringBuffer csv) {
+	private void header(StringBuilder csv) {
 		
-		List<String> headers = new ArrayList<String>();
+		List<String> headers = new ArrayList<>();
 		for(Header header : table.getHeaders()){
 			headers.add(header.getContent());
 		}
 		csv.append(StringUtils.join(headers.toArray(), ",").concat(System.lineSeparator()));
 	}
 	
-	private void body(StringBuffer csv) {
+	private void body(StringBuilder csv) {
 		
 		for (Row row : table.getRows()) {
-			List<String> line = new ArrayList<String>();
+			List<String> line = new ArrayList<>();
 			for (Column column : row.getColumns()) {
 				line.add(column.getContent());
 			}

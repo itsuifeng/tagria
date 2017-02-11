@@ -16,15 +16,15 @@
 package com.jslsolucoes.tagria.lib.html;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
 public abstract class Element {
-	private List<Element> elements = new ArrayList<Element>();
-	private HashMap<Attribute, String> atributos = new LinkedHashMap<Attribute, String>();
+	private List<Element> elements = new ArrayList<>();
+	private EnumMap<Attribute, String> attributes = new EnumMap<>(Attribute.class);
 
 	public Element add(Element element) {
 		elements.add(element);
@@ -32,7 +32,7 @@ public abstract class Element {
 	}
 
 	public void remove(Attribute attribute) {
-		atributos.remove(attribute);
+		attributes.remove(attribute);
 	}
 
 	public void remove(Attribute attribute, String value) {
@@ -40,11 +40,11 @@ public abstract class Element {
 		String separator = " ";
 		if (attribute.equals(Attribute.STYLE))
 			separator = ";";
-		String newValue = atributos.get(attribute).replaceAll(value + "(" + separator + "|)", "");
+		String newValue = attributes.get(attribute).replaceAll(value + "(" + separator + "|)", "");
 		if (StringUtils.isEmpty(newValue)) {
 			remove(attribute);
 		} else {
-			atributos.put(attribute, newValue);
+			attributes.put(attribute, newValue);
 		}
 	}
 
@@ -54,7 +54,7 @@ public abstract class Element {
 	}
 
 	public String get(Attribute attribute) {
-		return (String) atributos.get(attribute);
+		return attributes.get(attribute);
 	}
 
 	public Element add(Attribute attribute, boolean value) {
@@ -66,15 +66,15 @@ public abstract class Element {
 		return this;
 	}
 
-	public Element add(Attribute attribute, String value) {
-		value = value.trim();
-		if (atributos.containsKey(attribute)) {
+	public Element add(Attribute attribute, String attributeValue) {
+		String value = attributeValue.trim();
+		if (attributes.containsKey(attribute)) {
 			String separator = " ";
 			if (attribute.equals(Attribute.STYLE))
 				separator = ";";
 			value = get(attribute).concat(separator).concat(value);
 		}
-		atributos.put(attribute, value);
+		attributes.put(attribute, value);
 		return this;
 	}
 
@@ -86,11 +86,11 @@ public abstract class Element {
 		StringBuilder html = new StringBuilder();
 		html.append("<");
 		html.append(this.getTag());
-		for (Attribute attribute : atributos.keySet()) {
+		for (Map.Entry<Attribute, String> entry  : attributes.entrySet()) {
 			html.append(" ");
-			html.append(attribute.getAttribute());
+			html.append(entry.getKey());
 			html.append("=\"");
-			html.append(atributos.get(attribute));
+			html.append(entry.getValue());
 			html.append("\"");
 		}
 		if (this.elements.isEmpty() && !forceCloseTagWithEmptyBody()) {
@@ -107,7 +107,7 @@ public abstract class Element {
 	}
 
 	public boolean hasAttribute(Attribute attribute) {
-		return this.atributos.get(attribute) != null;
+		return this.attributes.get(attribute) != null;
 	}
 
 	public abstract String getTag();
