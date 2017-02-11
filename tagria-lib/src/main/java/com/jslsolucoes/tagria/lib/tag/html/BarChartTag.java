@@ -32,12 +32,11 @@ public class BarChartTag extends SimpleTagSupport {
 			if(!responsive){
 				container.add(Attribute.STYLE,"width:"+width+"px;height:"+height+"px");
 			}
-			
 			Canvas canvas = new Canvas();
 			canvas.add(Attribute.ID,TagUtil.getId());
 			container.add(canvas);
-			
 			TagUtil.out(getJspContext(), container);
+			
 			
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");

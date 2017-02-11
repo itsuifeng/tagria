@@ -36,15 +36,15 @@ import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
-import com.google.javascript.jscomp.JSSourceFile;
+import com.google.javascript.jscomp.SourceFile;
 import com.jslsolucoes.tagria.lib.error.TagriaRuntimeException;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.yahoo.platform.yui.compressor.CssCompressor;
 
-@SuppressWarnings("deprecation")
+
 public class Compressor {
 
-	
+	private static final String THEME = "theme";
 	private static Logger logger = LoggerFactory.getLogger(Compressor.class);
 	private static final String CHARSET = "UTF-8";
 	private List<String> themes = Arrays.asList(new String[] { "default", "green" });
@@ -76,7 +76,7 @@ public class Compressor {
 
 		String content = StringUtils.join(contents, "\n");
 		FileUtils.writeStringToFile(new File(new File(destination, "js"), "tagria-ui.js"),
-				(compress ? minifyJs(content, CompilationLevel.SIMPLE_OPTIMIZATIONS) : content), CHARSET);
+				compress ? minifyJs(content, CompilationLevel.SIMPLE_OPTIMIZATIONS) : content, CHARSET);
 		logger.info("JS COMPRESSED");
 	}
 
@@ -85,14 +85,14 @@ public class Compressor {
 		CompilerOptions options = new CompilerOptions();
 		compilationLevel.setOptionsForCompilationLevel(options);
 		options.setLanguageIn(LanguageMode.ECMASCRIPT5);
-		JSSourceFile input = JSSourceFile.fromCode("input.js", code);
-		compiler.compile(JSSourceFile.fromCode("output.js", ""), input, options);
+		SourceFile input = SourceFile.fromCode("input.js", code);
+		compiler.compile(SourceFile.fromCode("output.js", ""), input, options);
 		return compiler.toSource();
 	}
 
 	private void copyFileToDirectory(String resource) throws IOException {
 		
-		File root = new File(new File(source, resource), "theme");
+		File root = new File(new File(source, resource), THEME);
 		
 		for (String theme : themes) {
 			File themeFolder = new File(root, theme);
@@ -103,7 +103,7 @@ public class Compressor {
 			.stream(),Arrays.asList(themeFolder.listFiles()).stream())
 			.forEach(file -> {
 				try {
-					FileUtils.copyFileToDirectory(file, new File(new File(new File(destination, resource), "theme"),theme));
+					FileUtils.copyFileToDirectory(file, new File(new File(new File(destination, resource), THEME),theme));
 				} catch(Exception exception){
 					throw new TagriaRuntimeException(exception);
 				}
@@ -124,7 +124,7 @@ public class Compressor {
 
 	public void compressCss() throws IOException {
 
-		File root = new File(new File(source, "css"), "theme");
+		File root = new File(new File(source, "css"), THEME);
 		
 		for (String theme : themes) {
 			
@@ -136,14 +136,12 @@ public class Compressor {
 			String content = StringUtils.join(Stream.concat(Arrays
 			.asList(files)
 			.stream()
-			.map(file -> {
-				return new File(new File(root, "base"), file);
-			}), Arrays.asList(new File(root, theme).listFiles())
+			.map(file -> new File(new File(root, "base"), file)), Arrays.asList(new File(root, theme).listFiles())
 			.stream()).map(file -> normalizeCssFile(file, theme))
 			.collect(Collectors.toList()),"\n");
 			
-			FileUtils.writeStringToFile(new File(new File(new File(new File(destination, "css"), "theme"), theme), "tagria-ui.css")
-					, (compress ? minifyCss(content) : content), CHARSET);
+			FileUtils.writeStringToFile(new File(new File(new File(new File(destination, "css"), THEME), theme), "tagria-ui.css")
+					, compress ? minifyCss(content) : content, CHARSET);
 			logger.info("CSS THEME " + theme.toUpperCase() + " COMPRESSED");
 		}
 	}
