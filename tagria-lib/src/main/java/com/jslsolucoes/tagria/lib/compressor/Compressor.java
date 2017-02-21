@@ -142,7 +142,7 @@ public class Compressor {
 			
 			FileUtils.writeStringToFile(new File(new File(new File(new File(destination, "css"), THEME), theme), "tagria-ui.css")
 					, compress ? minifyCss(content) : content, CHARSET);
-			logger.info("CSS THEME " + theme.toUpperCase() + " COMPRESSED");
+			logger.info("CSS THEME %s COMPRESSED",theme.toUpperCase());
 		}
 	}
 

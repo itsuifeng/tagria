@@ -35,14 +35,16 @@ import br.com.caelum.vraptor.util.StringUtils;
 
 public class DocGenerator {
 	
+	private static final String CHARSET = "iso-8859-1"; 
+	
 	public static void main(String[] args) throws IOException {
 		
 		
 		String workspace = args[0];
-		Map<String,List<Tag>> groupments = new HashMap<String,List<Tag>>();
+		Map<String,List<Tag>> groupments = new HashMap<>();
 		
-		String html = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/html.tld"),"utf-8");
-		String ajax = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/ajax.tld"),"utf-8");
+		String html = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/html.tld"),CHARSET);
+		String ajax = FileUtils.readFileToString(new File(workspace + "/tagria-lib/src/main/resources/META-INF/ajax.tld"),CHARSET);
 		XStream xStream = new XStream();
 		xStream.processAnnotations(Taglib.class);
 		Taglib taglibForHtml = (Taglib) xStream.fromXML(html);
@@ -55,11 +57,11 @@ public class DocGenerator {
 			
 			List<Tag> groups = groupments.get(tag.getGroup());
 			if(groups == null){
-				groupments.put(tag.getGroup(), new ArrayList<Tag>());
+				groupments.put(tag.getGroup(), new ArrayList<>());
 			}
 			groupments.get(tag.getGroup()).add(tag);
 			
-			String template = "<%@include file=\"../app/taglibs.jsp\"%>										"+
+			StringBuilder template = new StringBuilder("<%@include file=\"../app/taglibs.jsp\"%>										"+
 					"<html:view title=\"{title}\">											"+
 "						<html:panel>																		"+
 "							<html:panelHead label=\""+tag.getName()+"\"></html:panelHead>					"+
@@ -70,36 +72,36 @@ public class DocGenerator {
 "										     	"+tag.getDescription()+"									"+	
 "										</html:alert>														"+
 "									</html:tab>																"+
-"									<html:tab label=\"{attributes}\">										";
+"									<html:tab label=\"{attributes}\">										");
 			
 			if(CollectionUtils.isEmpty(tag.getAttributes())){
-				template += "<html:alert state=\"info\" label=\"{tag.empty.attributes}\"></html:alert>"; 
+				template.append("<html:alert state=\"info\" label=\"{tag.empty.attributes}\"></html:alert>"); 
 			} else {
 				
 				
-				template += "<html:table><html:tableLine>"+
+				template.append("<html:table><html:tableLine>"+
 					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.attribute\"/></html:tableColumn>"+
 					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.required\"/></html:tableColumn>"+
 					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.type\"/></html:tableColumn>"+
 					"<html:tableColumn header=\"true\"><fmt:message key=\"tag.description\"/></html:tableColumn>"+
 					
-				"</html:tableLine>";
+				"</html:tableLine>");
 				
 				for(Attribute attribute : tag.getAttributes()){
 					
-					template += "<html:tableLine>"+
+					template.append("<html:tableLine>"+
 							"<html:tableColumn>"+attribute.getName()+"</html:tableColumn>"+
 							"<html:tableColumn>"+(attribute.getRequired() == null ? false : true)+"</html:tableColumn>"+
 							"<html:tableColumn>"+attribute.getType()+"</html:tableColumn>"+
 							"<html:tableColumn>"+attribute.getDescription()+"</html:tableColumn>"+
 							
-						"</html:tableLine>";
+						"</html:tableLine>");
 				}
 				
-				template += "</html:table>";
+				template.append("</html:table>");
 			}
 			
-template += "																								"+
+			template.append("																								"+
 "									</html:tab>																"+
 "									<html:tab label=\"{demo}\">												"+
 "										"+tag.getExample()	+"														"+
@@ -112,12 +114,12 @@ template += "																								"+
 "								</html:tabPanel>															"+
 "							</html:panelBody>																"+
 "						</html:panel>																		"+
-"					</html:view>																			";
-			FileUtils.writeStringToFile(new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/component/"+tag.getName()+".jsp"), template,"iso-8859-1");
+"					</html:view>																			");
+			FileUtils.writeStringToFile(new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/component/"+tag.getName()+".jsp"), template.toString(),CHARSET);
 		}
 		
-		for(String key : groupments.keySet()){
-			Collections.sort(groupments.get(key),new Comparator<Tag>() {
+		for(List<Tag> values : groupments.values()){
+			Collections.sort(values,new Comparator<Tag>() {
 				@Override
 				public int compare(Tag o1, Tag o2) {
 					return o1.getName().compareTo(o2.getName());
@@ -126,18 +128,18 @@ template += "																								"+
 		}
 	
 		
-		String menu = "<html:div cssClass=\"menu\"><html:listGroup>";
+		StringBuilder menu = new StringBuilder("<html:div cssClass=\"menu\"><html:listGroup>");
 		for(String key : new TreeSet<String>(groupments.keySet())){
-			menu +="<html:listGroupItem><html:collapsable label=\""+key+"\"><html:listGroup>";
+			menu.append("<html:listGroupItem><html:collapsable label=\""+key+"\"><html:listGroup>");
 			for(Tag tag : groupments.get(key)){
-				menu +="<html:listGroupItem><html:link label=\""+StringUtils.capitalize(tag.getName())+"\" target=\"conteudo\" url=\"/component/"+tag.getName()+"\"></html:link></html:listGroupItem>";
+				menu.append("<html:listGroupItem><html:link label=\""+StringUtils.capitalize(tag.getName())+"\" target=\"conteudo\" url=\"/component/"+tag.getName()+"\"></html:link></html:listGroupItem>");
 			}
-			menu +="</html:listGroup></html:collapsable></html:listGroupItem>";
+			menu.append("</html:listGroup></html:collapsable></html:listGroupItem>");
 		}
-		menu +="</html:listGroup></html:div>";
+		menu.append("</html:listGroup></html:div>");
 		
 		File home = new File(workspace + "/tagria-doc/src/main/webapp/WEB-INF/jsp/app/index.jsp");
-		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home,"iso-8859-1").replaceAll("<html:div cssClass=\"menu\">[\\s\\S]*?</html:div>", menu),"iso-8859-1");
+		FileUtils.writeStringToFile(home, FileUtils.readFileToString(home,CHARSET).replaceAll("<html:div cssClass=\"menu\">[\\s\\S]*?</html:div>", menu.toString()),CHARSET);
 		
 		
 	}
