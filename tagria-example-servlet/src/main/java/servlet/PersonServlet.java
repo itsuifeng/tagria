@@ -56,12 +56,12 @@ public class PersonServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			Long id = (!StringUtils.isEmpty(request.getParameter("id")) ? new Long(request.getParameter("id")) : null);
+			Long id = !StringUtils.isEmpty(request.getParameter("id")) ? new Long(request.getParameter("id")) : null;
 			String name = request.getParameter("name");
 			Integer age = Integer.valueOf(request.getParameter("age"));
 			personDao.saveOrUpdate(new Person(id, name, age));
 			response.sendRedirect(getServletContext().getContextPath() + "/person/list");
-		} catch (IOException exception) {
+		} catch (IOException|NumberFormatException exception) {
 			logger.error("Could not save person",exception);
 		}
 	}

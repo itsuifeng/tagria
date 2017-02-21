@@ -1,1 +1,1 @@
-console.log('import');
+//This is an imported js file
