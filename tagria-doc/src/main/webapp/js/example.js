@@ -1,1 +1,1 @@
-alert('import');
+console.log('import');
