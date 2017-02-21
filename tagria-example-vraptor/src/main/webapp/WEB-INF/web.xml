@@ -4,8 +4,23 @@
 	version="3.1">
 	<display-name>tagria-example-vraptor</display-name>
 	
+	<filter>
+		<filter-name>ParameterValidationFilter</filter-name>
+		<filter-class>com.matthewcasperson.validation.filter.ParameterValidationFilter</filter-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/xml/pvf.xml</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ParameterValidationFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
 	<context-param>
 		<param-name>br.com.caelum.vraptor.encoding</param-name>
 		<param-value>UTF-8</param-value>
 	</context-param>
+
+	
 </web-app>

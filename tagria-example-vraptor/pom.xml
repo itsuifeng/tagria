@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
@@ -7,7 +8,7 @@
 	</parent>
 	<artifactId>tagria-example-vraptor</artifactId>
 	<packaging>war</packaging>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -30,8 +31,13 @@
 			<artifactId>vraptor</artifactId>
 			<version>4.2.0-RC5</version>
 		</dependency>
+		<dependency>
+			<groupId>com.matthewcasperson</groupId>
+			<artifactId>parameter_validation_filter</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
