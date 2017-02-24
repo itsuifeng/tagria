@@ -41,7 +41,7 @@ public enum Attribute {
 	HTTP_EQUIV("http-equiv"),
 	HEIGHT("height"),
 	ID("id"),
-	LANG("LANG"),
+	LANG("lang"),
 	METHOD("method"),
 	MAXLENGTH("maxlength"),
 	MULTIPLE("multiple"),
