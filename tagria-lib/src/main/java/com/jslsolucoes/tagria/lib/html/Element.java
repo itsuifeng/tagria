@@ -88,7 +88,7 @@ public abstract class Element {
 		html.append(this.getTag());
 		for (Map.Entry<Attribute, String> entry  : attributes.entrySet()) {
 			html.append(" ");
-			html.append(entry.getKey());
+			html.append(entry.getKey().getName());
 			html.append("=\"");
 			html.append(entry.getValue());
 			html.append("\"");

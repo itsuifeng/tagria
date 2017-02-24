@@ -20,6 +20,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Option;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
@@ -34,7 +36,8 @@ public class OptionTag extends SimpleTagSupport {
 		Option option = new Option();
 		option.add(Attribute.VALUE, value);
 		option.add(TagUtil.getBody(getJspBody()));
-		if (value.equals(select.getValue())) {
+		if (value.equals(select.getValue()) || (select.getRequired() && !CollectionUtils.isEmpty(select.getData()) 
+				&& select.getData().size() == 1)) {
 			option.add(Attribute.SELECTED, "selected");
 		}
 		TagUtil.out(getJspContext(), option);
