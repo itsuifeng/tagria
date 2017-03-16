@@ -44,7 +44,7 @@ public class ButtonTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			A a = new A();
 			if(!StringUtils.isEmpty(type)){
 				a.add(Attribute.DATA_TYPE,type);

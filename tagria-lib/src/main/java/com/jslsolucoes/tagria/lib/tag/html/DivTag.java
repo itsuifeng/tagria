@@ -34,7 +34,7 @@ public class DivTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered) {
+		if(rendered != null && rendered) {
 			Div div = new Div();
 			div.add(Attribute.ID,TagUtil.getId(id));
 			if(!StringUtils.isEmpty(cssClass)){

@@ -40,7 +40,7 @@ public class FormGroupTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			Div div = new Div();
 			div.add(Attribute.CLASS,"form-group");
 			

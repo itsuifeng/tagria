@@ -40,7 +40,7 @@ public class TabTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			TabPanelTag panel = (TabPanelTag) findAncestorWithClass(this, TabPanelTag.class);
 			
 			String id = TagUtil.getId();

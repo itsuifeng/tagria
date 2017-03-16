@@ -43,7 +43,7 @@ public class GridColumnTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 		
 			String body = TagUtil.getBody(getJspBody());
 			

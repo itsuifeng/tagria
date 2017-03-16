@@ -27,7 +27,7 @@ public class BarChartTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			Div container = new Div();
 			if(!responsive){
 				container.add(Attribute.STYLE,"width:"+width+"px;height:"+height+"px");
