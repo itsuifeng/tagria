@@ -28,10 +28,11 @@ public class JsEventTag extends SimpleTagSupport {
 
 	private String attachTo;
 	private String event;
+	private Boolean rendered = Boolean.TRUE;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-			
+		if (rendered != null && rendered) {	
 			StringBuilder builder = new StringBuilder();
 			builder.append("$('#" + TagUtil.getId(attachTo, null,this) + "')." + event + "(function(){");
 			builder.append(TagUtil.getBody(getJspBody()));
@@ -41,6 +42,7 @@ public class JsEventTag extends SimpleTagSupport {
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add(builder.toString());
 			TagUtil.out(getJspContext(), script);
+		}
 		
 	}
 
@@ -58,6 +60,14 @@ public class JsEventTag extends SimpleTagSupport {
 
 	public void setEvent(String event) {
 		this.event = event;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 
 

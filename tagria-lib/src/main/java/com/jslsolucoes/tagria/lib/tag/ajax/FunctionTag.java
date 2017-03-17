@@ -30,46 +30,48 @@ public class FunctionTag extends SimpleTagSupport {
 	private String dataType = "json";
 	private String name;
 	private String url;
+	private Boolean rendered = Boolean.TRUE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
+		if (rendered != null && rendered) {
 		
-		
-		StringBuilder builder = new StringBuilder();
-		builder.append("function " + name + "(){");
-		builder.append("var data = new Array();");
-		builder.append("$.ajax({																					"
-				+ "				type : 'post',																		"	
-				+ "				processData: false,																	"
-				+ "				dataType : '" + dataType + "',														"
-				+ "				beforeSend: function(jqXHR, settings) {												"
-				+ "					var data = {};																	"
-				+ "					for (var property in settings.data) {											"
-				+ "						data[property] = settings.data[property].value;								"
-				+ "    					if(settings.data[property].required && settings.data[property].value == ''){"
-				+ "    						return false;															"
-				+ "    					}																			"
-				+ "					}																				"
-				+ "					settings.data = $.param(data);													"
-				+ "					return true;																	"
-			    + "				},																					"
-				+ "				url : '" + TagUtil.getPathForUrl(getJspContext(), url) + "',					"
-				+ "			    async: true																			"
-				+ 				TagUtil.getBody(getJspBody())
-				+ "});");
-		builder.append("}");
-		
-		Script function = new Script();
-		function.add(Attribute.TYPE, "text/javascript");
-		function.add(builder.toString());
-		
-		TagUtil.out(getJspContext(), function);
-		
-		if (executeOnDocumentLoad) {
-			Script script = new Script();
-			script.add(Attribute.TYPE, "text/javascript");
-			script.add(name + "();");
-			TagUtil.out(getJspContext(), script);
+			StringBuilder builder = new StringBuilder();
+			builder.append("function " + name + "(){");
+			builder.append("var data = new Array();");
+			builder.append("$.ajax({																					"
+					+ "				type : 'post',																		"	
+					+ "				processData: false,																	"
+					+ "				dataType : '" + dataType + "',														"
+					+ "				beforeSend: function(jqXHR, settings) {												"
+					+ "					var data = {};																	"
+					+ "					for (var property in settings.data) {											"
+					+ "						data[property] = settings.data[property].value;								"
+					+ "    					if(settings.data[property].required && settings.data[property].value == ''){"
+					+ "    						return false;															"
+					+ "    					}																			"
+					+ "					}																				"
+					+ "					settings.data = $.param(data);													"
+					+ "					return true;																	"
+				    + "				},																					"
+					+ "				url : '" + TagUtil.getPathForUrl(getJspContext(), url) + "',					"
+					+ "			    async: true																			"
+					+ 				TagUtil.getBody(getJspBody())
+					+ "});");
+			builder.append("}");
+			
+			Script function = new Script();
+			function.add(Attribute.TYPE, "text/javascript");
+			function.add(builder.toString());
+			
+			TagUtil.out(getJspContext(), function);
+			
+			if (executeOnDocumentLoad) {
+				Script script = new Script();
+				script.add(Attribute.TYPE, "text/javascript");
+				script.add(name + "();");
+				TagUtil.out(getJspContext(), script);
+			}
 		}
 		
 	}
@@ -104,6 +106,14 @@ public class FunctionTag extends SimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 
 	

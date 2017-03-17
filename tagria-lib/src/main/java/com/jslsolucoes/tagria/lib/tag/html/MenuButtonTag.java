@@ -40,7 +40,7 @@ public class MenuButtonTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered) {
+		if (rendered != null && rendered) {
 			Div div = new Div();
 			div.add(Attribute.CLASS, "btn-group navbar-btn");
 			if (!StringUtils.isEmpty(align)) {

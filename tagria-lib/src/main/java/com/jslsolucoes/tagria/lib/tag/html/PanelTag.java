@@ -27,13 +27,16 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class PanelTag extends SimpleTagSupport {
 
 	private String state = "primary";
+	private Boolean rendered = Boolean.TRUE;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		Div div = new Div();
-		div.add(Attribute.CLASS,"panel panel-"+state);
-		div.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), div);
+		if (rendered != null && rendered) {
+			Div div = new Div();
+			div.add(Attribute.CLASS,"panel panel-"+state);
+			div.add(TagUtil.getBody(getJspBody()));
+			TagUtil.out(getJspContext(), div);
+		}
 	}
 
 	public String getState() {
@@ -42,5 +45,13 @@ public class PanelTag extends SimpleTagSupport {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 }

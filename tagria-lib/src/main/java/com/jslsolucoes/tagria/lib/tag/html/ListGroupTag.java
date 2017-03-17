@@ -30,7 +30,7 @@ public class ListGroupTag extends SimpleTagSupport {
 
     @Override
     public void doTag() throws JspException, IOException {
-	if (rendered) {
+	if (rendered != null && rendered) {
 	    Ul ul = new Ul();
 	    ul.add(Attribute.CLASS, "list-group");
 	    ul.add(TagUtil.getBody(getJspBody()));

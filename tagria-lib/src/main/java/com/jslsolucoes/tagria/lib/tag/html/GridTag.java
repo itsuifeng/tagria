@@ -74,7 +74,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		if (rendered) {
+		if (rendered != null && rendered) {
 
 			PageContext pageContext = (PageContext) getJspContext();
 			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
