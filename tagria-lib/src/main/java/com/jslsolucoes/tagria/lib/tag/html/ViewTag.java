@@ -109,7 +109,7 @@ public class ViewTag extends SimpleTagSupport {
 		body.add(loading);
 
 
-		body.add(TagUtil.clean(TagUtil.getBody(getJspBody())));
+		body.add(TagUtil.minifyHtml(TagUtil.getBody(getJspBody())));
 		html.add(body);
 		
 		TagUtil.out(getJspContext(), DocType.HTML5);

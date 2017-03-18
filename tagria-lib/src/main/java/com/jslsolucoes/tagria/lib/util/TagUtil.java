@@ -156,9 +156,9 @@ public class TagUtil {
 	public static String getId(String id) {
 		return TagUtil.getId(null, id, null);
 	}
-
-	public static String clean(String value) {
-		return value.replaceAll("(\n|\r|\t)", "");
+		
+	public static String minifyHtml(String value) {
+		return value.replaceAll("\r|\t","");
 	}
 
 	public static String getLocalized(String label, JspContext jspContext) {
