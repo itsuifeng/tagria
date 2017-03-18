@@ -14,6 +14,7 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 
 	private String name;
 	private String language;
+	private Boolean readOnly = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -23,13 +24,16 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 		textarea.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), textarea);
 		
-		
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
 		script.add("CodeMirror.fromTextArea(document.getElementById('"+textarea.get(Attribute.ID)+"'), {"+
 			    "mode: '"+language+"',"+
-			    "lineNumbers: true "+
-			 "});");
+			    "indentWithTabs: true,"+
+			    "smartIndent: true,"+
+			    "lineNumbers: true,"+
+			    "readOnly : "+(readOnly ? "'nocursor'" : "false")+","+
+			    "matchBrackets : true"+
+			 "}).on('change',function(cm){ $('#"+textarea.get(Attribute.ID)+"').val(cm.getValue());  });");
 		TagUtil.out(getJspContext(), script);
 	}
 
@@ -47,5 +51,13 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Boolean getReadOnly() {
+		return readOnly;
+	}
+
+	public void setReadOnly(Boolean readOnly) {
+		this.readOnly = readOnly;
 	}
 }

@@ -31,6 +31,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>Indicates the if highlighter is read only. Default : false. Options : true,false</description>
+			<name>readOnly</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:syntaxHighlight name="input1" language="sql"&gt;
 				select 1 from dual;
