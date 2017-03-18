@@ -67,7 +67,8 @@ public class Compressor {
 				"jquery/ui/jquery.ui.treeview.js", "jquery/ui/jquery.ui.tabs.js",
 				"jquery/ui/jquery.ui.treeview.widget.js", "jquery/ui/jquery.ui.time.picker.js",
 				"jquery/ui/jquery.ui.input.currency.mask.js", "jquery/ui/jquery.ui.wave.js",
-				"jquery/ui/jquery.ui.chart.js" };
+				"jquery/ui/jquery.ui.chart.js","jquery/ui/jquery.ui.syntax.highlight.js"
+				,"jquery/ui/jquery.ui.syntax.highlight.sql.js"};
 
 		List<String> contents = new ArrayList<>();
 		for (String file : files) {
@@ -131,7 +132,7 @@ public class Compressor {
 			String[] files = new String[] { "tagria.bootstrap.css", "tagria.bootstrap.extension.css",
 					"tagria.common.css", "tagria.font.awesome.css", "tagria.fullcalendar.css", "tagria.jquery.ui.css",
 					"tagria.jquery.ui.theme.css", "tagria.jquery.ui.treeview.css", "tagria.jquery.ui.timepicker.css",
-					"tagria.jquery.ui.wave.css", "tagria.jquery.ui.loading.css", "tagria.jquery.ui.card.css" };
+					"tagria.jquery.ui.wave.css", "tagria.jquery.ui.loading.css", "tagria.jquery.ui.card.css", "tagria.jquery.syntax.highlight.css" };
 			
 			String content = StringUtils.join(Stream.concat(Arrays
 			.asList(files)

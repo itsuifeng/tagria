@@ -12,6 +12,35 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
+		<description>Renders a syntax highlighter</description>
+		<display-name>Misc</display-name>
+		<name>syntaxHighlight</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SyntaxHighLightTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the language to be parsed. Options : text/plsql</description>
+			<name>language</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the name of the highlighter</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:syntaxHighlight name="input1" language="sql"&gt;
+				select 1 from dual;
+			&lt;/html:syntaxHighlight&gt; </example>
+			
+	</tag>
+	
+
+
+	<tag>
 		<description>Renders a locale switcher to change current language</description>
 		<display-name>Misc</display-name>
 		<name>localeSwitch</name>
