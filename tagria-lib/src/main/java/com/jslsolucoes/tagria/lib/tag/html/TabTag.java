@@ -72,6 +72,9 @@ public class TabTag extends SimpleTagSupport {
 				iframe.add(Attribute.ID, TagUtil.getId());
 				iframe.add(Attribute.SRC,TagUtil.getPathForBlank(getJspContext()));
 				iframe.add(Attribute.DATA_URL,TagUtil.getPathForUrl(getJspContext(), url));
+				if(active){
+					iframe.add(Attribute.CLASS,"active");
+				}
 				div.add(iframe);
 				
 				Script script = new Script();

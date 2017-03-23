@@ -15,6 +15,7 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 	private String name;
 	private String language;
 	private Boolean readOnly = Boolean.FALSE;
+	private Boolean required = Boolean.FALSE;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -22,6 +23,11 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 		textarea.add(Attribute.NAME,name);
 		textarea.add(Attribute.ID,TagUtil.getId(name, null,this));
 		textarea.add(TagUtil.getBody(getJspBody()));
+		
+		if(required){
+			textarea.add(Attribute.CLASS,"bs-syntax-highlight-required");
+		}
+		
 		TagUtil.out(getJspContext(), textarea);
 		
 		Script script = new Script();
@@ -59,5 +65,13 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 
 	public void setReadOnly(Boolean readOnly) {
 		this.readOnly = readOnly;
+	}
+
+	public Boolean getRequired() {
+		return required;
+	}
+
+	public void setRequired(Boolean required) {
+		this.required = required;
 	}
 }

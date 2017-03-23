@@ -25,6 +25,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>Indicates if component is required fill</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the name of the highlighter</description>
 			<name>name</name>
 			<required>true</required>
