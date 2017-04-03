@@ -12,6 +12,47 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
+		<description>Renders a syntax highlighter</description>
+		<display-name>Misc</display-name>
+		<name>syntaxHighlight</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SyntaxHighLightTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the language to be parsed. Options : text/plsql</description>
+			<name>language</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates if component is required fill</description>
+			<name>required</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the name of the highlighter</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the if highlighter is read only. Default : false. Options : true,false</description>
+			<name>readOnly</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:syntaxHighlight name="input1" language="sql"&gt;
+				select 1 from dual;
+			&lt;/html:syntaxHighlight&gt; </example>
+			
+	</tag>
+	
+
+
+	<tag>
 		<description>Renders a locale switcher to change current language</description>
 		<display-name>Misc</display-name>
 		<name>localeSwitch</name>
@@ -267,6 +308,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			&lt;html:input name="input1" placeholder="Entre e saia do campo" /&gt;
 			
@@ -515,6 +562,13 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		
 		<example>
 			&lt;html:panel&gt;
 				&lt;html:panelHead label="Titulo"/&gt;
@@ -559,6 +613,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;html:panelBody&gt;
 					Outros componentes
 				&lt;/html:panelBody&gt;
+			&lt;/html:panel>
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders the footer panel</description>
+		<display-name>Panel</display-name>
+		<name>panelFooter</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PanelFooterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:panel&gt;
+				&lt;html:panelHead label="Titulo"/&gt;
+				&lt;html:panelBody&gt;
+					Outros componentes
+				&lt;/html:panelBody&gt;
+				&lt;html:panelFooter&gt;
+					Outros componentes
+				&lt;/html:panelFooter&gt;
 			&lt;/html:panel>
 		</example>
 	</tag>
@@ -1650,6 +1723,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>listGroup</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ListGroupTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			&lt;html:listGroup&gt;
 				&lt;html:listGroupItem&gt;
@@ -1720,6 +1799,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>rows</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>It indicates a CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
 		</attribute>
 		<example>
 			&lt;html:textarea name="textarea1" rows="3"/&gt; </example>
@@ -1973,17 +2058,23 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
-		<description>Renders a component with concertina effect</description>
+		<description>Renders a component with collapsable effect</description>
 		<display-name>Misc</display-name>
 		<name>collapsable</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CollapsableTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>It indicates the label to be used no agrupamento</description>
+			<description>It indicates the label to be used in collapsable</description>
 			<name>label</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates if component must be opened. Default : false. Options : true,false</description>
+			<name>opened</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description>Indicates the status of the group. Default: primary. Options: default, primary, danger, info, success</description>

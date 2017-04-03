@@ -31,8 +31,8 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class TabPanelTag extends SimpleTagSupport {	
 	
-	private List<Element> lis = new ArrayList<Element>();
-	private List<Element> divs = new ArrayList<Element>();
+	private List<Element> lis = new ArrayList<>();
+	private List<Element> divs = new ArrayList<>();
 	
 	@Override
 	public void doTag() throws JspException, IOException {

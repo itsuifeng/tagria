@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jslsolucoes</groupId>
 	<artifactId>tagria</artifactId>
-	<version>1.0.10</version>
+	<version>1.0.11</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -45,7 +45,7 @@
 		<url>https://github.com/jslsolucoes/tagria</url>
 		<connection>scm:git:https://github.com/jslsolucoes/tagria</connection>
 		<developerConnection>scm:git:https://github.com/jslsolucoes/tagria.git</developerConnection>
-		<tag>v.1.0.10</tag>
+		<tag>v.1.0.11</tag>
 	</scm>
 
 	<modules>
@@ -111,7 +111,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.4.2</version>
+				<version>2.5.2</version>
 				<dependencies>
 					<dependency>
 						<groupId>org.apache.maven.scm</groupId>

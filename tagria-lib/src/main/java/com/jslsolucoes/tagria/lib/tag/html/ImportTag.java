@@ -33,13 +33,13 @@ public class ImportTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		
-		if (type.equals("css")) {
+		if ("css".equals(type)) {
 			Link link = new Link();
 			link.add(Attribute.REL, "stylesheet");
 			link.add(Attribute.TYPE, "text/css");
 			link.add(Attribute.HREF, TagUtil.getPathForStatic(getJspContext(), url));
 			TagUtil.out(getJspContext(), link);
-		} else if (type.equals("js")) {
+		} else if ("js".equals(type)) {
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url));

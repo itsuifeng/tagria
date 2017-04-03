@@ -43,7 +43,7 @@ public class GridColumnTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 		
 			String body = TagUtil.getBody(getJspBody());
 			
@@ -96,7 +96,7 @@ public class GridColumnTag extends SimpleTagSupport {
 				if (!StringUtils.isEmpty(format)) {
 					container.add(TagUtil.format(format, body,getJspContext()));
 				} else if (booleanType) {
-					if (body.equals("1") || body.equals("true")) {
+					if ("1".equals(body) || "true".equals(body)) {
 						Span icon = new Span();
 						icon.add(Attribute.CLASS, "glyphicon glyphicon-ok");
 						container.add(icon);

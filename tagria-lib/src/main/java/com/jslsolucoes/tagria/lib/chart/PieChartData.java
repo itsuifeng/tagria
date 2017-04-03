@@ -5,8 +5,8 @@ import java.util.List;
 
 public class PieChartData {
 
-	private List<String> labels = new ArrayList<String>();
-	private List<PieChartDataSet> datasets = new ArrayList<PieChartDataSet>();
+	private List<String> labels = new ArrayList<>();
+	private List<PieChartDataSet> datasets = new ArrayList<>();
 
 	public List<String> getLabels() {
 		return labels;

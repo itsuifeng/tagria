@@ -5,9 +5,9 @@ import java.util.List;
 
 public class PieChartDataSet {
 
-	private List<String> backgroundColor = new ArrayList<String>();
-	private List<String> hoverBackgroundColor = new ArrayList<String>();
-	private List<Long> data = new ArrayList<Long>();
+	private List<String> backgroundColor = new ArrayList<>();
+	private List<String> hoverBackgroundColor = new ArrayList<>();
+	private List<Long> data = new ArrayList<>();
 	
 	public void addData(Long data){
 		this.data.add(data);

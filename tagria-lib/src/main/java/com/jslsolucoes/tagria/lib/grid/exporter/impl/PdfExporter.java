@@ -18,6 +18,7 @@ package com.jslsolucoes.tagria.lib.grid.exporter.impl;
 import java.io.OutputStream;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
@@ -38,7 +39,7 @@ public class PdfExporter {
 		this.table = table;
 	}
 
-	public void doExport(OutputStream out) throws Exception {
+	public void doExport(OutputStream out) throws DocumentException  {
 		Document document = new Document();
 		PdfWriter.getInstance(document, out);
 		document.open();
@@ -61,25 +62,25 @@ public class PdfExporter {
 	private void header(PdfPTable pdf) {
 		for (Header header : table.getHeaders()) {
 			PdfPCell cell = new PdfPCell(new Phrase(header.getContent(), smallBold));
-			if (header.getAlign().equals("center"))
+			if ("center".equals(header.getAlign()))
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			else if (header.getAlign().equals("left"))
+			else if ("left".equals(header.getAlign()))
 				cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-			else if (header.getAlign().equals("right"))
+			else if ("right".equals(header.getAlign()))
 				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			pdf.addCell(cell);
 		}
 	}
 
-	private void body(PdfPTable pdf) throws Exception {
+	private void body(PdfPTable pdf)  {
 		for (Row row : table.getRows()) {
 			for (Column column : row.getColumns()) {
 				PdfPCell cell = new PdfPCell(new Phrase(column.getContent(), smallBold));
-				if (column.getAlign().equals("center"))
+				if ("center".equals(column.getAlign()))
 					cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				else if (column.getAlign().equals("left"))
+				else if ("left".equals(column.getAlign()))
 					cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-				else if (column.getAlign().equals("right"))
+				else if ("right".equals(column.getAlign()))
 					cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				pdf.addCell(cell);
 			}

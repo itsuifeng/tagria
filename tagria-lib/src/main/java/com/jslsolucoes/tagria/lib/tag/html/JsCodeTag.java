@@ -31,7 +31,7 @@ public class JsCodeTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add(TagUtil.getBody(getJspBody()));

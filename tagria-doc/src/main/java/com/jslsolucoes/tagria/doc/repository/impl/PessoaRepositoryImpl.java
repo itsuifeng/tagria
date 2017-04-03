@@ -39,7 +39,7 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 			pessoa.setGostaChocolate((i % 2 == 0 ? 1 : 0));
 			pessoa.setCpf(RandomStringUtils.randomNumeric(11));
 			pessoa.setCep(RandomStringUtils.randomNumeric(8));
-			pessoa.setId(new Long(i));
+			pessoa.setId(Long.valueOf(i));
 			pessoas.add(pessoa);
 		}
 		

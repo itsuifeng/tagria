@@ -16,6 +16,7 @@
 package com.jslsolucoes.tagria.lib.grid.exporter.impl;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 import org.apache.commons.io.IOUtils;
@@ -31,12 +32,12 @@ public class XmlExporter {
 	public XmlExporter(Table table) {
 		this.table = table;
 	}
-	public void doExport(OutputStream outputStream) throws Exception {
+	public void doExport(OutputStream outputStream) throws IOException  {
 		IOUtils.copy(new ByteArrayInputStream(export()), outputStream);
 	}
 	
 	private byte[] export(){
-		StringBuffer xml = new StringBuffer();
+		StringBuilder xml = new StringBuilder();
 		init(xml);
 		start(xml);
 		title(xml);
@@ -46,7 +47,7 @@ public class XmlExporter {
 		return xml.toString().getBytes();
 	}
 	
-	private void header(StringBuffer xml) {
+	private void header(StringBuilder xml) {
 		xml.append("<header>");
 		for (Header header : table.getHeaders()) {
 			xml.append("<column>");
@@ -56,7 +57,7 @@ public class XmlExporter {
 		xml.append("</header>");
 	}
 	
-	private void body(StringBuffer xml) {
+	private void body(StringBuilder xml) {
 		xml.append("<body>");
 		for (Row row : table.getRows()) {
 			xml.append("<row>");
@@ -70,22 +71,22 @@ public class XmlExporter {
 		xml.append("</body>");
 	}
 
-	private void title(StringBuffer xml) {
+	private void title(StringBuilder xml) {
 		xml.append("<title>");
 		xml.append(table.getTitle());
 		xml.append("</title>");
 
 	}
 
-	private void init(StringBuffer xml) {
+	private void init(StringBuilder xml) {
 		xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 	}
 
-	private void end(StringBuffer xml) {
+	private void end(StringBuilder xml) {
 		xml.append("</data>");
 	}
 
-	private void start(StringBuffer xml) {
+	private void start(StringBuilder xml) {
 		xml.append("<data>");
 	}
 }

@@ -17,6 +17,7 @@ package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -50,7 +51,7 @@ import com.jslsolucoes.tagria.lib.html.Ul;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-@SuppressWarnings({ "rawtypes", "serial" })
+@SuppressWarnings({ "rawtypes"})
 public class GridTag extends SimpleTagSupport implements Toolballer {
 
 	private String var;
@@ -61,7 +62,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	private Boolean paginate = Boolean.TRUE;
 	private String label;
 	private Collection data;
-	private List<Element> ths = new ArrayList<Element>();
+	private List<Element> ths = new ArrayList<>();
 	private Integer resultsPerPage = 60;
 	private Integer totalResults;
 	private String toolbar;
@@ -73,7 +74,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		if (rendered) {
+		if (rendered != null && rendered) {
 
 			PageContext pageContext = (PageContext) getJspContext();
 			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
@@ -106,8 +107,8 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			panelBody.add(Attribute.CLASS, "panel-body");
 
 			if(checkAll){
-				Div checkAll = new Div();
-				checkAll.add(Attribute.CLASS,"m-5");
+				Div checkAllBox = new Div();
+				checkAllBox.add(Attribute.CLASS,"m-5");
 				Ul ul = new Ul();
 				ul.add(Attribute.CLASS,"list-group");
 				Li li = new Li();
@@ -118,8 +119,8 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				li.add(input);
 				li.add(" " + TagUtil.getLocalizedForLib("grid.check.all",getJspContext()));
 				ul.add(li);
-				checkAll.add(ul);
-				panelBody.add(checkAll);
+				checkAllBox.add(ul);
+				panelBody.add(checkAllBox);
 			}
 			
 			panel.add(panelBody);
@@ -280,8 +281,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 						divForResultsPerPage.add(dropdown);
 						clearfix.add(divForResultsPerPage);
 	
-						Integer totalOfPages = new Double(
-								Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage))).intValue();
+						Integer totalOfPages = (int) Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
 	
 						Div pagination = new Div();
 						pagination.add(Attribute.CLASS, "pull-right m-5");
@@ -350,14 +350,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add("$('#" + grid.get(Attribute.ID) + "').grid({ url : '"
 					+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString : '"
-					+ TagUtil.queryString(request, new ArrayList<String>() {
-						{
-							add("page");
-							add("property");
-							add("direction");
-							add("resultsPerPage");
-						}
-					}) + "'});");
+					+ TagUtil.queryString(request, Arrays.asList("page","property","direction","resultsPerPage")) + "'});");
 			TagUtil.out(getJspContext(), script);
 		}
 	}

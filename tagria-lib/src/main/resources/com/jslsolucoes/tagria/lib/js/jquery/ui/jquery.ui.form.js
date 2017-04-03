@@ -48,6 +48,7 @@
 			var form = self.element;
 			$('.has-error',form).removeClass('has-error');
 			$('.bs-treeview-has-error',form).removeClass('bs-treeview-has-error');
+			$('.bs-syntax-highlight-has-error',form).removeClass('bs-syntax-highlight-has-error');
 			$('.bs-form-empty-field',form).hide();
 			$('.bs-form-validation-errors',form).hide();
 		},
@@ -93,7 +94,8 @@
         	var self = this;
         	var form = this.element;
         	$('.disabled',form).attr('disabled',false);
-        	if(form.attr('target') != '_self'){
+        	
+        	if(form.attr('target') != '_self' || !$('form').attr('action').indexOf('javascript:')){
         		self._unblock();
         	}
         	self.element[0].submit();
@@ -109,12 +111,18 @@
          		}
          	 });
          	 
-         	$(".bs-treeview",form).each(function(){
-				if($(this).hasClass("bs-treeview-required")){
-					if($(':hidden',this).size() == 0){
-         				$(this).addClass('bs-treeview-has-error');
-         				empty = true;
-					}
+         	$(".bs-treeview-required",form).each(function(){
+				if($(':hidden',this).size() == 0){
+     				$(this).addClass('bs-treeview-has-error');
+     				empty = true;
+				}						
+			});
+         	
+         	
+         	$(".bs-syntax-highlight-required",form).each(function(){
+				if($(this).val() == ''){
+					$(this).next('.CodeMirror').addClass('bs-syntax-highlight-has-error');
+     				empty = true;
 				}						
 			});
          	 

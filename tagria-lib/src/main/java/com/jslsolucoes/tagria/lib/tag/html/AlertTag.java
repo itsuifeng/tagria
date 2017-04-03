@@ -38,7 +38,7 @@ public class AlertTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		
-		if(rendered){
+		if(rendered != null && rendered){
 			Div div = new Div();
 			div.add(Attribute.CLASS,"alert alert-"+state);
 			div.add(Attribute.ROLE,"alert");

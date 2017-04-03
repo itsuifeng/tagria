@@ -31,7 +31,7 @@ public class ListGroupItemTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered) {
+		if (rendered != null && rendered) {
 			Li li = new Li();
 			li.add(Attribute.CLASS,"list-group-item");
 			li.add(TagUtil.getBody(getJspBody()));

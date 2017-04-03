@@ -33,7 +33,7 @@ public class BlockTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered) {
+		if(rendered != null && rendered) {
 			Div div = new Div();
 			div.add(Attribute.CLASS,"m-t-20 m-b-20 clearfix");
 			if(!StringUtils.isEmpty(align)){

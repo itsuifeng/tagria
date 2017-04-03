@@ -43,7 +43,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered) {
+		if (rendered != null && rendered) {
 			Div modal = new Div();
 			modal.add(Attribute.CLASS,"modal fade");
 			modal.add(Attribute.ID,TagUtil.getId(id));

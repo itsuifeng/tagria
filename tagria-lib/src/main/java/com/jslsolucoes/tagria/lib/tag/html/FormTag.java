@@ -47,7 +47,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered) {
+		if (rendered != null && rendered) {
 
 			Div panel = new Div();
 			panel.add(Attribute.CLASS, "panel panel-primary");

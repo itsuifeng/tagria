@@ -33,6 +33,7 @@ public enum Attribute {
 	DATA_URL("data-url"),
 	DATA_KEYBOARD("data-keyboard"),
 	DATA_BACKDROP("data-backdrop"),
+	DATA_PARENT("data-parent"),
 	DISABLED("disabled"),
 	ENCTYPE("enctype"),
 	FOR("for"),
@@ -40,7 +41,7 @@ public enum Attribute {
 	HTTP_EQUIV("http-equiv"),
 	HEIGHT("height"),
 	ID("id"),
-	LANG("LANG"),
+	LANG("lang"),
 	METHOD("method"),
 	MAXLENGTH("maxlength"),
 	MULTIPLE("multiple"),
@@ -65,14 +66,14 @@ public enum Attribute {
 	XMLNS("xmlns"),
 	WIDTH("width");
 
-	private String attribute;
+	private String name;
 
-	private Attribute(String attribute) {
-		this.attribute = attribute;
+	private Attribute(String name) {
+		this.name = name;
 	}
 
-	public String getAttribute() {
-		return attribute;
+	public String getName() {
+		return name;
 	}
 
 }

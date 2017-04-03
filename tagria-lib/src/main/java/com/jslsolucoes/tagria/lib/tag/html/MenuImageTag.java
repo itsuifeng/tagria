@@ -38,7 +38,7 @@ public class MenuImageTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if (rendered) {
+		if (rendered != null && rendered) {
 			Div div = new Div();
 			div.add(Attribute.CLASS, "dropdown btn btn-default waves-effect waves-light bs-menu-image");
 			if (!StringUtils.isEmpty(cssClass)) {

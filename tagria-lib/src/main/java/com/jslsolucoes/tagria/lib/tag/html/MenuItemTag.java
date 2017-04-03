@@ -38,7 +38,7 @@ public class MenuItemTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			A a = new A();
 			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
 			a.add(Attribute.TARGET, target);

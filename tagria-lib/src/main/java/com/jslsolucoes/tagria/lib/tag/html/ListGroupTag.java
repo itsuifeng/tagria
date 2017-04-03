@@ -25,13 +25,25 @@ import com.jslsolucoes.tagria.lib.html.Ul;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ListGroupTag extends SimpleTagSupport {
-	
-	@Override
-	public void doTag() throws JspException, IOException {
-		Ul ul = new Ul();
-		ul.add(Attribute.CLASS,"list-group");
-		ul.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), ul);
+
+    private Boolean rendered = Boolean.TRUE;
+
+    @Override
+    public void doTag() throws JspException, IOException {
+	if (rendered != null && rendered) {
+	    Ul ul = new Ul();
+	    ul.add(Attribute.CLASS, "list-group");
+	    ul.add(TagUtil.getBody(getJspBody()));
+	    TagUtil.out(getJspContext(), ul);
 	}
+    }
+
+    public Boolean getRendered() {
+	return rendered;
+    }
+
+    public void setRendered(Boolean rendered) {
+	this.rendered = rendered;
+    }
 
 }

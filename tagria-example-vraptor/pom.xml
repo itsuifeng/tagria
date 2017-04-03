@@ -3,11 +3,11 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.10</version>
+		<version>1.0.11</version>
 	</parent>
 	<artifactId>tagria-example-vraptor</artifactId>
 	<packaging>war</packaging>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -30,8 +30,13 @@
 			<artifactId>vraptor</artifactId>
 			<version>4.2.0-RC5</version>
 		</dependency>
+		<dependency>
+			<groupId>com.matthewcasperson</groupId>
+			<artifactId>parameter_validation_filter</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>

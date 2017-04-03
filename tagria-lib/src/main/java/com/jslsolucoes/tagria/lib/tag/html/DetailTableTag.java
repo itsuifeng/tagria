@@ -49,7 +49,7 @@ public class DetailTableTag extends SimpleTagSupport {
 	private Collection data;
 	private String var;
 	private String label;
-	private List<Element> ths = new ArrayList<Element>();
+	private List<Element> ths = new ArrayList<>();
 	private String iteration = RandomStringUtils.randomAlphanumeric(20);
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;

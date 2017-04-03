@@ -7,6 +7,21 @@
     <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
     <param-value>pt_BR</param-value>
   </context-param>
+  
+  
+  <filter>
+		<filter-name>ParameterValidationFilter</filter-name>
+		<filter-class>com.matthewcasperson.validation.filter.ParameterValidationFilter</filter-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/xml/pvf.xml</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ParameterValidationFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+  
   <servlet>
     <servlet-name>Controller</servlet-name>
     <servlet-class>org.mentawai.core.Controller</servlet-class>

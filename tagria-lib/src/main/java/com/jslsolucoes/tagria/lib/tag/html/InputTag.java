@@ -70,7 +70,7 @@ public class InputTag extends SimpleTagSupport {
 		}
 		
 		input.add(Attribute.ID,TagUtil.getId(name, id,this));
-		if(!type.equals("checkbox") && !type.equals("radio")){
+		if(!"checkbox".equals(type) && !"radio".equals(type)){
 			input.add(Attribute.CLASS,"form-control");
 		}
 		
@@ -99,8 +99,8 @@ public class InputTag extends SimpleTagSupport {
 		if(!StringUtils.isEmpty(pattern)){
 			input.add(Attribute.PATTERN, pattern);
 		}
-		if ((type.equals("checkbox") || type.equals("radio")) && !StringUtils.isEmpty(checked)
-				&& (checked.equals(value) || checked.equals("true"))) {
+		if (("checkbox".equals(type) || "radio".equals(type)) && !StringUtils.isEmpty(checked)
+				&& (checked.equals(value) || "true".equals(checked))) {
 			input.add(Attribute.CHECKED, "checked");
 		}
 		if(disabled){

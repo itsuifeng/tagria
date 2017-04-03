@@ -33,7 +33,7 @@ public class PersonDao {
 
 	public void saveOrUpdate(Person person) {
 		if (person.getId() == null) {
-			person.setId(new Long(persons.size()));
+			person.setId(Long.valueOf(persons.size()));
 			persons.add(person);
 		} else {
 			Person load = load(person);

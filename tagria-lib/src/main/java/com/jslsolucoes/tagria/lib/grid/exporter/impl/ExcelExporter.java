@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.jslsolucoes.tagria.lib.grid.exporter.impl;
 
+import java.io.IOException;
 import java.io.OutputStream;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -37,7 +38,7 @@ public class ExcelExporter {
 		
 	}
 	
-	public void doExport(OutputStream out) throws Exception {
+	public void doExport(OutputStream out) throws IOException {
 		Workbook workbook = new HSSFWorkbook(); 
 		Sheet sheet = workbook.createSheet("data");
 		header(sheet,workbook);
@@ -53,11 +54,11 @@ public class ExcelExporter {
 			sheetCel.setCellValue(header.getContent());
 
 			CellStyle cellStyle = workbook.createCellStyle();
-			if (header.getAlign().equals("center"))
+			if ("center".equals(header.getAlign()))
 				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-			else if (header.getAlign().equals("left"))
+			else if ("left".equals(header.getAlign()))
 				cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
-			else if (header.getAlign().equals("right"))
+			else if ("right".equals(header.getAlign()))
 				cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
 			sheetCel.setCellStyle(cellStyle);
 
@@ -76,11 +77,11 @@ public class ExcelExporter {
 				sheetCel.setCellValue(column.getContent());
 
 				CellStyle cellStyle = workbook.createCellStyle();
-				if (column.getAlign().equals("center"))
+				if ("center".equals(column.getAlign()))
 					cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-				else if (column.getAlign().equals("left"))
+				else if ("left".equals(column.getAlign()))
 					cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
-				else if (column.getAlign().equals("right"))
+				else if ("right".equals(column.getAlign()))
 					cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
 				sheetCel.setCellStyle(cellStyle);
 				cell++;

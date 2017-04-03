@@ -22,6 +22,7 @@ public class Script extends Element {
 		return "script";
 	}
 	
+	@Override
 	public boolean forceCloseTagWithEmptyBody() {
 		return true;
 	}

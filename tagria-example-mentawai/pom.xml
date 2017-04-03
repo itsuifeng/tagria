@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.10</version>
+		<version>1.0.11</version>
 	</parent>
 
 	<artifactId>tagria-example-mentawai</artifactId>
@@ -42,13 +42,18 @@
 			<version>1.2.12</version>
 		</dependency>
 		<dependency>
+			<groupId>com.matthewcasperson</groupId>
+			<artifactId>parameter_validation_filter</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>

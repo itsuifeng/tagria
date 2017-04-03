@@ -1,1 +1,1 @@
-alert('import');
+//This is an imported js file

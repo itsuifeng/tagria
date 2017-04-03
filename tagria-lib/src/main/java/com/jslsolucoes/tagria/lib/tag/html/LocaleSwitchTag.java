@@ -33,7 +33,7 @@ public class LocaleSwitchTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 
-		Map<String, String> locales = new LinkedHashMap<String, String>();
+		Map<String, String> locales = new LinkedHashMap<>();
 		locales.put("en", "English");
 		locales.put("pt-BR", "Portugues (Brasil)");
 

@@ -31,7 +31,7 @@ public class ButtonGroupTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Div buttonGroup = new Div();
-		buttonGroup.add(Attribute.CLASS, (spaced ? "bs-button-group": "btn-group"));
+		buttonGroup.add(Attribute.CLASS, spaced ? "bs-button-group": "btn-group");
 		buttonGroup.add(TagUtil.getBody(getJspBody()));
 		TagUtil.out(getJspContext(), buttonGroup);
 	}

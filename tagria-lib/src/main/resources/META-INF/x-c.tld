@@ -31,6 +31,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<function-class>com.jslsolucoes.tagria.lib.tag.x.StringUtil</function-class>
 		<function-signature>java.lang.String join(java.util.Collection,java.lang.String)</function-signature>
 	</function>
+	<function>
+		<name>lineBreak</name>
+		<function-class>com.jslsolucoes.tagria.lib.tag.x.StringUtil</function-class>
+		<function-signature>java.lang.String lineBreak(java.lang.String)</function-signature>
+	</function>
 	
 	
 </taglib>

@@ -31,7 +31,7 @@ public class TooltipTag extends SimpleTagSupport {
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered){
+		if(rendered != null && rendered){
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add("$('#"+TagUtil.getId(attachTo, null)+"').popover({ content : '" +TagUtil.getBody(getJspBody()) +"',trigger : 'hover',html : true,placement : 'bottom',container : 'body' });");
