@@ -20,21 +20,35 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Span;
+import com.jslsolucoes.tagria.lib.html.P;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class SpanTag extends SimpleTagSupport {
-	
+public class MenuTextTag extends SimpleTagSupport {
+
+	private String align;
 	private String id;
-	private String name;
 	
 	@Override
-	public void doTag() throws JspException, IOException {
-		Span span = new Span();
-		span.add(Attribute.ID,TagUtil.getId(name,id));
-		span.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), span);
+	public void doTag() throws JspException, IOException {	
+			P p = new P();
+			p.add(Attribute.ID,TagUtil.getId(id));
+			p.add(Attribute.CLASS, "navbar-text");
+			if (!StringUtils.isEmpty(align)) {
+				p.add(Attribute.CLASS, "navbar-" + align);
+			}
+			p.add(TagUtil.getBody(getJspBody()));
+			TagUtil.out(getJspContext(), p);
+	}
+
+	public String getAlign() {
+		return align;
+	}
+
+	public void setAlign(String align) {
+		this.align = align;
 	}
 
 	public String getId() {
@@ -44,13 +58,4 @@ public class SpanTag extends SimpleTagSupport {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 }

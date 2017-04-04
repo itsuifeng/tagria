@@ -1139,13 +1139,19 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.SpanTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the component&#39;s id</description>
+			<description>Indicates the components id</description>
 			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>Indicates the component name</description>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
-			&lt;html:span&gt; texto &lt;/html:span&gt; </example>
+			&lt;html:span&gt; text &lt;/html:span&gt; </example>
 	</tag>
 
 	<tag>
@@ -1299,6 +1305,35 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 				&lt;/html:menuButton&gt;
 			&lt;/html:nav&gt; </example>
 	</tag>
+	
+	
+	<tag>
+		<description>Renders a text menu</description>
+		<display-name>Menu</display-name>
+		<name>menuText</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuTextTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the alignment of the text on the menu. Default: left. Options: left, right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id of p element</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		
+		<example>
+			&lt;html:nav&gt;
+				&lt;html:menuText align="right"&gt;
+					My text menu
+				&lt;/html:menuText&gt;
+			&lt;/html:nav&gt; </example>
+	</tag>
+	
 
 	<tag>
 		<description>Renders a dropdown menu with activation button on</description>
