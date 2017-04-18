@@ -20,37 +20,13 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-import com.jslsolucoes.tagria.lib.html.Attribute;
-import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class SpanTag extends SimpleTagSupport {
-	
-	private String id;
-	private String name;
-	
+public class AutoCompleteOnSelectTag extends SimpleTagSupport {
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		Span span = new Span();
-		span.add(Attribute.ID,TagUtil.getId(name,id));
-		span.add(TagUtil.getBody(getJspBody()));
-		TagUtil.out(getJspContext(), span);
+		AutoCompleteTag autoComplete = (AutoCompleteTag) findAncestorWithClass(this, AutoCompleteTag.class);
+		autoComplete.setOnSelect(TagUtil.getBody(getJspBody()));
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 }

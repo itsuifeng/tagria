@@ -32,8 +32,10 @@ public class AlertTag extends SimpleTagSupport {
 
 	private Boolean dismissible = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
+	private Boolean visible = Boolean.TRUE;
 	private String state;
 	private String label;
+	private String id;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -42,6 +44,12 @@ public class AlertTag extends SimpleTagSupport {
 			Div div = new Div();
 			div.add(Attribute.CLASS,"alert alert-"+state);
 			div.add(Attribute.ROLE,"alert");
+			div.add(Attribute.ID,TagUtil.getId(id));
+			
+			if(!visible){
+				div.add(Attribute.CLASS,"collapse");
+			}
+			
 			if(dismissible){
 				div.add(Attribute.CLASS,"alert-dismissible");
 				Button button = new Button();
@@ -102,5 +110,25 @@ public class AlertTag extends SimpleTagSupport {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public Boolean getVisible() {
+		return visible;
+	}
+
+
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
 	}
 }
