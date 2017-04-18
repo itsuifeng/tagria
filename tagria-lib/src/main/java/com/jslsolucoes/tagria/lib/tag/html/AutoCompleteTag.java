@@ -39,9 +39,12 @@ public class AutoCompleteTag extends SimpleTagSupport {
 	private String text;
 	private Boolean required = Boolean.FALSE;
 	private Integer minLength = 2;
+	private String onSelect;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
+		
+		TagUtil.getBody(getJspBody());
 		
 		Div div = new Div();
 		
@@ -80,9 +83,10 @@ public class AutoCompleteTag extends SimpleTagSupport {
 				    "	display : function (item) {													"+
 					"		return item."+dataText+";													"+
 					"	},"+
-					"	source : '" + TagUtil.getPathForUrl(getJspContext(), url) + "',		"+
+					"	source : '" + TagUtil.getPathForUrl(getJspContext(), url) + "',				"+
 					"	select: function( item ) {				 									"+
-					"       $('#"+hidden.get(Attribute.ID)+"').val(item."+dataValue+");																	"+
+					"       $('#"+hidden.get(Attribute.ID)+"').val(item."+dataValue+");				"+
+					 		(!StringUtils.isEmpty(onSelect) ? onSelect : "") +
 					"	}																			"+
 					"}).blur(function(){															"+
 					"	if($(this).val()==''){ $('#"+hidden.get(Attribute.ID)+"').val('') }         "+																																	
@@ -161,6 +165,14 @@ public class AutoCompleteTag extends SimpleTagSupport {
 
 	public void setRequired(Boolean required) {
 		this.required = required;
+	}
+
+	public String getOnSelect() {
+		return onSelect;
+	}
+
+	public void setOnSelect(String onSelect) {
+		this.onSelect = onSelect;
 	}
 
 	

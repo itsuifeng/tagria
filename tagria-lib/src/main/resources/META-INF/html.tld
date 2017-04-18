@@ -643,6 +643,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AlertTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>Indicates a label for the alert.</description>
 			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -664,6 +670,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>It indicates whether the component should be rendered. Default : true</description>
 			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be visible. Default : true</description>
+			<name>visible</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -2069,6 +2081,21 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:autoComplete name="autocomplete" url="/app/autoComplete" dataValue="id" dataText="nome"&gt;
 			
 			&lt;/html:autoComplete&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders an auto complete select trigger</description>
+		<display-name>Input</display-name>
+		<name>autoCompleteOnSelect</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.AutoCompleteOnSelectTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:autoComplete name="autocomplete" url="/app/autoComplete" dataValue="id" dataText="nome"&gt;
+				&lt;html:autoCompleteOnSelect&gt;
+					// select: function( item ) {  your block is render here  }
+				&lt;/html:autoCompleteOnSelect&gt;
+			&lt;/html:autoComplete&gt;
+		</example>
 	</tag>
 
 	<tag>
