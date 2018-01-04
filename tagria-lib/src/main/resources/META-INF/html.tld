@@ -260,6 +260,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description>It indicates a label for column content</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description>It indicates a format in which the value must be converted. Options: date, timestamp, hour, currency, zip code, cnpj, tel, cpf</description>
 			<name>format</name>
 			<rtexprvalue>true</rtexprvalue>
@@ -502,6 +508,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<name>icon</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
 			&lt;html:icon icon="cog" /&gt; </example>

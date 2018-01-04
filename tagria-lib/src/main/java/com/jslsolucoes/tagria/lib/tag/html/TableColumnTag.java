@@ -31,6 +31,7 @@ public class TableColumnTag extends SimpleTagSupport {
 	private Boolean header = Boolean.FALSE;
 	private Integer colspan;
 	private String format;
+	private String label;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -42,13 +43,15 @@ public class TableColumnTag extends SimpleTagSupport {
 			td.add(Attribute.COLSPAN,colspan);
 		}
 		
-		String body = TagUtil.getBody(getJspBody());
-		if (!StringUtils.isEmpty(format)) {
-			body = TagUtil.format(format, body,getJspContext());
+		if(!StringUtils.isEmpty(label)){
+			td.add(TagUtil.getLocalized(label,getJspContext()));
+		} else {
+			String body = TagUtil.getBody(getJspBody());
+			if (!StringUtils.isEmpty(format)) {
+				body = TagUtil.format(format, body,getJspContext());
+			}
+			td.add(body);
 		}
-		td.add(body);
-		
-		
 		TagUtil.out(getJspContext(), td);
 	}
 
@@ -74,6 +77,14 @@ public class TableColumnTag extends SimpleTagSupport {
 
 	public void setFormat(String format) {
 		this.format = format;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 }
