@@ -20,6 +20,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.H3;
@@ -35,7 +37,11 @@ public class PanelHeadTag extends SimpleTagSupport {
 		div.add(Attribute.CLASS,"panel-heading");
 		H3 h3 = new H3();
 		h3.add(Attribute.CLASS,"panel-title");
-		h3.add(TagUtil.getLocalized(label,getJspContext()));
+		if (!StringUtils.isEmpty(label)) {
+			h3.add(TagUtil.getLocalized(label,getJspContext()));
+		} else {
+			h3.add(TagUtil.getBody(getJspBody()));
+		}
 		div.add(h3);
 		TagUtil.out(getJspContext(), div);
 	}
