@@ -20,26 +20,22 @@ public class SyntaxHighLightTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Textarea textarea = new Textarea();
-		textarea.add(Attribute.NAME,name);
-		textarea.add(Attribute.ID,TagUtil.getId(name, null,this));
+		textarea.add(Attribute.NAME, name);
+		textarea.add(Attribute.ID, TagUtil.getId(name, null, this));
 		textarea.add(TagUtil.getBody(getJspBody()));
-		
-		if(required){
-			textarea.add(Attribute.CLASS,"bs-syntax-highlight-required");
+
+		if (required) {
+			textarea.add(Attribute.CLASS, "bs-syntax-highlight-required");
 		}
-		
+
 		TagUtil.out(getJspContext(), textarea);
-		
+
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
-		script.add("CodeMirror.fromTextArea(document.getElementById('"+textarea.get(Attribute.ID)+"'), {"+
-			    "mode: '"+language+"',"+
-			    "indentWithTabs: true,"+
-			    "smartIndent: true,"+
-			    "lineNumbers: true,"+
-			    "readOnly : "+(readOnly ? "'nocursor'" : "false")+","+
-			    "matchBrackets : true"+
-			 "}).on('change',function(cm){ $('#"+textarea.get(Attribute.ID)+"').val(cm.getValue());  });");
+		script.add("CodeMirror.fromTextArea(document.getElementById('" + textarea.get(Attribute.ID) + "'), {"
+				+ "mode: '" + language + "'," + "indentWithTabs: true," + "smartIndent: true," + "lineNumbers: true,"
+				+ "readOnly : " + (readOnly ? "'nocursor'" : "false") + "," + "matchBrackets : true"
+				+ "}).on('change',function(cm){ $('#" + textarea.get(Attribute.ID) + "').val(cm.getValue());  });");
 		TagUtil.out(getJspContext(), script);
 	}
 

@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.doc.controller;
 
 import java.util.ArrayList;
@@ -34,35 +20,35 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 
-@Controller 
+@Controller
 public class AppController {
-	
+
 	private Result result;
 	private PessoaRepository pessoaRepository;
 
 	public AppController() {
-		
+
 	}
-	
+
 	@Inject
-	public AppController(Result result,PessoaRepository pessoaRepository) {
+	public AppController(Result result, PessoaRepository pessoaRepository) {
 		this.result = result;
-		this.pessoaRepository = pessoaRepository;	
+		this.pessoaRepository = pessoaRepository;
 	}
-	
+
 	@Path("/")
-	public void index(){
-		
+	public void index() {
+
 	}
-	
+
 	@Path("/app/welcome")
-	public void welcome(){
-		
+	public void welcome() {
+
 	}
-	
+
 	@Path("/app/calendar")
-	public void calendar(){
-		
+	public void calendar() {
+
 		List<CalendarEvent> events = new ArrayList<CalendarEvent>();
 		CalendarEvent event1 = new CalendarEvent();
 		event1.setBeginIn(new Date());
@@ -70,45 +56,45 @@ public class AppController {
 		event1.setDescription("Evento com dia todo");
 		event1.setAllDay(true);
 		events.add(event1);
-		
+
 		CalendarEvent event2 = new CalendarEvent();
 		event2.setBeginIn(new Date());
 		event2.setEndAt(new DateTime().plusDays(2).toDate());
 		event2.setTitle("Titulo 2");
 		event2.setDescription("Evento com periodo");
 		events.add(event2);
-		
+
 		this.result.use(Results.json()).withoutRoot().from(events).serialize();
-		
+
 	}
-	
+
 	@Path("/app/ajax")
-	public void ajax(String input1){
-		this.result.use(Results.json()).from(input1,"field").serialize();
+	public void ajax(String input1) {
+		this.result.use(Results.json()).from(input1, "field").serialize();
 	}
-	
+
 	@Path("/app/ajax/list")
-	public void ajaxList(){
+	public void ajaxList() {
 		this.result.use(Results.json()).from(pessoaRepository.listAll()).serialize();
 	}
-	
+
 	@Path("/app/autoComplete")
-	public void autoComplete(){
+	public void autoComplete() {
 		this.result.use(Results.json()).from(pessoaRepository.listAll()).serialize();
 	}
-	
+
 	@Path("/app/treeView")
-	public void treeView(String id){
+	public void treeView(String id) {
 		List<TreeViewNode> nodes = new ArrayList<TreeViewNode>();
-		for(Pessoa pessoa : pessoaRepository.listAll()){
+		for (Pessoa pessoa : pessoaRepository.listAll()) {
 			TreeViewNode node = new TreeViewNode();
 			node.setText(pessoa.getNome());
 			node.setId(RandomStringUtils.randomAlphanumeric(15));
-			if(pessoa.getId() % 2 == 0)
-			 node.setChildren(true);
+			if (pessoa.getId() % 2 == 0)
+				node.setChildren(true);
 			nodes.add(node);
 		}
 		this.result.use(Results.json()).withoutRoot().from(nodes).serialize();
 	}
-	
+
 }

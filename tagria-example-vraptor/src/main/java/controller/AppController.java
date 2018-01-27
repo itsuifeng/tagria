@@ -6,9 +6,8 @@ import br.com.caelum.vraptor.Path;
 @Controller
 @Path("app")
 public class AppController {
-	
 
-	public void welcome(){
-		
+	public void welcome() {
+
 	}
 }

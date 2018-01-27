@@ -1351,13 +1351,7 @@
 		return strictParse(timeFormat, timeString, o);
 	};
 
-	/**
-	 * Public utility to format the time
-	 * @param {string} format format of the time
-	 * @param {Object} time Object not a Date for timezones
-	 * @param {Object} [options] essentially the regional[].. amNames, pmNames, ampm
-	 * @returns {string} the formatted time
-	 */
+	
 	$.datepicker.formatTime = function (format, time, options) {
 		options = options || {};
 		options = $.extend({}, $.timepicker._defaults, options);
@@ -1742,13 +1736,7 @@
 				currDT = tp_inst.$input.val() + ' ' + tp_inst.$altInput.val();
 			}
 			else if (tp_inst.$input.get(0).tagName !== 'INPUT' && tp_inst.$altInput) {
-				/**
-				 * in case the datetimepicker has been applied to a non-input tag for inline UI,
-				 * and the user has not configured the plugin to display only time in altInput,
-				 * pick current date time from the altInput (and hope for the best, for now, until "ER1" is applied)
-				 *
-				 * @todo ER1. Since altInput can have a totally difference format, convert it to standard format by reading input format from "altFormat" and "altTimeFormat" option values
-				 */
+				
 				currDT = tp_inst.$altInput.val();
 			}
 			else {
@@ -2049,12 +2037,7 @@
 	*/
 	$.timepicker = new Timepicker();
 
-	/**
-	 * Get the timezone offset as string from a date object (eg '+0530' for UTC+5.5)
-	 * @param {number} tzMinutes if not a number, less than -720 (-1200), or greater than 840 (+1400) this value is returned
-	 * @param {boolean} iso8601 if true formats in accordance to iso8601 "+12:45"
-	 * @return {string}
-	 */
+	
 	$.timepicker.timezoneOffsetString = function (tzMinutes, iso8601) {
 		if (isNaN(tzMinutes) || tzMinutes > 840 || tzMinutes < -720) {
 			return tzMinutes;
@@ -2072,11 +2055,7 @@
 		return tz;
 	};
 
-	/**
-	 * Get the number in minutes that represents a timezone string
-	 * @param  {string} tzString formatted like "+0500", "-1245", "Z"
-	 * @return {number} the offset minutes or the original string if it doesn't match expectations
-	 */
+	
 	$.timepicker.timezoneOffsetNumber = function (tzString) {
 		var normalized = tzString.toString().replace(':', ''); // excuse any iso8601, end up with "+1245"
 
@@ -2093,13 +2072,7 @@
 					parseInt(normalized.substr(3, 2), 10))); // minutes
 	};
 
-	/**
-	 * No way to set timezone in js Date, so we must adjust the minutes to compensate. (think setDate, getDate)
-	 * @param  {Date} date
-	 * @param  {string} fromTimezone formatted like "+0500", "-1245"
-	 * @param  {string} toTimezone formatted like "+0500", "-1245"
-	 * @return {Date}
-	 */
+	
 	$.timepicker.timezoneAdjust = function (date, fromTimezone, toTimezone) {
 		var fromTz = $.timepicker.timezoneOffsetNumber(fromTimezone);
 		var toTz = $.timepicker.timezoneOffsetNumber(toTimezone);
@@ -2109,56 +2082,22 @@
 		return date;
 	};
 
-	/**
-	 * Calls `timepicker()` on the `startTime` and `endTime` elements, and configures them to
-	 * enforce date range limits.
-	 * n.b. The input value must be correctly formatted (reformatting is not supported)
-	 * @param  {Element} startTime
-	 * @param  {Element} endTime
-	 * @param  {Object} options Options for the timepicker() call
-	 * @return {jQuery}
-	 */
+	
 	$.timepicker.timeRange = function (startTime, endTime, options) {
 		return $.timepicker.handleRange('timepicker', startTime, endTime, options);
 	};
 
-	/**
-	 * Calls `datetimepicker` on the `startTime` and `endTime` elements, and configures them to
-	 * enforce date range limits.
-	 * @param  {Element} startTime
-	 * @param  {Element} endTime
-	 * @param  {Object} options Options for the `timepicker()` call. Also supports `reformat`,
-	 *   a boolean value that can be used to reformat the input values to the `dateFormat`.
-	 * @param  {string} method Can be used to specify the type of picker to be added
-	 * @return {jQuery}
-	 */
+	
 	$.timepicker.datetimeRange = function (startTime, endTime, options) {
 		$.timepicker.handleRange('datetimepicker', startTime, endTime, options);
 	};
 
-	/**
-	 * Calls `datepicker` on the `startTime` and `endTime` elements, and configures them to
-	 * enforce date range limits.
-	 * @param  {Element} startTime
-	 * @param  {Element} endTime
-	 * @param  {Object} options Options for the `timepicker()` call. Also supports `reformat`,
-	 *   a boolean value that can be used to reformat the input values to the `dateFormat`.
-	 * @return {jQuery}
-	 */
+	
 	$.timepicker.dateRange = function (startTime, endTime, options) {
 		$.timepicker.handleRange('datepicker', startTime, endTime, options);
 	};
 
-	/**
-	 * Calls `method` on the `startTime` and `endTime` elements, and configures them to
-	 * enforce date range limits.
-	 * @param  {string} method Can be used to specify the type of picker to be added
-	 * @param  {Element} startTime
-	 * @param  {Element} endTime
-	 * @param  {Object} options Options for the `timepicker()` call. Also supports `reformat`,
-	 *   a boolean value that can be used to reformat the input values to the `dateFormat`.
-	 * @return {jQuery}
-	 */
+	
 	$.timepicker.handleRange = function (method, startTime, endTime, options) {
 		options = $.extend({}, {
 			minInterval: 0, // min allowed interval in milliseconds
@@ -2244,11 +2183,7 @@
 		return $([startTime.get(0), endTime.get(0)]);
 	};
 
-	/**
-	 * Log error or data to the console during error or debugging
-	 * @param  {Object} err pass any type object to log to the console during error or debugging
-	 * @return {void}
-	 */
+	
 	$.timepicker.log = function () {
 		// Older IE (9, maybe 10) throw error on accessing `window.console.log.apply`, so check first.
 		if (window.console && window.console.log && window.console.log.apply) {

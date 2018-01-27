@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.compressor;
 
 import java.io.File;
@@ -41,7 +27,6 @@ import com.jslsolucoes.tagria.lib.error.TagriaRuntimeException;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 import com.yahoo.platform.yui.compressor.CssCompressor;
 
-
 public class Compressor {
 
 	private static final String THEME = "theme";
@@ -67,8 +52,8 @@ public class Compressor {
 				"jquery/ui/jquery.ui.treeview.js", "jquery/ui/jquery.ui.tabs.js",
 				"jquery/ui/jquery.ui.treeview.widget.js", "jquery/ui/jquery.ui.time.picker.js",
 				"jquery/ui/jquery.ui.input.currency.mask.js", "jquery/ui/jquery.ui.wave.js",
-				"jquery/ui/jquery.ui.chart.js","jquery/ui/jquery.ui.syntax.highlight.js"
-				,"jquery/ui/jquery.ui.syntax.highlight.sql.js"};
+				"jquery/ui/jquery.ui.chart.js", "jquery/ui/jquery.ui.syntax.highlight.js",
+				"jquery/ui/jquery.ui.syntax.highlight.sql.js" };
 
 		List<String> contents = new ArrayList<>();
 		for (String file : files) {
@@ -92,25 +77,25 @@ public class Compressor {
 	}
 
 	private void copyFileToDirectory(String resource) throws IOException {
-		
+
 		File root = new File(new File(source, resource), THEME);
-		
+
 		for (String theme : themes) {
 			File themeFolder = new File(root, theme);
-			if(!themeFolder.exists()){
+			if (!themeFolder.exists()) {
 				themeFolder.mkdir();
 			}
-			Stream.concat(Arrays.asList(new File(root, "base").listFiles())
-			.stream(),Arrays.asList(themeFolder.listFiles()).stream())
-			.forEach(file -> {
-				try {
-					FileUtils.copyFileToDirectory(file, new File(new File(new File(destination, resource), THEME),theme));
-				} catch(Exception exception){
-					throw new TagriaRuntimeException(exception);
-				}
-			});
+			Stream.concat(Arrays.asList(new File(root, "base").listFiles()).stream(),
+					Arrays.asList(themeFolder.listFiles()).stream()).forEach(file -> {
+						try {
+							FileUtils.copyFileToDirectory(file,
+									new File(new File(new File(destination, resource), THEME), theme));
+						} catch (Exception exception) {
+							throw new TagriaRuntimeException(exception);
+						}
+					});
 		}
-		
+
 	}
 
 	public void compressFonts() throws IOException {
@@ -126,29 +111,29 @@ public class Compressor {
 	public void compressCss() throws IOException {
 
 		File root = new File(new File(source, "css"), THEME);
-		
+
 		for (String theme : themes) {
-			
+
 			String[] files = new String[] { "tagria.bootstrap.css", "tagria.bootstrap.extension.css",
 					"tagria.common.css", "tagria.font.awesome.css", "tagria.fullcalendar.css", "tagria.jquery.ui.css",
 					"tagria.jquery.ui.theme.css", "tagria.jquery.ui.treeview.css", "tagria.jquery.ui.timepicker.css",
-					"tagria.jquery.ui.wave.css", "tagria.jquery.ui.loading.css", "tagria.jquery.ui.card.css", "tagria.jquery.syntax.highlight.css" };
-			
-			String content = StringUtils.join(Stream.concat(Arrays
-			.asList(files)
-			.stream()
-			.map(file -> new File(new File(root, "base"), file)), Arrays.asList(new File(root, theme).listFiles())
-			.stream()).map(file -> normalizeCssFile(file, theme))
-			.collect(Collectors.toList()),"\n");
-			
-			FileUtils.writeStringToFile(new File(new File(new File(new File(destination, "css"), THEME), theme), "tagria-ui.css")
-					, compress ? minifyCss(content) : content, CHARSET);
-			logger.info("CSS THEME %s COMPRESSED",theme);
+					"tagria.jquery.ui.wave.css", "tagria.jquery.ui.loading.css", "tagria.jquery.ui.card.css",
+					"tagria.jquery.syntax.highlight.css" };
+
+			String content = StringUtils.join(Stream
+					.concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),
+							Arrays.asList(new File(root, theme).listFiles()).stream())
+					.map(file -> normalizeCssFile(file, theme)).collect(Collectors.toList()), "\n");
+
+			FileUtils.writeStringToFile(
+					new File(new File(new File(new File(destination, "css"), THEME), theme), "tagria-ui.css"),
+					compress ? minifyCss(content) : content, CHARSET);
+			logger.info("CSS THEME %s COMPRESSED", theme);
 		}
 	}
 
 	private String minifyCss(String code) throws IOException {
-		try (StringWriter minified = new StringWriter()){
+		try (StringWriter minified = new StringWriter()) {
 			CssCompressor cssCompressor = new CssCompressor(new StringReader(code));
 			cssCompressor.compress(minified, -1);
 			return minified.toString();
@@ -156,24 +141,24 @@ public class Compressor {
 	}
 
 	private String normalizeCssFile(File cssFile, String theme) {
-			try {
-				String normalized = FileUtils.readFileToString(cssFile, CHARSET).replaceAll("\\$\\{theme\\}", theme);
-				Set<String> extensions = new HashSet<>();
-				extensions.add("png");
-				extensions.add("gif");
-				extensions.add("eot");
-				extensions.add("svg");
-				extensions.add("ttf");
-				extensions.add("woff");
-				extensions.add("woff2");
-				extensions.add("otf");
-				for (String extension : extensions) {
-					normalized = normalized.replaceAll("\\." + extension + "('|\")",
-							"." + extension + "?ver=" + TagUtil.VERSION + "$1");
-				}
-				return normalized;
-			} catch (IOException exception) {
-				throw new TagriaRuntimeException(exception);
+		try {
+			String normalized = FileUtils.readFileToString(cssFile, CHARSET).replaceAll("\\$\\{theme\\}", theme);
+			Set<String> extensions = new HashSet<>();
+			extensions.add("png");
+			extensions.add("gif");
+			extensions.add("eot");
+			extensions.add("svg");
+			extensions.add("ttf");
+			extensions.add("woff");
+			extensions.add("woff2");
+			extensions.add("otf");
+			for (String extension : extensions) {
+				normalized = normalized.replaceAll("\\." + extension + "('|\")",
+						"." + extension + "?ver=" + TagUtil.VERSION + "$1");
 			}
+			return normalized;
+		} catch (IOException exception) {
+			throw new TagriaRuntimeException(exception);
+		}
 	}
 }

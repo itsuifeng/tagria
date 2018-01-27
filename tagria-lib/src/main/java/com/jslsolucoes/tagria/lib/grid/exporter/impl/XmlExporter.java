@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.grid.exporter.impl;
 
 import java.io.ByteArrayInputStream;
@@ -32,11 +18,12 @@ public class XmlExporter {
 	public XmlExporter(Table table) {
 		this.table = table;
 	}
-	public void doExport(OutputStream outputStream) throws IOException  {
+
+	public void doExport(OutputStream outputStream) throws IOException {
 		IOUtils.copy(new ByteArrayInputStream(export()), outputStream);
 	}
-	
-	private byte[] export(){
+
+	private byte[] export() {
 		StringBuilder xml = new StringBuilder();
 		init(xml);
 		start(xml);
@@ -46,7 +33,7 @@ public class XmlExporter {
 		end(xml);
 		return xml.toString().getBytes();
 	}
-	
+
 	private void header(StringBuilder xml) {
 		xml.append("<header>");
 		for (Header header : table.getHeaders()) {
@@ -56,7 +43,7 @@ public class XmlExporter {
 		}
 		xml.append("</header>");
 	}
-	
+
 	private void body(StringBuilder xml) {
 		xml.append("<body>");
 		for (Row row : table.getRows()) {

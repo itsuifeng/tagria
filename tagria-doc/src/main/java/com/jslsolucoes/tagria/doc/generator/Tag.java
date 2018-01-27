@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.doc.generator;
 
 import java.util.List;
@@ -26,20 +12,20 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 public class Tag {
 
 	private String name;
-	
+
 	private String description;
-	
+
 	@XStreamAlias("display-name")
 	private String group;
-	
+
 	private String example;
-	
+
 	@XStreamAlias("tag-class")
 	private String tagClass;
-	
+
 	@XStreamAlias("body-content")
 	private String bodyContent;
-	
+
 	@XStreamImplicit
 	private List<Attribute> attributes;
 
@@ -90,10 +76,11 @@ public class Tag {
 	public void setExample(String example) {
 		this.example = example;
 	}
-	
+
 	public String getExampleEscaped() {
-		if(StringUtils.isEmpty(example)) return "";
-		return example.replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\\$","\\\\\\$");
+		if (StringUtils.isEmpty(example))
+			return "";
+		return example.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\\$", "\\\\\\$");
 	}
 
 	public String getGroup() {

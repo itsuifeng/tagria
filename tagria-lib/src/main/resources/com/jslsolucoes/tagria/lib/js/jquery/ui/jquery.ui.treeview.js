@@ -30,9 +30,7 @@
 	if($.jstree) {
 	}
 
-	/**
-	 * ### jsTree core functionality
-	 */
+	
 
 	// internal variables
 	var instance_counter = 0,
@@ -61,43 +59,22 @@
 	_temp1 = _temp2 = null;
 
 
-	/**
-	 * holds all jstree related functions and variables, including the actual class and methods to create, access and manipulate instances.
-	 * @name $.jstree
-	 */
+	
 	$.jstree = {
-		/**
-		 * specifies the jstree version in use
-		 * @name $.jstree.version
-		 */
+		
 		version : '3.2.0',
-		/**
-		 * holds all the default options used when creating new instances
-		 * @name $.jstree.defaults
-		 */
+		
 		defaults : {
-			/**
-			 * configure which plugins will be active on an instance. Should be an array of strings, where each element is a plugin name. The default is `[]`
-			 * @name $.jstree.defaults.plugins
-			 */
+			
 			plugins : []
 		},
-		/**
-		 * stores all loaded jstree plugins (used internally)
-		 * @name $.jstree.plugins
-		 */
+		
 		plugins : {},
 		path : src && src.indexOf('/') !== -1 ? src.replace(/\/[^\/]+$/,'') : '',
 		idregex : /[\\:&!^|()\[\]<>@*'+~#";.,=\- \/${}%?`]/g,
 		root : '#'
 	};
-	/**
-	 * creates a jstree instance
-	 * @name $.jstree.create(el [, options])
-	 * @param {DOMElement|jQuery|String} el the element to create the instance on, can be jQuery extended or a selector
-	 * @param {Object} options options for this instance (extends `$.jstree.defaults`)
-	 * @return {jsTree} the new instance
-	 */
+	
 	$.jstree.create = function (el, options) {
 		var tmp = new $.jstree.core(++instance_counter),
 			opt = options;
@@ -114,20 +91,12 @@
 		tmp.init(el, options);
 		return tmp;
 	};
-	/**
-	 * remove all traces of jstree from the DOM and destroy all instances
-	 * @name $.jstree.destroy()
-	 */
+	
 	$.jstree.destroy = function () {
 		$('.jstree:jstree').jstree('destroy');
 		$(document).off('.jstree');
 	};
-	/**
-	 * the jstree class constructor, used only internally
-	 * @private
-	 * @name $.jstree.core(id)
-	 * @param {Number} id this instance's index
-	 */
+	
 	$.jstree.core = function (id) {
 		this._id = id;
 		this._cnt = 0;
@@ -147,26 +116,7 @@
 			}
 		};
 	};
-	/**
-	 * get a reference to an existing instance
-	 *
-	 * __Examples__
-	 *
-	 *	// provided a container with an ID of "tree", and a nested node with an ID of "branch"
-	 *	// all of there will return the same instance
-	 *	$.jstree.reference('tree');
-	 *	$.jstree.reference('#tree');
-	 *	$.jstree.reference($('#tree'));
-	 *	$.jstree.reference(document.getElementByID('tree'));
-	 *	$.jstree.reference('branch');
-	 *	$.jstree.reference('#branch');
-	 *	$.jstree.reference($('#branch'));
-	 *	$.jstree.reference(document.getElementByID('branch'));
-	 *
-	 * @name $.jstree.reference(needle)
-	 * @param {DOMElement|jQuery|String} needle
-	 * @return {jsTree|null} the instance or `null` if not found
-	 */
+	
 	$.jstree.reference = function (needle) {
 		var tmp = null,
 			obj = null;
@@ -192,30 +142,7 @@
 		}
 		return tmp;
 	};
-	/**
-	 * Create an instance, get an instance or invoke a command on a instance.
-	 *
-	 * If there is no instance associated with the current node a new one is created and `arg` is used to extend `$.jstree.defaults` for this new instance. There would be no return value (chaining is not broken).
-	 *
-	 * If there is an existing instance and `arg` is a string the command specified by `arg` is executed on the instance, with any additional arguments passed to the function. If the function returns a value it will be returned (chaining could break depending on function).
-	 *
-	 * If there is an existing instance and `arg` is not a string the instance itself is returned (similar to `$.jstree.reference`).
-	 *
-	 * In any other case - nothing is returned and chaining is not broken.
-	 *
-	 * __Examples__
-	 *
-	 *	$('#tree1').jstree(); // creates an instance
-	 *	$('#tree2').jstree({ plugins : [] }); // create an instance with some options
-	 *	$('#tree1').jstree('open_node', '#branch_1'); // call a method on an existing instance, passing additional arguments
-	 *	$('#tree2').jstree(); // get an existing instance (or create an instance)
-	 *	$('#tree2').jstree(true); // get an existing instance (will not create new instance)
-	 *	$('#branch_1').jstree().select_node('#branch_1'); // get an instance (using a nested element and call a method)
-	 *
-	 * @name $().jstree([arg])
-	 * @param {String|Object} arg
-	 * @return {Mixed}
-	 */
+	
 	$.fn.jstree = function (arg) {
 		// check for string argument
 		var is_method	= (typeof arg === 'string'),
@@ -247,18 +174,7 @@
 		return result !== null && result !== undefined ?
 			result : this;
 	};
-	/**
-	 * used to find elements containing an instance
-	 *
-	 * __Examples__
-	 *
-	 *	$('div:jstree').each(function () {
-	 *		$(this).jstree('destroy');
-	 *	});
-	 *
-	 * @name $(':jstree')
-	 * @return {jQuery}
-	 */
+	
 	$.expr[':'].jstree = $.expr.createPseudo(function(search) {
 		return function(a) {
 			return $(a).hasClass('jstree') &&
@@ -266,192 +182,50 @@
 		};
 	});
 
-	/**
-	 * stores all defaults for the core
-	 * @name $.jstree.defaults.core
-	 */
+	
 	$.jstree.defaults.core = {
-		/**
-		 * data configuration
-		 *
-		 * If left as `false` the HTML inside the jstree container element is used to populate the tree (that should be an unordered list with list items).
-		 *
-		 * You can also pass in a HTML string or a JSON array here.
-		 *
-		 * It is possible to pass in a standard jQuery-like AJAX config and jstree will automatically determine if the response is JSON or HTML and use that to populate the tree.
-		 * In addition to the standard jQuery ajax options here you can suppy functions for `data` and `url`, the functions will be run in the current instance's scope and a param will be passed indicating which node is being loaded, the return value of those functions will be used.
-		 *
-		 * The last option is to specify a function, that function will receive the node being loaded as argument and a second param which is a function which should be called with the result.
-		 *
-		 * __Examples__
-		 *
-		 *	// AJAX
-		 *	$('#tree').jstree({
-		 *		'core' : {
-		 *			'data' : {
-		 *				'url' : '/get/children/',
-		 *				'data' : function (node) {
-		 *					return { 'id' : node.id };
-		 *				}
-		 *			}
-		 *		});
-		 *
-		 *	// direct data
-		 *	$('#tree').jstree({
-		 *		'core' : {
-		 *			'data' : [
-		 *				'Simple root node',
-		 *				{
-		 *					'id' : 'node_2',
-		 *					'text' : 'Root node with options',
-		 *					'state' : { 'opened' : true, 'selected' : true },
-		 *					'children' : [ { 'text' : 'Child 1' }, 'Child 2']
-		 *				}
-		 *			]
-		 *		});
-		 *
-		 *	// function
-		 *	$('#tree').jstree({
-		 *		'core' : {
-		 *			'data' : function (obj, callback) {
-		 *				callback.call(this, ['Root 1', 'Root 2']);
-		 *			}
-		 *		});
-		 *
-		 * @name $.jstree.defaults.core.data
-		 */
+		
 		data			: false,
-		/**
-		 * configure the various strings used throughout the tree
-		 *
-		 * You can use an object where the key is the string you need to replace and the value is your replacement.
-		 * Another option is to specify a function which will be called with an argument of the needed string and should return the replacement.
-		 * If left as `false` no replacement is made.
-		 *
-		 * __Examples__
-		 *
-		 *	$('#tree').jstree({
-		 *		'core' : {
-		 *			'strings' : {
-		 *				'Loading ...' : 'Please wait ...'
-		 *			}
-		 *		}
-		 *	});
-		 *
-		 * @name $.jstree.defaults.core.strings
-		 */
+		
 		strings			: false,
-		/**
-		 * determines what happens when a user tries to modify the structure of the tree
-		 * If left as `false` all operations like create, rename, delete, move or copy are prevented.
-		 * You can set this to `true` to allow all interactions or use a function to have better control.
-		 *
-		 * __Examples__
-		 *
-		 *	$('#tree').jstree({
-		 *		'core' : {
-		 *			'check_callback' : function (operation, node, node_parent, node_position, more) {
-		 *				// operation can be 'create_node', 'rename_node', 'delete_node', 'move_node' or 'copy_node'
-		 *				// in case of 'rename_node' node_position is filled with the new node name
-		 *				return operation === 'rename_node' ? true : false;
-		 *			}
-		 *		}
-		 *	});
-		 *
-		 * @name $.jstree.defaults.core.check_callback
-		 */
+		
 		check_callback	: false,
-		/**
-		 * a callback called with a single object parameter in the instance's scope when something goes wrong (operation prevented, ajax failed, etc)
-		 * @name $.jstree.defaults.core.error
-		 */
+		
 		error			: $.noop,
-		/**
-		 * the open / close animation duration in milliseconds - set this to `false` to disable the animation (default is `200`)
-		 * @name $.jstree.defaults.core.animation
-		 */
+		
 		animation		: 200,
-		/**
-		 * a boolean indicating if multiple nodes can be selected
-		 * @name $.jstree.defaults.core.multiple
-		 */
+		
 		multiple		: true,
-		/**
-		 * theme configuration object
-		 * @name $.jstree.defaults.core.themes
-		 */
+		
 		themes			: {
-			/**
-			 * the name of the theme to use (if left as `false` the default theme is used)
-			 * @name $.jstree.defaults.core.themes.name
-			 */
+			
 			name			: false,
-			/**
-			 * the URL of the theme's CSS file, leave this as `false` if you have manually included the theme CSS (recommended). You can set this to `true` too which will try to autoload the theme.
-			 * @name $.jstree.defaults.core.themes.url
-			 */
+			
 			url				: false,
-			/**
-			 * the location of all jstree themes - only used if `url` is set to `true`
-			 * @name $.jstree.defaults.core.themes.dir
-			 */
+			
 			dir				: false,
-			/**
-			 * a boolean indicating if connecting dots are shown
-			 * @name $.jstree.defaults.core.themes.dots
-			 */
+			
 			dots			: true,
-			/**
-			 * a boolean indicating if node icons are shown
-			 * @name $.jstree.defaults.core.themes.icons
-			 */
+			
 			icons			: true,
-			/**
-			 * a boolean indicating if the tree background is striped
-			 * @name $.jstree.defaults.core.themes.stripes
-			 */
+			
 			stripes			: false,
-			/**
-			 * a string (or boolean `false`) specifying the theme variant to use (if the theme supports variants)
-			 * @name $.jstree.defaults.core.themes.variant
-			 */
+			
 			variant			: false,
-			/**
-			 * a boolean specifying if a reponsive version of the theme should kick in on smaller screens (if the theme supports it). Defaults to `false`.
-			 * @name $.jstree.defaults.core.themes.responsive
-			 */
+			
 			responsive		: false
 		},
-		/**
-		 * if left as `true` all parents of all selected nodes will be opened once the tree loads (so that all selected nodes are visible to the user)
-		 * @name $.jstree.defaults.core.expand_selected_onload
-		 */
+		
 		expand_selected_onload : true,
-		/**
-		 * if left as `true` web workers will be used to parse incoming JSON data where possible, so that the UI will not be blocked by large requests. Workers are however about 30% slower. Defaults to `true`
-		 * @name $.jstree.defaults.core.worker
-		 */
+		
 		worker : true,
-		/**
-		 * Force node text to plain text (and escape HTML). Defaults to `false`
-		 * @name $.jstree.defaults.core.force_text
-		 */
+		
 		force_text : false,
-		/**
-		 * Should the node should be toggled if the text is double clicked . Defaults to `true`
-		 * @name $.jstree.defaults.core.dblclick_toggle
-		 */
+		
 		dblclick_toggle : true
 	};
 	$.jstree.core.prototype = {
-		/**
-		 * used to decorate an instance with a plugin. Used internally.
-		 * @private
-		 * @name plugin(deco [, opts])
-		 * @param  {String} deco the plugin to decorate with
-		 * @param  {Object} opts options for the plugin
-		 * @return {jsTree}
-		 */
+		
 		plugin : function (deco, opts) {
 			var Child = $.jstree.plugins[deco];
 			if(Child) {
@@ -461,14 +235,7 @@
 			}
 			return this;
 		},
-		/**
-		 * initialize the instance. Used internally.
-		 * @private
-		 * @name init(el, optons)
-		 * @param {DOMElement|jQuery|String} el the element we are transforming
-		 * @param {Object} options options for this instance
-		 * @trigger init.jstree, loading.jstree, loaded.jstree, ready.jstree, changed.jstree
-		 */
+		
 		init : function (el, options) {
 			this._model = {
 				data : {},
@@ -507,11 +274,7 @@
 			}
 
 			this.bind();
-			/**
-			 * triggered after all events are bound
-			 * @event
-			 * @name init.jstree
-			 */
+			
 			this.trigger("init");
 
 			this._data.core.original_container_html = this.element.find(" > ul > li").clone(true);
@@ -524,19 +287,11 @@
 			this.element.html("<"+"ul class='jstree-container-ul jstree-children' role='group'><"+"li id='j"+this._id+"_loading' class='jstree-initial-node jstree-loading jstree-leaf jstree-last' role='tree-item'><i class='jstree-icon jstree-ocl'></i><"+"a class='jstree-anchor' href='#'><i class='jstree-icon jstree-themeicon-hidden'></i>" + this.get_string("Loading ...") + "</a></li></ul>");
 			this.element.attr('aria-activedescendant','j' + this._id + '_loading');
 			this._data.core.li_height = this.get_container_ul().children("li").first().height() || 24;
-			/**
-			 * triggered after the loading text is shown and before loading starts
-			 * @event
-			 * @name loading.jstree
-			 */
+			
 			this.trigger("loading");
 			this.load_node($.jstree.root);
 		},
-		/**
-		 * destroy an instance
-		 * @name destroy()
-		 * @param  {Boolean} keep_html if not set to `true` the container will be emptied, otherwise the current DOM elements will be kept intact
-		 */
+		
 		destroy : function (keep_html) {
 			if(this._wrk) {
 				try {
@@ -548,11 +303,7 @@
 			if(!keep_html) { this.element.empty(); }
 			this.teardown();
 		},
-		/**
-		 * part of the destroying of an instance. Used internally.
-		 * @private
-		 * @name teardown()
-		 */
+		
 		teardown : function () {
 			this.unbind();
 			this.element
@@ -563,11 +314,7 @@
 					.attr("class", function () { return this.className.replace(/jstree[^ ]*|$/ig,''); });
 			this.element = null;
 		},
-		/**
-		 * bind all events. Used internally.
-		 * @private
-		 * @name bind()
-		 */
+		
 		bind : function () {
 			var word = '',
 				tout = null,
@@ -703,11 +450,7 @@
 								if(this._firstChild(this.get_container_ul()[0])) {
 									this.element.attr('aria-activedescendant',this._firstChild(this.get_container_ul()[0]).id);
 								}
-								/**
-								 * triggered after the root node is loaded for the first time
-								 * @event
-								 * @name loaded.jstree
-								 */
+								
 								this.trigger("loaded");
 							}
 							if(!this._data.core.ready) {
@@ -727,11 +470,7 @@
 											}
 											this.trigger('changed', { 'action' : 'ready', 'selected' : this._data.core.selected });
 										}
-										/**
-										 * triggered after all nodes are finished loading
-										 * @event
-										 * @name ready.jstree
-										 */
+										
 										this.trigger("ready");
 									}
 								}, this), 0);
@@ -840,22 +579,12 @@
 						this.dehover_node(e.currentTarget);
 					}, this));
 		},
-		/**
-		 * part of the destroying of an instance. Used internally.
-		 * @private
-		 * @name unbind()
-		 */
+		
 		unbind : function () {
 			this.element.off('.jstree');
 			$(document).off('.jstree-' + this._id);
 		},
-		/**
-		 * trigger an event. Used internally.
-		 * @private
-		 * @name trigger(ev [, data])
-		 * @param  {String} ev the name of the event to trigger
-		 * @param  {Object} data additional data to pass with the event
-		 */
+		
 		trigger : function (ev, data) {
 			if(!data) {
 				data = {};
@@ -863,43 +592,22 @@
 			data.instance = this;
 			this.element.triggerHandler(ev.replace('.jstree','') + '.jstree', data);
 		},
-		/**
-		 * returns the jQuery extended instance container
-		 * @name get_container()
-		 * @return {jQuery}
-		 */
+		
 		get_container : function () {
 			return this.element;
 		},
-		/**
-		 * returns the jQuery extended main UL node inside the instance container. Used internally.
-		 * @private
-		 * @name get_container_ul()
-		 * @return {jQuery}
-		 */
+		
 		get_container_ul : function () {
 			return this.element.children(".jstree-children").first();
 		},
-		/**
-		 * gets string replacements (localization). Used internally.
-		 * @private
-		 * @name get_string(key)
-		 * @param  {String} key
-		 * @return {String}
-		 */
+		
 		get_string : function (key) {
 			var a = this.settings.core.strings;
 			if($.isFunction(a)) { return a.call(this, key); }
 			if(a && a[key]) { return a[key]; }
 			return key;
 		},
-		/**
-		 * gets the first child of a DOM node. Used internally.
-		 * @private
-		 * @name _firstChild(dom)
-		 * @param  {DOMElement} dom
-		 * @return {DOMElement}
-		 */
+		
 		_firstChild : function (dom) {
 			dom = dom ? dom.firstChild : null;
 			while(dom !== null && dom.nodeType !== 1) {
@@ -907,13 +615,7 @@
 			}
 			return dom;
 		},
-		/**
-		 * gets the next sibling of a DOM node. Used internally.
-		 * @private
-		 * @name _nextSibling(dom)
-		 * @param  {DOMElement} dom
-		 * @return {DOMElement}
-		 */
+		
 		_nextSibling : function (dom) {
 			dom = dom ? dom.nextSibling : null;
 			while(dom !== null && dom.nodeType !== 1) {
@@ -921,13 +623,7 @@
 			}
 			return dom;
 		},
-		/**
-		 * gets the previous sibling of a DOM node. Used internally.
-		 * @private
-		 * @name _previousSibling(dom)
-		 * @param  {DOMElement} dom
-		 * @return {DOMElement}
-		 */
+		
 		_previousSibling : function (dom) {
 			dom = dom ? dom.previousSibling : null;
 			while(dom !== null && dom.nodeType !== 1) {
@@ -935,13 +631,7 @@
 			}
 			return dom;
 		},
-		/**
-		 * get the JSON representation of a node (or the actual jQuery extended DOM node) by using any input (child DOM element, ID string, selector, etc)
-		 * @name get_node(obj [, as_dom])
-		 * @param  {mixed} obj
-		 * @param  {Boolean} as_dom
-		 * @return {Object|jQuery}
-		 */
+		
 		get_node : function (obj, as_dom) {
 			if(obj && obj.id) {
 				obj = obj.id;
@@ -973,14 +663,7 @@
 				return obj;
 			} catch (ex) { return false; }
 		},
-		/**
-		 * get the path to a node, either consisting of node texts, or of node IDs, optionally glued together (otherwise an array)
-		 * @name get_path(obj [, glue, ids])
-		 * @param  {mixed} obj the node
-		 * @param  {String} glue if you want the path as a string - pass the glue here (for example '/'), if a falsy value is supplied here, an array is returned
-		 * @param  {Boolean} ids if set to true build the path using ID, otherwise node text is used
-		 * @return {mixed}
-		 */
+		
 		get_path : function (obj, glue, ids) {
 			obj = obj.parents ? obj : this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root || !obj.parents) {
@@ -994,13 +677,7 @@
 			p = p.reverse().slice(1);
 			return glue ? p.join(glue) : p;
 		},
-		/**
-		 * get the next visible node that is below the `obj` node. If `strict` is set to `true` only sibling nodes are returned.
-		 * @name get_next_dom(obj [, strict])
-		 * @param  {mixed} obj
-		 * @param  {Boolean} strict
-		 * @return {jQuery}
-		 */
+		
 		get_next_dom : function (obj, strict) {
 			var tmp;
 			obj = this.get_node(obj, true);
@@ -1039,13 +716,7 @@
 			}
 			return obj.parentsUntil(".jstree",".jstree-node").nextAll(".jstree-node:visible").first();
 		},
-		/**
-		 * get the previous visible node that is above the `obj` node. If `strict` is set to `true` only sibling nodes are returned.
-		 * @name get_prev_dom(obj [, strict])
-		 * @param  {mixed} obj
-		 * @param  {Boolean} strict
-		 * @return {jQuery}
-		 */
+		
 		get_prev_dom : function (obj, strict) {
 			var tmp;
 			obj = this.get_node(obj, true);
@@ -1080,12 +751,7 @@
 			tmp = obj[0].parentNode.parentNode;
 			return tmp && tmp.className && tmp.className.indexOf('jstree-node') !== -1 ? $(tmp) : false;
 		},
-		/**
-		 * get the parent ID of a node
-		 * @name get_parent(obj)
-		 * @param  {mixed} obj
-		 * @return {String}
-		 */
+		
 		get_parent : function (obj) {
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) {
@@ -1093,12 +759,7 @@
 			}
 			return obj.parent;
 		},
-		/**
-		 * get a jQuery collection of all the children of a node (node must be rendered)
-		 * @name get_children_dom(obj)
-		 * @param  {mixed} obj
-		 * @return {jQuery}
-		 */
+		
 		get_children_dom : function (obj) {
 			obj = this.get_node(obj, true);
 			if(obj[0] === this.element[0]) {
@@ -1109,73 +770,36 @@
 			}
 			return obj.children(".jstree-children").children(".jstree-node");
 		},
-		/**
-		 * checks if a node has children
-		 * @name is_parent(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_parent : function (obj) {
 			obj = this.get_node(obj);
 			return obj && (obj.state.loaded === false || obj.children.length > 0);
 		},
-		/**
-		 * checks if a node is loaded (its children are available)
-		 * @name is_loaded(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_loaded : function (obj) {
 			obj = this.get_node(obj);
 			return obj && obj.state.loaded;
 		},
-		/**
-		 * check if a node is currently loading (fetching children)
-		 * @name is_loading(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_loading : function (obj) {
 			obj = this.get_node(obj);
 			return obj && obj.state && obj.state.loading;
 		},
-		/**
-		 * check if a node is opened
-		 * @name is_open(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_open : function (obj) {
 			obj = this.get_node(obj);
 			return obj && obj.state.opened;
 		},
-		/**
-		 * check if a node is in a closed state
-		 * @name is_closed(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_closed : function (obj) {
 			obj = this.get_node(obj);
 			return obj && this.is_parent(obj) && !obj.state.opened;
 		},
-		/**
-		 * check if a node has no children
-		 * @name is_leaf(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_leaf : function (obj) {
 			return !this.is_parent(obj);
 		},
-		/**
-		 * loads a node (fetches its children using the `core.data` setting). Multiple nodes can be passed to by using an array.
-		 * @name load_node(obj [, callback])
-		 * @param  {mixed} obj
-		 * @param  {function} callback a function to be executed once loading is complete, the function is executed in the instance's scope and receives two arguments - the node and a boolean status
-		 * @return {Boolean}
-		 * @trigger load_node.jstree
-		 */
+		
 		load_node : function (obj, callback) {
 			var k, l, i, j, c;
 			if($.isArray(obj)) {
@@ -1225,13 +849,7 @@
 					dom.removeClass('jstree-closed jstree-open').addClass('jstree-leaf');
 				}
 				dom.removeClass("jstree-loading").attr('aria-busy',false);
-				/**
-				 * triggered after a node is loaded
-				 * @event
-				 * @name load_node.jstree
-				 * @param {Object} node the node that was loading
-				 * @param {Boolean} status was the node loaded successfully
-				 */
+				
 				this.trigger('load_node', { "node" : obj, "status" : status });
 				if(callback) {
 					callback.call(this, obj, status);
@@ -1239,13 +857,7 @@
 			}, this));
 			return true;
 		},
-		/**
-		 * load an array of nodes (will also load unavailable nodes as soon as the appear in the structure). Used internally.
-		 * @private
-		 * @name _load_nodes(nodes [, callback])
-		 * @param  {array} nodes
-		 * @param  {function} callback a function to be executed once loading is complete, the function is executed in the instance's scope and receives one argument - the array passed to _load_nodes
-		 */
+		
 		_load_nodes : function (nodes, callback, is_callback) {
 			var r = true,
 				c = function () { this._load_nodes(nodes, callback, true); },
@@ -1270,13 +882,7 @@
 				}
 			}
 		},
-		/**
-		 * loads all unloaded nodes
-		 * @name load_all([obj, callback])
-		 * @param {mixed} obj the node to load recursively, omit to load all nodes in the tree
-		 * @param {function} callback a function to be executed once loading all the nodes is complete,
-		 * @trigger load_all.jstree
-		 */
+		
 		load_all : function (obj, callback) {
 			if(!obj) { obj = $.jstree.root; }
 			obj = this.get_node(obj);
@@ -1299,24 +905,12 @@
 				});
 			}
 			else {
-				/**
-				 * triggered after a load_all call completes
-				 * @event
-				 * @name load_all.jstree
-				 * @param {Object} node the recursively loaded node
-				 */
+				
 				if(callback) { callback.call(this, obj); }
 				this.trigger('load_all', { "node" : obj });
 			}
 		},
-		/**
-		 * handles the actual loading of a node. Used only internally.
-		 * @private
-		 * @name _load_node(obj [, callback])
-		 * @param  {mixed} obj
-		 * @param  {function} callback a function to be executed once loading is complete, the function is executed in the instance's scope and receives one argument - a boolean status
-		 * @return {Boolean}
-		 */
+		
 		_load_node : function (obj, callback) {
 			var s = this.settings.core.data, t;
 			// use original HTML
@@ -1400,26 +994,14 @@
 			}
 			return callback.call(this, false);
 		},
-		/**
-		 * adds a node to the list of nodes to redraw. Used only internally.
-		 * @private
-		 * @name _node_changed(obj [, callback])
-		 * @param  {mixed} obj
-		 */
+		
 		_node_changed : function (obj) {
 			obj = this.get_node(obj);
 			if(obj) {
 				this._model.changed.push(obj.id);
 			}
 		},
-		/**
-		 * appends HTML content to the tree. Used internally.
-		 * @private
-		 * @name _append_html_data(obj, data)
-		 * @param  {mixed} obj the node to append to
-		 * @param  {String} data the HTML string to parse and append
-		 * @trigger model.jstree, changed.jstree
-		 */
+		
 		_append_html_data : function (dom, data, cb) {
 			dom = this.get_node(dom);
 			dom.children = [];
@@ -1447,13 +1029,7 @@
 			for(i = 0, j = p.parents.length; i < j; i++) {
 				m[p.parents[i]].children_d = m[p.parents[i]].children_d.concat(dpc);
 			}
-			/**
-			 * triggered when new data is inserted to the tree model
-			 * @event
-			 * @name model.jstree
-			 * @param {Array} nodes an array of node IDs
-			 * @param {String} parent the parent ID of the nodes
-			 */
+			
 			this.trigger('model', { "nodes" : dpc, 'parent' : par });
 			if(par !== $.jstree.root) {
 				this._node_changed(par);
@@ -1468,15 +1044,7 @@
 			}
 			cb.call(this, true);
 		},
-		/**
-		 * appends JSON content to the tree. Used internally.
-		 * @private
-		 * @name _append_json_data(obj, data)
-		 * @param  {mixed} obj the node to append to
-		 * @param  {String} data the JSON object to parse and append
-		 * @param  {Boolean} force_processing internal param - do not set
-		 * @trigger model.jstree, changed.jstree
-		 */
+		
 		_append_json_data : function (dom, data, cb, force_processing) {
 			if(this.element === null) { return; }
 			dom = this.get_node(dom);
@@ -1866,15 +1434,7 @@
 				rslt.call(this, func(args), false);
 			}
 		},
-		/**
-		 * parses a node from a jQuery object and appends them to the in memory tree model. Used internally.
-		 * @private
-		 * @name _parse_model_from_html(d [, p, ps])
-		 * @param  {jQuery} d the jQuery object to parse
-		 * @param  {String} p the parent ID
-		 * @param  {Array} ps list of all parents
-		 * @return {String} the ID of the object added to the model
-		 */
+		
 		_parse_model_from_html : function (d, p, ps) {
 			if(!ps) { ps = []; }
 			else { ps = [].concat(ps); }
@@ -1978,15 +1538,7 @@
 			}
 			return data.id;
 		},
-		/**
-		 * parses a node from a JSON object (used when dealing with flat data, which has no nesting of children, but has id and parent properties) and appends it to the in memory tree model. Used internally.
-		 * @private
-		 * @name _parse_model_from_flat_json(d [, p, ps])
-		 * @param  {Object} d the JSON object to parse
-		 * @param  {String} p the parent ID
-		 * @param  {Array} ps list of all parents
-		 * @return {String} the ID of the object added to the model
-		 */
+		
 		_parse_model_from_flat_json : function (d, p, ps) {
 			if(!ps) { ps = []; }
 			else { ps = ps.concat(); }
@@ -2076,15 +1628,7 @@
 			}
 			return tmp.id;
 		},
-		/**
-		 * parses a node from a JSON object and appends it to the in memory tree model. Used internally.
-		 * @private
-		 * @name _parse_model_from_json(d [, p, ps])
-		 * @param  {Object} d the JSON object to parse
-		 * @param  {String} p the parent ID
-		 * @param  {Array} ps list of all parents
-		 * @return {String} the ID of the object added to the model
-		 */
+		
 		_parse_model_from_json : function (d, p, ps) {
 			if(!ps) { ps = []; }
 			else { ps = ps.concat(); }
@@ -2186,12 +1730,7 @@
 			}
 			return tmp.id;
 		},
-		/**
-		 * redraws all nodes that need to be redrawn. Used internally.
-		 * @private
-		 * @name _redraw()
-		 * @trigger redraw.jstree
-		 */
+		
 		_redraw : function () {
 			var nodes = this._model.force_full_redraw ? this._model.data[$.jstree.root].children.concat([]) : this._model.changed.concat([]),
 				f = document.createElement('UL'), tmp, i, j, fe = this._data.core.focused;
@@ -2218,19 +1757,10 @@
 			}
 			this._model.force_full_redraw = false;
 			this._model.changed = [];
-			/**
-			 * triggered after nodes are redrawn
-			 * @event
-			 * @name redraw.jstree
-			 * @param {array} nodes the redrawn nodes
-			 */
+			
 			this.trigger('redraw', { "nodes" : nodes });
 		},
-		/**
-		 * redraws all nodes that need to be redrawn or optionally - the whole tree
-		 * @name redraw([full])
-		 * @param {Boolean} full if set to `true` all nodes are redrawn.
-		 */
+		
 		redraw : function (full) {
 			if(full) {
 				this._model.force_full_redraw = true;
@@ -2241,12 +1771,7 @@
 			//this._model.redraw_timeout = setTimeout($.proxy(this._redraw, this),0);
 			this._redraw();
 		},
-		/**
-		 * redraws a single node's children. Used internally.
-		 * @private
-		 * @name draw_children(node)
-		 * @param {mixed} node the node whose children will be redrawn
-		 */
+		
 		draw_children : function (node) {
 			var obj = this.get_node(node),
 				i = false,
@@ -2270,15 +1795,7 @@
 				node.appendChild(k);
 			}
 		},
-		/**
-		 * redraws a single node. Used internally.
-		 * @private
-		 * @name redraw_node(node, deep, is_callback, force_render)
-		 * @param {mixed} node the node to redraw
-		 * @param {Boolean} deep should child nodes be redrawn too
-		 * @param {Boolean} is_callback is this a recursion call
-		 * @param {Boolean} force_render should children of closed parents be drawn anyway
-		 */
+		
 		redraw_node : function (node, deep, is_callback, force_render) {
 			var obj = this.get_node(node),
 				par = false,
@@ -2486,14 +2003,7 @@
 			}
 			return node;
 		},
-		/**
-		 * opens a node, revaling its children. If the node is not loaded it will be loaded and opened once ready.
-		 * @name open_node(obj [, callback, animation])
-		 * @param {mixed} obj the node to open
-		 * @param {Function} callback a function to execute once the node is opened
-		 * @param {Number} animation the animation duration in milliseconds when opening the node (overrides the `core.animation` setting). Use `false` for no animation.
-		 * @trigger open_node.jstree, after_open.jstree, before_open.jstree
-		 */
+		
 		open_node : function (obj, callback, animation) {
 			var t1, t2, d, t;
 			if($.isArray(obj)) {
@@ -2557,38 +2067,18 @@
 					callback.call(this, obj, true);
 				}
 				if(!d.length) {
-					/**
-					 * triggered when a node is about to be opened (if the node is supposed to be in the DOM, it will be, but it won't be visible yet)
-					 * @event
-					 * @name before_open.jstree
-					 * @param {Object} node the opened node
-					 */
+					
 					this.trigger('before_open', { "node" : obj });
 				}
-				/**
-				 * triggered when a node is opened (if there is an animation it will not be completed yet)
-				 * @event
-				 * @name open_node.jstree
-				 * @param {Object} node the opened node
-				 */
+				
 				this.trigger('open_node', { "node" : obj });
 				if(!animation || !d.length) {
-					/**
-					 * triggered when a node is opened and the animation is complete
-					 * @event
-					 * @name after_open.jstree
-					 * @param {Object} node the opened node
-					 */
+					
 					this.trigger("after_open", { "node" : obj });
 				}
 			}
 		},
-		/**
-		 * opens every parent of a node (node should be loaded)
-		 * @name _open_to(obj)
-		 * @param {mixed} obj the node to reveal
-		 * @private
-		 */
+		
 		_open_to : function (obj) {
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) {
@@ -2602,13 +2092,7 @@
 			}
 			return $('#' + obj.id.replace($.jstree.idregex,'\\$&'), this.element);
 		},
-		/**
-		 * closes a node, hiding its children
-		 * @name close_node(obj [, animation])
-		 * @param {mixed} obj the node to close
-		 * @param {Number} animation the animation duration in milliseconds when closing the node (overrides the `core.animation` setting). Use `false` for no animation.
-		 * @trigger close_node.jstree, after_close.jstree
-		 */
+		
 		close_node : function (obj, animation) {
 			var t1, t2, t, d;
 			if($.isArray(obj)) {
@@ -2645,28 +2129,14 @@
 				}
 			}
 			obj.state.opened = false;
-			/**
-			 * triggered when a node is closed (if there is an animation it will not be complete yet)
-			 * @event
-			 * @name close_node.jstree
-			 * @param {Object} node the closed node
-			 */
+			
 			this.trigger('close_node',{ "node" : obj });
 			if(!animation || !d.length) {
-				/**
-				 * triggered when a node is closed and the animation is complete
-				 * @event
-				 * @name after_close.jstree
-				 * @param {Object} node the closed node
-				 */
+				
 				this.trigger("after_close", { "node" : obj });
 			}
 		},
-		/**
-		 * toggles a node - closing it if it is open, opening it if it is closed
-		 * @name toggle_node(obj)
-		 * @param {mixed} obj the node to toggle
-		 */
+		
 		toggle_node : function (obj) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -2683,14 +2153,7 @@
 				return this.close_node(obj);
 			}
 		},
-		/**
-		 * opens all nodes within a node (or the tree), revaling their children. If the node is not loaded it will be loaded and opened once ready.
-		 * @name open_all([obj, animation, original_obj])
-		 * @param {mixed} obj the node to open recursively, omit to open all nodes in the tree
-		 * @param {Number} animation the animation duration in milliseconds when opening the nodes, the default is no animation
-		 * @param {jQuery} reference to the node that started the process (internal use)
-		 * @trigger open_all.jstree
-		 */
+		
 		open_all : function (obj, animation, original_obj) {
 			if(!obj) { obj = $.jstree.root; }
 			obj = this.get_node(obj);
@@ -2715,22 +2178,11 @@
 				);
 			});
 			if(original_obj.find('.jstree-closed').length === 0) {
-				/**
-				 * triggered when an `open_all` call completes
-				 * @event
-				 * @name open_all.jstree
-				 * @param {Object} node the opened node
-				 */
+				
 				this.trigger('open_all', { "node" : this.get_node(original_obj) });
 			}
 		},
-		/**
-		 * closes all nodes within a node (or the tree), revaling their children
-		 * @name close_all([obj, animation])
-		 * @param {mixed} obj the node to close recursively, omit to close all nodes in the tree
-		 * @param {Number} animation the animation duration in milliseconds when closing the nodes, the default is no animation
-		 * @trigger close_all.jstree
-		 */
+		
 		close_all : function (obj, animation) {
 			if(!obj) { obj = $.jstree.root; }
 			obj = this.get_node(obj);
@@ -2744,30 +2196,15 @@
 			for(i = 0, j = obj.children_d.length; i < j; i++) {
 				this._model.data[obj.children_d[i]].state.opened = false;
 			}
-			/**
-			 * triggered when an `close_all` call completes
-			 * @event
-			 * @name close_all.jstree
-			 * @param {Object} node the closed node
-			 */
+			
 			this.trigger('close_all', { "node" : obj });
 		},
-		/**
-		 * checks if a node is disabled (not selectable)
-		 * @name is_disabled(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		is_disabled : function (obj) {
 			obj = this.get_node(obj);
 			return obj && obj.state && obj.state.disabled;
 		},
-		/**
-		 * enables a node - so that it can be selected
-		 * @name enable_node(obj)
-		 * @param {mixed} obj the node to enable
-		 * @trigger enable_node.jstree
-		 */
+		
 		enable_node : function (obj) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -2783,20 +2220,10 @@
 			}
 			obj.state.disabled = false;
 			this.get_node(obj,true).children('.jstree-anchor').removeClass('jstree-disabled').attr('aria-disabled', false);
-			/**
-			 * triggered when an node is enabled
-			 * @event
-			 * @name enable_node.jstree
-			 * @param {Object} node the enabled node
-			 */
+			
 			this.trigger('enable_node', { 'node' : obj });
 		},
-		/**
-		 * disables a node - so that it can not be selected
-		 * @name disable_node(obj)
-		 * @param {mixed} obj the node to disable
-		 * @trigger disable_node.jstree
-		 */
+		
 		disable_node : function (obj) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -2812,21 +2239,10 @@
 			}
 			obj.state.disabled = true;
 			this.get_node(obj,true).children('.jstree-anchor').addClass('jstree-disabled').attr('aria-disabled', true);
-			/**
-			 * triggered when an node is disabled
-			 * @event
-			 * @name disable_node.jstree
-			 * @param {Object} node the disabled node
-			 */
+			
 			this.trigger('disable_node', { 'node' : obj });
 		},
-		/**
-		 * hides a node - it is still in the structure but will not be visible
-		 * @name hide_node(obj)
-		 * @param {mixed} obj the node to hide
-		 * @param {Boolean} redraw internal parameter controlling if redraw is called
-		 * @trigger hide_node.jstree
-		 */
+		
 		hide_node : function (obj, skip_redraw) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -2847,22 +2263,11 @@
 				if(!skip_redraw) {
 					this.redraw();
 				}
-				/**
-				 * triggered when an node is hidden
-				 * @event
-				 * @name hide_node.jstree
-				 * @param {Object} node the hidden node
-				 */
+				
 				this.trigger('hide_node', { 'node' : obj });
 			}
 		},
-		/**
-		 * shows a node
-		 * @name show_node(obj)
-		 * @param {mixed} obj the node to show
-		 * @param {Boolean} skip_redraw internal parameter controlling if redraw is called
-		 * @trigger show_node.jstree
-		 */
+		
 		show_node : function (obj, skip_redraw) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -2883,20 +2288,11 @@
 				if(!skip_redraw) {
 					this.redraw();
 				}
-				/**
-				 * triggered when an node is shown
-				 * @event
-				 * @name show_node.jstree
-				 * @param {Object} node the shown node
-				 */
+				
 				this.trigger('show_node', { 'node' : obj });
 			}
 		},
-		/**
-		 * hides all nodes
-		 * @name hide_all()
-		 * @trigger hide_all.jstree
-		 */
+		
 		hide_all : function (obj) {
 			var i, m = this._model.data, ids = [];
 			for(i in m) {
@@ -2907,20 +2303,11 @@
 			}
 			this._model.force_full_redraw = true;
 			this.redraw();
-			/**
-			 * triggered when all nodes are hidden
-			 * @event
-			 * @name hide_all.jstree
-			 * @param {Array} nodes the IDs of all hidden nodes
-			 */
+			
 			this.trigger('hide_all', { 'nodes' : ids });
 			return ids;
 		},
-		/**
-		 * shows all nodes
-		 * @name show_all()
-		 * @trigger show_all.jstree
-		 */
+		
 		show_all : function (obj) {
 			var i, m = this._model.data, ids = [];
 			for(i in m) {
@@ -2931,23 +2318,11 @@
 			}
 			this._model.force_full_redraw = true;
 			this.redraw();
-			/**
-			 * triggered when all nodes are shown
-			 * @event
-			 * @name show_all.jstree
-			 * @param {Array} nodes the IDs of all shown nodes
-			 */
+			
 			this.trigger('show_all', { 'nodes' : ids });
 			return ids;
 		},
-		/**
-		 * called when a node is selected by the user. Used internally.
-		 * @private
-		 * @name activate_node(obj, e)
-		 * @param {mixed} obj the node
-		 * @param {Object} e the related event
-		 * @trigger activate_node.jstree, changed.jstree
-		 */
+		
 		activate_node : function (obj, e) {
 			if(this.is_disabled(obj)) {
 				return false;
@@ -3004,22 +2379,10 @@
 					}
 				}
 			}
-			/**
-			 * triggered when an node is clicked or intercated with by the user
-			 * @event
-			 * @name activate_node.jstree
-			 * @param {Object} node
-			 * @param {Object} event the ooriginal event (if any) which triggered the call (may be an empty object)
-			 */
+			
 			this.trigger('activate_node', { 'node' : this.get_node(obj), 'event' : e });
 		},
-		/**
-		 * applies the hover state on a node, called when a node is hovered by the user. Used internally.
-		 * @private
-		 * @name hover_node(obj)
-		 * @param {mixed} obj
-		 * @trigger hover_node.jstree
-		 */
+		
 		hover_node : function (obj) {
 			obj = this.get_node(obj, true);
 			if(!obj || !obj.length || obj.children('.jstree-hovered').length) {
@@ -3029,44 +2392,21 @@
 			if(o && o.length) { this.dehover_node(o); }
 
 			obj.children('.jstree-anchor').addClass('jstree-hovered');
-			/**
-			 * triggered when an node is hovered
-			 * @event
-			 * @name hover_node.jstree
-			 * @param {Object} node
-			 */
+			
 			this.trigger('hover_node', { 'node' : this.get_node(obj) });
 			setTimeout(function () { t.attr('aria-activedescendant', obj[0].id); }, 0);
 		},
-		/**
-		 * removes the hover state from a nodecalled when a node is no longer hovered by the user. Used internally.
-		 * @private
-		 * @name dehover_node(obj)
-		 * @param {mixed} obj
-		 * @trigger dehover_node.jstree
-		 */
+		
 		dehover_node : function (obj) {
 			obj = this.get_node(obj, true);
 			if(!obj || !obj.length || !obj.children('.jstree-hovered').length) {
 				return false;
 			}
 			obj.children('.jstree-anchor').removeClass('jstree-hovered');
-			/**
-			 * triggered when an node is no longer hovered
-			 * @event
-			 * @name dehover_node.jstree
-			 * @param {Object} node
-			 */
+			
 			this.trigger('dehover_node', { 'node' : this.get_node(obj) });
 		},
-		/**
-		 * select a node
-		 * @name select_node(obj [, supress_event, prevent_open])
-		 * @param {mixed} obj an array can be used to select multiple nodes
-		 * @param {Boolean} supress_event if set to `true` the `changed.jstree` event won't be triggered
-		 * @param {Boolean} prevent_open if set to `true` parents of the selected node won't be opened
-		 * @trigger select_node.jstree, changed.jstree
-		 */
+		
 		select_node : function (obj, supress_event, prevent_open, e) {
 			var dom, t1, t2, th;
 			if($.isArray(obj)) {
@@ -3090,36 +2430,15 @@
 				if(dom && dom.length) {
 					dom.attr('aria-selected', true).children('.jstree-anchor').addClass('jstree-clicked');
 				}
-				/**
-				 * triggered when an node is selected
-				 * @event
-				 * @name select_node.jstree
-				 * @param {Object} node
-				 * @param {Array} selected the current selection
-				 * @param {Object} event the event (if any) that triggered this select_node
-				 */
+				
 				this.trigger('select_node', { 'node' : obj, 'selected' : this._data.core.selected, 'event' : e });
 				if(!supress_event) {
-					/**
-					 * triggered when selection changes
-					 * @event
-					 * @name changed.jstree
-					 * @param {Object} node
-					 * @param {Object} action the action that caused the selection to change
-					 * @param {Array} selected the current selection
-					 * @param {Object} event the event (if any) that triggered this changed event
-					 */
+					
 					this.trigger('changed', { 'action' : 'select_node', 'node' : obj, 'selected' : this._data.core.selected, 'event' : e });
 				}
 			}
 		},
-		/**
-		 * deselect a node
-		 * @name deselect_node(obj [, supress_event])
-		 * @param {mixed} obj an array can be used to deselect multiple nodes
-		 * @param {Boolean} supress_event if set to `true` the `changed.jstree` event won't be triggered
-		 * @trigger deselect_node.jstree, changed.jstree
-		 */
+		
 		deselect_node : function (obj, supress_event, e) {
 			var t1, t2, dom;
 			if($.isArray(obj)) {
@@ -3140,26 +2459,14 @@
 				if(dom.length) {
 					dom.attr('aria-selected', false).children('.jstree-anchor').removeClass('jstree-clicked');
 				}
-				/**
-				 * triggered when an node is deselected
-				 * @event
-				 * @name deselect_node.jstree
-				 * @param {Object} node
-				 * @param {Array} selected the current selection
-				 * @param {Object} event the event (if any) that triggered this deselect_node
-				 */
+				
 				this.trigger('deselect_node', { 'node' : obj, 'selected' : this._data.core.selected, 'event' : e });
 				if(!supress_event) {
 					this.trigger('changed', { 'action' : 'deselect_node', 'node' : obj, 'selected' : this._data.core.selected, 'event' : e });
 				}
 			}
 		},
-		/**
-		 * select all nodes in the tree
-		 * @name select_all([supress_event])
-		 * @param {Boolean} supress_event if set to `true` the `changed.jstree` event won't be triggered
-		 * @trigger select_all.jstree, changed.jstree
-		 */
+		
 		select_all : function (supress_event) {
 			var tmp = this._data.core.selected.concat([]), i, j;
 			this._data.core.selected = this._model.data[$.jstree.root].children_d.concat();
@@ -3169,23 +2476,13 @@
 				}
 			}
 			this.redraw(true);
-			/**
-			 * triggered when all nodes are selected
-			 * @event
-			 * @name select_all.jstree
-			 * @param {Array} selected the current selection
-			 */
+			
 			this.trigger('select_all', { 'selected' : this._data.core.selected });
 			if(!supress_event) {
 				this.trigger('changed', { 'action' : 'select_all', 'selected' : this._data.core.selected, 'old_selection' : tmp });
 			}
 		},
-		/**
-		 * deselect all selected nodes
-		 * @name deselect_all([supress_event])
-		 * @param {Boolean} supress_event if set to `true` the `changed.jstree` event won't be triggered
-		 * @trigger deselect_all.jstree, changed.jstree
-		 */
+		
 		deselect_all : function (supress_event) {
 			var tmp = this._data.core.selected.concat([]), i, j;
 			for(i = 0, j = this._data.core.selected.length; i < j; i++) {
@@ -3195,24 +2492,13 @@
 			}
 			this._data.core.selected = [];
 			this.element.find('.jstree-clicked').removeClass('jstree-clicked').parent().attr('aria-selected', false);
-			/**
-			 * triggered when all nodes are deselected
-			 * @event
-			 * @name deselect_all.jstree
-			 * @param {Object} node the previous selection
-			 * @param {Array} selected the current selection
-			 */
+			
 			this.trigger('deselect_all', { 'selected' : this._data.core.selected, 'node' : tmp });
 			if(!supress_event) {
 				this.trigger('changed', { 'action' : 'deselect_all', 'selected' : this._data.core.selected, 'old_selection' : tmp });
 			}
 		},
-		/**
-		 * checks if a node is selected
-		 * @name is_selected(obj)
-		 * @param  {mixed}  obj
-		 * @return {Boolean}
-		 */
+		
 		is_selected : function (obj) {
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) {
@@ -3220,21 +2506,11 @@
 			}
 			return obj.state.selected;
 		},
-		/**
-		 * get an array of all selected nodes
-		 * @name get_selected([full])
-		 * @param  {mixed}  full if set to `true` the returned array will consist of the full node objects, otherwise - only IDs will be returned
-		 * @return {Array}
-		 */
+		
 		get_selected : function (full) {
 			return full ? $.map(this._data.core.selected, $.proxy(function (i) { return this.get_node(i); }, this)) : this._data.core.selected.slice();
 		},
-		/**
-		 * get an array of all top level selected nodes (ignoring children of selected nodes)
-		 * @name get_top_selected([full])
-		 * @param  {mixed}  full if set to `true` the returned array will consist of the full node objects, otherwise - only IDs will be returned
-		 * @return {Array}
-		 */
+		
 		get_top_selected : function (full) {
 			var tmp = this.get_selected(true),
 				obj = {}, i, j, k, l;
@@ -3256,12 +2532,7 @@
 			}
 			return full ? $.map(tmp, $.proxy(function (i) { return this.get_node(i); }, this)) : tmp;
 		},
-		/**
-		 * get an array of all bottom level selected nodes (ignoring selected parents)
-		 * @name get_bottom_selected([full])
-		 * @param  {mixed}  full if set to `true` the returned array will consist of the full node objects, otherwise - only IDs will be returned
-		 * @return {Array}
-		 */
+		
 		get_bottom_selected : function (full) {
 			var tmp = this.get_selected(true),
 				obj = [], i, j;
@@ -3272,12 +2543,7 @@
 			}
 			return full ? $.map(obj, $.proxy(function (i) { return this.get_node(i); }, this)) : obj;
 		},
-		/**
-		 * gets the current state of the tree so that it can be restored later with `set_state(state)`. Used internally.
-		 * @name get_state()
-		 * @private
-		 * @return {Object}
-		 */
+		
 		get_state : function () {
 			var state	= {
 				'core' : {
@@ -3310,14 +2576,7 @@
 			}
 			return state;
 		},
-		/**
-		 * sets the state of the tree. Used internally.
-		 * @name set_state(state [, callback])
-		 * @private
-		 * @param {Object} state the state to restore. Keep in mind this object is passed by reference and jstree will modify it.
-		 * @param {Function} callback an optional function to execute once the state is restored.
-		 * @trigger set_state.jstree
-		 */
+		
 		set_state : function (state, callback) {
 			if(state) {
 				if(state.core) {
@@ -3371,11 +2630,7 @@
 				if($.isEmptyObject(state)) {
 					state = null;
 					if(callback) { callback.call(this); }
-					/**
-					 * triggered when a `set_state` call completes
-					 * @event
-					 * @name set_state.jstree
-					 */
+					
 					this.trigger('set_state');
 					return false;
 				}
@@ -3383,13 +2638,7 @@
 			}
 			return false;
 		},
-		/**
-		 * refreshes the tree - all nodes are reloaded with calls to `load_node`.
-		 * @name refresh()
-		 * @param {Boolean} skip_loading an option to skip showing the loading indicator
-		 * @param {Mixed} forget_state if set to `true` state will not be reapplied, if set to a function (receiving the current state as argument) the result of that function will be used as state
-		 * @trigger refresh.jstree
-		 */
+		
 		refresh : function (skip_loading, forget_state) {
 			this._data.core.state = forget_state === true ? {} : this.get_state();
 			if(forget_state && $.isFunction(forget_state)) { this._data.core.state = forget_state.call(this, this._data.core.state); }
@@ -3419,23 +2668,14 @@
 						this.element.attr('aria-activedescendant',this._firstChild(this.get_container_ul()[0]).id);
 					}
 					this.set_state($.extend(true, {}, this._data.core.state), function () {
-						/**
-						 * triggered when a `refresh` call completes
-						 * @event
-						 * @name refresh.jstree
-						 */
+						
 						this.trigger('refresh');
 					});
 				}
 				this._data.core.state = null;
 			});
 		},
-		/**
-		 * refreshes a node in the tree (reload its children) all opened nodes inside that node are reloaded with calls to `load_node`.
-		 * @name refresh_node(obj)
-		 * @param  {mixed} obj the node
-		 * @trigger refresh_node.jstree
-		 */
+		
 		refresh_node : function (obj) {
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) { return false; }
@@ -3446,23 +2686,11 @@
 			this._load_nodes(to_load, $.proxy(function (nodes) {
 				this.open_node(opened, false, 0);
 				this.select_node(this._data.core.selected);
-				/**
-				 * triggered when a node is refreshed
-				 * @event
-				 * @name refresh_node.jstree
-				 * @param {Object} node - the refreshed node
-				 * @param {Array} nodes - an array of the IDs of the nodes that were reloaded
-				 */
+				
 				this.trigger('refresh_node', { 'node' : obj, 'nodes' : nodes });
 			}, this));
 		},
-		/**
-		 * set (change) the ID of a node
-		 * @name set_id(obj, id)
-		 * @param  {mixed} obj the node
-		 * @param  {String} id the new ID
-		 * @return {Boolean}
-		 */
+		
 		set_id : function (obj, id) {
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) { return false; }
@@ -3496,25 +2724,12 @@
 			m[id] = obj;
 			return true;
 		},
-		/**
-		 * get the text value of a node
-		 * @name get_text(obj)
-		 * @param  {mixed} obj the node
-		 * @return {String}
-		 */
+		
 		get_text : function (obj) {
 			obj = this.get_node(obj);
 			return (!obj || obj.id === $.jstree.root) ? false : obj.text;
 		},
-		/**
-		 * set the text value of a node. Used internally, please use `rename_node(obj, val)`.
-		 * @private
-		 * @name set_text(obj, val)
-		 * @param  {mixed} obj the node, you can pass an array to set the text on multiple nodes
-		 * @param  {String} val the new text value
-		 * @return {Boolean}
-		 * @trigger set_text.jstree
-		 */
+		
 		set_text : function (obj, val) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -3530,28 +2745,11 @@
 			if(this.get_node(obj, true).length) {
 				this.redraw_node(obj.id);
 			}
-			/**
-			 * triggered when a node text value is changed
-			 * @event
-			 * @name set_text.jstree
-			 * @param {Object} obj
-			 * @param {String} text the new value
-			 */
+			
 			this.trigger('set_text',{ "obj" : obj, "text" : val });
 			return true;
 		},
-		/**
-		 * gets a JSON representation of a node (or the whole tree)
-		 * @name get_json([obj, options])
-		 * @param  {mixed} obj
-		 * @param  {Object} options
-		 * @param  {Boolean} options.no_state do not return state information
-		 * @param  {Boolean} options.no_id do not return ID
-		 * @param  {Boolean} options.no_children do not include children
-		 * @param  {Boolean} options.no_data do not include node data
-		 * @param  {Boolean} options.flat return flat JSON instead of nested
-		 * @return {Object}
-		 */
+		
 		get_json : function (obj, options, flat) {
 			obj = this.get_node(obj || $.jstree.root);
 			if(!obj) { return false; }
@@ -3603,17 +2801,7 @@
 			}
 			return options && options.flat ? flat : (obj.id === $.jstree.root ? tmp.children : tmp);
 		},
-		/**
-		 * create a new node (do not confuse with load_node)
-		 * @name create_node([obj, node, pos, callback, is_loaded])
-		 * @param  {mixed}   par       the parent node (to create a root node use either "#" (string) or `null`)
-		 * @param  {mixed}   node      the data for the new node (a valid JSON object, or a simple string with the name)
-		 * @param  {mixed}   pos       the index at which to insert the node, "first" and "last" are also supported, default is "last"
-		 * @param  {Function} callback a function to be called once the node is created
-		 * @param  {Boolean} is_loaded internal argument indicating if the parent node was succesfully loaded
-		 * @return {String}            the ID of the newly create node
-		 * @trigger model.jstree, create_node.jstree
-		 */
+		
 		create_node : function (par, node, pos, callback, is_loaded) {
 			if(par === null) { par = $.jstree.root; }
 			par = this.get_node(par);
@@ -3682,25 +2870,11 @@
 
 			this.redraw_node(par, true);
 			if(callback) { callback.call(this, this.get_node(node)); }
-			/**
-			 * triggered when a node is created
-			 * @event
-			 * @name create_node.jstree
-			 * @param {Object} node
-			 * @param {String} parent the parent's ID
-			 * @param {Number} position the position of the new node among the parent's children
-			 */
+			
 			this.trigger('create_node', { "node" : this.get_node(node), "parent" : par.id, "position" : pos });
 			return node.id;
 		},
-		/**
-		 * set the text value of a node
-		 * @name rename_node(obj, val)
-		 * @param  {mixed} obj the node, you can pass an array to rename multiple nodes to the same name
-		 * @param  {String} val the new text value
-		 * @return {Boolean}
-		 * @trigger rename_node.jstree
-		 */
+		
 		rename_node : function (obj, val) {
 			var t1, t2, old;
 			if($.isArray(obj)) {
@@ -3718,24 +2892,11 @@
 				return false;
 			}
 			this.set_text(obj, val); // .apply(this, Array.prototype.slice.call(arguments))
-			/**
-			 * triggered when a node is renamed
-			 * @event
-			 * @name rename_node.jstree
-			 * @param {Object} node
-			 * @param {String} text the new value
-			 * @param {String} old the old value
-			 */
+			
 			this.trigger('rename_node', { "node" : obj, "text" : val, "old" : old });
 			return true;
 		},
-		/**
-		 * remove a node
-		 * @name delete_node(obj)
-		 * @param  {mixed} obj the node, you can pass an array to delete multiple nodes
-		 * @return {Boolean}
-		 * @trigger delete_node.jstree, changed.jstree
-		 */
+		
 		delete_node : function (obj) {
 			var t1, t2, par, pos, tmp, i, j, k, l, c, top, lft;
 			if($.isArray(obj)) {
@@ -3774,13 +2935,7 @@
 					}
 				}
 			}
-			/**
-			 * triggered when a node is deleted
-			 * @event
-			 * @name delete_node.jstree
-			 * @param {Object} node
-			 * @param {String} parent the parent's ID
-			 */
+			
 			this.trigger('delete_node', { "node" : obj, "parent" : par.id });
 			if(c) {
 				this.trigger('changed', { 'action' : 'delete_node', 'node' : obj, 'selected' : this._data.core.selected, 'parent' : par.id });
@@ -3804,17 +2959,7 @@
 			this.redraw_node(par, true);
 			return true;
 		},
-		/**
-		 * check if an operation is premitted on the tree. Used internally.
-		 * @private
-		 * @name check(chk, obj, par, pos)
-		 * @param  {String} chk the operation to check, can be "create_node", "rename_node", "delete_node", "copy_node" or "move_node"
-		 * @param  {mixed} obj the node
-		 * @param  {mixed} par the parent
-		 * @param  {mixed} pos the position to insert at, or if "rename_node" - the new name
-		 * @param  {mixed} more some various additional information, for example if a "move_node" operations is triggered by DND this will be the hovered node
-		 * @return {Boolean}
-		 */
+		
 		check : function (chk, obj, par, pos, more) {
 			obj = obj && obj.id ? obj : this.get_node(obj);
 			par = par && par.id ? par : this.get_node(par);
@@ -3839,26 +2984,11 @@
 			}
 			return true;
 		},
-		/**
-		 * get the last error
-		 * @name last_error()
-		 * @return {Object}
-		 */
+		
 		last_error : function () {
 			return this._data.core.last_error;
 		},
-		/**
-		 * move a node to a new parent
-		 * @name move_node(obj, par [, pos, callback, is_loaded])
-		 * @param  {mixed} obj the node to move, pass an array to move multiple nodes
-		 * @param  {mixed} par the new parent
-		 * @param  {mixed} pos the position to insert at (besides integer values, "first" and "last" are supported, as well as "before" and "after"), defaults to integer `0`
-		 * @param  {function} callback a function to call once the move is completed, receives 3 arguments - the node, the new parent and the position
-		 * @param  {Boolean} is_loaded internal parameter indicating if the parent node has been loaded
-		 * @param  {Boolean} skip_redraw internal parameter indicating if the tree should be redrawn
-		 * @param  {Boolean} instance internal parameter indicating if the node comes from another instance
-		 * @trigger move_node.jstree
-		 */
+		
 		move_node : function (obj, par, pos, callback, is_loaded, skip_redraw, origin) {
 			var t1, t2, old_par, old_pos, new_par, old_ins, is_multi, dpc, tmp, i, j, k, l, p;
 
@@ -4004,34 +3134,11 @@
 				}
 			}
 			if(callback) { callback.call(this, obj, new_par, pos); }
-			/**
-			 * triggered when a node is moved
-			 * @event
-			 * @name move_node.jstree
-			 * @param {Object} node
-			 * @param {String} parent the parent's ID
-			 * @param {Number} position the position of the node among the parent's children
-			 * @param {String} old_parent the old parent of the node
-			 * @param {Number} old_position the old position of the node
-			 * @param {Boolean} is_multi do the node and new parent belong to different instances
-			 * @param {jsTree} old_instance the instance the node came from
-			 * @param {jsTree} new_instance the instance of the new parent
-			 */
+			
 			this.trigger('move_node', { "node" : obj, "parent" : new_par.id, "position" : pos, "old_parent" : old_par, "old_position" : old_pos, 'is_multi' : (old_ins && old_ins._id && old_ins._id !== this._id), 'is_foreign' : (!old_ins || !old_ins._id), 'old_instance' : old_ins, 'new_instance' : this });
 			return obj.id;
 		},
-		/**
-		 * copy a node to a new parent
-		 * @name copy_node(obj, par [, pos, callback, is_loaded])
-		 * @param  {mixed} obj the node to copy, pass an array to copy multiple nodes
-		 * @param  {mixed} par the new parent
-		 * @param  {mixed} pos the position to insert at (besides integer values, "first" and "last" are supported, as well as "before" and "after"), defaults to integer `0`
-		 * @param  {function} callback a function to call once the move is completed, receives 3 arguments - the node, the new parent and the position
-		 * @param  {Boolean} is_loaded internal parameter indicating if the parent node has been loaded
-		 * @param  {Boolean} skip_redraw internal parameter indicating if the tree should be redrawn
-		 * @param  {Boolean} instance internal parameter indicating if the node comes from another instance
-		 * @trigger model.jstree copy_node.jstree
-		 */
+		
 		copy_node : function (obj, par, pos, callback, is_loaded, skip_redraw, origin) {
 			var t1, t2, dpc, tmp, i, j, node, old_par, new_par, old_ins, is_multi;
 
@@ -4132,29 +3239,11 @@
 				this.redraw(new_par.id === $.jstree.root);
 			}
 			if(callback) { callback.call(this, tmp, new_par, pos); }
-			/**
-			 * triggered when a node is copied
-			 * @event
-			 * @name copy_node.jstree
-			 * @param {Object} node the copied node
-			 * @param {Object} original the original node
-			 * @param {String} parent the parent's ID
-			 * @param {Number} position the position of the node among the parent's children
-			 * @param {String} old_parent the old parent of the node
-			 * @param {Number} old_position the position of the original node
-			 * @param {Boolean} is_multi do the node and new parent belong to different instances
-			 * @param {jsTree} old_instance the instance the node came from
-			 * @param {jsTree} new_instance the instance of the new parent
-			 */
+			
 			this.trigger('copy_node', { "node" : tmp, "original" : obj, "parent" : new_par.id, "position" : pos, "old_parent" : old_par, "old_position" : old_ins && old_ins._id && old_par && old_ins._model.data[old_par] && old_ins._model.data[old_par].children ? $.inArray(obj.id, old_ins._model.data[old_par].children) : -1,'is_multi' : (old_ins && old_ins._id && old_ins._id !== this._id), 'is_foreign' : (!old_ins || !old_ins._id), 'old_instance' : old_ins, 'new_instance' : this });
 			return tmp.id;
 		},
-		/**
-		 * cut a node (a later call to `paste(obj)` would move the node)
-		 * @name cut(obj)
-		 * @param  {mixed} obj multiple objects can be passed using an array
-		 * @trigger cut.jstree
-		 */
+		
 		cut : function (obj) {
 			if(!obj) { obj = this._data.core.selected.concat(); }
 			if(!$.isArray(obj)) { obj = [obj]; }
@@ -4168,20 +3257,10 @@
 			ccp_node = tmp;
 			ccp_inst = this;
 			ccp_mode = 'move_node';
-			/**
-			 * triggered when nodes are added to the buffer for moving
-			 * @event
-			 * @name cut.jstree
-			 * @param {Array} node
-			 */
+			
 			this.trigger('cut', { "node" : obj });
 		},
-		/**
-		 * copy a node (a later call to `paste(obj)` would copy the node)
-		 * @name copy(obj)
-		 * @param  {mixed} obj multiple objects can be passed using an array
-		 * @trigger copy.jstree
-		 */
+		
 		copy : function (obj) {
 			if(!obj) { obj = this._data.core.selected.concat(); }
 			if(!$.isArray(obj)) { obj = [obj]; }
@@ -4195,78 +3274,38 @@
 			ccp_node = tmp;
 			ccp_inst = this;
 			ccp_mode = 'copy_node';
-			/**
-			 * triggered when nodes are added to the buffer for copying
-			 * @event
-			 * @name copy.jstree
-			 * @param {Array} node
-			 */
+			
 			this.trigger('copy', { "node" : obj });
 		},
-		/**
-		 * get the current buffer (any nodes that are waiting for a paste operation)
-		 * @name get_buffer()
-		 * @return {Object} an object consisting of `mode` ("copy_node" or "move_node"), `node` (an array of objects) and `inst` (the instance)
-		 */
+		
 		get_buffer : function () {
 			return { 'mode' : ccp_mode, 'node' : ccp_node, 'inst' : ccp_inst };
 		},
-		/**
-		 * check if there is something in the buffer to paste
-		 * @name can_paste()
-		 * @return {Boolean}
-		 */
+		
 		can_paste : function () {
 			return ccp_mode !== false && ccp_node !== false; // && ccp_inst._model.data[ccp_node];
 		},
-		/**
-		 * copy or move the previously cut or copied nodes to a new parent
-		 * @name paste(obj [, pos])
-		 * @param  {mixed} obj the new parent
-		 * @param  {mixed} pos the position to insert at (besides integer, "first" and "last" are supported), defaults to integer `0`
-		 * @trigger paste.jstree
-		 */
+		
 		paste : function (obj, pos) {
 			obj = this.get_node(obj);
 			if(!obj || !ccp_mode || !ccp_mode.match(/^(copy_node|move_node)$/) || !ccp_node) { return false; }
 			if(this[ccp_mode](ccp_node, obj, pos, false, false, false, ccp_inst)) {
-				/**
-				 * triggered when paste is invoked
-				 * @event
-				 * @name paste.jstree
-				 * @param {String} parent the ID of the receiving node
-				 * @param {Array} node the nodes in the buffer
-				 * @param {String} mode the performed operation - "copy_node" or "move_node"
-				 */
+				
 				this.trigger('paste', { "parent" : obj.id, "node" : ccp_node, "mode" : ccp_mode });
 			}
 			ccp_node = false;
 			ccp_mode = false;
 			ccp_inst = false;
 		},
-		/**
-		 * clear the buffer of previously copied or cut nodes
-		 * @name clear_buffer()
-		 * @trigger clear_buffer.jstree
-		 */
+		
 		clear_buffer : function () {
 			ccp_node = false;
 			ccp_mode = false;
 			ccp_inst = false;
-			/**
-			 * triggered when the copy / cut buffer is cleared
-			 * @event
-			 * @name clear_buffer.jstree
-			 */
+			
 			this.trigger('clear_buffer');
 		},
-		/**
-		 * put a node in edit mode (input field to rename the node)
-		 * @name edit(obj [, default_text, callback])
-		 * @param  {mixed} obj
-		 * @param  {String} default_text the text to populate the input with (if omitted or set to a non-string value the node's text value is used)
-		 * @param  {Function} callback a function to be called once the text box is blurred, it is called in the instance's scope and receives the node, a status parameter (true if the rename is successful, false otherwise) and a boolean indicating if the user cancelled the edit. You can access the node's title using .text
-		 */
+		
 		edit : function (obj, default_text, callback) {
 			var rtl, w, a, s, t, h1, h2, fn, tmp, cancel = false;
 			obj = this.get_node(obj);
@@ -4377,13 +3416,7 @@
 		},
 
 
-		/**
-		 * changes the theme
-		 * @name set_theme(theme_name [, theme_url])
-		 * @param {String} theme_name the name of the new theme to apply
-		 * @param {mixed} theme_url  the location of the CSS file for this theme. Omit or set to `false` if you manually included the file. Set to `true` to autoload from the `core.themes.dir` directory.
-		 * @trigger set_theme.jstree
-		 */
+		
 		set_theme : function (theme_name, theme_url) {
 			if(!theme_name) { return false; }
 			if(theme_url === true) {
@@ -4401,25 +3434,12 @@
 			this._data.core.themes.name = theme_name;
 			this.element.addClass('jstree-' + theme_name);
 			this.element[this.settings.core.themes.responsive ? 'addClass' : 'removeClass' ]('jstree-' + theme_name + '-responsive');
-			/**
-			 * triggered when a theme is set
-			 * @event
-			 * @name set_theme.jstree
-			 * @param {String} theme the new theme
-			 */
+			
 			this.trigger('set_theme', { 'theme' : theme_name });
 		},
-		/**
-		 * gets the name of the currently applied theme name
-		 * @name get_theme()
-		 * @return {String}
-		 */
+		
 		get_theme : function () { return this._data.core.themes.name; },
-		/**
-		 * changes the theme variant (if the theme has variants)
-		 * @name set_theme_variant(variant_name)
-		 * @param {String|Boolean} variant_name the variant to apply (if `false` is used the current variant is removed)
-		 */
+		
 		set_theme_variant : function (variant_name) {
 			if(this._data.core.themes.variant) {
 				this.element.removeClass('jstree-' + this._data.core.themes.name + '-' + this._data.core.themes.variant);
@@ -4429,63 +3449,27 @@
 				this.element.addClass('jstree-' + this._data.core.themes.name + '-' + this._data.core.themes.variant);
 			}
 		},
-		/**
-		 * gets the name of the currently applied theme variant
-		 * @name get_theme()
-		 * @return {String}
-		 */
+		
 		get_theme_variant : function () { return this._data.core.themes.variant; },
-		/**
-		 * shows a striped background on the container (if the theme supports it)
-		 * @name show_stripes()
-		 */
+		
 		show_stripes : function () { this._data.core.themes.stripes = true; this.get_container_ul().addClass("jstree-striped"); },
-		/**
-		 * hides the striped background on the container
-		 * @name hide_stripes()
-		 */
+		
 		hide_stripes : function () { this._data.core.themes.stripes = false; this.get_container_ul().removeClass("jstree-striped"); },
-		/**
-		 * toggles the striped background on the container
-		 * @name toggle_stripes()
-		 */
+		
 		toggle_stripes : function () { if(this._data.core.themes.stripes) { this.hide_stripes(); } else { this.show_stripes(); } },
-		/**
-		 * shows the connecting dots (if the theme supports it)
-		 * @name show_dots()
-		 */
+		
 		show_dots : function () { this._data.core.themes.dots = true; this.get_container_ul().removeClass("jstree-no-dots"); },
-		/**
-		 * hides the connecting dots
-		 * @name hide_dots()
-		 */
+		
 		hide_dots : function () { this._data.core.themes.dots = false; this.get_container_ul().addClass("jstree-no-dots"); },
-		/**
-		 * toggles the connecting dots
-		 * @name toggle_dots()
-		 */
+		
 		toggle_dots : function () { if(this._data.core.themes.dots) { this.hide_dots(); } else { this.show_dots(); } },
-		/**
-		 * show the node icons
-		 * @name show_icons()
-		 */
+		
 		show_icons : function () { this._data.core.themes.icons = true; this.get_container_ul().removeClass("jstree-no-icons"); },
-		/**
-		 * hide the node icons
-		 * @name hide_icons()
-		 */
+		
 		hide_icons : function () { this._data.core.themes.icons = false; this.get_container_ul().addClass("jstree-no-icons"); },
-		/**
-		 * toggle the node icons
-		 * @name toggle_icons()
-		 */
+		
 		toggle_icons : function () { if(this._data.core.themes.icons) { this.hide_icons(); } else { this.show_icons(); } },
-		/**
-		 * set the node icon for a node
-		 * @name set_icon(obj, icon)
-		 * @param {mixed} obj
-		 * @param {String} icon the new icon - can be a path to an icon or a className, if using an image that is in the current directory use a `./` prefix, otherwise it will be detected as a class
-		 */
+		
 		set_icon : function (obj, icon) {
 			var t1, t2, dom, old;
 			if($.isArray(obj)) {
@@ -4519,21 +3503,12 @@
 			}
 			return true;
 		},
-		/**
-		 * get the node icon for a node
-		 * @name get_icon(obj)
-		 * @param {mixed} obj
-		 * @return {String}
-		 */
+		
 		get_icon : function (obj) {
 			obj = this.get_node(obj);
 			return (!obj || obj.id === $.jstree.root) ? false : obj.icon;
 		},
-		/**
-		 * hide the icon on an individual node
-		 * @name hide_icon(obj)
-		 * @param {mixed} obj
-		 */
+		
 		hide_icon : function (obj) {
 			var t1, t2;
 			if($.isArray(obj)) {
@@ -4549,11 +3524,7 @@
 			this.get_node(obj, true).children(".jstree-anchor").children(".jstree-themeicon").addClass('jstree-themeicon-hidden');
 			return true;
 		},
-		/**
-		 * show the icon on an individual node
-		 * @name show_icon(obj)
-		 * @param {mixed} obj
-		 */
+		
 		show_icon : function (obj) {
 			var t1, t2, dom;
 			if($.isArray(obj)) {
@@ -4614,11 +3585,7 @@
 	};
 
 
-/**
- * ### Changed plugin
- *
- * This plugin adds more information to the `changed.jstree` event. The new data is contained in the `changed` event data property, and contains a lists of `selected` and `deselected` nodes.
- */
+
 
 	$.jstree.plugins.changed = function (options, parent) {
 		var last = [];
@@ -4648,17 +3615,7 @@
 				}
 				last = data.selected.slice();
 			}
-			/**
-			 * triggered when selection changes (the "changed" plugin enhances the original event with more data)
-			 * @event
-			 * @name changed.jstree
-			 * @param {Object} node
-			 * @param {Object} action the action that caused the selection to change
-			 * @param {Array} selected the current selection
-			 * @param {Object} changed an object containing two properties `selected` and `deselected` - both arrays of node IDs, which were selected or deselected since the last changed event
-			 * @param {Object} event the event (if any) that triggered this changed event
-			 * @plugin changed
-			 */
+			
 			parent.trigger.call(this, ev, data);
 		};
 		this.refresh = function (skip_loading, forget_state) {
@@ -4667,59 +3624,24 @@
 		};
 	};
 
-/**
- * ### Checkbox plugin
- *
- * This plugin renders checkbox icons in front of each node, making multiple selection much easier.
- * It also supports tri-state behavior, meaning that if a node has a few of its children checked it will be rendered as undetermined, and state will be propagated up.
- */
+
 
 	var _i = document.createElement('I');
 	_i.className = 'jstree-icon jstree-checkbox';
 	_i.setAttribute('role', 'presentation');
-	/**
-	 * stores all defaults for the checkbox plugin
-	 * @name $.jstree.defaults.checkbox
-	 * @plugin checkbox
-	 */
+	
 	$.jstree.defaults.checkbox = {
-		/**
-		 * a boolean indicating if checkboxes should be visible (can be changed at a later time using `show_checkboxes()` and `hide_checkboxes`). Defaults to `true`.
-		 * @name $.jstree.defaults.checkbox.visible
-		 * @plugin checkbox
-		 */
+		
 		visible				: true,
-		/**
-		 * a boolean indicating if checkboxes should cascade down and have an undetermined state. Defaults to `true`.
-		 * @name $.jstree.defaults.checkbox.three_state
-		 * @plugin checkbox
-		 */
+		
 		three_state			: true,
-		/**
-		 * a boolean indicating if clicking anywhere on the node should act as clicking on the checkbox. Defaults to `true`.
-		 * @name $.jstree.defaults.checkbox.whole_node
-		 * @plugin checkbox
-		 */
+		
 		whole_node			: true,
-		/**
-		 * a boolean indicating if the selected style of a node should be kept, or removed. Defaults to `true`.
-		 * @name $.jstree.defaults.checkbox.keep_selected_style
-		 * @plugin checkbox
-		 */
+		
 		keep_selected_style	: true,
-		/**
-		 * This setting controls how cascading and undetermined nodes are applied.
-		 * If 'up' is in the string - cascading up is enabled, if 'down' is in the string - cascading down is enabled, if 'undetermined' is in the string - undetermined nodes will be used.
-		 * If `three_state` is set to `true` this setting is automatically set to 'up+down+undetermined'. Defaults to ''.
-		 * @name $.jstree.defaults.checkbox.cascade
-		 * @plugin checkbox
-		 */
+		
 		cascade				: '',
-		/**
-		 * This setting controls if checkbox are bound to the general tree selection or to an internal array maintained by the checkbox plugin. Defaults to `true`, only set to `false` if you know exactly what you are doing.
-		 * @name $.jstree.defaults.checkbox.tie_selection
-		 * @plugin checkbox
-		 */
+		
 		tie_selection		: true
 	};
 	$.jstree.plugins.checkbox = function (options, parent) {
@@ -5024,12 +3946,7 @@
 						}, this));
 			}
 		};
-		/**
-		 * set the undetermined state where and if necessary. Used internally.
-		 * @private
-		 * @name _undetermined()
-		 * @plugin checkbox
-		 */
+		
 		this._undetermined = function () {
 			if(this.element === null) { return; }
 			var i, j, k, l, o = {}, m = this._model.data, t = this.settings.checkbox.tie_selection, s = this._data[ t ? 'core' : 'checkbox' ].selected, p = [], tt = this;
@@ -5113,30 +4030,13 @@
 			}
 			return obj;
 		};
-		/**
-		 * show the node checkbox icons
-		 * @name show_checkboxes()
-		 * @plugin checkbox
-		 */
+		
 		this.show_checkboxes = function () { this._data.core.themes.checkboxes = true; this.get_container_ul().removeClass("jstree-no-checkboxes"); };
-		/**
-		 * hide the node checkbox icons
-		 * @name hide_checkboxes()
-		 * @plugin checkbox
-		 */
+		
 		this.hide_checkboxes = function () { this._data.core.themes.checkboxes = false; this.get_container_ul().addClass("jstree-no-checkboxes"); };
-		/**
-		 * toggle the node icons
-		 * @name toggle_checkboxes()
-		 * @plugin checkbox
-		 */
+		
 		this.toggle_checkboxes = function () { if(this._data.core.themes.checkboxes) { this.hide_checkboxes(); } else { this.show_checkboxes(); } };
-		/**
-		 * checks if a node is in an undetermined state
-		 * @name is_undetermined(obj)
-		 * @param  {mixed} obj
-		 * @return {Boolean}
-		 */
+		
 		this.is_undetermined = function (obj) {
 			obj = this.get_node(obj);
 			var s = this.settings.checkbox.cascade, i, j, t = this.settings.checkbox.tie_selection, d = this._data[ t ? 'core' : 'checkbox' ].selected, m = this._model.data;
@@ -5153,13 +4053,7 @@
 			}
 			return false;
 		};
-		/**
-		 * disable a node's checkbox
-		 * @name disable_checkbox(obj)
-		 * @param {mixed} obj an array can be used too
-		 * @trigger disable_checkbox.jstree
-		 * @plugin checkbox
-		 */
+		
 		this.disable_checkbox = function (obj) {
 			var t1, t2, dom;
 			if($.isArray(obj)) {
@@ -5179,23 +4073,11 @@
 				if(dom && dom.length) {
 					dom.children('.jstree-anchor').children('.jstree-checkbox').addClass('jstree-checkbox-disabled');
 				}
-				/**
-				 * triggered when an node's checkbox is disabled
-				 * @event
-				 * @name disable_checkbox.jstree
-				 * @param {Object} node
-				 * @plugin checkbox
-				 */
+				
 				this.trigger('disable_checkbox', { 'node' : obj });
 			}
 		};
-		/**
-		 * enable a node's checkbox
-		 * @name disable_checkbox(obj)
-		 * @param {mixed} obj an array can be used too
-		 * @trigger enable_checkbox.jstree
-		 * @plugin checkbox
-		 */
+		
 		this.enable_checkbox = function (obj) {
 			var t1, t2, dom;
 			if($.isArray(obj)) {
@@ -5215,13 +4097,7 @@
 				if(dom && dom.length) {
 					dom.children('.jstree-anchor').children('.jstree-checkbox').removeClass('jstree-checkbox-disabled');
 				}
-				/**
-				 * triggered when an node's checkbox is enabled
-				 * @event
-				 * @name enable_checkbox.jstree
-				 * @param {Object} node
-				 * @plugin checkbox
-				 */
+				
 				this.trigger('enable_checkbox', { 'node' : obj });
 			}
 		};
@@ -5248,13 +4124,7 @@
 			this.trigger('activate_node', { 'node' : this.get_node(obj) });
 		};
 
-		/**
-		 * check a node (only if tie_selection in checkbox settings is false, otherwise select_node will be called internally)
-		 * @name check_node(obj)
-		 * @param {mixed} obj an array can be used to check multiple nodes
-		 * @trigger check_node.jstree
-		 * @plugin checkbox
-		 */
+		
 		this.check_node = function (obj, e) {
 			if(this.settings.checkbox.tie_selection) { return this.select_node(obj, false, true, e); }
 			var dom, t1, t2, th;
@@ -5276,25 +4146,11 @@
 				if(dom && dom.length) {
 					dom.children('.jstree-anchor').addClass('jstree-checked');
 				}
-				/**
-				 * triggered when an node is checked (only if tie_selection in checkbox settings is false)
-				 * @event
-				 * @name check_node.jstree
-				 * @param {Object} node
-				 * @param {Array} selected the current selection
-				 * @param {Object} event the event (if any) that triggered this check_node
-				 * @plugin checkbox
-				 */
+				
 				this.trigger('check_node', { 'node' : obj, 'selected' : this._data.checkbox.selected, 'event' : e });
 			}
 		};
-		/**
-		 * uncheck a node (only if tie_selection in checkbox settings is false, otherwise deselect_node will be called internally)
-		 * @name uncheck_node(obj)
-		 * @param {mixed} obj an array can be used to uncheck multiple nodes
-		 * @trigger uncheck_node.jstree
-		 * @plugin checkbox
-		 */
+		
 		this.uncheck_node = function (obj, e) {
 			if(this.settings.checkbox.tie_selection) { return this.deselect_node(obj, false, e); }
 			var t1, t2, dom;
@@ -5316,24 +4172,11 @@
 				if(dom.length) {
 					dom.children('.jstree-anchor').removeClass('jstree-checked');
 				}
-				/**
-				 * triggered when an node is unchecked (only if tie_selection in checkbox settings is false)
-				 * @event
-				 * @name uncheck_node.jstree
-				 * @param {Object} node
-				 * @param {Array} selected the current selection
-				 * @param {Object} event the event (if any) that triggered this uncheck_node
-				 * @plugin checkbox
-				 */
+				
 				this.trigger('uncheck_node', { 'node' : obj, 'selected' : this._data.checkbox.selected, 'event' : e });
 			}
 		};
-		/**
-		 * checks all nodes in the tree (only if tie_selection in checkbox settings is false, otherwise select_all will be called internally)
-		 * @name check_all()
-		 * @trigger check_all.jstree, changed.jstree
-		 * @plugin checkbox
-		 */
+		
 		this.check_all = function () {
 			if(this.settings.checkbox.tie_selection) { return this.select_all(); }
 			var tmp = this._data.checkbox.selected.concat([]), i, j;
@@ -5344,21 +4187,10 @@
 				}
 			}
 			this.redraw(true);
-			/**
-			 * triggered when all nodes are checked (only if tie_selection in checkbox settings is false)
-			 * @event
-			 * @name check_all.jstree
-			 * @param {Array} selected the current selection
-			 * @plugin checkbox
-			 */
+			
 			this.trigger('check_all', { 'selected' : this._data.checkbox.selected });
 		};
-		/**
-		 * uncheck all checked nodes (only if tie_selection in checkbox settings is false, otherwise deselect_all will be called internally)
-		 * @name uncheck_all()
-		 * @trigger uncheck_all.jstree
-		 * @plugin checkbox
-		 */
+		
 		this.uncheck_all = function () {
 			if(this.settings.checkbox.tie_selection) { return this.deselect_all(); }
 			var tmp = this._data.checkbox.selected.concat([]), i, j;
@@ -5369,47 +4201,22 @@
 			}
 			this._data.checkbox.selected = [];
 			this.element.find('.jstree-checked').removeClass('jstree-checked');
-			/**
-			 * triggered when all nodes are unchecked (only if tie_selection in checkbox settings is false)
-			 * @event
-			 * @name uncheck_all.jstree
-			 * @param {Object} node the previous selection
-			 * @param {Array} selected the current selection
-			 * @plugin checkbox
-			 */
+			
 			this.trigger('uncheck_all', { 'selected' : this._data.checkbox.selected, 'node' : tmp });
 		};
-		/**
-		 * checks if a node is checked (if tie_selection is on in the settings this function will return the same as is_selected)
-		 * @name is_checked(obj)
-		 * @param  {mixed}  obj
-		 * @return {Boolean}
-		 * @plugin checkbox
-		 */
+		
 		this.is_checked = function (obj) {
 			if(this.settings.checkbox.tie_selection) { return this.is_selected(obj); }
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) { return false; }
 			return obj.state.checked;
 		};
-		/**
-		 * get an array of all checked nodes (if tie_selection is on in the settings this function will return the same as get_selected)
-		 * @name get_checked([full])
-		 * @param  {mixed}  full if set to `true` the returned array will consist of the full node objects, otherwise - only IDs will be returned
-		 * @return {Array}
-		 * @plugin checkbox
-		 */
+		
 		this.get_checked = function (full) {
 			if(this.settings.checkbox.tie_selection) { return this.get_selected(full); }
 			return full ? $.map(this._data.checkbox.selected, $.proxy(function (i) { return this.get_node(i); }, this)) : this._data.checkbox.selected;
 		};
-		/**
-		 * get an array of all top level checked nodes (ignoring children of checked nodes) (if tie_selection is on in the settings this function will return the same as get_top_selected)
-		 * @name get_top_checked([full])
-		 * @param  {mixed}  full if set to `true` the returned array will consist of the full node objects, otherwise - only IDs will be returned
-		 * @return {Array}
-		 * @plugin checkbox
-		 */
+		
 		this.get_top_checked = function (full) {
 			if(this.settings.checkbox.tie_selection) { return this.get_top_selected(full); }
 			var tmp = this.get_checked(true),
@@ -5432,13 +4239,7 @@
 			}
 			return full ? $.map(tmp, $.proxy(function (i) { return this.get_node(i); }, this)) : tmp;
 		};
-		/**
-		 * get an array of all bottom level checked nodes (ignoring selected parents) (if tie_selection is on in the settings this function will return the same as get_bottom_selected)
-		 * @name get_bottom_checked([full])
-		 * @param  {mixed}  full if set to `true` the returned array will consist of the full node objects, otherwise - only IDs will be returned
-		 * @return {Array}
-		 * @plugin checkbox
-		 */
+		
 		this.get_bottom_checked = function (full) {
 			if(this.settings.checkbox.tie_selection) { return this.get_bottom_selected(full); }
 			var tmp = this.get_checked(true),
@@ -5498,17 +4299,9 @@
 	// include the checkbox plugin by default
 	// $.jstree.defaults.plugins.push("checkbox");
 
-/**
- * ### Conditionalselect plugin
- *
- * This plugin allows defining a callback to allow or deny node selection by user input (activate node method).
- */
 
-	/**
-	 * a callback (function) which is invoked in the instance's scope and receives two arguments - the node and the event that triggered the `activate_node` call. Returning false prevents working with the node, returning true allows invoking activate_node. Defaults to returning `true`.
-	 * @name $.jstree.defaults.checkbox.visible
-	 * @plugin checkbox
-	 */
+
+	
 	$.jstree.defaults.conditionalselect = function () { return true; };
 	$.jstree.plugins.conditionalselect = function (options, parent) {
 		// own function
@@ -5520,47 +4313,15 @@
 	};
 
 
-/**
- * ### Contextmenu plugin
- *
- * Shows a context menu when a node is right-clicked.
- */
 
-	/**
-	 * stores all defaults for the contextmenu plugin
-	 * @name $.jstree.defaults.contextmenu
-	 * @plugin contextmenu
-	 */
+
+	
 	$.jstree.defaults.contextmenu = {
-		/**
-		 * a boolean indicating if the node should be selected when the context menu is invoked on it. Defaults to `true`.
-		 * @name $.jstree.defaults.contextmenu.select_node
-		 * @plugin contextmenu
-		 */
+		
 		select_node : true,
-		/**
-		 * a boolean indicating if the menu should be shown aligned with the node. Defaults to `true`, otherwise the mouse coordinates are used.
-		 * @name $.jstree.defaults.contextmenu.show_at_node
-		 * @plugin contextmenu
-		 */
+		
 		show_at_node : true,
-		/**
-		 * an object of actions, or a function that accepts a node and a callback function and calls the callback function with an object of actions available for that node (you can also return the items too).
-		 *
-		 * Each action consists of a key (a unique name) and a value which is an object with the following properties (only label and action are required):
-		 *
-		 * * `separator_before` - a boolean indicating if there should be a separator before this item
-		 * * `separator_after` - a boolean indicating if there should be a separator after this item
-		 * * `_disabled` - a boolean indicating if this action should be disabled
-		 * * `label` - a string - the name of the action (could be a function returning a string)
-		 * * `action` - a function to be executed if this item is chosen
-		 * * `icon` - a string, can be a path to an icon or a className, if using an image that is in the current directory use a `./` prefix, otherwise it will be detected as a class
-		 * * `shortcut` - keyCode which will trigger the action if the menu is open (for example `113` for rename, which equals F2)
-		 * * `shortcut_label` - shortcut label (like for example `F2` for rename)
-		 *
-		 * @name $.jstree.defaults.contextmenu.items
-		 * @plugin contextmenu
-		 */
+		
 		items : function (o, cb) { // Could be an object directly
 			return {
 				"create" : {
@@ -5743,16 +4504,7 @@
 			parent.teardown.call(this);
 		};
 
-		/**
-		 * prepare and show the context menu for a node
-		 * @name show_contextmenu(obj [, x, y])
-		 * @param {mixed} obj the node
-		 * @param {Number} x the x-coordinate relative to the document to show the menu at
-		 * @param {Number} y the y-coordinate relative to the document to show the menu at
-		 * @param {Object} e the event if available that triggered the contextmenu
-		 * @plugin contextmenu
-		 * @trigger show_contextmenu.jstree
-		 */
+		
 		this.show_contextmenu = function (obj, x, y, e) {
 			obj = this.get_node(obj);
 			if(!obj || obj.id === $.jstree.root) { return false; }
@@ -5780,17 +4532,7 @@
 				this._show_contextmenu(obj, x, y, i);
 			}
 		};
-		/**
-		 * show the prepared context menu for a node
-		 * @name _show_contextmenu(obj, x, y, i)
-		 * @param {mixed} obj the node
-		 * @param {Number} x the x-coordinate relative to the document to show the menu at
-		 * @param {Number} y the y-coordinate relative to the document to show the menu at
-		 * @param {Number} i the object of items to show
-		 * @plugin contextmenu
-		 * @trigger show_contextmenu.jstree
-		 * @private
-		 */
+		
 		this._show_contextmenu = function (obj, x, y, i) {
 			var d = this.get_node(obj, true),
 				a = d.children(".jstree-anchor");
@@ -5800,15 +4542,7 @@
 			}, this));
 			this._data.contextmenu.visible = true;
 			$.vakata.context.show(a, { 'x' : x, 'y' : y }, i);
-			/**
-			 * triggered when the contextmenu is shown for a node
-			 * @event
-			 * @name show_contextmenu.jstree
-			 * @param {Object} node the node
-			 * @param {Number} x the x-coordinate of the menu relative to the document
-			 * @param {Number} y the y-coordinate of the menu relative to the document
-			 * @plugin contextmenu
-			 */
+			
 			this.trigger('show_contextmenu', { "node" : obj, "x" : x, "y" : y });
 		};
 	};
@@ -5894,15 +4628,7 @@
 				});
 				str  = str.replace(/<li class\='vakata-context-separator'\><\/li\>$/,"");
 				if(is_callback) { str += "</ul>"; }
-				/**
-				 * triggered on the document when the contextmenu is parsed (HTML is built)
-				 * @event
-				 * @plugin contextmenu
-				 * @name context_parse.vakata
-				 * @param {jQuery} reference the element that was right clicked
-				 * @param {jQuery} element the DOM element of the menu itself
-				 * @param {Object} position the x & y coordinates of the menu
-				 */
+				
 				if(!is_callback) { vakata_context.html = str; $.vakata.context._trigger("parse"); }
 				return str.length > 10 ? str : false;
 			},
@@ -5985,15 +4711,7 @@
 						.show()
 						.find('a').first().focus().parent().addClass("vakata-context-hover");
 					vakata_context.is_visible = true;
-					/**
-					 * triggered on the document when the contextmenu is shown
-					 * @event
-					 * @plugin contextmenu
-					 * @name context_show.vakata
-					 * @param {jQuery} reference the element that was right clicked
-					 * @param {jQuery} element the DOM element of the menu itself
-					 * @param {Object} position the x & y coordinates of the menu
-					 */
+					
 					$.vakata.context._trigger("show");
 				}
 			},
@@ -6001,15 +4719,7 @@
 				if(vakata_context.is_visible) {
 					vakata_context.element.hide().find("ul").hide().end().find(':focus').blur().end().detach();
 					vakata_context.is_visible = false;
-					/**
-					 * triggered on the document when the contextmenu is hidden
-					 * @event
-					 * @plugin contextmenu
-					 * @name context_hide.vakata
-					 * @param {jQuery} reference the element that was right clicked
-					 * @param {jQuery} element the DOM element of the menu itself
-					 * @param {Object} position the x & y coordinates of the menu
-					 */
+					
 					$.vakata.context._trigger("hide");
 				}
 			}
@@ -6135,77 +4845,29 @@
 	}($));
 	// $.jstree.defaults.plugins.push("contextmenu");
 
-/**
- * ### Drag'n'drop plugin
- *
- * Enables dragging and dropping of nodes in the tree, resulting in a move or copy operations.
- */
 
-	/**
-	 * stores all defaults for the drag'n'drop plugin
-	 * @name $.jstree.defaults.dnd
-	 * @plugin dnd
-	 */
+
+	
 	$.jstree.defaults.dnd = {
-		/**
-		 * a boolean indicating if a copy should be possible while dragging (by pressint the meta key or Ctrl). Defaults to `true`.
-		 * @name $.jstree.defaults.dnd.copy
-		 * @plugin dnd
-		 */
+		
 		copy : true,
-		/**
-		 * a number indicating how long a node should remain hovered while dragging to be opened. Defaults to `500`.
-		 * @name $.jstree.defaults.dnd.open_timeout
-		 * @plugin dnd
-		 */
+		
 		open_timeout : 500,
-		/**
-		 * a function invoked each time a node is about to be dragged, invoked in the tree's scope and receives the nodes about to be dragged as an argument (array) and the event that started the drag - return `false` to prevent dragging
-		 * @name $.jstree.defaults.dnd.is_draggable
-		 * @plugin dnd
-		 */
+		
 		is_draggable : true,
-		/**
-		 * a boolean indicating if checks should constantly be made while the user is dragging the node (as opposed to checking only on drop), default is `true`
-		 * @name $.jstree.defaults.dnd.check_while_dragging
-		 * @plugin dnd
-		 */
+		
 		check_while_dragging : true,
-		/**
-		 * a boolean indicating if nodes from this tree should only be copied with dnd (as opposed to moved), default is `false`
-		 * @name $.jstree.defaults.dnd.always_copy
-		 * @plugin dnd
-		 */
+		
 		always_copy : false,
-		/**
-		 * when dropping a node "inside", this setting indicates the position the node should go to - it can be an integer or a string: "first" (same as 0) or "last", default is `0`
-		 * @name $.jstree.defaults.dnd.inside_pos
-		 * @plugin dnd
-		 */
+		
 		inside_pos : 0,
-		/**
-		 * when starting the drag on a node that is selected this setting controls if all selected nodes are dragged or only the single node, default is `true`, which means all selected nodes are dragged when the drag is started on a selected node
-		 * @name $.jstree.defaults.dnd.drag_selection
-		 * @plugin dnd
-		 */
+		
 		drag_selection : true,
-		/**
-		 * controls whether dnd works on touch devices. If left as boolean true dnd will work the same as in desktop browsers, which in some cases may impair scrolling. If set to boolean false dnd will not work on touch devices. There is a special third option - string "selected" which means only selected nodes can be dragged on touch devices.
-		 * @name $.jstree.defaults.dnd.touch
-		 * @plugin dnd
-		 */
+		
 		touch : true,
-		/**
-		 * controls whether items can be dropped anywhere on the node, not just on the anchor, by default only the node anchor is a valid drop target. Works best with the wholerow plugin. If enabled on mobile depending on the interface it might be hard for the user to cancel the drop, since the whole tree container will be a valid drop target.
-		 * @name $.jstree.defaults.dnd.large_drop_target
-		 * @plugin dnd
-		 */
+		
 		large_drop_target : false,
-		/**
-		 * controls whether a drag can be initiated from any part of the node and not just the text/icon part, works best with the wholerow plugin. Keep in mind it can cause problems with tree scrolling on mobile depending on the interface - in that case set the touch option to "selected".
-		 * @name $.jstree.defaults.dnd.large_drag_target
-		 * @plugin dnd
-		 */
+		
 		large_drag_target : false
 	};
 	// TODO: now check works by checking for each node individually, how about max_children, unique, etc?
@@ -6494,16 +5156,7 @@
 				vakata_dnd.scroll_e.scrollTop(i + vakata_dnd.scroll_t * $.vakata.dnd.settings.scroll_speed);
 				vakata_dnd.scroll_e.scrollLeft(j + vakata_dnd.scroll_l * $.vakata.dnd.settings.scroll_speed);
 				if(i !== vakata_dnd.scroll_e.scrollTop() || j !== vakata_dnd.scroll_e.scrollLeft()) {
-					/**
-					 * triggered on the document when a drag causes an element to scroll
-					 * @event
-					 * @plugin dnd
-					 * @name dnd_scroll.vakata
-					 * @param {Mixed} data any data supplied with the call to $.vakata.dnd.start
-					 * @param {DOM} element the DOM element being dragged
-					 * @param {jQuery} helper the helper shown next to the mouse
-					 * @param {jQuery} event the element that is scrolling
-					 */
+					
 					$.vakata.dnd._trigger("scroll", vakata_dnd.scroll_e);
 				}
 			},
@@ -6558,16 +5211,7 @@
 							vakata_dnd.helper_w = vakata_dnd.helper.outerWidth();
 						}
 						vakata_dnd.is_drag = true;
-						/**
-						 * triggered on the document when a drag starts
-						 * @event
-						 * @plugin dnd
-						 * @name dnd_start.vakata
-						 * @param {Mixed} data any data supplied with the call to $.vakata.dnd.start
-						 * @param {DOM} element the DOM element being dragged
-						 * @param {jQuery} helper the helper shown next to the mouse
-						 * @param {Object} event the event that caused the start (probably mousemove)
-						 */
+						
 						$.vakata.dnd._trigger("start", e);
 					}
 					else { return; }
@@ -6628,16 +5272,7 @@
 						top		: ht + "px"
 					});
 				}
-				/**
-				 * triggered on the document when a drag is in progress
-				 * @event
-				 * @plugin dnd
-				 * @name dnd_move.vakata
-				 * @param {Mixed} data any data supplied with the call to $.vakata.dnd.start
-				 * @param {DOM} element the DOM element being dragged
-				 * @param {jQuery} helper the helper shown next to the mouse
-				 * @param {Object} event the event that caused this to trigger (most likely mousemove)
-				 */
+				
 				$.vakata.dnd._trigger("move", e);
 				return false;
 			},
@@ -6648,16 +5283,7 @@
 					e.target = document.elementFromPoint(e.originalEvent.changedTouches[0].pageX - window.pageXOffset, e.originalEvent.changedTouches[0].pageY - window.pageYOffset);
 				}
 				if(vakata_dnd.is_drag) {
-					/**
-					 * triggered on the document when a drag stops (the dragged element is dropped)
-					 * @event
-					 * @plugin dnd
-					 * @name dnd_stop.vakata
-					 * @param {Mixed} data any data supplied with the call to $.vakata.dnd.start
-					 * @param {DOM} element the DOM element being dragged
-					 * @param {jQuery} helper the helper shown next to the mouse
-					 * @param {Object} event the event that caused the stop
-					 */
+					
 					$.vakata.dnd._trigger("stop", e);
 				}
 				else {
@@ -6676,30 +5302,9 @@
 	// $.jstree.defaults.plugins.push("dnd");
 
 
-/**
- * ### Massload plugin
- *
- * Adds massload functionality to jsTree, so that multiple nodes can be loaded in a single request (only useful with lazy loading).
- */
 
-	/**
-	 * massload configuration
-	 *
-	 * It is possible to set this to a standard jQuery-like AJAX config.
-	 * In addition to the standard jQuery ajax options here you can supply functions for `data` and `url`, the functions will be run in the current instance's scope and a param will be passed indicating which node IDs need to be loaded, the return value of those functions will be used.
-	 *
-	 * You can also set this to a function, that function will receive the node IDs being loaded as argument and a second param which is a function (callback) which should be called with the result.
-	 *
-	 * Both the AJAX and the function approach rely on the same return value - an object where the keys are the node IDs, and the value is the children of that node as an array.
-	 *
-	 *	{
-	 *		"id1" : [{ "text" : "Child of ID1", "id" : "c1" }, { "text" : "Another child of ID1", "id" : "c2" }],
-	 *		"id2" : [{ "text" : "Child of ID2", "id" : "c3" }]
-	 *	}
-	 * 
-	 * @name $.jstree.defaults.massload
-	 * @plugin massload
-	 */
+
+	
 	$.jstree.defaults.massload = null;
 	$.jstree.plugins.massload = function (options, parent) {
 		this.init = function (el, options) {
@@ -6760,71 +5365,25 @@
 		};
 	};
 
-/**
- * ### Search plugin
- *
- * Adds search functionality to jsTree.
- */
 
-	/**
-	 * stores all defaults for the search plugin
-	 * @name $.jstree.defaults.search
-	 * @plugin search
-	 */
+
+	
 	$.jstree.defaults.search = {
-		/**
-		 * a jQuery-like AJAX config, which jstree uses if a server should be queried for results. 
-		 * 
-		 * A `str` (which is the search string) parameter will be added with the request, an optional `inside` parameter will be added if the search is limited to a node id. The expected result is a JSON array with nodes that need to be opened so that matching nodes will be revealed.
-		 * Leave this setting as `false` to not query the server. You can also set this to a function, which will be invoked in the instance's scope and receive 3 parameters - the search string, the callback to call with the array of nodes to load, and the optional node ID to limit the search to 
-		 * @name $.jstree.defaults.search.ajax
-		 * @plugin search
-		 */
+		
 		ajax : false,
-		/**
-		 * Indicates if the search should be fuzzy or not (should `chnd3` match `child node 3`). Default is `false`.
-		 * @name $.jstree.defaults.search.fuzzy
-		 * @plugin search
-		 */
+		
 		fuzzy : false,
-		/**
-		 * Indicates if the search should be case sensitive. Default is `false`.
-		 * @name $.jstree.defaults.search.case_sensitive
-		 * @plugin search
-		 */
+		
 		case_sensitive : false,
-		/**
-		 * Indicates if the tree should be filtered (by default) to show only matching nodes (keep in mind this can be a heavy on large trees in old browsers). 
-		 * This setting can be changed at runtime when calling the search method. Default is `false`.
-		 * @name $.jstree.defaults.search.show_only_matches
-		 * @plugin search
-		 */
+		
 		show_only_matches : false,
-		/**
-		 * Indicates if the children of matched element are shown (when show_only_matches is true)
-		 * This setting can be changed at runtime when calling the search method. Default is `false`.
-		 * @name $.jstree.defaults.search.show_only_matches_children
-		 * @plugin search
-		 */
+		
 		show_only_matches_children : false,
-		/**
-		 * Indicates if all nodes opened to reveal the search result, should be closed when the search is cleared or a new search is performed. Default is `true`.
-		 * @name $.jstree.defaults.search.close_opened_onclear
-		 * @plugin search
-		 */
+		
 		close_opened_onclear : true,
-		/**
-		 * Indicates if only leaf nodes should be included in search results. Default is `false`.
-		 * @name $.jstree.defaults.search.search_leaves_only
-		 * @plugin search
-		 */
+		
 		search_leaves_only : false,
-		/**
-		 * If set to a function it wil be called in the instance's scope with two arguments - search string and node (where node will be every node in the structure, so use with caution).
-		 * If the function returns a truthy value the node will be considered a match (it might not be displayed if search_only_leaves is set to true and the node is not a leaf). Default is `false`.
-		 * @name $.jstree.defaults.search.search_callback
-		 * @plugin search
-		 */
+		
 		search_callback : false
 	};
 
@@ -6864,17 +5423,7 @@
 						}
 					}, this));
 		};
-		/**
-		 * used to search the tree nodes for a given string
-		 * @name search(str [, skip_async])
-		 * @param {String} str the search string
-		 * @param {Boolean} skip_async if set to true server will not be queried even if configured
-		 * @param {Boolean} show_only_matches if set to true only matching nodes will be shown (keep in mind this can be very slow on large trees or old browsers)
-		 * @param {mixed} inside an optional node to whose children to limit the search
-		 * @param {Boolean} append if set to true the results of this search are appended to the previous search
-		 * @plugin search
-		 * @trigger search.jstree
-		 */
+		
 		this.search = function (str, skip_async, show_only_matches, inside, append, show_only_matches_children) {
 			if(str === false || $.trim(str.toString()) === "") {
 				return this.clear_search();
@@ -6956,36 +5505,15 @@
 				}
 				this._data.search.dom.children(".jstree-anchor").addClass('jstree-search');
 			}
-			/**
-			 * triggered after search is complete
-			 * @event
-			 * @name search.jstree
-			 * @param {jQuery} nodes a jQuery collection of matching nodes
-			 * @param {String} str the search string
-			 * @param {Array} res a collection of objects represeing the matching nodes
-			 * @plugin search
-			 */
+			
 			this.trigger('search', { nodes : this._data.search.dom, str : str, res : this._data.search.res, show_only_matches : show_only_matches });
 		};
-		/**
-		 * used to clear the last search (removes classes and shows all nodes if filtering is on)
-		 * @name clear_search()
-		 * @plugin search
-		 * @trigger clear_search.jstree
-		 */
+		
 		this.clear_search = function () {
 			if(this.settings.search.close_opened_onclear) {
 				this.close_node(this._data.search.opn, 0);
 			}
-			/**
-			 * triggered after search is complete
-			 * @event
-			 * @name clear_search.jstree
-			 * @param {jQuery} nodes a jQuery collection of matching nodes (the result from the last search)
-			 * @param {String} str the search string (the last search string)
-			 * @param {Array} res a collection of objects represeing the matching nodes (the result from the last search)
-			 * @plugin search
-			 */
+			
 			this.trigger('clear_search', { 'nodes' : this._data.search.dom, str : this._data.search.str, res : this._data.search.res });
 			if(this._data.search.res.length) {
 				this._data.search.dom = $(this.element[0].querySelectorAll('#' + $.map(this._data.search.res, function (v) {
@@ -6998,13 +5526,7 @@
 			this._data.search.opn = [];
 			this._data.search.dom = $();
 		};
-		/**
-		 * opens nodes that need to be opened to reveal the search results. Used only internally.
-		 * @private
-		 * @name _search_open(d)
-		 * @param {Array} d an array of node IDs
-		 * @plugin search
-		 */
+		
 		this._search_open = function (d) {
 			var t = this;
 			$.each(d.concat([]), function (i, v) {
@@ -7172,18 +5694,9 @@
 	// $.jstree.defaults.plugins.push("search");
 
 
-/**
- * ### Sort plugin
- *
- * Automatically sorts all siblings in the tree according to a sorting function.
- */
 
-	/**
-	 * the settings function used to sort the nodes.
-	 * It is executed in the tree's context, accepts two nodes as arguments and should return `1` or `-1`.
-	 * @name $.jstree.defaults.sort
-	 * @plugin sort
-	 */
+
+	
 	$.jstree.defaults.sort = function (a, b) {
 		//return this.get_type(a) === this.get_type(b) ? (this.get_text(a) > this.get_text(b) ? 1 : -1) : this.get_type(a) >= this.get_type(b);
 		return this.get_text(a) > this.get_text(b) ? 1 : -1;
@@ -7204,15 +5717,7 @@
 						this.redraw_node(data.parent, true);
 					}, this));
 		};
-		/**
-		 * used to sort a node's children
-		 * @private
-		 * @name sort(obj [, deep])
-		 * @param  {mixed} obj the node
-		 * @param {Boolean} deep if set to `true` nodes are sorted recursively.
-		 * @plugin sort
-		 * @trigger search.jstree
-		 */
+		
 		this.sort = function (obj, deep) {
 			var i, j;
 			obj = this.get_node(obj);
@@ -7230,42 +5735,18 @@
 	// include the sort plugin by default
 	// $.jstree.defaults.plugins.push("sort");
 
-/**
- * ### State plugin
- *
- * Saves the state of the tree (selected nodes, opened nodes) on the user's computer using available options (localStorage, cookies, etc)
- */
+
 
 	var to = false;
-	/**
-	 * stores all defaults for the state plugin
-	 * @name $.jstree.defaults.state
-	 * @plugin state
-	 */
+	
 	$.jstree.defaults.state = {
-		/**
-		 * A string for the key to use when saving the current tree (change if using multiple trees in your project). Defaults to `jstree`.
-		 * @name $.jstree.defaults.state.key
-		 * @plugin state
-		 */
+		
 		key		: 'jstree',
-		/**
-		 * A space separated list of events that trigger a state save. Defaults to `changed.jstree open_node.jstree close_node.jstree`.
-		 * @name $.jstree.defaults.state.events
-		 * @plugin state
-		 */
+		
 		events	: 'changed.jstree open_node.jstree close_node.jstree check_node.jstree uncheck_node.jstree',
-		/**
-		 * Time in milliseconds after which the state will expire. Defaults to 'false' meaning - no expire.
-		 * @name $.jstree.defaults.state.ttl
-		 * @plugin state
-		 */
+		
 		ttl		: false,
-		/**
-		 * A function that will be executed prior to restoring state with one argument - the state object. Can be used to clear unwanted parts of the state.
-		 * @name $.jstree.defaults.state.filter
-		 * @plugin state
-		 */
+		
 		filter	: false
 	};
 	$.jstree.plugins.state = function (options, parent) {
@@ -7276,12 +5757,7 @@
 					if(to) { clearTimeout(to); }
 					to = setTimeout($.proxy(function () { this.save_state(); }, this), 100);
 				}, this));
-				/**
-				 * triggered when the state plugin is finished restoring the state (and immediately after ready if there is no state to restore).
-				 * @event
-				 * @name state_ready.jstree
-				 * @plugin state
-				 */
+				
 				this.trigger('state_ready');
 			}, this);
 			this.element
@@ -7290,20 +5766,12 @@
 						if(!this.restore_state()) { bind(); }
 					}, this));
 		};
-		/**
-		 * save the state
-		 * @name save_state()
-		 * @plugin state
-		 */
+		
 		this.save_state = function () {
 			var st = { 'state' : this.get_state(), 'ttl' : this.settings.state.ttl, 'sec' : +(new Date()) };
 			$.vakata.storage.set(this.settings.state.key, JSON.stringify(st));
 		};
-		/**
-		 * restore the state from the user's computer
-		 * @name restore_state()
-		 * @plugin state
-		 */
+		
 		this.restore_state = function () {
 			var k = $.vakata.storage.get(this.settings.state.key);
 			if(!!k) { try { k = JSON.parse(k); } catch(ex) { return false; } }
@@ -7317,11 +5785,7 @@
 			}
 			return false;
 		};
-		/**
-		 * clear the state on the user's computer
-		 * @name clear_state()
-		 * @plugin state
-		 */
+		
 		this.clear_state = function () {
 			return $.vakata.storage.del(this.settings.state.key);
 		};
@@ -7339,28 +5803,9 @@
 	// include the state plugin by default
 	// $.jstree.defaults.plugins.push("state");
 
-/**
- * ### Types plugin
- *
- * Makes it possible to add predefined types for groups of nodes, which make it possible to easily control nesting rules and icon for each group.
- */
 
-	/**
-	 * An object storing all types as key value pairs, where the key is the type name and the value is an object that could contain following keys (all optional).
-	 *
-	 * * `max_children` the maximum number of immediate children this node type can have. Do not specify or set to `-1` for unlimited.
-	 * * `max_depth` the maximum number of nesting this node type can have. A value of `1` would mean that the node can have children, but no grandchildren. Do not specify or set to `-1` for unlimited.
-	 * * `valid_children` an array of node type strings, that nodes of this type can have as children. Do not specify or set to `-1` for no limits.
-	 * * `icon` a string - can be a path to an icon or a className, if using an image that is in the current directory use a `./` prefix, otherwise it will be detected as a class. Omit to use the default icon from your theme.
-	 *
-	 * There are two predefined types:
-	 *
-	 * * `#` represents the root of the tree, for example `max_children` would control the maximum number of root nodes.
-	 * * `default` represents the default node - any settings here will be applied to all nodes that do not have a type specified.
-	 *
-	 * @name $.jstree.defaults.types
-	 * @plugin types
-	 */
+
+	
 	$.jstree.defaults.types = {
 		'default' : {}
 	};
@@ -7500,13 +5945,7 @@
 			}
 			return true;
 		};
-		/**
-		 * used to retrieve the type settings object for a node
-		 * @name get_rules(obj)
-		 * @param {mixed} obj the node to find the rules for
-		 * @return {Object}
-		 * @plugin types
-		 */
+		
 		this.get_rules = function (obj) {
 			obj = this.get_node(obj);
 			if(!obj) { return false; }
@@ -7516,25 +5955,12 @@
 			if(tmp.valid_children === undefined) { tmp.valid_children = -1; }
 			return tmp;
 		};
-		/**
-		 * used to retrieve the type string or settings object for a node
-		 * @name get_type(obj [, rules])
-		 * @param {mixed} obj the node to find the rules for
-		 * @param {Boolean} rules if set to `true` instead of a string the settings object will be returned
-		 * @return {String|Object}
-		 * @plugin types
-		 */
+		
 		this.get_type = function (obj, rules) {
 			obj = this.get_node(obj);
 			return (!obj) ? false : ( rules ? $.extend({ 'type' : obj.type }, this.settings.types[obj.type]) : obj.type);
 		};
-		/**
-		 * used to change a node's type
-		 * @name set_type(obj, type)
-		 * @param {mixed} obj the node to change
-		 * @param {String} type the new type
-		 * @plugin types
-		 */
+		
 		this.set_type = function (obj, type) {
 			var t, t1, t2, old_type, old_icon;
 			if($.isArray(obj)) {
@@ -7559,29 +5985,13 @@
 	// include the types plugin by default
 	// $.jstree.defaults.plugins.push("types");
 
-/**
- * ### Unique plugin
- *
- * Enforces that no nodes with the same name can coexist as siblings.
- */
 
-	/**
-	 * stores all defaults for the unique plugin
-	 * @name $.jstree.defaults.unique
-	 * @plugin unique
-	 */
+
+	
 	$.jstree.defaults.unique = {
-		/**
-		 * Indicates if the comparison should be case sensitive. Default is `false`.
-		 * @name $.jstree.defaults.unique.case_sensitive
-		 * @plugin unique
-		 */
+		
 		case_sensitive : false,
-		/**
-		 * A callback executed in the instance's scope when a new node is created and the name is already taken, the two arguments are the conflicting name and the counter. The default will produce results like `New node (2)`.
-		 * @name $.jstree.defaults.unique.duplicate
-		 * @plugin unique
-		 */
+		
 		duplicate : function (name, counter) {
 			return name + ' (' + counter + ')';
 		}
@@ -7665,11 +6075,7 @@
 	// $.jstree.defaults.plugins.push("unique");
 
 
-/**
- * ### Wholerow plugin
- *
- * Makes each node appear block level. Making selection easier. May cause slow down for large trees in old browsers.
- */
+
 
 	var div = document.createElement('DIV');
 	div.setAttribute('unselectable','on');

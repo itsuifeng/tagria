@@ -21,8 +21,7 @@ public class PersonController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
-		return new ModelAndView("/person/list", "personList",
-				this.daoPerson.list());
+		return new ModelAndView("/person/list", "personList", this.daoPerson.list());
 	}
 
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -32,8 +31,7 @@ public class PersonController {
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable Long id) {
-		return new ModelAndView("/person/form", "person",
-				this.daoPerson.load(new Person(id)));
+		return new ModelAndView("/person/form", "person", this.daoPerson.load(new Person(id)));
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

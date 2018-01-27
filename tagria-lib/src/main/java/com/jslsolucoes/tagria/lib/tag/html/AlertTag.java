@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -36,97 +22,85 @@ public class AlertTag extends SimpleTagSupport {
 	private String state;
 	private String label;
 	private String id;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		
-		if(rendered != null && rendered){
+
+		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS,"alert alert-"+state);
-			div.add(Attribute.ROLE,"alert");
-			div.add(Attribute.ID,TagUtil.getId(id));
-			
-			if(!visible){
-				div.add(Attribute.CLASS,"collapse");
+			div.add(Attribute.CLASS, "alert alert-" + state);
+			div.add(Attribute.ROLE, "alert");
+			div.add(Attribute.ID, TagUtil.getId(id));
+
+			if (!visible) {
+				div.add(Attribute.CLASS, "collapse");
 			}
-			
-			if(dismissible){
-				div.add(Attribute.CLASS,"alert-dismissible");
+
+			if (dismissible) {
+				div.add(Attribute.CLASS, "alert-dismissible");
 				Button button = new Button();
-				button.add(Attribute.TYPE,"button");
-				button.add(Attribute.CLASS,"close");
-				button.add(Attribute.DATA_DISMISS,"alert");
-				
+				button.add(Attribute.TYPE, "button");
+				button.add(Attribute.CLASS, "close");
+				button.add(Attribute.DATA_DISMISS, "alert");
+
 				Span span = new Span();
 				span.add("&times;");
-				
+
 				button.add(span);
 				div.add(button);
 			}
-			if(!StringUtils.isEmpty(label)){
-				div.add(TagUtil.getLocalized(label,getJspContext()));
-			} else { 
+			if (!StringUtils.isEmpty(label)) {
+				div.add(TagUtil.getLocalized(label, getJspContext()));
+			} else {
 				div.add(TagUtil.getBody(getJspBody()));
 			}
 			TagUtil.out(getJspContext(), div);
 		}
 	}
 
-
 	public Boolean getDismissible() {
 		return dismissible;
 	}
-
 
 	public void setDismissible(Boolean dismissible) {
 		this.dismissible = dismissible;
 	}
 
-
 	public Boolean getRendered() {
 		return rendered;
 	}
-
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
 	}
 
-
 	public String getState() {
 		return state;
 	}
-
 
 	public void setState(String state) {
 		this.state = state;
 	}
 
-
 	public String getLabel() {
 		return label;
 	}
-
 
 	public void setLabel(String label) {
 		this.label = label;
 	}
 
-
 	public String getId() {
 		return id;
 	}
-
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
 	public Boolean getVisible() {
 		return visible;
 	}
-
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;

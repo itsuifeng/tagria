@@ -9,14 +9,14 @@ import com.jslsolucoes.tagria.lib.html.Ul;
 
 public class FormValidation {
 
-	private FormValidation(){
-		
+	private FormValidation() {
+
 	}
-	
-	public static FormValidation newBuilder(){
+
+	public static FormValidation newBuilder() {
 		return new FormValidation();
 	}
-	
+
 	public String toUnordenedList(List<String> items) {
 		if (!CollectionUtils.isEmpty(items)) {
 			Ul ul = new Ul();

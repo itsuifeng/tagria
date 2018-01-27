@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.util;
 
 import java.io.IOException;
@@ -54,14 +40,14 @@ import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.html.DetailTableTag;
 
 public class TagUtil {
-	
+
 	public static final String VERSION = "1.0.11";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
-	
+
 	private TagUtil() {
-		
+
 	}
-	
+
 	public static String localization(JspContext jspContext) {
 		Locale locale = locale(jspContext);
 		List<String> fullLocale = Lists.newArrayList(locale.getLanguage());
@@ -80,7 +66,6 @@ public class TagUtil {
 		return locale;
 	}
 
-	
 	public static String format(String type, String value, JspContext jspContext) {
 
 		if (StringUtils.isEmpty(value)) {
@@ -101,9 +86,9 @@ public class TagUtil {
 			patterns.add("E MMM dd HH:mm:ss zzz yyyy");
 			for (String pattern : patterns) {
 				try {
-					return dateFormat.format(new SimpleDateFormat(pattern,Locale.ENGLISH).parse(value));
+					return dateFormat.format(new SimpleDateFormat(pattern, Locale.ENGLISH).parse(value));
 				} catch (ParseException pe) {
-					//Try another format
+					// Try another format
 				}
 			}
 			return value;
@@ -156,9 +141,9 @@ public class TagUtil {
 	public static String getId(String id) {
 		return TagUtil.getId(null, id, null);
 	}
-		
+
 	public static String minifyHtml(String value) {
-		return value.replaceAll("\r|\t","");
+		return value.replaceAll("\r|\t", "");
 	}
 
 	public static String getLocalized(String label, JspContext jspContext) {
@@ -167,7 +152,7 @@ public class TagUtil {
 			try {
 				return ResourceBundle.getBundle("messages", locale(jspContext)).getString(key);
 			} catch (MissingResourceException e) {
-				logger.error("could not find key resource",  e);
+				logger.error("could not find key resource", e);
 				return '!' + key + '!';
 			}
 		}
@@ -279,7 +264,7 @@ public class TagUtil {
 					ResourceBundle.getBundle("messages_tagrialib", locale(jspContext)).getString(key));
 			return messageFormat.format(args);
 		} catch (MissingResourceException e) {
-			logger.error("could not find key resource",  e);
+			logger.error("could not find key resource", e);
 			return '!' + key + '!';
 		}
 	}

@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -43,58 +29,57 @@ public class GridColumnTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered != null && rendered){
-		
+		if (rendered != null && rendered) {
+
 			String body = TagUtil.getBody(getJspBody());
-			
-			if(collapsable || booleanType){
+
+			if (collapsable || booleanType) {
 				align = "center";
 			}
-			
+
 			GridTag grid = (GridTag) findAncestorWithClass(this, GridTag.class);
-			
+
 			Th th = new Th();
-			th.add(Attribute.CLASS,"text-center");
-			if(!StringUtils.isEmpty(hideOnViewport)){
-				th.add(Attribute.CLASS,TagUtil.cssForHideViewport(hideOnViewport));
+			th.add(Attribute.CLASS, "text-center");
+			if (!StringUtils.isEmpty(hideOnViewport)) {
+				th.add(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
 			}
-			
-			if(exportable){
-				th.add(Attribute.CLASS,"bs-grid-column-exportable");
+
+			if (exportable) {
+				th.add(Attribute.CLASS, "bs-grid-column-exportable");
 			}
-			if(!StringUtils.isEmpty(label)){
-				th.add(TagUtil.getLocalized(label,getJspContext()));
+			if (!StringUtils.isEmpty(label)) {
+				th.add(TagUtil.getLocalized(label, getJspContext()));
 			}
 			grid.addTh(th);
-	
+
 			Td td = new Td();
-			td.add(Attribute.CLASS,"text-"+align);
-			td.add(Attribute.CLASS,"v-align-middle");
-			
-			if(!StringUtils.isEmpty(state)){
-				td.add(Attribute.CLASS,"bg-"+state);
+			td.add(Attribute.CLASS, "text-" + align);
+			td.add(Attribute.CLASS, "v-align-middle");
+
+			if (!StringUtils.isEmpty(state)) {
+				td.add(Attribute.CLASS, "bg-" + state);
 			}
-			
-			if(!StringUtils.isEmpty(hideOnViewport)){
-				td.add(Attribute.CLASS,TagUtil.cssForHideViewport(hideOnViewport));
+
+			if (!StringUtils.isEmpty(hideOnViewport)) {
+				td.add(Attribute.CLASS, TagUtil.cssForHideViewport(hideOnViewport));
 			}
-			
-			if(exportable){
-				td.add(Attribute.CLASS,"bs-grid-column-exportable");
+
+			if (exportable) {
+				td.add(Attribute.CLASS, "bs-grid-column-exportable");
 			}
-			if(!StringUtils.isEmpty(body)){
+			if (!StringUtils.isEmpty(body)) {
 				Div container = new Div();
 				if (collapsable) {
 					td.add(Attribute.CLASS, "bs-grid-column-collapsable");
 					Span icon = new Span();
 					icon.add(Attribute.CLASS, "glyphicon glyphicon-search");
 					td.add(icon);
-					container.add(Attribute.CLASS,"hidden bs-grid-column-collapsable-content");
+					container.add(Attribute.CLASS, "hidden bs-grid-column-collapsable-content");
 				}
-				
-				
+
 				if (!StringUtils.isEmpty(format)) {
-					container.add(TagUtil.format(format, body,getJspContext()));
+					container.add(TagUtil.format(format, body, getJspContext()));
 				} else if (booleanType) {
 					if ("1".equals(body) || "true".equals(body)) {
 						Span icon = new Span();
@@ -125,8 +110,6 @@ public class GridColumnTag extends SimpleTagSupport {
 	public void setBooleanType(Boolean booleanType) {
 		this.booleanType = booleanType;
 	}
-
-	
 
 	public String getAlign() {
 		return align;

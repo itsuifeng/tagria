@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -34,28 +20,28 @@ public class TextareaTag extends SimpleTagSupport {
 	private Boolean required = Boolean.FALSE;
 	private Integer rows = 4;
 	private String cssClass;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Textarea textarea = new Textarea();
-		textarea.add(Attribute.NAME,name);
+		textarea.add(Attribute.NAME, name);
 		textarea.add(Attribute.ROWS, rows);
-		textarea.add(Attribute.ID,TagUtil.getId(name, null,this));
-		textarea.add(Attribute.CLASS,"form-control");
-		
-		if(!StringUtils.isEmpty(cssClass)){
-		    textarea.add(Attribute.CLASS,cssClass);
+		textarea.add(Attribute.ID, TagUtil.getId(name, null, this));
+		textarea.add(Attribute.CLASS, "form-control");
+
+		if (!StringUtils.isEmpty(cssClass)) {
+			textarea.add(Attribute.CLASS, cssClass);
 		}
-		
-		if(!StringUtils.isEmpty(placeholder)){
-			textarea.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder,getJspContext()));
+
+		if (!StringUtils.isEmpty(placeholder)) {
+			textarea.add(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
 		}
 		if (!StringUtils.isEmpty(value)) {
 			textarea.add(value);
 		}
-		if(required){
-			textarea.add(Attribute.CLASS,"bs-input-required");
-			textarea.add(Attribute.REQUIRED,"required");
+		if (required) {
+			textarea.add(Attribute.CLASS, "bs-input-required");
+			textarea.add(Attribute.REQUIRED, "required");
 		}
 		TagUtil.out(getJspContext(), textarea);
 	}
@@ -83,7 +69,7 @@ public class TextareaTag extends SimpleTagSupport {
 	public void setRequired(Boolean required) {
 		this.required = required;
 	}
-	
+
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -91,7 +77,6 @@ public class TextareaTag extends SimpleTagSupport {
 	public String getValue() {
 		return value;
 	}
-	
 
 	public Integer getRows() {
 		return rows;
@@ -102,11 +87,11 @@ public class TextareaTag extends SimpleTagSupport {
 	}
 
 	public String getCssClass() {
-	    return cssClass;
+		return cssClass;
 	}
 
 	public void setCssClass(String cssClass) {
-	    this.cssClass = cssClass;
+		this.cssClass = cssClass;
 	}
 
 }

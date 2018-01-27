@@ -1,20 +1,5 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-package com.jslsolucoes.tagria.lib.tag.html;
 
+package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
 
@@ -37,35 +22,35 @@ public class FormGroupTag extends SimpleTagSupport {
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean visible = Boolean.TRUE;
 	private String id;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered != null && rendered){
+		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS,"form-group");
-			
-			if(!visible){
-				div.add(Attribute.CLASS,"collapse");
+			div.add(Attribute.CLASS, "form-group");
+
+			if (!visible) {
+				div.add(Attribute.CLASS, "collapse");
 			}
-			
-			div.add(Attribute.ID,TagUtil.getId(id));
-			
-			if(!StringUtils.isEmpty(label)){
+
+			div.add(Attribute.ID, TagUtil.getId(id));
+
+			if (!StringUtils.isEmpty(label)) {
 				Label title = new Label();
-				if(!StringUtils.isEmpty(forElement)){
-					title.add(Attribute.FOR,TagUtil.getId(forElement,null));
+				if (!StringUtils.isEmpty(forElement)) {
+					title.add(Attribute.FOR, TagUtil.getId(forElement, null));
 				}
-				title.add(TagUtil.getLocalized(label,getJspContext()));
-				
-				if(required){
+				title.add(TagUtil.getLocalized(label, getJspContext()));
+
+				if (required) {
 					Span span = new Span();
-					span.add(Attribute.CLASS,"text-danger");
+					span.add(Attribute.CLASS, "text-danger");
 					span.add(" * ");
 					title.add(span);
 				}
 				div.add(title);
 			}
-			
+
 			div.add(TagUtil.getBody(getJspBody()));
 			TagUtil.out(getJspContext(), div);
 		}

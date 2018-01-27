@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -45,7 +31,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("rawtypes")
 public class DetailTableTag extends SimpleTagSupport {
-	
+
 	private Collection data;
 	private String var;
 	private String label;
@@ -54,59 +40,57 @@ public class DetailTableTag extends SimpleTagSupport {
 	private Integer atLeast = 0;
 	private Boolean empty = Boolean.FALSE;
 	private String afterInsert;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		String body = TagUtil.getBody(getJspBody());
-		
+
 		Div detail = new Div();
 		detail.add(Attribute.ID, TagUtil.getId());
-		
+
 		Textarea template = new Textarea();
-		template.add(Attribute.CLASS,"hidden bs-detail-table-template");
+		template.add(Attribute.CLASS, "hidden bs-detail-table-template");
 		detail.add(template);
-		
+
 		Div panel = new Div();
 		panel.add(Attribute.CLASS, "panel panel-primary");
-		
-		if(!StringUtils.isEmpty(label)){
+
+		if (!StringUtils.isEmpty(label)) {
 			Div panelHead = new Div();
 			panelHead.add(Attribute.CLASS, "panel-heading");
 			H3 h3 = new H3();
 			h3.add(Attribute.CLASS, "panel-title");
-			h3.add(TagUtil.getLocalized(label,getJspContext()));
+			h3.add(TagUtil.getLocalized(label, getJspContext()));
 			panelHead.add(h3);
 			panel.add(panelHead);
 		}
-		
+
 		Div panelBody = new Div();
 		panelBody.add(Attribute.CLASS, "panel-body");
-		
-		
+
 		Div toolbar = new Div();
 		Button button = new Button();
-		button.add(Attribute.TYPE,"button");
-		button.add(Attribute.CLASS,"btn btn-primary waves-effect waves-light bs-detail-table-plus");
-		button.add(new Span().add(Attribute.CLASS,"glyphicon glyphicon-plus"));
+		button.add(Attribute.TYPE, "button");
+		button.add(Attribute.CLASS, "btn btn-primary waves-effect waves-light bs-detail-table-plus");
+		button.add(new Span().add(Attribute.CLASS, "glyphicon glyphicon-plus"));
 		toolbar.add(button);
 		panelBody.add(toolbar);
-		
+
 		Table table = new Table();
 		table.add(Attribute.CLASS, "table table-striped table-hover bs-detail-table-table");
 
-
 		Th th = new Th();
 		this.ths.add(th);
-		
+
 		Thead thead = new Thead();
 		Tr tr = new Tr();
 		thead.add(tr);
 		tr.add(this.ths);
 		table.add(thead);
-		
+
 		Tbody tbody = new Tbody();
-		
+
 		if (!CollectionUtils.isEmpty(data)) {
 			for (Object row : data) {
 				getJspContext().setAttribute(var, row);
@@ -126,18 +110,19 @@ public class DetailTableTag extends SimpleTagSupport {
 				iteration = RandomStringUtils.randomAlphanumeric(20);
 			}
 		}
-		
+
 		table.add(tbody);
-		
+
 		panelBody.add(table);
 		panel.add(panelBody);
 		detail.add(panel);
-		
+
 		TagUtil.out(getJspContext(), detail);
-		
+
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('#"+detail.get(Attribute.ID)+"').detail({ atLeast : " + atLeast + " , empty : "+empty+", afterInsert : function (tr) { "+afterInsert+" } });");
+		script.add("$('#" + detail.get(Attribute.ID) + "').detail({ atLeast : " + atLeast + " , empty : " + empty
+				+ ", afterInsert : function (tr) { " + afterInsert + " } });");
 		TagUtil.out(getJspContext(), script);
 
 	}
@@ -145,9 +130,9 @@ public class DetailTableTag extends SimpleTagSupport {
 	private Element remove() {
 		Td td = new Td();
 		Button minus = new Button();
-		minus.add(Attribute.ID,TagUtil.getId("bs.detail.table.remove[]",null));
-		minus.add(Attribute.CLASS,"btn btn-danger waves-effect waves-light bs-detail-table-minus");
-		minus.add(new Span().add(Attribute.CLASS,"glyphicon glyphicon-minus"));
+		minus.add(Attribute.ID, TagUtil.getId("bs.detail.table.remove[]", null));
+		minus.add(Attribute.CLASS, "btn btn-danger waves-effect waves-light bs-detail-table-minus");
+		minus.add(new Span().add(Attribute.CLASS, "glyphicon glyphicon-minus"));
 		td.add(minus);
 		return td;
 	}
@@ -167,7 +152,7 @@ public class DetailTableTag extends SimpleTagSupport {
 	public void setThs(List<Element> ths) {
 		this.ths = ths;
 	}
-	
+
 	public void add(Th th) {
 		ths.add(th);
 	}
