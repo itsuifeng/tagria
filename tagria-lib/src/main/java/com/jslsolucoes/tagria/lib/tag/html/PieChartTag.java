@@ -23,72 +23,60 @@ public class PieChartTag extends SimpleTagSupport {
 	private PieChartData dataset;
 	private String label;
 	private Boolean rendered = Boolean.TRUE;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered != null && rendered){
+		if (rendered != null && rendered) {
 			Div container = new Div();
-			if(!responsive){
-				container.add(Attribute.STYLE,"width:"+width+"px;height:"+height+"px");
+			if (!responsive) {
+				container.add(Attribute.STYLE, "width:" + width + "px;height:" + height + "px");
 			}
-			
+
 			Canvas canvas = new Canvas();
-			canvas.add(Attribute.ID,TagUtil.getId());
+			canvas.add(Attribute.ID, TagUtil.getId());
 			container.add(canvas);
-			
+
 			TagUtil.out(getJspContext(), container);
-			
+
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
-			script.add("new Chart(document.getElementById('"+canvas.get(Attribute.ID)+ "'), {		"+
-			   "			type : 'pie',															"+
-			   "			data : {																"+
-			   " 				labels: [															"+
-							StringUtils.join(dataset
-							.getLabels()
-							.stream()
-							.map(datasetLabel -> "'"+datasetLabel+"'")
-							.collect(Collectors.toList())
-							,",") +
-			   " 				],																	"+
-			   " 				datasets: [														"+
-			   		StringUtils.join(dataset
-						.getDatasets()
-		   				.stream()
-		   				.map(datasetGroup -> 
-		   					 "{"+
-		   							
-						"         		data: [																"+
-										StringUtils.join(datasetGroup.getData(),",") 						+
-						"					],																"+
-						"         			backgroundColor: [												"+
-												StringUtils.join(
-														datasetGroup.getBackgroundColor()
-														.stream()
-														.map(color -> "'"+color+"'")
-														.collect(Collectors.toList()),",") 					+
-						"         			],																"+
-						"         			hoverBackgroundColor: [													"+
-												StringUtils.join(datasetGroup.getHoverBackgroundColor()
-														.stream()
-														.map(color -> "'"+color+"'")
-														.collect(Collectors.toList()),",") 					+
-						"         			]																"+
-												
-		   				"			}																		"
-		   				)
-		   				.collect(Collectors.toList()),",") 		+
-			   "     			]																	"+
-			   "			},																		"+
-		       "			options: {																	"+
-			      (!StringUtils.isEmpty(label) ? 
-			   "				title: {																"+
-		       "      				display: true,														"+
-		       "     				text: '"+TagUtil.getLocalized(label,getJspContext())+"'								"+
-		       " 				}																		" : "")+
-			   "			}																			"+   
-			   "		});																			");
-			
+			script.add("new Chart(document.getElementById('" + canvas.get(Attribute.ID) + "'), {		"
+					+ "			type : 'pie',															"
+					+ "			data : {																"
+					+ " 				labels: [															"
+					+ StringUtils.join(dataset.getLabels().stream().map(datasetLabel -> "'" + datasetLabel + "'")
+							.collect(Collectors.toList()), ",")
+					+ " 				],																	"
+					+ " 				datasets: [														"
+					+ StringUtils.join(dataset.getDatasets().stream().map(datasetGroup -> "{" +
+
+							"         		data: [																"
+							+ StringUtils.join(datasetGroup.getData(), ",")
+							+ "					],																"
+							+ "         			backgroundColor: [												"
+							+ StringUtils.join(datasetGroup.getBackgroundColor().stream()
+									.map(color -> "'" + color + "'").collect(Collectors.toList()), ",")
+							+ "         			],																"
+							+ "         			hoverBackgroundColor: [													"
+							+ StringUtils.join(datasetGroup.getHoverBackgroundColor().stream()
+									.map(color -> "'" + color + "'").collect(Collectors.toList()), ",")
+							+ "         			]																" +
+
+							"			}																		")
+							.collect(Collectors.toList()), ",")
+					+ "     			]																	"
+					+ "			},																		"
+					+ "			options: {																	"
+					+ (!StringUtils.isEmpty(label)
+							? "				title: {																"
+									+ "      				display: true,														"
+									+ "     				text: '" + TagUtil.getLocalized(label, getJspContext())
+									+ "'								"
+									+ " 				}																		"
+							: "")
+					+ "			}																			"
+					+ "		});																			");
+
 			TagUtil.out(getJspContext(), script);
 		}
 	}
@@ -140,6 +128,5 @@ public class PieChartTag extends SimpleTagSupport {
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
 	}
-
 
 }

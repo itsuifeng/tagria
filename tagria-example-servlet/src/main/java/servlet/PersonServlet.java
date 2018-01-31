@@ -20,7 +20,7 @@ import model.Person;
 public class PersonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static PersonDao personDao;
-	private static Logger logger  = LoggerFactory.getLogger(PersonServlet.class);
+	private static Logger logger = LoggerFactory.getLogger(PersonServlet.class);
 
 	public PersonServlet() {
 		super();
@@ -28,7 +28,8 @@ public class PersonServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			String[] tokens = request.getRequestURI().split("/");
 			String url = tokens[tokens.length - 1];
@@ -47,8 +48,8 @@ public class PersonServlet extends HttpServlet {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/person/form.jsp");
 				dispatcher.forward(request, response);
 			}
-		} catch (IOException|ServletException exception) {
-			logger.error("could not execute get logic ",exception);
+		} catch (IOException | ServletException exception) {
+			logger.error("could not execute get logic ", exception);
 		}
 	}
 
@@ -61,8 +62,8 @@ public class PersonServlet extends HttpServlet {
 			Integer age = Integer.valueOf(request.getParameter("age"));
 			personDao.saveOrUpdate(new Person(id, name, age));
 			response.sendRedirect(getServletContext().getContextPath() + "/person/list");
-		} catch (IOException|NumberFormatException exception) {
-			logger.error("Could not save person",exception);
+		} catch (IOException | NumberFormatException exception) {
+			logger.error("Could not save person", exception);
 		}
 	}
 

@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -57,7 +43,7 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 				panelHead.add(Attribute.CLASS, "panel-heading");
 				H3 h3 = new H3();
 				h3.add(Attribute.CLASS, "panel-title");
-				h3.add(TagUtil.getLocalized(getLabel(),getJspContext()));
+				h3.add(TagUtil.getLocalized(getLabel(), getJspContext()));
 				panelHead.add(h3);
 				panel.add(panelHead);
 			}
@@ -66,11 +52,11 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			panelBody.add(Attribute.CLASS, "panel-body");
 
 			Form form = new Form();
-			form.add(Attribute.NOVALIDATE,"novalidate");
-			if(!StringUtils.isEmpty(name)){
-				form.add(Attribute.NAME,name);
+			form.add(Attribute.NOVALIDATE, "novalidate");
+			if (!StringUtils.isEmpty(name)) {
+				form.add(Attribute.NAME, name);
 			}
-			form.add(Attribute.TARGET,target);
+			form.add(Attribute.TARGET, target);
 			form.add(Attribute.ID, TagUtil.getId());
 			form.add(Attribute.METHOD, method);
 			form.add(Attribute.ACTION, TagUtil.getPathForUrl(getJspContext(), action));
@@ -79,10 +65,10 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			if (multipart) {
 				form.add(Attribute.ENCTYPE, "multipart/form-data");
 			}
-			
+
 			Div head = new Div();
-			head.add(Attribute.CLASS,"form-group");
-			
+			head.add(Attribute.CLASS, "form-group");
+
 			Span span = new Span();
 			span.add(Attribute.CLASS, "text-danger");
 			span.add(" * ");
@@ -90,25 +76,24 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			Div info = new Div();
 			info.add(Attribute.CLASS, "text-center");
 			H4 h4 = new H4();
-			h4.add(TagUtil.getLocalizedForLib("form.required.title",getJspContext(), span.getHtml()));
+			h4.add(TagUtil.getLocalizedForLib("form.required.title", getJspContext(), span.getHtml()));
 			info.add(h4);
 			head.add(info);
 
 			Div div = new Div();
 			div.add(Attribute.CLASS, "collapse alert alert-danger alert-dismissible bs-form-empty-field");
-			div.add(TagUtil.getLocalizedForLib("form.empty.field.message",getJspContext()));
+			div.add(TagUtil.getLocalizedForLib("form.empty.field.message", getJspContext()));
 			head.add(div);
 
 			Div errors = new Div();
 			errors.add(Attribute.CLASS, "collapse alert alert-danger alert-dismissible bs-form-validation-errors");
 			errors.add("&nbsp;");
 			head.add(errors);
-			
+
 			form.add(head);
 
 			form.add(TagUtil.getBody(getJspBody()));
 
-			
 			Div divForToolbar = new Div();
 			divForToolbar.add(Attribute.CLASS, "bs-button-group");
 			if (!StringUtils.isEmpty(toolbar)) {
@@ -116,11 +101,11 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 			} else {
 				A button = new A();
 				button.add(Attribute.CLASS, "btn btn-primary waves-effect waves-light");
-				button.add(Attribute.DATA_TYPE,"submit");
-				button.add(TagUtil.getLocalizedForLib("form.submit.button",getJspContext()));
+				button.add(Attribute.DATA_TYPE, "submit");
+				button.add(TagUtil.getLocalizedForLib("form.submit.button", getJspContext()));
 				divForToolbar.add(button);
 			}
-			
+
 			form.add(divForToolbar);
 
 			panelBody.add(form);
@@ -130,14 +115,12 @@ public class FormTag extends SimpleTagSupport implements Toolballer {
 
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
-			script.add("$('#" + form.get(Attribute.ID) + "').form({ " + 
-						"	validation : '"+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")+ "'," +
-						"   invalid : { " + 
-						"		email : '"+TagUtil.getLocalizedForLib("email.invalid",getJspContext())+"',"+
-						"		max : '"+TagUtil.getLocalizedForLib("max.invalid",getJspContext())+"',"+
-						"		min : '"+TagUtil.getLocalizedForLib("min.invalid",getJspContext())+"'"+
-						"	}"+
-					"});");
+			script.add("$('#" + form.get(Attribute.ID) + "').form({ " + "	validation : '"
+					+ (!StringUtils.isEmpty(validation) ? TagUtil.getPathForUrl(getJspContext(), validation) : "")
+					+ "'," + "   invalid : { " + "		email : '"
+					+ TagUtil.getLocalizedForLib("email.invalid", getJspContext()) + "'," + "		max : '"
+					+ TagUtil.getLocalizedForLib("max.invalid", getJspContext()) + "'," + "		min : '"
+					+ TagUtil.getLocalizedForLib("min.invalid", getJspContext()) + "'" + "	}" + "});");
 
 			TagUtil.out(getJspContext(), script);
 		}

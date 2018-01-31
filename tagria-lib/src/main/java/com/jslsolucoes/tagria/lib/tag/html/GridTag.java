@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -51,7 +37,7 @@ import com.jslsolucoes.tagria.lib.html.Ul;
 import com.jslsolucoes.tagria.lib.tag.Toolballer;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-@SuppressWarnings({ "rawtypes"})
+@SuppressWarnings({ "rawtypes" })
 public class GridTag extends SimpleTagSupport implements Toolballer {
 
 	private String var;
@@ -98,7 +84,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				panelHead.add(Attribute.CLASS, "panel-heading");
 				H3 h3 = new H3();
 				h3.add(Attribute.CLASS, "panel-title");
-				h3.add(TagUtil.getLocalized(label,getJspContext()));
+				h3.add(TagUtil.getLocalized(label, getJspContext()));
 				panelHead.add(h3);
 				panel.add(panelHead);
 			}
@@ -106,25 +92,25 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			Div panelBody = new Div();
 			panelBody.add(Attribute.CLASS, "panel-body");
 
-			if(checkAll){
+			if (checkAll) {
 				Div checkAllBox = new Div();
-				checkAllBox.add(Attribute.CLASS,"m-5");
+				checkAllBox.add(Attribute.CLASS, "m-5");
 				Ul ul = new Ul();
-				ul.add(Attribute.CLASS,"list-group");
+				ul.add(Attribute.CLASS, "list-group");
 				Li li = new Li();
-				li.add(Attribute.CLASS,"list-group-item");
+				li.add(Attribute.CLASS, "list-group-item");
 				Input input = new Input();
-				input.add(Attribute.TYPE,"checkbox");
-				input.add(Attribute.CLASS,"bs-grid-check-all");
+				input.add(Attribute.TYPE, "checkbox");
+				input.add(Attribute.CLASS, "bs-grid-check-all");
 				li.add(input);
-				li.add(" " + TagUtil.getLocalizedForLib("grid.check.all",getJspContext()));
+				li.add(" " + TagUtil.getLocalizedForLib("grid.check.all", getJspContext()));
 				ul.add(li);
 				checkAllBox.add(ul);
 				panelBody.add(checkAllBox);
 			}
-			
+
 			panel.add(panelBody);
-			
+
 			Div div = new Div();
 			div.add(Attribute.CLASS, "clearfix");
 
@@ -134,9 +120,9 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				divForToolbar.add(toolbar);
 				div.add(divForToolbar);
 			}
-			
+
 			panelBody.add(div);
-			
+
 			if (!CollectionUtils.isEmpty(data)) {
 
 				if (totalResults == null) {
@@ -152,25 +138,25 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 					Button pdf = new Button();
 					pdf.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-pdf");
-					pdf.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.pdf",getJspContext()));
+					pdf.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.pdf", getJspContext()));
 					pdf.add(new Span().add(Attribute.CLASS, "fa fa-file-pdf-o"));
 					buttonGroup.add(pdf);
 
 					Button excel = new Button();
 					excel.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-excel");
-					excel.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xls",getJspContext()));
+					excel.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xls", getJspContext()));
 					excel.add(new Span().add(Attribute.CLASS, "fa fa-file-excel-o"));
 					buttonGroup.add(excel);
 
 					Button csv = new Button();
 					csv.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-csv");
-					csv.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.csv",getJspContext()));
+					csv.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.csv", getJspContext()));
 					csv.add(new Span().add(Attribute.CLASS, "fa fa-file-text-o"));
 					buttonGroup.add(csv);
 
 					Button xml = new Button();
 					xml.add(Attribute.CLASS, "btn btn-default waves-effect waves-light bs-grid-export-xml");
-					xml.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xml",getJspContext()));
+					xml.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.export.xml", getJspContext()));
 					xml.add(new Span().add(Attribute.CLASS, "fa fa-file-code-o"));
 					buttonGroup.add(xml);
 
@@ -184,7 +170,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					Input input = new Input();
 					input.add(Attribute.TYPE, "search");
 					input.add(Attribute.CLASS, "bs-grid-search form-control");
-					input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("grid.search",getJspContext()));
+					input.add(Attribute.PLACEHOLDER, TagUtil.getLocalizedForLib("grid.search", getJspContext()));
 					divForSearch.add(input);
 					div.add(divForSearch);
 				}
@@ -218,49 +204,50 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				table.add(tbody);
 				panelBody.add(table);
 
-				if(!simple) {
+				if (!simple) {
 					Div panelFooter = new Div();
 					panelFooter.add(Attribute.CLASS, "panel-footer");
-	
+
 					Div clearfix = new Div();
 					clearfix.add(Attribute.CLASS, "clearfix");
-	
+
 					Integer page = (request.getParameter("page") != null ? Integer.valueOf(request.getParameter("page"))
 							: 1);
 					Integer resultsPerPage = (request.getParameter("resultsPerPage") != null
 							? Integer.valueOf(request.getParameter("resultsPerPage")) : this.resultsPerPage);
-	
+
 					Integer toResult = page * resultsPerPage;
 					Integer fromResult = (toResult + 1) - resultsPerPage;
 					if (toResult >= totalResults) {
 						toResult = totalResults;
 					}
-	
+
 					Div display = new Div();
 					display.add(Attribute.CLASS, "pull-left m-5");
-					display.add(new H5().add(TagUtil.getLocalizedForLib("grid.page.viewing",getJspContext(), fromResult,
-							toResult, totalResults)));
+					display.add(new H5().add(TagUtil.getLocalizedForLib("grid.page.viewing", getJspContext(),
+							fromResult, toResult, totalResults)));
 					clearfix.add(display);
-	
+
 					if (paginate) {
 						Div divForResultsPerPage = new Div();
 						divForResultsPerPage.add(Attribute.CLASS, "pull-right m-5");
-	
+
 						Div dropdown = new Div();
 						dropdown.add(Attribute.CLASS, "dropup");
-						dropdown.add(Attribute.TITLE, TagUtil.getLocalizedForLib("grid.results.per.page",getJspContext()));
-	
+						dropdown.add(Attribute.TITLE,
+								TagUtil.getLocalizedForLib("grid.results.per.page", getJspContext()));
+
 						Button button = new Button();
 						button.add(Attribute.CLASS, "btn btn-default waves-effect waves-light dropdown-toggle");
 						button.add(Attribute.DATA_TOGGLE, "dropdown");
 						button.add(" " + resultsPerPage + " ");
-	
+
 						Span span = new Span();
 						span.add(Attribute.CLASS, "caret");
 						button.add(span);
-	
+
 						dropdown.add(button);
-	
+
 						Ul results = new Ul();
 						results.add(Attribute.CLASS, "dropdown-menu dropdown-menu-right");
 						Integer iteration = 100;
@@ -280,9 +267,10 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 						dropdown.add(results);
 						divForResultsPerPage.add(dropdown);
 						clearfix.add(divForResultsPerPage);
-	
-						Integer totalOfPages = (int) Math.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
-	
+
+						Integer totalOfPages = (int) Math
+								.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
+
 						Div pagination = new Div();
 						pagination.add(Attribute.CLASS, "pull-right m-5");
 						Nav nav = new Nav();
@@ -305,7 +293,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 						pagination.add(nav);
 						clearfix.add(pagination);
 					}
-	
+
 					panelFooter.add(clearfix);
 					panel.add(panelFooter);
 				}
@@ -314,15 +302,14 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 				Div noRow = new Div();
 				noRow.add(Attribute.CLASS, "alert alert-info");
 				noRow.add(Attribute.ROLE, "alert");
-				noRow.add((!StringUtils.isEmpty(noRowText) ? TagUtil.getLocalized(noRowText,getJspContext())
-						: TagUtil.getLocalizedForLib("grid.no.row",getJspContext())));
+				noRow.add((!StringUtils.isEmpty(noRowText) ? TagUtil.getLocalized(noRowText, getJspContext())
+						: TagUtil.getLocalizedForLib("grid.no.row", getJspContext())));
 				panelBody.add(noRow);
 			}
-			
-			
+
 			grid.add(panel);
 
-			if(export){
+			if (export) {
 				Div exporter = new Div();
 				exporter.add(Attribute.CLASS, "hidden");
 				Form form = new Form();
@@ -350,7 +337,8 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add("$('#" + grid.get(Attribute.ID) + "').grid({ url : '"
 					+ TagUtil.getPathForUrl(getJspContext(), url) + "',queryString : '"
-					+ TagUtil.queryString(request, Arrays.asList("page","property","direction","resultsPerPage")) + "'});");
+					+ TagUtil.queryString(request, Arrays.asList("page", "property", "direction", "resultsPerPage"))
+					+ "'});");
 			TagUtil.out(getJspContext(), script);
 		}
 	}

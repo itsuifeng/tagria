@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AppController {
-	
-	@RequestMapping(value="/app/welcome")
-	public String index(){
+
+	@RequestMapping(value = "/app/welcome")
+	public String index() {
 		return "app/welcome";
 	}
 }

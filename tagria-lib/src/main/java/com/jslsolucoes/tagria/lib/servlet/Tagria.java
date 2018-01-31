@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.servlet;
 
 import java.io.IOException;
@@ -44,43 +30,42 @@ import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 @SuppressWarnings("serial")
-@WebServlet(name="tagria", urlPatterns="/tagria/*",loadOnStartup=1)
+@WebServlet(name = "tagria", urlPatterns = "/tagria/*", loadOnStartup = 1)
 public class Tagria extends HttpServlet {
 
 	private static final Integer CACHE_EXPIRES_DAY = 365;
 	private static Logger logger = LoggerFactory.getLogger(Tagria.class);
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		String uri = request.getRequestURI().replaceAll(";jsessionid=.*", "");
 		String etag = DigestUtils.sha256Hex(uri);
-		
+
 		if (uri.endsWith("blank")) {
 			response.setStatus(HttpServletResponse.SC_OK);
 			return;
 		}
-		
+
 		if (uri.endsWith("locale")) {
 			Config.set(request.getSession(), Config.FMT_LOCALE, Locale.forLanguageTag(request.getParameter("locale")));
 			response.setStatus(HttpServletResponse.SC_OK);
 			return;
 		}
-		
-		if (request.getHeader("If-None-Match") != null
-				&& etag.equals(request.getHeader("If-None-Match"))) {
+
+		if (request.getHeader("If-None-Match") != null && etag.equals(request.getHeader("If-None-Match"))) {
 			response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
 			return;
 		}
-		
+
 		String charset = "utf-8";
-		if (TagUtil.getInitParam(TagriaConfigParameter.ENCODING) != null){
+		if (TagUtil.getInitParam(TagriaConfigParameter.ENCODING) != null) {
 			charset = TagUtil.getInitParam(TagriaConfigParameter.ENCODING);
 		}
 		response.setCharacterEncoding(charset);
 		try {
-			
+
 			DateTime today = new DateTime();
 			DateTime expires = new DateTime().plusDays(CACHE_EXPIRES_DAY);
 
@@ -91,14 +76,14 @@ public class Tagria extends HttpServlet {
 			} else if (uri.endsWith(".png")) {
 				response.setContentType("image/png");
 			}
-			
+
 			SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss 'GMT'", Locale.ENGLISH);
-			
-			if(Boolean.valueOf(TagUtil.getInitParam(TagriaConfigParameter.CDN_ENABLED))){
+
+			if (Boolean.valueOf(TagUtil.getInitParam(TagriaConfigParameter.CDN_ENABLED))) {
 				response.setHeader(HttpHeaderParameter.ACCESS_CONTROL_ALLOW_ORIGIN.getName(), "*");
 			}
-			
-			response.setHeader(HttpHeaderParameter.ETAG.getName(),etag);
+
+			response.setHeader(HttpHeaderParameter.ETAG.getName(), etag);
 			response.setHeader(HttpHeaderParameter.EXPIRES.getName(), sdf.format(expires.toDate()));
 			response.setHeader(HttpHeaderParameter.CACHE_CONTROL.getName(),
 					"public,max-age=" + Seconds.secondsBetween(today, expires).getSeconds());
@@ -114,15 +99,16 @@ public class Tagria extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			Gson gson = new GsonBuilder().create();
 			String json = request.getParameter("json");
 			String type = request.getParameter("type");
 			Table table = gson.fromJson(json, Table.class);
-			response.setHeader("Content-Disposition", "attachment; filename=grid."+type);
+			response.setHeader("Content-Disposition", "attachment; filename=grid." + type);
 			if ("pdf".equals(type)) {
 				response.setContentType("application/pdf");
 				PdfExporter exporter = new PdfExporter(table);
@@ -140,7 +126,7 @@ public class Tagria extends HttpServlet {
 				ExcelExporter exporter = new ExcelExporter(table);
 				exporter.doExport(response.getOutputStream());
 			}
-		} catch(Exception exception){
+		} catch (Exception exception) {
 			logger.error("Could not export data", exception);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}

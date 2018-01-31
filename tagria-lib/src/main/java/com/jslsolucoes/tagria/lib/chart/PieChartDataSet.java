@@ -8,23 +8,25 @@ public class PieChartDataSet {
 	private List<String> backgroundColor = new ArrayList<>();
 	private List<String> hoverBackgroundColor = new ArrayList<>();
 	private List<Long> data = new ArrayList<>();
-	
-	public void addData(Long data){
+
+	public void addData(Long data) {
 		this.data.add(data);
 		this.backgroundColor.add(ChartUtil.backgroundColor());
 		this.hoverBackgroundColor.add(ChartUtil.backgroundColor());
 	}
-	
+
 	public List<String> getBackgroundColor() {
 		return backgroundColor;
 	}
+
 	public void setBackgroundColor(List<String> backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
-	
+
 	public List<Long> getData() {
 		return data;
 	}
+
 	public void setData(List<Long> data) {
 		this.data = data;
 	}

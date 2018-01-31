@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.html;
 
 import java.util.ArrayList;
@@ -60,7 +46,7 @@ public abstract class Element {
 	public Element add(Attribute attribute, boolean value) {
 		return add(attribute, String.valueOf(value));
 	}
-	
+
 	public Element add(String html) {
 		this.elements.add(new CData(html));
 		return this;
@@ -86,7 +72,7 @@ public abstract class Element {
 		StringBuilder html = new StringBuilder();
 		html.append("<");
 		html.append(this.getTag());
-		for (Map.Entry<Attribute, String> entry  : attributes.entrySet()) {
+		for (Map.Entry<Attribute, String> entry : attributes.entrySet()) {
 			html.append(" ");
 			html.append(entry.getKey().getName());
 			html.append("=\"");
@@ -111,8 +97,8 @@ public abstract class Element {
 	}
 
 	public abstract String getTag();
-	
-	public boolean forceCloseTagWithEmptyBody(){
+
+	public boolean forceCloseTagWithEmptyBody() {
 		return false;
 	}
 

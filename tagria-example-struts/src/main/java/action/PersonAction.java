@@ -12,7 +12,6 @@ import model.Person;
 @Namespace(value = "/person")
 public class PersonAction {
 
-	
 	private Person person;
 	private List<Person> persons;
 	private PersonDao daoPerson;

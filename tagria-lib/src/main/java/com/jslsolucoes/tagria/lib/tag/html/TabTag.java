@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -37,49 +23,49 @@ public class TabTag extends SimpleTagSupport {
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean active = Boolean.FALSE;
 	private Boolean reloadOnSelect = Boolean.TRUE;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered != null && rendered){
+		if (rendered != null && rendered) {
 			TabPanelTag panel = (TabPanelTag) findAncestorWithClass(this, TabPanelTag.class);
-			
+
 			String id = TagUtil.getId();
 			Li li = new Li();
 			if (reloadOnSelect) {
 				li.add(Attribute.CLASS, "ui-tabs-reload-on-select");
 			}
-			if(active){
-				li.add(Attribute.CLASS,"active");
+			if (active) {
+				li.add(Attribute.CLASS, "active");
 			}
 			A a = new A();
-			a.add(Attribute.HREF,"#" + id);
-			a.add(Attribute.DATA_TOGGLE,"tab");
-			a.add(TagUtil.getLocalized(label,getJspContext()));
+			a.add(Attribute.HREF, "#" + id);
+			a.add(Attribute.DATA_TOGGLE, "tab");
+			a.add(TagUtil.getLocalized(label, getJspContext()));
 			li.add(a);
-			
+
 			panel.addLi(li);
-			
+
 			Div div = new Div();
-			div.add(Attribute.CLASS,"tab-pane m-5");
-			if(active){
-				div.add(Attribute.CLASS,"active");
+			div.add(Attribute.CLASS, "tab-pane m-5");
+			if (active) {
+				div.add(Attribute.CLASS, "active");
 			}
-			div.add(Attribute.ID,id);
-			if(StringUtils.isEmpty(url)){
+			div.add(Attribute.ID, id);
+			if (StringUtils.isEmpty(url)) {
 				div.add(TagUtil.getBody(getJspBody()));
 			} else {
 				Iframe iframe = new Iframe();
 				iframe.add(Attribute.ID, TagUtil.getId());
-				iframe.add(Attribute.SRC,TagUtil.getPathForBlank(getJspContext()));
-				iframe.add(Attribute.DATA_URL,TagUtil.getPathForUrl(getJspContext(), url));
-				if(active){
-					iframe.add(Attribute.CLASS,"active");
+				iframe.add(Attribute.SRC, TagUtil.getPathForBlank(getJspContext()));
+				iframe.add(Attribute.DATA_URL, TagUtil.getPathForUrl(getJspContext(), url));
+				if (active) {
+					iframe.add(Attribute.CLASS, "active");
 				}
 				div.add(iframe);
-				
+
 				Script script = new Script();
 				script.add(Attribute.TYPE, "text/javascript");
-				script.add("$('#"+iframe.get(Attribute.ID)+"').iframe();");	
+				script.add("$('#" + iframe.get(Attribute.ID) + "').iframe();");
 				div.add(script);
 			}
 			panel.addDiv(div);

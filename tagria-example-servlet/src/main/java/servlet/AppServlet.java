@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 @WebServlet(name = "app", urlPatterns = "/app/*")
 public class AppServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger logger  = LoggerFactory.getLogger(AppServlet.class);
+	private static Logger logger = LoggerFactory.getLogger(AppServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

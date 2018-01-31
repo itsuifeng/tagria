@@ -1,26 +1,25 @@
 package model;
 
 public class Person {
-	
+
 	private Long id;
 	private String name;
 	private Integer age;
 
-	
 	public Person() {
-		
+
 	}
-	
+
 	public Person(Long id) {
 		this.id = id;
 	}
-	
-	public Person(Long id,String name,Integer age) {
+
+	public Person(Long id, String name, Integer age) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -69,5 +68,5 @@ public class Person {
 			return false;
 		return true;
 	}
-	
+
 }

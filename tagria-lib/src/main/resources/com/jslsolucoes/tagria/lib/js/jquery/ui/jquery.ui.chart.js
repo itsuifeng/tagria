@@ -524,10 +524,7 @@ Color.prototype = {
 		return this;
 	},
 
-	/**
-	 * Ported from sass implementation in C
-	 * https://github.com/sass/libsass/blob/0e6b4a2850092356aa3ece07c6b249f0221caced/functions.cpp#L209
-	 */
+	
 	mix: function (mixinColor, weight) {
 		var color1 = this;
 		var color2 = mixinColor;
@@ -1652,9 +1649,7 @@ module.exports = {
 	"yellowgreen": [154, 205, 50]
 };
 },{}],7:[function(require,module,exports){
-/**
- * @namespace Chart
- */
+
 var Chart = require(28)();
 
 require(26)(Chart);
@@ -3581,13 +3576,7 @@ module.exports = function(Chart) {
 		dropFrames: 0,
 		request: null,
 
-		/**
-		 * @function Chart.animationService.addAnimation
-		 * @param chartInstance {ChartController} the chart to animate
-		 * @param animationObject {IAnimation} the animation that we will animate
-		 * @param duration {Number} length of animation in ms
-		 * @param lazy {Boolean} if true, the chart is not marked as animating to enable more responsive interactions
-		 */
+		
 		addAnimation: function(chartInstance, animationObject, duration, lazy) {
 			var me = this;
 
@@ -3814,28 +3803,14 @@ module.exports = function(Chart) {
 	// Controllers available for dataset visualization eg. bar, line, slice, etc.
 	Chart.controllers = {};
 
-	/**
-	 * The "used" size is the final value of a dimension property after all calculations have
-	 * been performed. This method uses the computed style of `element` but returns undefined
-	 * if the computed style is not expressed in pixels. That can happen in some cases where
-	 * `element` has a size relative to its parent and this last one is not yet displayed,
-	 * for example because of `display: none` on a parent node.
-	 * TODO(SB) Move this method in the upcoming core.platform class.
-	 * @see https://developer.mozilla.org/en-US/docs/Web/CSS/used_value
-	 * @returns {Number} Size in pixels or undefined if unknown.
-	 */
+	
 	function readUsedSize(element, property) {
 		var value = helpers.getStyle(element, property);
 		var matches = value && value.match(/(\d+)px/);
 		return matches? Number(matches[1]) : undefined;
 	}
 
-	/**
-	 * Initializes the canvas style and render size without modifying the canvas display size,
-	 * since responsiveness is handled by the controller.resize() method. The config is used
-	 * to determine the aspect ratio to apply in case no explicit height has been specified.
-	 * TODO(SB) Move this method in the upcoming core.platform class.
-	 */
+	
 	function initCanvas(canvas, config) {
 		var style = canvas.style;
 
@@ -3886,10 +3861,7 @@ module.exports = function(Chart) {
 		return canvas;
 	}
 
-	/**
-	 * Restores the canvas initial state, such as render/display sizes and style.
-	 * TODO(SB) Move this method in the upcoming core.platform class.
-	 */
+	
 	function releaseCanvas(canvas) {
 		if (!canvas._chartjs) {
 			return;
@@ -3918,9 +3890,7 @@ module.exports = function(Chart) {
 		delete canvas._chartjs;
 	}
 
-	/**
-	 * TODO(SB) Move this method in the upcoming core.platform class.
-	 */
+	
 	function acquireContext(item, config) {
 		if (typeof item === 'string') {
 			item = document.getElementById(item);
@@ -3948,9 +3918,7 @@ module.exports = function(Chart) {
 		return null;
 	}
 
-	/**
-	 * Initializes the given config with global and chart default values.
-	 */
+	
 	function initConfig(config) {
 		config = config || {};
 
@@ -3968,10 +3936,7 @@ module.exports = function(Chart) {
 		return config;
 	}
 
-	/**
-	 * @class Chart.Controller
-	 * The main controller of a chart.
-	 */
+	
 	Chart.Controller = function(item, config, instance) {
 		var me = this;
 
@@ -4033,7 +3998,7 @@ module.exports = function(Chart) {
 		return me;
 	};
 
-	helpers.extend(Chart.Controller.prototype, /** @lends Chart.Controller */ {
+	helpers.extend(Chart.Controller.prototype,  {
 		initialize: function() {
 			var me = this;
 
@@ -4125,9 +4090,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		/**
-		 * Builds a map of scale ID to scale object for future lookup.
-		 */
+		
 		buildScales: function() {
 			var me = this;
 			var options = me.options;
@@ -4214,11 +4177,7 @@ module.exports = function(Chart) {
 			return newControllers;
 		},
 
-		/**
-		 * Reset the elements of all datasets
-		 * @method resetElements
-		 * @private
-		 */
+		
 		resetElements: function() {
 			var me = this;
 			helpers.each(me.data.datasets, function(dataset, datasetIndex) {
@@ -4226,10 +4185,7 @@ module.exports = function(Chart) {
 			}, me);
 		},
 
-		/**
-		* Resets the chart back to it's state before the initial animation
-		* @method reset
-		*/
+		
 		reset: function() {
 			this.resetElements();
 			this.tooltip.initialize();
@@ -4275,34 +4231,11 @@ module.exports = function(Chart) {
 			}
 		},
 
-		/**
-		 * @method beforeDatasetsUpdate
-		 * @description Called before all datasets are updated. If a plugin returns false,
-		 * the datasets update will be cancelled until another chart update is triggered.
-		 * @param {Object} instance the chart instance being updated.
-		 * @returns {Boolean} false to cancel the datasets update.
-		 * @memberof Chart.PluginBase
-		 * @since version 2.1.5
-		 * @instance
-		 */
+		
 
-		/**
-		 * @method afterDatasetsUpdate
-		 * @description Called after all datasets have been updated. Note that this
-		 * extension will not be called if the datasets update has been cancelled.
-		 * @param {Object} instance the chart instance being updated.
-		 * @memberof Chart.PluginBase
-		 * @since version 2.1.5
-		 * @instance
-		 */
+		
 
-		/**
-		 * Updates all datasets unless a plugin returns false to the beforeDatasetsUpdate
-		 * extension, in which case no datasets will be updated and the afterDatasetsUpdate
-		 * notification will be skipped.
-		 * @protected
-		 * @instance
-		 */
+		
 		updateDatasets: function() {
 			var me = this;
 			var i, ilen;
@@ -4550,12 +4483,7 @@ module.exports = function(Chart) {
 			return me;
 		},
 
-		/**
-		 * Handle an event
-		 * @private
-		 * param e {Event} the event to handle
-		 * @return {Boolean} true if the chart needs to re-render
-		 */
+		
 		handleEvent: function(e) {
 			var me = this;
 			var options = me.options || {};
@@ -4611,11 +4539,7 @@ module.exports = function(Chart) {
 
 	var arrayEvents = ['push', 'pop', 'shift', 'splice', 'unshift'];
 
-	/**
-	 * Hooks the array methods that add or remove values ('push', pop', 'shift', 'splice',
-	 * 'unshift') and notify the listener AFTER the array has been altered. Listeners are
-	 * called on the 'onData*' callbacks (e.g. onDataPush, etc.) with same arguments.
-	 */
+	
 	function listenArrayEvents(array, listener) {
 		if (array._chartjs) {
 			array._chartjs.listeners.push(listener);
@@ -4653,10 +4577,7 @@ module.exports = function(Chart) {
 		});
 	}
 
-	/**
-	 * Removes the given array event listener and cleanup extra attached properties (such as
-	 * the _chartjs stub and overridden methods) if array doesn't have any more listeners.
-	 */
+	
 	function unlistenArrayEvents(array, listener) {
 		var stub = array._chartjs;
 		if (!stub) {
@@ -4687,16 +4608,10 @@ module.exports = function(Chart) {
 
 	helpers.extend(Chart.DatasetController.prototype, {
 
-		/**
-		 * Element type used to generate a meta dataset (e.g. Chart.element.Line).
-		 * @type {Chart.core.element}
-		 */
+		
 		datasetElementType: null,
 
-		/**
-		 * Element type used to generate a meta data (e.g. Chart.element.Point).
-		 * @type {Chart.core.element}
-		 */
+		
 		dataElementType: null,
 
 		initialize: function(chart, datasetIndex) {
@@ -4740,9 +4655,7 @@ module.exports = function(Chart) {
 			this.update(true);
 		},
 
-		/**
-		 * @private
-		 */
+		
 		destroy: function() {
 			if (this._data) {
 				unlistenArrayEvents(this._data, this);
@@ -4847,9 +4760,7 @@ module.exports = function(Chart) {
 			model.borderWidth = custom.hoverBorderWidth ? custom.hoverBorderWidth : valueOrDefault(dataset.hoverBorderWidth, index, model.borderWidth);
 		},
 
-		/**
-		 * @private
-		 */
+		
 		resyncElements: function() {
 			var me = this;
 			var meta = me.getMeta();
@@ -4864,47 +4775,35 @@ module.exports = function(Chart) {
 			}
 		},
 
-		/**
-		 * @private
-		 */
+		
 		insertElements: function(start, count) {
 			for (var i=0; i<count; ++i) {
 				this.addElementAndReset(start + i);
 			}
 		},
 
-		/**
-		 * @private
-		 */
+		
 		onDataPush: function() {
 			this.insertElements(this.getDataset().data.length-1, arguments.length);
 		},
 
-		/**
-		 * @private
-		 */
+		
 		onDataPop: function() {
 			this.getMeta().data.pop();
 		},
 
-		/**
-		 * @private
-		 */
+		
 		onDataShift: function() {
 			this.getMeta().data.shift();
 		},
 
-		/**
-		 * @private
-		 */
+		
 		onDataSplice: function(start, count) {
 			this.getMeta().data.splice(start, count);
 			this.insertElements(start, arguments.length - 2);
 		},
 
-		/**
-		 * @private
-		 */
+		
 		onDataUnshift: function() {
 			this.insertElements(0, arguments.length);
 		}
@@ -5786,10 +5685,7 @@ module.exports = function(Chart) {
 		return valueInPixels;
 	}
 
-	/**
-	 * Returns if the given value contains an effective constraint.
-	 * @private
-	 */
+	
 	function isConstrainedValue(value) {
 		return value !== undefined && value !== null && value !== 'none';
 	}
@@ -6075,11 +5971,7 @@ module.exports = function(Chart) {
 module.exports = function(Chart) {
 	var helpers = Chart.helpers;
 
-	/**
-	 * Helper function to traverse all of the visible elements in the chart
-	 * @param chart {chart} the chart
-	 * @param handler {Function} the callback to execute for each visible item
-	 */
+	
 	function parseVisibleItems(chart, handler) {
 		var datasets = chart.data.datasets;
 		var meta, i, j, ilen, jlen;
@@ -6099,12 +5991,7 @@ module.exports = function(Chart) {
 		}
 	}
 
-	/**
-	 * Helper function to get the items that intersect the event position
-	 * @param items {ChartElement[]} elements to filter
-	 * @param position {Point} the point to be nearest to
-	 * @return {ChartElement[]} the nearest items
-	 */
+	
 	function getIntersectItems(chart, position) {
 		var elements = [];
 
@@ -6117,14 +6004,7 @@ module.exports = function(Chart) {
 		return elements;
 	}
 
-	/**
-	 * Helper function to get the items nearest to the event position considering all visible items in teh chart
-	 * @param chart {Chart} the chart to look at elements from
-	 * @param position {Point} the point to be nearest to
-	 * @param intersect {Boolean} if true, only consider items that intersect the position
-	 * @param distanceMetric {Function} Optional function to provide the distance between
-	 * @return {ChartElement[]} the nearest items
-	 */
+	
 	function getNearestItems(chart, position, intersect, distanceMetric) {
 		var minDistance = Number.POSITIVE_INFINITY;
 		var nearestItems = [];
@@ -6180,19 +6060,10 @@ module.exports = function(Chart) {
 		return elements;
 	}
 
-	/**
-	 * @interface IInteractionOptions
-	 */
-	/**
-	 * If true, only consider items that intersect the point
-	 * @name IInterfaceOptions#boolean
-	 * @type Boolean
-	 */
+	
+	
 
-	/**
-	 * @namespace Chart.Interaction
-	 * Contains interaction related functions
-	 */
+	
 	Chart.Interaction = {
 		// Helper function for different modes
 		modes: {
@@ -6210,33 +6081,13 @@ module.exports = function(Chart) {
 				return elements.slice(0, 1);
 			},
 
-			/**
-			 * @function Chart.Interaction.modes.label
-			 * @deprecated since version 2.4.0
-			 */
+			
 			label: indexMode,
 
-			/**
-			 * Returns items at the same index. If the options.intersect parameter is true, we only return items if we intersect something
-			 * If the options.intersect mode is false, we find the nearest item and return the items at the same index as that item
-			 * @function Chart.Interaction.modes.index
-			 * @since v2.4.0
-			 * @param chart {chart} the chart we are returning items from
-			 * @param e {Event} the event we are find things at
-			 * @param options {IInteractionOptions} options to use during interaction
-			 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-			 */
+			
 			index: indexMode,
 
-			/**
-			 * Returns items in the same dataset. If the options.intersect parameter is true, we only return items if we intersect something
-			 * If the options.intersect is false, we find the nearest item and return the items in that dataset
-			 * @function Chart.Interaction.modes.dataset
-			 * @param chart {chart} the chart we are returning items from
-			 * @param e {Event} the event we are find things at
-			 * @param options {IInteractionOptions} options to use during interaction
-			 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-			 */
+			
 			dataset: function(chart, e, options) {
 				var position = helpers.getRelativePosition(e, chart.chart);
 				var items = options.intersect ? getIntersectItems(chart, position) : getNearestItems(chart, position, false);
@@ -6248,35 +6099,18 @@ module.exports = function(Chart) {
 				return items;
 			},
 
-			/**
-			 * @function Chart.Interaction.modes.x-axis
-			 * @deprecated since version 2.4.0. Use index mode and intersect == true
-			 */
+			
 			'x-axis': function(chart, e) {
 				return indexMode(chart, e, true);
 			},
 
-			/**
-			 * Point mode returns all elements that hit test based on the event position
-			 * of the event
-			 * @function Chart.Interaction.modes.intersect
-			 * @param chart {chart} the chart we are returning items from
-			 * @param e {Event} the event we are find things at
-			 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-			 */
+			
 			point: function(chart, e) {
 				var position = helpers.getRelativePosition(e, chart.chart);
 				return getIntersectItems(chart, position);
 			},
 
-			/**
-			 * nearest mode returns the element closest to the point
-			 * @function Chart.Interaction.modes.intersect
-			 * @param chart {chart} the chart we are returning items from
-			 * @param e {Event} the event we are find things at
-			 * @param options {IInteractionOptions} options to use
-			 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-			 */
+			
 			nearest: function(chart, e, options) {
 				var position = helpers.getRelativePosition(e, chart.chart);
 				var nearestItems = getNearestItems(chart, position, options.intersect);
@@ -6301,14 +6135,7 @@ module.exports = function(Chart) {
 				return nearestItems.slice(0, 1);
 			},
 
-			/**
-			 * x mode returns the elements that hit-test at the current x coordinate
-			 * @function Chart.Interaction.modes.x
-			 * @param chart {chart} the chart we are returning items from
-			 * @param e {Event} the event we are find things at
-			 * @param options {IInteractionOptions} options to use
-			 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-			 */
+			
 			x: function(chart, e, options) {
 				var position = helpers.getRelativePosition(e, chart.chart);
 				var items = [];
@@ -6332,14 +6159,7 @@ module.exports = function(Chart) {
 				return items;
 			},
 
-			/**
-			 * y mode returns the elements that hit-test at the current y coordinate
-			 * @function Chart.Interaction.modes.y
-			 * @param chart {chart} the chart we are returning items from
-			 * @param e {Event} the event we are find things at
-			 * @param options {IInteractionOptions} options to use
-			 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-			 */
+			
 			y: function(chart, e, options) {
 				var position = helpers.getRelativePosition(e, chart.chart);
 				var items = [];
@@ -6832,12 +6652,7 @@ module.exports = function(Chart) {
 		}
 	};
 
-	/**
-	 * Helper function to get the box width based on the usePointStyle option
-	 * @param labelopts {Object} the label options on the legend
-	 * @param fontSize {Number} the label font size
-	 * @return {Number} width of the color box area
-	 */
+	
 	function getBoxWidth(labelOpts, fontSize) {
 		return labelOpts.usePointStyle ?
 			fontSize * Math.SQRT2 :
@@ -7194,12 +7009,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		/**
-		 * Handle an event
-		 * @private
-		 * @param e {Event} the event to handle
-		 * @return {Boolean} true if a change occured
-		 */
+		
 		handleEvent: function(e) {
 			var me = this;
 			var opts = me.options;
@@ -7273,18 +7083,11 @@ module.exports = function(Chart) {
 
 	var noop = Chart.helpers.noop;
 
-	/**
-	 * The plugin service singleton
-	 * @namespace Chart.plugins
-	 * @since 2.1.0
-	 */
+	
 	Chart.plugins = {
 		_plugins: [],
 
-		/**
-		 * Registers the given plugin(s) if not already registered.
-		 * @param {Array|Object} plugins plugin instance(s).
-		 */
+		
 		register: function(plugins) {
 			var p = this._plugins;
 			([]).concat(plugins).forEach(function(plugin) {
@@ -7294,10 +7097,7 @@ module.exports = function(Chart) {
 			});
 		},
 
-		/**
-		 * Unregisters the given plugin(s) only if registered.
-		 * @param {Array|Object} plugins plugin instance(s).
-		 */
+		
 		unregister: function(plugins) {
 			var p = this._plugins;
 			([]).concat(plugins).forEach(function(plugin) {
@@ -7308,40 +7108,22 @@ module.exports = function(Chart) {
 			});
 		},
 
-		/**
-		 * Remove all registered plugins.
-		 * @since 2.1.5
-		 */
+		
 		clear: function() {
 			this._plugins = [];
 		},
 
-		/**
-		 * Returns the number of registered plugins?
-		 * @returns {Number}
-		 * @since 2.1.5
-		 */
+		
 		count: function() {
 			return this._plugins.length;
 		},
 
-		/**
-		 * Returns all registered plugin instances.
-		 * @returns {Array} array of plugin objects.
-		 * @since 2.1.5
-		 */
+		
 		getAll: function() {
 			return this._plugins;
 		},
 
-		/**
-		 * Calls registered plugins on the specified extension, with the given args. This
-		 * method immediately returns as soon as a plugin explicitly returns false. The
-		 * returned value can be used, for instance, to interrupt the current action.
-		 * @param {String} extension the name of the plugin method to call (e.g. 'beforeUpdate').
-		 * @param {Array} [args] extra arguments to apply to the extension call.
-		 * @returns {Boolean} false if any of the plugins return false, else returns true.
-		 */
+		
 		notify: function(extension, args) {
 			var plugins = this._plugins;
 			var ilen = plugins.length;
@@ -7360,11 +7142,7 @@ module.exports = function(Chart) {
 		}
 	};
 
-	/**
-	 * Plugin extension methods.
-	 * @interface Chart.PluginBase
-	 * @since 2.1.0
-	 */
+	
 	Chart.PluginBase = Chart.Element.extend({
 		// Called at start of chart init
 		beforeInit: noop,
@@ -7388,12 +7166,7 @@ module.exports = function(Chart) {
 		destroy: noop
 	});
 
-	/**
-	 * Provided for backward compatibility, use Chart.plugins instead
-	 * @namespace Chart.pluginService
-	 * @deprecated since version 2.1.5
-	 * @todo remove me at version 3
-	 */
+	
 	Chart.pluginService = Chart.plugins;
 };
 
@@ -8199,51 +7972,17 @@ module.exports = function(Chart) {
 
 	var helpers = Chart.helpers;
 
-	/**
-	 * Namespace to hold static tick generation functions
-	 * @namespace Chart.Ticks
-	 */
+	
 	Chart.Ticks = {
-		/**
-		 * Namespace to hold generators for different types of ticks
-		 * @namespace Chart.Ticks.generators
-		 */
+		
 		generators: {
-			/**
-			 * Interface for the options provided to the numeric tick generator
-			 * @interface INumericTickGenerationOptions
-			 */
-			/**
-			 * The maximum number of ticks to display
-			 * @name INumericTickGenerationOptions#maxTicks
-			 * @type Number
-			 */
-			/**
-			 * The distance between each tick.
-			 * @name INumericTickGenerationOptions#stepSize
-			 * @type Number
-			 * @optional
-			 */
-			/**
-			 * Forced minimum for the ticks. If not specified, the minimum of the data range is used to calculate the tick minimum
-			 * @name INumericTickGenerationOptions#min
-			 * @type Number
-			 * @optional
-			 */
-			/**
-			 * The maximum value of the ticks. If not specified, the maximum of the data range is used to calculate the tick maximum
-			 * @name INumericTickGenerationOptions#max
-			 * @type Number
-			 * @optional
-			 */
+			
+			
+			
+			
+			
 
-			/**
-			 * Generate a set of linear ticks
-			 * @method Chart.Ticks.generators.linear
-			 * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
-			 * @param dataRange {IRange} the range of the data
-			 * @returns {Array<Number>} array of tick values
-			 */
+			
 			linear: function(generationOptions, dataRange) {
 				var ticks = [];
 				// To get a "nice" value for the tick spacing, we will use the appropriately named
@@ -8287,13 +8026,7 @@ module.exports = function(Chart) {
 				return ticks;
 			},
 
-			/**
-			 * Generate a set of logarithmic ticks
-			 * @method Chart.Ticks.generators.logarithmic
-			 * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
-			 * @param dataRange {IRange} the range of the data
-			 * @returns {Array<Number>} array of tick values
-			 */
+			
 			logarithmic: function(generationOptions, dataRange) {
 				var ticks = [];
 				var getValueOrDefault = helpers.getValueOrDefault;
@@ -8333,29 +8066,14 @@ module.exports = function(Chart) {
 			}
 		},
 
-		/**
-		 * Namespace to hold formatters for different types of ticks
-		 * @namespace Chart.Ticks.formatters
-		 */
+		
 		formatters: {
-			/**
-			 * Formatter for value labels
-			 * @method Chart.Ticks.formatters.values
-			 * @param value the value to display
-			 * @return {String|Array} the label to display
-			 */
+			
 			values: function(value) {
 				return helpers.isArray(value) ? value : '' + value;
 			},
 
-			/**
-			 * Formatter for linear numeric ticks
-			 * @method Chart.Ticks.formatters.linear
-			 * @param tickValue {Number} the value to be formatted
-			 * @param index {Number} the position of the tickValue parameter in the ticks array
-			 * @param ticks {Array<Number>} the list of ticks being converted
-			 * @return {String} string representation of the tickValue parameter
-			 */
+			
 			linear: function(tickValue, index, ticks) {
 				// If we have lots of ticks, don't use the ones
 				var delta = ticks.length > 3 ? ticks[2] - ticks[1] : ticks[1] - ticks[0];
@@ -8612,9 +8330,7 @@ module.exports = function(Chart) {
 
 	var helpers = Chart.helpers;
 
-	/**
- 	 * Helper method to merge the opacity into a color
- 	 */
+	
 	function mergeOpacity(colorString, opacity) {
 		var color = helpers.color(colorString);
 		return color.alpha(opacity * color.alpha()).rgbaString();
@@ -8732,10 +8448,7 @@ module.exports = function(Chart) {
 		};
 	}
 
-	/**
-	 * Helper to get the reset model for the tooltip
-	 * @param tooltipOpts {Object} the tooltip options
-	 */
+	
 	function getBaseModel(tooltipOpts) {
 		var globalDefaults = Chart.defaults.global;
 		var getValueOrDefault = helpers.getValueOrDefault;
@@ -8783,9 +8496,7 @@ module.exports = function(Chart) {
 		};
 	}
 
-	/**
-	 * Get the size of the tooltip
-	 */
+	
 	function getTooltipSize(tooltip, model) {
 		var ctx = tooltip._chart.ctx;
 
@@ -8851,9 +8562,7 @@ module.exports = function(Chart) {
 		};
 	}
 
-	/**
-	 * Helper to get the alignment of a tooltip given the size
-	 */
+	
 	function determineAlignment(tooltip, size) {
 		var model = tooltip._model;
 		var chart = tooltip._chart;
@@ -8924,9 +8633,7 @@ module.exports = function(Chart) {
 		};
 	}
 
-	/**
-	 * @Helper to get the location a tooltip needs to be placed at given the initial position (via the vm) and the size and alignment
-	 */
+	
 	function getBackgroundPoint(vm, size, alignment) {
 		// Background Position
 		var x = vm.x;
@@ -9368,12 +9075,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		/**
-		 * Handle an event
-		 * @private
-		 * @param e {Event} the event to handle
-		 * @returns {Boolean} true if the tooltip changed
-		 */
+		
 		handleEvent: function(e) {
 			var me = this;
 			var options = me._options;
@@ -9407,16 +9109,9 @@ module.exports = function(Chart) {
 		}
 	});
 
-	/**
-	 * @namespace Chart.Tooltip.positioners
-	 */
+	
 	Chart.Tooltip.positioners = {
-		/**
-		 * Average mode places the tooltip at the average position of the elements shown
-		 * @function Chart.Tooltip.positioners.average
-		 * @param elements {ChartElement[]} the elements being displayed in the tooltip
-		 * @returns {Point} tooltip position
-		 */
+		
 		average: function(elements) {
 			if (!elements.length) {
 				return false;
@@ -9443,13 +9138,7 @@ module.exports = function(Chart) {
 			};
 		},
 
-		/**
-		 * Gets the tooltip position nearest of the item nearest to the event position
-		 * @function Chart.Tooltip.positioners.nearest
-		 * @param elements {Chart.Element[]} the tooltip elements
-		 * @param eventPosition {Point} the position of the event in canvas coordinates
-		 * @returns {Point} the tooltip position
-		 */
+		
 		nearest: function(elements, eventPosition) {
 			var x = eventPosition.x;
 			var y = eventPosition.y;
@@ -9874,12 +9563,7 @@ module.exports = function(Chart) {
 		return bar._view.width !== undefined;
 	}
 
-	/**
-	 * Helper function to get the bounds of the bar regardless of the orientation
-	 * @private
-	 * @param bar {Chart.Element.Rectangle} the bar
-	 * @return {Bounds} bounds of the bar
-	 */
+	
 	function getBarBounds(bar) {
 		var vm = bar._view;
 		var x1, x2, y1, y2;
@@ -10046,11 +9730,7 @@ module.exports = function(Chart) {
 	};
 
 	var DatasetScale = Chart.Scale.extend({
-		/**
-		* Internal function to get the correct labels. If data.xLabels or data.yLabels are defined, use those
-		* else fall back to data.labels
-		* @private
-		*/
+		
 		getLabels: function() {
 			var data = this.chart.data;
 			return (this.isHorizontal() ? data.xLabels : data.yLabels) || data.labels;

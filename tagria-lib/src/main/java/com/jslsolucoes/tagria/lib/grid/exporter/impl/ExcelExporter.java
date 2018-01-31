@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.grid.exporter.impl;
 
 import java.io.IOException;
@@ -31,22 +17,21 @@ import com.jslsolucoes.tagria.lib.grid.exporter.model.Table;
 
 public class ExcelExporter {
 	private Table table;
-	
 
 	public ExcelExporter(Table table) {
 		this.table = table;
-		
+
 	}
-	
+
 	public void doExport(OutputStream out) throws IOException {
-		Workbook workbook = new HSSFWorkbook(); 
+		Workbook workbook = new HSSFWorkbook();
 		Sheet sheet = workbook.createSheet("data");
-		header(sheet,workbook);
-		body(sheet,workbook);
+		header(sheet, workbook);
+		body(sheet, workbook);
 		workbook.write(out);
 	}
-	
-	private void header(Sheet sheet,Workbook workbook) {
+
+	private void header(Sheet sheet, Workbook workbook) {
 		Row sheetRow = sheet.createRow(0);
 		int cell = 0;
 		for (Header header : table.getHeaders()) {
@@ -67,7 +52,7 @@ public class ExcelExporter {
 
 	}
 
-	private void body(Sheet sheet,Workbook workbook) {
+	private void body(Sheet sheet, Workbook workbook) {
 		int line = 1;
 		for (com.jslsolucoes.tagria.lib.grid.exporter.model.Row row : table.getRows()) {
 			Row sheetRow = sheet.createRow(line);
@@ -89,5 +74,5 @@ public class ExcelExporter {
 			line++;
 		}
 
-	}	
+	}
 }

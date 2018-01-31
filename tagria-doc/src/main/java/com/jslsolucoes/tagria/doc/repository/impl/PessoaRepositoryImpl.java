@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.doc.repository.impl;
 
 import java.util.ArrayList;
@@ -30,7 +16,8 @@ import com.jslsolucoes.tagria.doc.repository.PessoaRepository;
 public class PessoaRepositoryImpl implements PessoaRepository {
 
 	private List<Pessoa> pessoas;
-	public PessoaRepositoryImpl(){
+
+	public PessoaRepositoryImpl() {
 		pessoas = new ArrayList<Pessoa>();
 		for (int i = 1; i <= 10; i++) {
 			Pessoa pessoa = new Pessoa();
@@ -42,9 +29,9 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 			pessoa.setId(Long.valueOf(i));
 			pessoas.add(pessoa);
 		}
-		
+
 	}
-	
+
 	public List<Pessoa> listAll() {
 		return pessoas;
 	}
@@ -60,7 +47,7 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
 	@Override
 	public List<Pessoa> listAll(Integer firstResult, Integer maxResult) {
-		return pessoas.subList(firstResult, firstResult+maxResult);
+		return pessoas.subList(firstResult, firstResult + maxResult);
 	}
 
 }

@@ -10,7 +10,7 @@ public class InternalViewResource extends InternalResourceViewResolver {
 	protected String getPrefix() {
 		return "/WEB-INF/jsp/";
 	}
-	
+
 	@Override
 	protected String getSuffix() {
 		return ".jsp";

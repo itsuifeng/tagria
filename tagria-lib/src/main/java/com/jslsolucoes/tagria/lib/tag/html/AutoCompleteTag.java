@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -29,7 +15,7 @@ import com.jslsolucoes.tagria.lib.html.Script;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class AutoCompleteTag extends SimpleTagSupport {
-	
+
 	private String url;
 	private String name;
 	private String dataValue;
@@ -40,57 +26,55 @@ public class AutoCompleteTag extends SimpleTagSupport {
 	private Boolean required = Boolean.FALSE;
 	private Integer minLength = 2;
 	private String onSelect;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		
+
 		TagUtil.getBody(getJspBody());
-		
+
 		Div div = new Div();
-		
+
 		Input hidden = new Input();
-		hidden.add(Attribute.TYPE,"hidden");
-		hidden.add(Attribute.NAME,name);
-		hidden.add(Attribute.ID,TagUtil.getId(name,null,this));
-		if(!StringUtils.isEmpty(value)){
-			hidden.add(Attribute.VALUE,value);
+		hidden.add(Attribute.TYPE, "hidden");
+		hidden.add(Attribute.NAME, name);
+		hidden.add(Attribute.ID, TagUtil.getId(name, null, this));
+		if (!StringUtils.isEmpty(value)) {
+			hidden.add(Attribute.VALUE, value);
 		}
 		div.add(hidden);
-		
+
 		Input input = new Input();
-		input.add(Attribute.AUTOCOMPLETE,"off");
-		if(required){
-			input.add(Attribute.CLASS,"bs-input-required");
-			input.add(Attribute.REQUIRED,"required");
+		input.add(Attribute.AUTOCOMPLETE, "off");
+		if (required) {
+			input.add(Attribute.CLASS, "bs-input-required");
+			input.add(Attribute.REQUIRED, "required");
 		}
-		if(!StringUtils.isEmpty(text)){
-			input.add(Attribute.VALUE,TagUtil.getLocalized(text,getJspContext()));
+		if (!StringUtils.isEmpty(text)) {
+			input.add(Attribute.VALUE, TagUtil.getLocalized(text, getJspContext()));
 		}
-		if(!StringUtils.isEmpty(placeholder)){
-			input.add(Attribute.PLACEHOLDER,placeholder);
+		if (!StringUtils.isEmpty(placeholder)) {
+			input.add(Attribute.PLACEHOLDER, placeholder);
 		}
-		input.add(Attribute.TYPE,"text");
-		input.add(Attribute.CLASS,"form-control");
-		input.add(Attribute.ID,TagUtil.getId(name + ".auto.complete",null,this));
+		input.add(Attribute.TYPE, "text");
+		input.add(Attribute.CLASS, "form-control");
+		input.add(Attribute.ID, TagUtil.getId(name + ".auto.complete", null, this));
 		div.add(input);
-		TagUtil.out(getJspContext(),div);
-		
+		TagUtil.out(getJspContext(), div);
+
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('#"+input.get(Attribute.ID)+"').autoComplete({							"+
-				    "	minLength : "+ minLength +",															"+
-				    "	resultsNotFound : '"+ TagUtil.getLocalizedForLib("auto.complete.no.results",getJspContext()) +"',"+
-				    "	display : function (item) {													"+
-					"		return item."+dataText+";													"+
-					"	},"+
-					"	source : '" + TagUtil.getPathForUrl(getJspContext(), url) + "',				"+
-					"	select: function( item ) {				 									"+
-					"       $('#"+hidden.get(Attribute.ID)+"').val(item."+dataValue+");				"+
-					 		(!StringUtils.isEmpty(onSelect) ? onSelect : "") +
-					"	}																			"+
-					"}).blur(function(){															"+
-					"	if($(this).val()==''){ $('#"+hidden.get(Attribute.ID)+"').val('') }         "+																																	
-				    "});");
+		script.add("$('#" + input.get(Attribute.ID) + "').autoComplete({							"
+				+ "	minLength : " + minLength + ",															"
+				+ "	resultsNotFound : '" + TagUtil.getLocalizedForLib("auto.complete.no.results", getJspContext())
+				+ "'," + "	display : function (item) {													"
+				+ "		return item." + dataText + ";													" + "	},"
+				+ "	source : '" + TagUtil.getPathForUrl(getJspContext(), url) + "',				"
+				+ "	select: function( item ) {				 									" + "       $('#"
+				+ hidden.get(Attribute.ID) + "').val(item." + dataValue + ");				"
+				+ (!StringUtils.isEmpty(onSelect) ? onSelect : "")
+				+ "	}																			"
+				+ "}).blur(function(){															"
+				+ "	if($(this).val()==''){ $('#" + hidden.get(Attribute.ID) + "').val('') }         " + "});");
 
 		TagUtil.out(getJspContext(), script);
 	}
@@ -175,5 +159,4 @@ public class AutoCompleteTag extends SimpleTagSupport {
 		this.onSelect = onSelect;
 	}
 
-	
 }

@@ -24,72 +24,60 @@ public class BarChartTag extends SimpleTagSupport {
 	private String label;
 	private Boolean horizontal = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		if(rendered != null && rendered){
+		if (rendered != null && rendered) {
 			Div container = new Div();
-			if(!responsive){
-				container.add(Attribute.STYLE,"width:"+width+"px;height:"+height+"px");
+			if (!responsive) {
+				container.add(Attribute.STYLE, "width:" + width + "px;height:" + height + "px");
 			}
 			Canvas canvas = new Canvas();
-			canvas.add(Attribute.ID,TagUtil.getId());
+			canvas.add(Attribute.ID, TagUtil.getId());
 			container.add(canvas);
 			TagUtil.out(getJspContext(), container);
-			
-			
+
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
-			script.add("new Chart(document.getElementById('"+canvas.get(Attribute.ID)+ "'), {		"+
-			   "			type : '"+(horizontal ? "horizontalBar" : "bar")+"',					"+
-			   "			data : {																"+
-			   " 				labels: [															"+
-									StringUtils.join(dataset
-									.getLabels()
-									.stream()
-									.map(datasetLabel -> "'"+datasetLabel+"'")
-									.collect(Collectors.toList())
-									,",") +
-			   " 				],																	"+
-			   " 				datasets: [															"+
-			   
-						StringUtils.join(dataset
-							.getDatasets()
-			   				.stream()
-			   				.map(datasetGroup -> 
-			   					 "{"+
-							"         		label: '"+TagUtil.getLocalized(datasetGroup.getLabel(),getJspContext())+"',		"+
-							"         		data: [																"+
-											StringUtils.join(datasetGroup.getData(),",") 						+
-							"					],																"+
-							"         			backgroundColor: [												"+
-													StringUtils.join(
-															datasetGroup.getBackgroundColor()
-															.stream()
-															.map(color -> "'"+color+"'")
-															.collect(Collectors.toList()),",") 					+
-							"         			],																"+
-							"         			borderColor: [													"+
-													StringUtils.join(datasetGroup.getBorderColor()
-															.stream()
-															.map(color -> "'"+color+"'")
-															.collect(Collectors.toList()),",") 					+
-							"         			],																"+
-							"					borderWidth: "+datasetGroup.getBorderWidth()					+	   							
-			   				"			}																		"
-			   				)
-			   				.collect(Collectors.toList()),",") 		+
-			   "     			]																				"+
-			   "			},																					"+
-		       "			options: {																			"+
-			      (!StringUtils.isEmpty(label) ? 
-			   "				title: {																		"+
-		       "      				display: true,																"+
-		       "     				text: '"+TagUtil.getLocalized(label,getJspContext())+"'										"+
-		       " 				}																				" : "")+
-			   "			}																					"+   
-			   "		});																						");
-			
+			script.add("new Chart(document.getElementById('" + canvas.get(Attribute.ID) + "'), {		"
+					+ "			type : '" + (horizontal ? "horizontalBar" : "bar") + "',					"
+					+ "			data : {																"
+					+ " 				labels: [															"
+					+ StringUtils.join(dataset.getLabels().stream().map(datasetLabel -> "'" + datasetLabel + "'")
+							.collect(Collectors.toList()), ",")
+					+ " 				],																	"
+					+ " 				datasets: [															" +
+
+					StringUtils.join(dataset.getDatasets().stream()
+							.map(datasetGroup -> "{" + "         		label: '"
+									+ TagUtil.getLocalized(datasetGroup.getLabel(), getJspContext()) + "',		"
+									+ "         		data: [																"
+									+ StringUtils.join(datasetGroup.getData(), ",")
+									+ "					],																"
+									+ "         			backgroundColor: [												"
+									+ StringUtils.join(datasetGroup.getBackgroundColor().stream()
+											.map(color -> "'" + color + "'").collect(Collectors.toList()), ",")
+									+ "         			],																"
+									+ "         			borderColor: [													"
+									+ StringUtils.join(datasetGroup.getBorderColor().stream()
+											.map(color -> "'" + color + "'").collect(Collectors.toList()), ",")
+									+ "         			],																"
+									+ "					borderWidth: " + datasetGroup.getBorderWidth()
+									+ "			}																		")
+							.collect(Collectors.toList()), ",")
+					+ "     			]																				"
+					+ "			},																					"
+					+ "			options: {																			"
+					+ (!StringUtils.isEmpty(label)
+							? "				title: {																		"
+									+ "      				display: true,																"
+									+ "     				text: '" + TagUtil.getLocalized(label, getJspContext())
+									+ "'										"
+									+ " 				}																				"
+							: "")
+					+ "			}																					"
+					+ "		});																						");
+
 			TagUtil.out(getJspContext(), script);
 		}
 	}
@@ -109,7 +97,6 @@ public class BarChartTag extends SimpleTagSupport {
 	public void setHeight(Integer height) {
 		this.height = height;
 	}
-
 
 	public Boolean getResponsive() {
 		return responsive;
@@ -150,6 +137,5 @@ public class BarChartTag extends SimpleTagSupport {
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
 	}
-
 
 }

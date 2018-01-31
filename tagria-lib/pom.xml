@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.13</version>
+		<version>1.0.14</version>
 	</parent>
 	<artifactId>tagria-lib</artifactId>
 
@@ -120,11 +120,7 @@
 				<version>2.3.1</version>
 				<configuration>
 					<excludes>
-						<exclude>**/compressor/**</exclude>
-						<exclude>**/bootstrap/**</exclude>
-						<exclude>**/jquery/**</exclude>
-						<exclude>**/base/**</exclude>
-						<exclude>**/tagria.*.css</exclude>
+						<exclude>**/compressorbootstrapjquerybasetagria.*.css</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

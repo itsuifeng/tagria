@@ -1,18 +1,4 @@
-/*******************************************************************************
- * Copyright 2016 JSL Solucoes LTDA - https://jslsolucoes.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.jslsolucoes.tagria.lib.tag.html;
 
 import java.io.IOException;
@@ -32,7 +18,7 @@ public class InputTag extends SimpleTagSupport {
 	private String name;
 	private String value;
 	private String pattern;
-	private String type= "text";
+	private String type = "text";
 	private String placeholder;
 	private String accept;
 	private Boolean multiple = Boolean.FALSE;
@@ -46,77 +32,76 @@ public class InputTag extends SimpleTagSupport {
 	private String cssClass;
 	private Integer max;
 	private Integer min;
-	
+
 	@Override
 	public void doTag() throws JspException, IOException {
 		Input input = new Input();
-		input.add(Attribute.TYPE,type);
-		input.add(Attribute.NAME,name);
-		
-		
-		if(max != null){
-			input.add(Attribute.MAX,max);
+		input.add(Attribute.TYPE, type);
+		input.add(Attribute.NAME, name);
+
+		if (max != null) {
+			input.add(Attribute.MAX, max);
 		}
-		
-		if(min != null){
-			input.add(Attribute.MIN,max);
+
+		if (min != null) {
+			input.add(Attribute.MIN, max);
 		}
-		
-		if(multiple){
-			input.add(Attribute.MULTIPLE,"multiple");
+
+		if (multiple) {
+			input.add(Attribute.MULTIPLE, "multiple");
 		}
-		if(!StringUtils.isEmpty(accept)){
-			input.add(Attribute.ACCEPT,accept);
+		if (!StringUtils.isEmpty(accept)) {
+			input.add(Attribute.ACCEPT, accept);
 		}
-		
-		input.add(Attribute.ID,TagUtil.getId(name, id,this));
-		if(!"checkbox".equals(type) && !"radio".equals(type)){
-			input.add(Attribute.CLASS,"form-control");
+
+		input.add(Attribute.ID, TagUtil.getId(name, id, this));
+		if (!"checkbox".equals(type) && !"radio".equals(type)) {
+			input.add(Attribute.CLASS, "form-control");
 		}
-		
-		if(focus){
-			input.add(Attribute.AUTOFOCUS,"autofocus");
+
+		if (focus) {
+			input.add(Attribute.AUTOFOCUS, "autofocus");
 		}
-		
-		if(!StringUtils.isEmpty(title)){
-			input.add(Attribute.TITLE,TagUtil.getLocalized(title,getJspContext()));
+
+		if (!StringUtils.isEmpty(title)) {
+			input.add(Attribute.TITLE, TagUtil.getLocalized(title, getJspContext()));
 		}
-		
-		if(maxLength != null){
-			input.add(Attribute.MAXLENGTH,maxLength);
+
+		if (maxLength != null) {
+			input.add(Attribute.MAXLENGTH, maxLength);
 		}
-		if(!StringUtils.isEmpty(placeholder)){
-			input.add(Attribute.PLACEHOLDER,TagUtil.getLocalized(placeholder,getJspContext()));
+		if (!StringUtils.isEmpty(placeholder)) {
+			input.add(Attribute.PLACEHOLDER, TagUtil.getLocalized(placeholder, getJspContext()));
 		}
-		
+
 		if (!StringUtils.isEmpty(format)) {
-			value = TagUtil.format(format, value,getJspContext());
+			value = TagUtil.format(format, value, getJspContext());
 		}
-		
+
 		if (!StringUtils.isEmpty(value)) {
-			input.add(Attribute.VALUE, TagUtil.getLocalized(value,getJspContext()));
+			input.add(Attribute.VALUE, TagUtil.getLocalized(value, getJspContext()));
 		}
-		if(!StringUtils.isEmpty(pattern)){
+		if (!StringUtils.isEmpty(pattern)) {
 			input.add(Attribute.PATTERN, pattern);
 		}
 		if (("checkbox".equals(type) || "radio".equals(type)) && !StringUtils.isEmpty(checked)
 				&& (checked.equals(value) || "true".equals(checked))) {
 			input.add(Attribute.CHECKED, "checked");
 		}
-		if(disabled){
+		if (disabled) {
 			input.add(Attribute.DISABLED, "disabled");
-			input.add(Attribute.CLASS,"disabled");
+			input.add(Attribute.CLASS, "disabled");
 		}
-		
-		if(required){
-			input.add(Attribute.CLASS,"bs-input-required");
-			input.add(Attribute.REQUIRED,"required");
+
+		if (required) {
+			input.add(Attribute.CLASS, "bs-input-required");
+			input.add(Attribute.REQUIRED, "required");
 		}
-		
-		if(!StringUtils.isEmpty(cssClass)){
-			input.add(Attribute.CLASS,cssClass);
+
+		if (!StringUtils.isEmpty(cssClass)) {
+			input.add(Attribute.CLASS, cssClass);
 		}
-		
+
 		TagUtil.out(getJspContext(), input);
 	}
 
@@ -264,6 +249,4 @@ public class InputTag extends SimpleTagSupport {
 		this.min = min;
 	}
 
-
-	
 }
