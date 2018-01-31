@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.14-SNAPSHOT</version>
+		<version>1.0.14</version>
 	</parent>
 
 	<artifactId>tagria-example-mentawai</artifactId>
