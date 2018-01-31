@@ -7,6 +7,7 @@
 [![][lines img]][lines]
 [![][vulnerabilities img]][vulnerabilities]
 [![][code_smells img]][code_smells]
+[![][paypal img]][paypal]
 
 [travis]:https://travis-ci.org/jslsolucoes/tagria
 [travis img]:https://travis-ci.org/jslsolucoes/tagria.svg?branch=master
@@ -38,6 +39,8 @@
 [code_smells]:https://sonarqube.com/dashboard/index/com.jslsolucoes:tagria:develop
 [code_smells img]:https://sonarqube.com/api/badges/measure?key=com.jslsolucoes:tagria:develop&metric=code_smells
 
+[paypal]:https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PE25DPU3CNFH4
+[paypal img]:https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
 
 
 # tagria
