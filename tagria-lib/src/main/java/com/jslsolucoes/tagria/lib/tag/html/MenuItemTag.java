@@ -16,7 +16,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuItemTag extends SimpleTagSupport {
 
-	private String url;
+	private String url = "#";
 	private String label;
 	private String target = "_self";
 	private Boolean rendered = Boolean.TRUE;
