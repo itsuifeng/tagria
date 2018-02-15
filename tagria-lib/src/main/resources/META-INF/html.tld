@@ -2443,7 +2443,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ButtonGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates whether the buttons should be spaced. default false</description>
+			<description>Indicates whether the buttons should be spaced. Default: true. Options: true,false</description>
 			<name>spaced</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
