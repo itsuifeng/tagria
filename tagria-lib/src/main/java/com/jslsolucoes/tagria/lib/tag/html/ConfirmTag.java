@@ -22,6 +22,7 @@ public class ConfirmTag extends SimpleTagSupport {
 	private String url = "#";
 	private String target = "_self";
 	private String attachTo;
+	private String attachToSelector;
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -88,9 +89,16 @@ public class ConfirmTag extends SimpleTagSupport {
 
 		Script script = new Script();
 		script.add(Attribute.TYPE, "text/javascript");
-		script.add("$('#" + attachTo + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
+		script.add("$('" + attachTo() + "').attr('data-toggle','modal').attr('data-target','#" + modal.get(Attribute.ID)
 				+ "');");
 		TagUtil.out(getJspContext(), script);
+	}
+
+	private String attachTo() {
+		if(StringUtils.isEmpty(attachToSelector)){
+			return "#" + TagUtil.getId(attachTo, null, this);
+		} 
+		return attachToSelector;
 	}
 
 	public String getLabel() {
@@ -123,6 +131,14 @@ public class ConfirmTag extends SimpleTagSupport {
 
 	public void setAttachTo(String attachTo) {
 		this.attachTo = attachTo;
+	}
+
+	public String getAttachToSelector() {
+		return attachToSelector;
+	}
+
+	public void setAttachToSelector(String attachToSelector) {
+		this.attachToSelector = attachToSelector;
 	}
 
 }
