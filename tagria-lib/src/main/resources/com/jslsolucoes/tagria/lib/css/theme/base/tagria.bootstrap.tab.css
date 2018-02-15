@@ -1,0 +1,15 @@
+.nav-tabs > li.tab-danger > a,
+.nav-tabs > li.tab-danger > a:hover,
+.nav-tabs > li.tab-danger > a:focus {
+  color: #23527c;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.nav-tabs > li.active.tab-danger > a,
+.nav-tabs > li.active.tab-danger > a:hover,
+.nav-tabs > li.active.tab-danger > a:focus {
+  color: #23527c;
+  background-color: #e4b9b9;
+  border-color: #d43f3a;
+}

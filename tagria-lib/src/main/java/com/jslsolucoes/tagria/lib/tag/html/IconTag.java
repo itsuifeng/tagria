@@ -12,6 +12,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class IconTag extends SimpleTagSupport {
 
+	private String id;
 	private String icon;
 	private Boolean rendered = Boolean.TRUE;
 
@@ -19,6 +20,7 @@ public class IconTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Span span = new Span();
+			span.add(Attribute.ID, TagUtil.getId(id));
 			span.add(Attribute.CLASS, "glyphicon glyphicon-" + icon);
 			TagUtil.out(getJspContext(), span);
 		}
@@ -38,5 +40,13 @@ public class IconTag extends SimpleTagSupport {
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

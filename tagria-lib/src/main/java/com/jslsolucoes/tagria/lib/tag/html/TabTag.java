@@ -20,6 +20,7 @@ public class TabTag extends SimpleTagSupport {
 
 	private String label;
 	private String url;
+	private String state = "default";
 	private Boolean rendered = Boolean.TRUE;
 	private Boolean active = Boolean.FALSE;
 	private Boolean reloadOnSelect = Boolean.TRUE;
@@ -37,6 +38,9 @@ public class TabTag extends SimpleTagSupport {
 			if (active) {
 				li.add(Attribute.CLASS, "active");
 			}
+			li.add(Attribute.CLASS, "tab-" + state);
+			
+			
 			A a = new A();
 			a.add(Attribute.HREF, "#" + id);
 			a.add(Attribute.DATA_TOGGLE, "tab");
@@ -110,5 +114,13 @@ public class TabTag extends SimpleTagSupport {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 }

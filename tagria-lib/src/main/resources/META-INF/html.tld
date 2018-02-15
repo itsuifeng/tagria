@@ -321,7 +321,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:input name="input1" placeholder="Entre e saia do campo" /&gt;
+			&lt;html:input name="input1" placeholder="Focus in and focus out" /&gt;
 			
 			&lt;html:jsEvent attachTo="input1" event="blur"&gt;
 			    alert('blur');
@@ -353,14 +353,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the component that triggers the modal screen</description>
+			<description>Indicates the component name that triggers the confirm screen</description>
 			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the confirm screen</description>
+			<name>attachToSelector</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
 		    &lt;html:button id="botao" label="Confirmar algo"/&gt;
-			&lt;html:confirm url="#" label="Titulo do modal" attachTo="botao"&gt;
+			&lt;html:confirm url="#" label="Titulo do modal" attachToSelector="#botao"&gt;
 								
 			&lt;/html:confirm&gt; </example>
 	</tag>
@@ -385,8 +391,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the component that triggers the modal screen</description>
+			<description>Indicates the component name that triggers the modal screen</description>
 			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the modal screen</description>
+			<name>attachToSelector</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -410,7 +422,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 		    &lt;html:button id="botao" label="Abrir modal"/&gt;
-			&lt;html:modal label="Titulo do modal" attachTo="botao"&gt;
+			&lt;html:modal label="Titulo do modal" attachToSelector="botao"&gt;
 				Outros componentes 
 				
 				&lt;html:toolbar&gt;
@@ -506,6 +518,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the icon to be rendered. available list http://getbootstrap.com/components/#glyphicons</description>
 			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the id for the component</description>
+			<name>id</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1197,9 +1215,20 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TooltipTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates the component name to be achieved</description>
+			<description>Indicates the component name that triggers the tooltip</description>
 			<name>attachTo</name>
-			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the tooltip</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1213,7 +1242,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:input name="field1"/&gt;	
 			
 			&lt;html:tooltip attachTo="field1"&gt;	
-			     Meu tooltip para o campo field 1
+			     My tooltipo field 1
 			&lt;/html:tooltip&gt; </example>
 	</tag>
 
@@ -2262,6 +2291,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.TabTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
+			<description>It indicates whether the tab should be initiated selected</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description>Indicates the label of the tab</description>
 			<name>label</name>
 			<required>true</required>
@@ -2281,10 +2316,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the tab should be initiated selected</description>
-			<name>active</name>
+			<description>Indicates the component state. Default: default. Options: danger, default</description>
+			<name>state</name>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description>It indicates whether the tab should be recharged to clicar.Default: true.</description>
@@ -2408,7 +2443,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.ButtonGroupTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Indicates whether the buttons should be spaced. default false</description>
+			<description>Indicates whether the buttons should be spaced. Default: true. Options: true,false</description>
 			<name>spaced</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>

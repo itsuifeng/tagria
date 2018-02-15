@@ -12,7 +12,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class ButtonGroupTag extends SimpleTagSupport {
 
-	private Boolean spaced = Boolean.FALSE;
+	private Boolean spaced = Boolean.TRUE;
 
 	@Override
 	public void doTag() throws JspException, IOException {

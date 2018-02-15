@@ -22,6 +22,7 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 	private String id;
 	private String label;
 	private String attachTo;
+	private String attachToSelector;
 	private Boolean closeable = Boolean.TRUE;
 	private Boolean open = Boolean.FALSE;
 	private Boolean rendered = Boolean.TRUE;
@@ -79,21 +80,27 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 			modal.add(dialog);
 			TagUtil.out(getJspContext(), modal);
 
-			if (!StringUtils.isEmpty(attachTo)) {
-				Script script = new Script();
-				script.add(Attribute.TYPE, "text/javascript");
-				script.add("$('#" + attachTo + "').attr('data-toggle','modal').attr('data-target','#"
+			Script scriptForAttach = new Script();
+			scriptForAttach.add(Attribute.TYPE, "text/javascript");
+			scriptForAttach.add("$('" + attachTo() + "').attr('data-toggle','modal').attr('data-target','#"
 						+ modal.get(Attribute.ID) + "');");
-				TagUtil.out(getJspContext(), script);
-			}
+			TagUtil.out(getJspContext(), scriptForAttach);
+			
 
 			if (open) {
-				Script script = new Script();
-				script.add(Attribute.TYPE, "text/javascript");
-				script.add("$('#" + modal.get(Attribute.ID) + "').modal('show')");
-				TagUtil.out(getJspContext(), script);
+				Script scriptForOpen = new Script();
+				scriptForOpen.add(Attribute.TYPE, "text/javascript");
+				scriptForOpen.add("$('#" + modal.get(Attribute.ID) + "').modal('show')");
+				TagUtil.out(getJspContext(), scriptForOpen);
 			}
 		}
+	}
+	
+	private String attachTo() {
+		if(StringUtils.isEmpty(attachToSelector)){
+			return "#" + TagUtil.getId(attachTo, null, this);
+		} 
+		return attachToSelector;
 	}
 
 	public String getId() {
@@ -147,6 +154,14 @@ public class ModalTag extends SimpleTagSupport implements Toolballer {
 
 	public void setRendered(Boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public String getAttachToSelector() {
+		return attachToSelector;
+	}
+
+	public void setAttachToSelector(String attachToSelector) {
+		this.attachToSelector = attachToSelector;
 	}
 
 }
