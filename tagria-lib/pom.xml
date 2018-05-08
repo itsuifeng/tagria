@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jslsolucoes</groupId>
 		<artifactId>tagria</artifactId>
-		<version>1.0.15</version>
+		<version>1.0.17-SNAPSHOT</version>
 	</parent>
 	<artifactId>tagria-lib</artifactId>
 
@@ -70,6 +70,11 @@
 			<artifactId>closure-compiler</artifactId>
 			<version>r2388</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>25.0-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
