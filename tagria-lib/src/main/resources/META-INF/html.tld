@@ -12,6 +12,74 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 
 
 	<tag>
+		<description>Renders a carousel</description>
+		<display-name>Carousel</display-name>
+		<name>carousel</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CarouselTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id for carousel</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:carousel&gt;
+				&lt;html:carouselItem label="Item 1" description="Description 1" url="http://imgur.com/dsdsed" alt="image"/&gt;
+			&lt;/html:carousel&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a carousel item</description>
+		<display-name>Carousel</display-name>
+		<name>carouselItem</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.CarouselItemTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the label of carousel item</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the description of carousel item</description>
+			<name>description</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component must follow a set on the properties cdn.Default: true. Options: true,false</description>
+			<name>cdn</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label if the component can not be loaded</description>
+			<name>alt</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the image url</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component must start activated. Default: false. Options: true,false</description>
+			<name>active</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:carousel&gt;
+				&lt;html:carouselItem label="Item 1" description="Description 1" url="http://imgur.com/dsdsed" alt="image"/&gt;
+			&lt;/html:carousel&gt; </example>
+	</tag>
+
+
+	<tag>
 		<description>Renders a syntax highlighter</description>
 		<display-name>Misc</display-name>
 		<name>syntaxHighlight</name>
