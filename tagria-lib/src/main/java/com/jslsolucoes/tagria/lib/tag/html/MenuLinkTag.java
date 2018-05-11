@@ -15,40 +15,42 @@ import com.jslsolucoes.tagria.lib.html.Ul;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class MenuLinkTag extends SimpleTagSupport {
-	
+
 	private String align;
 	private String url = "#";
 	private String label;
 	private String target = "_self";
 	private String icon;
-	
+	private Boolean rendered = Boolean.TRUE;
+
 	@Override
 	public void doTag() throws JspException, IOException {
-		
-		Ul ul = new Ul();
-		ul.add(Attribute.CLASS, "nav navbar-nav");
-		if (!StringUtils.isEmpty(align)) {
-			ul.add(Attribute.CLASS, "navbar-" + align);
-		}
-		
-		A a = new A();
-		a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
-		a.add(Attribute.TARGET, target);
+		if (rendered != null && rendered) {
+			Ul ul = new Ul();
+			ul.add(Attribute.CLASS, "nav navbar-nav");
+			if (!StringUtils.isEmpty(align)) {
+				ul.add(Attribute.CLASS, "navbar-" + align);
+			}
 
-		if (!StringUtils.isEmpty(icon)) {
-			a.add(new Span().add(Attribute.CLASS, "glyphicon glyphicon-" + icon));
-			a.add(" ");
-		}
+			A a = new A();
+			a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+			a.add(Attribute.TARGET, target);
 
-		if (!StringUtils.isEmpty(label)) {
-			a.add(TagUtil.getLocalized(label, getJspContext()));
-		} else {
-			a.add(TagUtil.getBody(getJspBody()));
+			if (!StringUtils.isEmpty(icon)) {
+				a.add(new Span().add(Attribute.CLASS, "glyphicon glyphicon-" + icon));
+				a.add(" ");
+			}
+
+			if (!StringUtils.isEmpty(label)) {
+				a.add(TagUtil.getLocalized(label, getJspContext()));
+			} else {
+				a.add(TagUtil.getBody(getJspBody()));
+			}
+			Li li = new Li();
+			li.add(a);
+			ul.add(li);
+			TagUtil.out(getJspContext(), ul);
 		}
-		Li li = new Li();
-		li.add(a);
-		ul.add(li);
-		TagUtil.out(getJspContext(), ul);
 	}
 
 	public String getAlign() {
@@ -89,5 +91,13 @@ public class MenuLinkTag extends SimpleTagSupport {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 }
