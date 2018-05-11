@@ -1295,6 +1295,48 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:iframe url="/app/welcome" name="conteudo"/&gt; </example>
 	</tag>
 	
+	
+	<tag>
+		<description>Renders a menu link</description>
+		<display-name>Menu</display-name>
+		<name>menuLink</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuLinkTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the alignment of the button on the menu. Default: left. Options: left, right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the icon to be used in the menu icon. available list http://getbootstrap.com/components/#glyphicons</description>
+			<name>icon</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the URL to be used</description>
+			<name>url</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the target browser. Default: _self. Options: _self, _parent, _blank, namedeumiframe</description>
+			<name>target</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+				&lt;html:menuLink label="Menu dropdown" url="#" &gt;
+				&lt;/html:menuLink&gt; </example>
+	</tag>
+	
 	<tag>
 		<description>Renders a dropdown menu</description>
 		<display-name>Menu</display-name>

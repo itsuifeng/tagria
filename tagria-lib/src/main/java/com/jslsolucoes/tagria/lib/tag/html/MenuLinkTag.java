@@ -14,10 +14,13 @@ import com.jslsolucoes.tagria.lib.html.Span;
 import com.jslsolucoes.tagria.lib.html.Ul;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class MenuDropDownTag extends SimpleTagSupport {
+public class MenuLinkTag extends SimpleTagSupport {
 	
 	private String align;
+	private String url = "#";
 	private String label;
+	private String target = "_self";
+	private String icon;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -28,25 +31,24 @@ public class MenuDropDownTag extends SimpleTagSupport {
 			ul.add(Attribute.CLASS, "navbar-" + align);
 		}
 		
-		Li li = new Li();
-		li.add(Attribute.CLASS, "dropdown");
-		
 		A a = new A();
-		a.add(Attribute.HREF, "#");
-		a.add(Attribute.CLASS, "dropdown-toggle");
-		a.add(Attribute.DATA_TOGGLE,"dropdown");
-		a.add(TagUtil.getLocalized(label, getJspContext()));
-		a.add(" ");
-		
-		Span spanCaret = new Span();
-		spanCaret.add(Attribute.CLASS, "caret");
-		a.add(spanCaret);
-		
+		a.add(Attribute.HREF, TagUtil.getPathForUrl(getJspContext(), url));
+		a.add(Attribute.TARGET, target);
+
+		if (!StringUtils.isEmpty(icon)) {
+			a.add(new Span().add(Attribute.CLASS, "glyphicon glyphicon-" + icon));
+			a.add(" ");
+		}
+
+		if (!StringUtils.isEmpty(label)) {
+			a.add(TagUtil.getLocalized(label, getJspContext()));
+		} else {
+			a.add(TagUtil.getBody(getJspBody()));
+		}
+		Li li = new Li();
 		li.add(a);
-		li.add(Ul.newBuilder().add(Attribute.CLASS, "dropdown-menu").add(TagUtil.getBody(getJspBody())));
 		ul.add(li);
 		TagUtil.out(getJspContext(), ul);
-		
 	}
 
 	public String getAlign() {
@@ -57,11 +59,35 @@ public class MenuDropDownTag extends SimpleTagSupport {
 		this.align = align;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public String getLabel() {
 		return label;
 	}
 
 	public void setLabel(String label) {
 		this.label = label;
-	}	
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 }
