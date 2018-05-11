@@ -10,25 +10,14 @@ public enum Attribute {
 									"data-backdrop"), DATA_PARENT("data-parent"), DISABLED("disabled"), ENCTYPE(
 											"enctype"), FOR("for"), HREF("href"), HTTP_EQUIV("http-equiv"), HEIGHT(
 													"height"), ID("id"), LANG("lang"), METHOD("method"), MAXLENGTH(
-															"maxlength"), MULTIPLE("multiple"), MAX(
-																	"max"), MIN("min"), NAME(
-																			"name"), NOVALIDATE("novalidate"), ONSUBMIT(
-																					"onsubmit"), PLACEHOLDER(
-																							"placeholder"), PATTERN(
-																									"pattern"), REL(
-																											"rel"), ROLE(
-																													"role"), REQUIRED(
-																															"required"), ROWS(
-																																	"rows"), SRC(
-																																			"src"), SELECTED(
-																																					"selected"), STYLE(
-																																							"style"), TYPE(
-																																									"type"), TITLE(
-																																											"title"), TARGET(
-																																													"target"), VALUE(
-																																															"value"), XMLNS(
-																																																	"xmlns"), WIDTH(
-																																																			"width");
+															"maxlength"), MULTIPLE("multiple"), 
+	MAX("max"), MIN("min"), NAME("name"), NOVALIDATE("novalidate"), 
+	ONSUBMIT("onsubmit"), PLACEHOLDER("placeholder"), PATTERN("pattern"), 
+	REL("rel"), ROLE("role"), REQUIRED("required"), ROWS("rows"), 
+	SRC("src"), SELECTED("selected"), 
+	STYLE("style"), TYPE("type"), TITLE("title"), 
+	TARGET("target"), VALUE("value"), XMLNS("xmlns"), 
+	WIDTH("width"), DATA_SITEKEY("data-sitekey");
 
 	private String name;
 

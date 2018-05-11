@@ -51,6 +51,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	</tag>
 	
 
+	<tag>
+		<description>Renders a google recaptcha</description>
+		<display-name>Misc</display-name>
+		<name>recaptcha</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.RecaptchaTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the site key available in google account developer for recaptcha</description>
+			<name>siteKey</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:recaptcha siteKey="yourapikey" &gt;
+				
+			&lt;/html:recaptcha&gt; </example>
+	</tag>
+
 
 	<tag>
 		<description>Renders a locale switcher to change current language</description>
@@ -1275,6 +1294,31 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:iframe url="/app/welcome" name="conteudo"/&gt; </example>
 	</tag>
+	
+	<tag>
+		<description>Renders a dropdown menu</description>
+		<display-name>Menu</display-name>
+		<name>menuDropDown</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuDropDownTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the label to be used in dropdown root</description>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the alignment of the button on the menu. Default: left. Options: left, right</description>
+			<name>align</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+				&lt;html:menuDropDown label="Menu dropdown" &gt;
+					&lt;html:menuItem label="Item 1" url="#"/&gt;
+				&lt;/html:menuDropDown&gt; </example>
+	</tag>
 
 	<tag>
 		<description>Renders a dropdown menu with activation in icon</description>
@@ -1409,7 +1453,6 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the icon to use the button. available list http://getbootstrap.com/components/#glyphicons</description>
 			<name>icon</name>
-			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1460,6 +1503,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<name>nav</name>
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.NavTag</tag-class>
 		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates whether the component should be fixed. Default none. Options : top,bottom</description>
+			<name>fixed</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
 		<example>
 			&lt;html:nav&gt;
 				&lt;html:menuButton icon="cog" align="right"&gt;

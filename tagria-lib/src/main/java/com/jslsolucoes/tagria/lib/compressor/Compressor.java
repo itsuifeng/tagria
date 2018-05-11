@@ -114,11 +114,21 @@ public class Compressor {
 
 		for (String theme : themes) {
 
-			String[] files = new String[] { "tagria.bootstrap.css", "tagria.bootstrap.extension.css",
-					"tagria.common.css", "tagria.font.awesome.css", "tagria.fullcalendar.css", "tagria.jquery.ui.css",
-					"tagria.jquery.ui.theme.css", "tagria.jquery.ui.treeview.css", "tagria.jquery.ui.timepicker.css",
-					"tagria.jquery.ui.wave.css", "tagria.jquery.ui.loading.css", "tagria.jquery.ui.card.css",
-					"tagria.jquery.syntax.highlight.css","tagria.bootstrap.tab.css" };
+			String[] files = new String[] { "tagria.bootstrap.css", 
+					"tagria.bootstrap.extension.css",
+					"tagria.common.css", 
+					"tagria.iframe.css",
+					"tagria.font.awesome.css", 
+					"tagria.fullcalendar.css", 
+					"tagria.jquery.ui.css",
+					"tagria.jquery.ui.theme.css", 
+					"tagria.jquery.ui.treeview.css", 
+					"tagria.jquery.ui.timepicker.css",
+					"tagria.jquery.ui.wave.css", 
+					"tagria.jquery.ui.loading.css", 
+					"tagria.jquery.ui.card.css",
+					"tagria.jquery.syntax.highlight.css",
+					"tagria.bootstrap.tab.css"};
 
 			String content = StringUtils.join(Stream
 					.concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),

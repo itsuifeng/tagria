@@ -44,10 +44,15 @@ public class MenuButtonTag extends SimpleTagSupport {
 				Span span = new Span();
 				span.add(Attribute.CLASS, "glyphicon glyphicon-" + icon);
 				button.add(span);
+				button.add(" ");
 			}
 
 			if (!StringUtils.isEmpty(label)) {
 				button.add(TagUtil.getLocalized(label, getJspContext()));
+				button.add(" ");
+				Span spanCaret = new Span();
+				spanCaret.add(Attribute.CLASS, "caret");
+				button.add(spanCaret);
 			}
 
 			if (!StringUtils.isEmpty(title)) {

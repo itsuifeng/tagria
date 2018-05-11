@@ -34,14 +34,13 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Lists;
 import com.jslsolucoes.tagria.lib.html.Element;
 import com.jslsolucoes.tagria.lib.servlet.TagriaConfigParameter;
 import com.jslsolucoes.tagria.lib.tag.html.DetailTableTag;
 
 public class TagUtil {
 
-	public static final String VERSION = "1.0.16";
+	public static final String VERSION = "1.0.17.6";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {
@@ -50,7 +49,8 @@ public class TagUtil {
 
 	public static String localization(JspContext jspContext) {
 		Locale locale = locale(jspContext);
-		List<String> fullLocale = Lists.newArrayList(locale.getLanguage());
+		List<String> fullLocale = new ArrayList<String>();
+		fullLocale.add(locale.getLanguage());
 		if (!StringUtils.isEmpty(locale.getCountry())) {
 			fullLocale.add(locale.getCountry());
 		}

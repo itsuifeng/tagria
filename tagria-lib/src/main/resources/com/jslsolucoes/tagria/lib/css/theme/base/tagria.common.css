@@ -1,10 +1,3 @@
-iframe {
-	border : 0;
-	width : 100%;
-	height : 0px;
-	overflow : hidden;
-}
-
 .bs-button-group > a.btn,button.btn,div.btn {
 	margin-left : 3px;
 	margin-top: 3px;

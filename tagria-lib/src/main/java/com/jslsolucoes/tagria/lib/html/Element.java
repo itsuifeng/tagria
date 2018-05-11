@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
 public abstract class Element {
 	private List<Element> elements = new ArrayList<>();
 	private EnumMap<Attribute, String> attributes = new EnumMap<>(Attribute.class);
-
+	
 	public Element add(Element element) {
 		elements.add(element);
 		return this;

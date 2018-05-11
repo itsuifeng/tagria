@@ -20,6 +20,7 @@ public class IframeTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		Iframe iframe = new Iframe();
+		iframe.add(Attribute.CLASS,"bs-iframe");
 		iframe.add(Attribute.NAME, name);
 		iframe.add(Attribute.ID, TagUtil.getId(name, id));
 		iframe.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), url));

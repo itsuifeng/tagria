@@ -27,9 +27,12 @@ public class ViewTag extends SimpleTagSupport {
 
 	@Override
 	public void doTag() throws JspException, IOException {
+		
+		String lang = TagUtil.localization(getJspContext());
+		
 		Html html = new Html();
 		html.add(Attribute.XMLNS, "http://www.w3.org/1999/xhtml");
-		html.add(Attribute.LANG, TagUtil.localization(getJspContext()));
+		html.add(Attribute.LANG, lang);
 		Head head = new Head();
 		html.add(head);
 		Title titleForPage = new Title();
@@ -47,19 +50,22 @@ public class ViewTag extends SimpleTagSupport {
 		viewport.add(Attribute.CONTENT, "width=device-width, initial-scale=1");
 
 		head.add(viewport);
-
-		Link bsCss = new Link();
-		bsCss.add(Attribute.REL, "stylesheet");
-		bsCss.add(Attribute.TYPE, "text/css");
-		bsCss.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
-
-		head.add(bsCss);
-
-		Script bsJs = new Script();
-		bsJs.add(Attribute.TYPE, "text/javascript");
-		bsJs.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
-
-		head.add(bsJs);
+		
+		Link css = new Link();
+		css.add(Attribute.REL, "stylesheet");
+		css.add(Attribute.TYPE, "text/css");
+		css.add(Attribute.HREF, TagUtil.getPathForCssLibResource(getJspContext(), "tagria-ui.css"));
+		head.add(css);
+		
+		Script recaptcha = new Script();
+		recaptcha.add(Attribute.TYPE, "text/javascript");
+		recaptcha.add(Attribute.SRC, TagUtil.getPathForUrl(getJspContext(), "https://www.google.com/recaptcha/api.js?hl=" + lang));
+		head.add(recaptcha);
+		
+		Script js = new Script();
+		js.add(Attribute.TYPE, "text/javascript");
+		js.add(Attribute.SRC, TagUtil.getPathForJsLibResource(getJspContext(), "tagria-ui.js"));
+		head.add(js);
 
 		Link favicon = new Link();
 		favicon.add(Attribute.REL, "icon");
