@@ -1240,6 +1240,27 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:link label="Meu link" url="#"/&gt; </example>
 	</tag>
+	
+	
+	<tag>
+		<description>Renders a jumbotron</description>
+		<display-name>Misc</display-name>
+		<name>jumbotron</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.JumbotronTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:jumbotron&gt; &lt;html:h1&gt; Header &lt;/html:h1&gt; &lt;/html:jumbotron&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a paragraf</description>
+		<display-name>Html</display-name>
+		<name>p</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.PTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:p&gt; Content &lt;/html:p&gt; </example>
+	</tag>
 
 	<tag>
 		<description>Renders a h1</description>
