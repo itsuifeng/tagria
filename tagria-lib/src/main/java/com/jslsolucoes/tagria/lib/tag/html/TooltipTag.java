@@ -25,7 +25,7 @@ public class TooltipTag extends SimpleTagSupport {
 			Script script = new Script();
 			script.add(Attribute.TYPE, "text/javascript");
 			script.add(
-					"$('" + attachTo() + "').popover({ content : '" + content()
+					"$('" + TagUtil.attachTo(attachToSelector, attachTo, this) + "').popover({ content : '" + content()
 							+ "',trigger : 'hover',html : true,placement : 'bottom',container : 'body' });");
 			TagUtil.out(getJspContext(), script);
 		}
@@ -37,13 +37,6 @@ public class TooltipTag extends SimpleTagSupport {
 		} else {
 			return TagUtil.getBody(getJspBody());
 		}
-	}
-
-	private String attachTo() {
-		if(StringUtils.isEmpty(attachToSelector)){
-			return "#" + TagUtil.getId(attachTo, null, this);
-		} 
-		return attachToSelector;
 	}
 
 	public String getAttachTo() {

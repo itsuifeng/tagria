@@ -60,7 +60,7 @@ public class ComponentController {
 
 			this.result.include("barDataSet", barChartData);
 		} else if ("grid".equals(component) || "gridColumn".equals(component)
-				|| "treeViewNodeSelect".equals(component)) {
+				|| "treeViewNodeSelect".equals(component) || "dataBlock".equals(component)) {
 			this.result.include("pessoas", pessoaRepository.listAll());
 		}
 		this.result.forwardTo("/WEB-INF/jsp/component/" + component + ".jsp");

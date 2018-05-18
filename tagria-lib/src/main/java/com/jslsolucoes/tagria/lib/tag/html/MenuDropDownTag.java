@@ -18,35 +18,36 @@ public class MenuDropDownTag extends SimpleTagSupport {
 	
 	private String align;
 	private String label;
+	private Boolean rendered = Boolean.TRUE;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		
-		Ul ul = new Ul();
-		ul.add(Attribute.CLASS, "nav navbar-nav");
-		if (!StringUtils.isEmpty(align)) {
-			ul.add(Attribute.CLASS, "navbar-" + align);
+		if (rendered != null && rendered) {
+			Ul ul = new Ul();
+			ul.add(Attribute.CLASS, "nav navbar-nav");
+			if (!StringUtils.isEmpty(align)) {
+				ul.add(Attribute.CLASS, "navbar-" + align);
+			}
+			
+			Li li = new Li();
+			li.add(Attribute.CLASS, "dropdown");
+			
+			A a = new A();
+			a.add(Attribute.HREF, "#");
+			a.add(Attribute.CLASS, "dropdown-toggle");
+			a.add(Attribute.DATA_TOGGLE,"dropdown");
+			a.add(TagUtil.getLocalized(label, getJspContext()));
+			a.add(" ");
+			
+			Span spanCaret = new Span();
+			spanCaret.add(Attribute.CLASS, "caret");
+			a.add(spanCaret);
+			
+			li.add(a);
+			li.add(Ul.newBuilder().add(Attribute.CLASS, "dropdown-menu").add(TagUtil.getBody(getJspBody())));
+			ul.add(li);
+			TagUtil.out(getJspContext(), ul);
 		}
-		
-		Li li = new Li();
-		li.add(Attribute.CLASS, "dropdown");
-		
-		A a = new A();
-		a.add(Attribute.HREF, "#");
-		a.add(Attribute.CLASS, "dropdown-toggle");
-		a.add(Attribute.DATA_TOGGLE,"dropdown");
-		a.add(TagUtil.getLocalized(label, getJspContext()));
-		a.add(" ");
-		
-		Span spanCaret = new Span();
-		spanCaret.add(Attribute.CLASS, "caret");
-		a.add(spanCaret);
-		
-		li.add(a);
-		li.add(Ul.newBuilder().add(Attribute.CLASS, "dropdown-menu").add(TagUtil.getBody(getJspBody())));
-		ul.add(li);
-		TagUtil.out(getJspContext(), ul);
-		
 	}
 
 	public String getAlign() {
@@ -63,5 +64,13 @@ public class MenuDropDownTag extends SimpleTagSupport {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}	
 }

@@ -10,6 +10,40 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 	<short-name>html</short-name>
 	<uri>http://tagrialib.jslsolucoes.com/tags/html</uri>
 
+	<tag>
+		<description>Renders a data block iteration</description>
+		<display-name>Layout</display-name>
+		<name>dataBlock</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.DataBlockTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>It indicates the collection to be iterated by the component</description>
+			<name>data</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.Collection</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the name of the variable java to be made available the object of iteration</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the limit for every row block . Default: 3</description>
+			<name>limit</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<example>
+			&lt;html:dataBlock limit="2" data="${ pessoas }" var="person"&gt;
+				&lt;html:alert state="success"&gt;
+					${ person.nome }
+				&lt;/html:alert&gt;
+			&lt;/html:dataBlock&gt;
+		</example>
+	</tag>
 
 	<tag>
 		<description>Renders a carousel</description>
@@ -1271,6 +1305,26 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:h1&gt; Cabecalho &lt;/html:h1&gt; </example>
 	</tag>
+	
+	<tag>
+		<description>Renders a h1</description>
+		<display-name>Html</display-name>
+		<name>h2</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H2Tag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:h12&gt; Cabecalho &lt;/html:h2&gt; </example>
+	</tag>
+	
+	<tag>
+		<description>Renders a h1</description>
+		<display-name>Html</display-name>
+		<name>h3</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H3Tag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:h3&gt; Cabecalho &lt;/html:h3&gt; </example>
+	</tag>
 
 	<tag>
 		<description>Renders a small</description>
@@ -1280,6 +1334,34 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<body-content>scriptless</body-content>
 		<example>
 			&lt;html:small&gt; texto pequeno &lt;/html:small&gt; </example>
+	</tag>
+	
+	<tag>
+	    <description>Renders a span</description>
+		<display-name>Html</display-name>
+		<name>label</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.LabelTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the components id</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates the label to be used in span</description>
+			<name>label</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true. Options: true,false</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<example>
+			&lt;html:label&gt; text &lt;/html:label&gt; </example>
 	</tag>
 
 	<tag>
@@ -1451,6 +1533,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 				&lt;html:menuDropDown label="Menu dropdown" &gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
@@ -1542,16 +1630,93 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:nav&gt;
+			&lt;html:menu&gt;
 				&lt;html:menuButton icon="cog" align="right"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;
 					&lt;html:menuItem label="Item 2" target="_blank" url="#"/&gt;
 					&lt;html:menuItem icon="trash" label="Item 3" url="#"/&gt;
 				&lt;/html:menuButton&gt;
-			&lt;/html:nav&gt; </example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 	
+	<tag>
+		<description>Renders a menu collapsable content group</description>
+		<display-name>Menu</display-name>
+		<name>menuCollapsable</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuCollapsableTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the id of menu block to be collapsed</description>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuHeader&gt;
+					&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+					&lt;/html:menuCollapse&gt;
+				&lt;/html:menuHeader&gt;
+				
+				&lt;html:menuCollapsable id="block1"&gt;
+					&lt;html:menuText&gt;
+						My text menu
+					&lt;/html:menuText&gt;
+				&lt;/html:menuCollapsable&gt;
+				
+			&lt;/html:menu&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a menu collapse group</description>
+		<display-name>Menu</display-name>
+		<name>menuCollapse</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuCollapseTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the component name that triggers the menu group</description>
+			<name>attachTo</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the component selector that triggers the menu group</description>
+			<name>attachToSelector</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuHeader&gt;
+					&lt;html:menuCollapse attachToSelector="#block1"&gt;
+					
+					&lt;/html:menuCollapse&gt;
+				&lt;/html:menuHeader&gt;
+				
+				&lt;html:menuCollapsable id="block1"&gt;
+					menu components
+				&lt;/html:menuCollapsable&gt;
+				
+			&lt;/html:menu&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<description>Renders a menu header to group menus</description>
+		<display-name>Menu</display-name>
+		<name>menuHeader</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuHeaderTag</tag-class>
+		<body-content>scriptless</body-content>
+		<example>
+			&lt;html:menu&gt;
+				&lt;html:menuHeader&gt;
+					Other menu component
+				&lt;/html:menuHeader&gt;
+			&lt;/html:menu&gt; </example>
+	</tag>
 	
 	<tag>
 		<description>Renders a text menu</description>
@@ -1573,11 +1738,11 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		
 		<example>
-			&lt;html:nav&gt;
+			&lt;html:menu&gt;
 				&lt;html:menuText align="right"&gt;
 					My text menu
 				&lt;/html:menuText&gt;
-			&lt;/html:nav&gt; </example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 	
 
@@ -1624,21 +1789,21 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<example>
-			&lt;html:nav&gt;
+			&lt;html:menu&gt;
 				&lt;html:menuButton icon="cog" align="right"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;
 					&lt;html:menuItem label="Item 2" url="#"/&gt;
 					&lt;html:menuItem label="Item 3" url="#"/&gt;
 				&lt;/html:menuButton&gt;
-			&lt;/html:nav&gt; </example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 
 	<tag>
 		<description>Renders a horizontal menu</description>
 		<display-name>Menu</display-name>
-		<name>nav</name>
-		<tag-class>com.jslsolucoes.tagria.lib.tag.html.NavTag</tag-class>
+		<name>menu</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
 			<description>It indicates whether the component should be fixed. Default none. Options : top,bottom</description>
@@ -1647,14 +1812,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:nav&gt;
+			&lt;html:menu&gt;
 				&lt;html:menuButton icon="cog" align="right"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;
 					&lt;html:menuItem label="Item 2" url="#"/&gt;
 					&lt;html:menuItem label="Item 3" url="#"/&gt;
 				&lt;/html:menuButton&gt;
-			&lt;/html:nav&gt; </example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 
 	<tag>
@@ -1677,9 +1842,9 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<example>
-			&lt;html:nav&gt;
+			&lt;html:menu&gt;
 				&lt;html:brand label="Meu titulo" url="#"/&gt;
-			&lt;/html:nav&gt; </example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 
 	<tag>
@@ -1972,14 +2137,14 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.MenuSeparatorTag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;html:nav&gt;
+			&lt;html:menu&gt;
 				&lt;html:menuButton icon="cog" align="right"&gt;
 					&lt;html:menuItem label="Item 1" url="#"/&gt;
 					&lt;html:menuSeparator/&gt;
 					&lt;html:menuItem label="Item 2" url="#"/&gt;
 					&lt;html:menuItem label="Item 3" url="#"/&gt;
 				&lt;/html:menuButton&gt;
-			&lt;/html:nav&gt; </example>
+			&lt;/html:menu&gt; </example>
 	</tag>
 
 	<tag>

@@ -128,7 +128,8 @@ public class Compressor {
 					"tagria.jquery.ui.loading.css", 
 					"tagria.jquery.ui.card.css",
 					"tagria.jquery.syntax.highlight.css",
-					"tagria.bootstrap.tab.css"};
+					"tagria.bootstrap.tab.css",
+					"tagria.recaptcha.css"};
 
 			String content = StringUtils.join(Stream
 					.concat(Arrays.asList(files).stream().map(file -> new File(new File(root, "base"), file)),

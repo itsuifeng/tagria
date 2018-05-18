@@ -12,7 +12,7 @@ import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Nav;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
-public class NavTag extends SimpleTagSupport {
+public class MenuTag extends SimpleTagSupport {
 	
 	private String fixed; 
 

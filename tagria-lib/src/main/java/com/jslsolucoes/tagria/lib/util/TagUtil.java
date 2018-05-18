@@ -40,7 +40,7 @@ import com.jslsolucoes.tagria.lib.tag.html.DetailTableTag;
 
 public class TagUtil {
 
-	public static final String VERSION = "1.0.17.6";
+	public static final String VERSION = "1.0.17.7";
 	private static Logger logger = LoggerFactory.getLogger(TagUtil.class);
 
 	private TagUtil() {
@@ -299,5 +299,12 @@ public class TagUtil {
 
 	public static String getPathForLocale(JspContext jspContext) {
 		return getPathForUrl(jspContext, "/tagria/locale");
+	}
+
+	public static String attachTo(String attachToSelector, String attachTo,SimpleTagSupport simpleTagSupport) {
+		if(StringUtils.isEmpty(attachToSelector)){
+			return "#" + TagUtil.getId(attachTo, null, simpleTagSupport);
+		} 
+		return attachToSelector;
 	}
 }
