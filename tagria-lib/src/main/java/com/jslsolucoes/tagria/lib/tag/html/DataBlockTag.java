@@ -19,7 +19,11 @@ public class DataBlockTag extends SimpleTagSupport {
 
 	private String var;
 	private Collection data;
-	private Integer limit = 3;
+	private Integer limit = 4;
+	private Integer extraSmall;
+	private Integer small;
+	private Integer medium;
+	private Integer large;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -32,7 +36,18 @@ public class DataBlockTag extends SimpleTagSupport {
 			for(Object object : objects) {
 				jspContext.setAttribute(var, object);
 				Div col = new Div();
-				col.add(Attribute.CLASS, "col-xs-" + (12 / limit));
+				col.add(Attribute.CLASS,"margin-top-10px");
+				col.add(Attribute.CLASS, "col-xs-" + extraSmall);
+				
+				if(small != null){
+					col.add(Attribute.CLASS, "col-sm-" + small);
+				}
+				if(medium != null){
+					col.add(Attribute.CLASS, "col-md-" + medium);
+				}
+				if(large != null){
+					col.add(Attribute.CLASS, "col-lg-" + large);
+				}
 				col.add(TagUtil.getBody(getJspBody()));
 				row.add(col);
 			}
@@ -84,5 +99,37 @@ public class DataBlockTag extends SimpleTagSupport {
 
 	public void setLimit(Integer limit) {
 		this.limit = limit;
+	}
+	
+	public Integer getExtraSmall() {
+		return extraSmall;
+	}
+
+	public void setExtraSmall(Integer extraSmall) {
+		this.extraSmall = extraSmall;
+	}
+
+	public Integer getSmall() {
+		return small;
+	}
+
+	public void setSmall(Integer small) {
+		this.small = small;
+	}
+
+	public Integer getMedium() {
+		return medium;
+	}
+
+	public void setMedium(Integer medium) {
+		this.medium = medium;
+	}
+
+	public Integer getLarge() {
+		return large;
+	}
+
+	public void setLarge(Integer large) {
+		this.large = large;
 	}
 }

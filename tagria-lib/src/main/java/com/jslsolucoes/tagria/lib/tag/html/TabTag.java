@@ -50,7 +50,7 @@ public class TabTag extends SimpleTagSupport {
 			panel.addLi(li);
 
 			Div div = new Div();
-			div.add(Attribute.CLASS, "tab-pane m-5");
+			div.add(Attribute.CLASS, "tab-pane margin-5px");
 			if (active) {
 				div.add(Attribute.CLASS, "active");
 			}

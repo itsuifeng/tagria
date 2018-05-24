@@ -21,7 +21,7 @@ public class BlockTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		if (rendered != null && rendered) {
 			Div div = new Div();
-			div.add(Attribute.CLASS, "m-t-20 m-b-20 clearfix");
+			div.add(Attribute.CLASS, "margin-top-20px margin-bottom-20px clearfix");
 			if (!StringUtils.isEmpty(align)) {
 				div.add(Attribute.CLASS, "text-" + align);
 			}

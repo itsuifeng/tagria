@@ -31,13 +31,38 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>Indicates the limit for every row block . Default: 3</description>
+			<description>Indicates the limit for every row block . Default: 4. Options : 1-12</description>
 			<name>limit</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
 		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
+			<name>extraSmall</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to small viewport. Options: 1 to 12</description>
+			<name>small</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to medium viewport. Options: 1 to 12</description>
+			<name>medium</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description>Indicates the number of columns to fill to large viewport. Options: 1 to 12</description>
+			<name>large</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Integer</type>
+		</attribute>
 		<example>
-			&lt;html:dataBlock limit="2" data="${ pessoas }" var="person"&gt;
+			&lt;html:dataBlock limit="12" extraSmall="12" medium="4" small="4" large="1" data="${ pessoas }" var="person"&gt;
 				&lt;html:alert state="success"&gt;
 					${ person.nome }
 				&lt;/html:alert&gt;
@@ -59,7 +84,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carouselItem label="Item 1" description="Description 1" url="http://imgur.com/dsdsed" alt="image"/&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
 			&lt;/html:carousel&gt; </example>
 	</tag>
 	
@@ -108,7 +134,8 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carouselItem label="Item 1" description="Description 1" url="http://imgur.com/dsdsed" alt="image"/&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
 			&lt;/html:carousel&gt; </example>
 	</tag>
 
@@ -973,10 +1000,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:form action="#"&gt;
 				&lt;html:formGroup forElement="field1" label="Campo 1" required="true"&gt;
 					&lt;html:row&gt;
-						&lt;html:col size="6"&gt;
+						&lt;html:col extraSmall="6"&gt;
 							&lt;html:input required="true" name="field1"/&gt;
 						&lt;/html:col&gt;
-						&lt;html:col size="6"&gt;
+						&lt;html:col extraSmall="6"&gt;
 							&lt;html:input name="field2"/&gt;
 						&lt;/html:col&gt;
 					&lt;/html:row>
@@ -993,6 +1020,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<attribute>
 			<description>Indicates the number of columns to fill to extra small viewport. Options: 1 to 12</description>
 			<name>extraSmall</name>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Integer</type>
 		</attribute>
@@ -1024,10 +1052,10 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			&lt;html:form action="#"&gt;
 				&lt;html:formGroup forElement="field1" label="Campo 1" required="true"&gt;
 					&lt;html:row&gt;
-						&lt;html:col size="3"&gt;
+						&lt;html:col extraSmall="3"&gt;
 							&lt;html:input required="true" name="field1"/&gt;
 						&lt;/html:col&gt;
-						&lt;html:col size="9"&gt;
+						&lt;html:col extraSmall="9"&gt;
 							&lt;html:input name="field2"/&gt;
 						&lt;/html:col&gt;
 					&lt;/html:row>
@@ -1342,7 +1370,7 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<tag-class>com.jslsolucoes.tagria.lib.tag.html.H2Tag</tag-class>
 		<body-content>scriptless</body-content>
 		<example>
-			&lt;html:h12&gt; Cabecalho &lt;/html:h2&gt; </example>
+			&lt;html:h2&gt; Cabecalho &lt;/html:h2&gt; </example>
 	</tag>
 	
 	<tag>

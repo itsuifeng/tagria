@@ -94,7 +94,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 			if (checkAll) {
 				Div checkAllBox = new Div();
-				checkAllBox.add(Attribute.CLASS, "m-5");
+				checkAllBox.add(Attribute.CLASS, "margin-5px");
 				Ul ul = new Ul();
 				ul.add(Attribute.CLASS, "list-group");
 				Li li = new Li();
@@ -116,7 +116,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 			if (!StringUtils.isEmpty(toolbar)) {
 				Div divForToolbar = new Div();
-				divForToolbar.add(Attribute.CLASS, "pull-left m-5 bs-button-group");
+				divForToolbar.add(Attribute.CLASS, "pull-left margin-5px bs-button-group");
 				divForToolbar.add(toolbar);
 				div.add(divForToolbar);
 			}
@@ -131,7 +131,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 				if (export) {
 					Div divForExportation = new Div();
-					divForExportation.add(Attribute.CLASS, "pull-right m-5");
+					divForExportation.add(Attribute.CLASS, "pull-right margin-5px");
 
 					Div buttonGroup = new Div();
 					buttonGroup.add(Attribute.CLASS, "btn-group");
@@ -166,7 +166,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 
 				if (search) {
 					Div divForSearch = new Div();
-					divForSearch.add(Attribute.CLASS, "pull-right m-5");
+					divForSearch.add(Attribute.CLASS, "pull-right margin-5px");
 					Input input = new Input();
 					input.add(Attribute.TYPE, "search");
 					input.add(Attribute.CLASS, "bs-grid-search form-control");
@@ -223,14 +223,14 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 					}
 
 					Div display = new Div();
-					display.add(Attribute.CLASS, "pull-left m-5");
+					display.add(Attribute.CLASS, "pull-left margin-5px");
 					display.add(new H5().add(TagUtil.getLocalizedForLib("grid.page.viewing", getJspContext(),
 							fromResult, toResult, totalResults)));
 					clearfix.add(display);
 
 					if (paginate) {
 						Div divForResultsPerPage = new Div();
-						divForResultsPerPage.add(Attribute.CLASS, "pull-right m-5");
+						divForResultsPerPage.add(Attribute.CLASS, "pull-right margin-5px");
 
 						Div dropdown = new Div();
 						dropdown.add(Attribute.CLASS, "dropup");
@@ -272,7 +272,7 @@ public class GridTag extends SimpleTagSupport implements Toolballer {
 								.ceil(Double.valueOf(totalResults) / Double.valueOf(resultsPerPage));
 
 						Div pagination = new Div();
-						pagination.add(Attribute.CLASS, "pull-right m-5");
+						pagination.add(Attribute.CLASS, "pull-right margin-5px");
 						Nav nav = new Nav();
 						nav.add(Attribute.CLASS, "pull-left");
 						Ul ul = new Ul();

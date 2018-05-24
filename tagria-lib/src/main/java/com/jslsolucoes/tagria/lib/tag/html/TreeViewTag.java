@@ -63,7 +63,7 @@ public class TreeViewTag extends SimpleTagSupport {
 			header.add(clear);
 
 			Span span = new Span();
-			span.add(Attribute.CLASS, "m-5 bs-treeview-text");
+			span.add(Attribute.CLASS, "margin-5px bs-treeview-text");
 			if (!CollectionUtils.isEmpty(texts)) {
 				span.add(StringUtils.join(texts, " - "));
 			}
@@ -73,7 +73,7 @@ public class TreeViewTag extends SimpleTagSupport {
 		}
 
 		Div treeview = new Div();
-		treeview.add(Attribute.CLASS, "m-5 bs-treeview-view");
+		treeview.add(Attribute.CLASS, "margin-5px bs-treeview-view");
 		container.add(treeview);
 		if (!CollectionUtils.isEmpty(ids) && !StringUtils.isEmpty(name)) {
 			for (int index = 0; index < ids.size(); index++) {

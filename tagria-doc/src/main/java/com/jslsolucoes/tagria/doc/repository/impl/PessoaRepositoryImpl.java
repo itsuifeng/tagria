@@ -19,7 +19,7 @@ public class PessoaRepositoryImpl implements PessoaRepository {
 
 	public PessoaRepositoryImpl() {
 		pessoas = new ArrayList<Pessoa>();
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 20; i++) {
 			Pessoa pessoa = new Pessoa();
 			pessoa.setNome(RandomStringUtils.randomAlphabetic(10));
 			pessoa.setDataNascimento(Calendar.getInstance().getTime());

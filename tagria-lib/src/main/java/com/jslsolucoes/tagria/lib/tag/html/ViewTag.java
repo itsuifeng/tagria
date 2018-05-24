@@ -94,7 +94,7 @@ public class ViewTag extends SimpleTagSupport {
 		body.add(noScript);
 
 		Div loading = new Div();
-		loading.add(Attribute.CLASS, "text-center navbar-fixed-top m-t-20 collapse bs-ajax-info-loading");
+		loading.add(Attribute.CLASS, "text-center navbar-fixed-top margin-top-20px collapse bs-ajax-info-loading");
 		loading.add(new Span().add(Attribute.CLASS, "fa fa-spinner fa-spin fa-3x fa-fw"));
 		body.add(loading);
 
