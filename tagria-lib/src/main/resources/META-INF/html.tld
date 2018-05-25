@@ -1347,6 +1347,22 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		<example>
 			&lt;html:p&gt; Content &lt;/html:p&gt; </example>
 	</tag>
+	
+	<tag>
+		<description>Renders a body</description>
+		<display-name>Html</display-name>
+		<name>body</name>
+		<tag-class>com.jslsolucoes.tagria.lib.tag.html.BodyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Indicates the CSS class to the component</description>
+			<name>cssClass</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<example>
+			&lt;html:body&gt; Content &lt;/html:body&gt; </example>
+	</tag>
 
 	<tag>
 		<description>Renders a h1</description>

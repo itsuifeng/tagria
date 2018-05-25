@@ -1,0 +1,110 @@
+
+
+.background-dark-gray {
+    background: #5A6164;
+}
+
+.background-light-gray {
+    background: #F5F5F5;
+}
+
+.font-size-1-5em {
+	font-size: 1.5em;
+}
+
+.font-size-0-9em {
+	font-size: 0.9em;
+}
+
+.height-25px {
+	height: 25px;
+}
+
+.height-35px {
+	height: 35px;
+}
+
+.height-50px {
+	height: 50px;
+}
+
+.height-80px {
+	height: 80px;
+}
+
+.height-100px {
+	height: 100px;
+}
+
+.color-white {
+	color: #fff;
+}
+
+.padding-top-30px {
+	padding-top:30px;
+}
+
+.padding-bottom-30px {
+	padding-bottom:30px;
+}
+
+.padding-5px {
+	padding:5px;
+}
+
+.padding-10px {
+	padding:10px;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.margin-top-10pct {
+	margin-top: 10%;
+}
+
+
+.margin-top-minus-10px {
+	margin-top : -10px;
+}
+
+.margin-top-60px {
+	margin-top: 60px;
+}
+
+.margin-bottom-10pct {
+	margin-bottom: 10%;
+}
+
+.align-items-center {
+    align-items: center!important;
+}
+
+.font-style-italic {
+	font-style: italic;
+}
+
+.position-absolute {
+	position: absolute;
+}
+
+.width-100-pct {
+	width: 100%;
+}
+
+.bottom-0px {
+	 bottom: 0px;
+}
+    
+   
+
+

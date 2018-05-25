@@ -24,6 +24,7 @@ import com.jslsolucoes.tagria.lib.util.TagUtil;
 public class ViewTag extends SimpleTagSupport {
 
 	private String title = "-";
+	private Body body = new Body();
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -82,12 +83,9 @@ public class ViewTag extends SimpleTagSupport {
 		ready.add(jsReady.toString());
 		head.add(ready);
 
-		Body body = new Body();
-
 		Div noScriptBody = new Div();
 		noScriptBody.add(Attribute.CLASS, "alert alert-danger");
-		noScriptBody.add(
-				"Para o correto funcionamento dessa aplicação você deve ativar o suporte a javascript em seu navegador!!");
+		noScriptBody.add(TagUtil.getLocalizedForLib("no.script", getJspContext()));
 
 		NoScript noScript = new NoScript();
 		noScript.add(noScriptBody);
@@ -113,4 +111,7 @@ public class ViewTag extends SimpleTagSupport {
 		this.title = title;
 	}
 
+	public Body getBody() {
+		return body;
+	}
 }
