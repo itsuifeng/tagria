@@ -10,52 +10,46 @@ import org.apache.commons.lang.StringUtils;
 import com.jslsolucoes.tagria.lib.html.Attribute;
 import com.jslsolucoes.tagria.lib.html.Div;
 import com.jslsolucoes.tagria.lib.html.H3;
-import com.jslsolucoes.tagria.lib.html.Img;
 import com.jslsolucoes.tagria.lib.html.P;
 import com.jslsolucoes.tagria.lib.util.TagUtil;
 
 public class CarouselItemTag extends SimpleTagSupport {
 
-	
 	private String label;
 	private String description;
-	private String url;
-	private String alt = "image";
-	private Boolean cdn = true;
 	private Boolean active = Boolean.FALSE;
+	private Boolean rendered = Boolean.TRUE;
 	
 	@Override
 	public void doTag() throws JspException, IOException {
-		
-		Div div = new Div();
-		div.add(Attribute.CLASS,"item");
-		
-		if(active) {
-			div.add(Attribute.CLASS,"active");
-		}
-		
-		Img img = new Img();
-		img.add(Attribute.SRC, TagUtil.getPathForStatic(getJspContext(), url, cdn));
-		img.add(Attribute.ALT, TagUtil.getLocalized(alt, getJspContext()));
-		div.add(img);
-		
-		if(!StringUtils.isEmpty(label)){
-			Div caption = new Div();
-			caption.add(Attribute.CLASS,"carousel-caption");
+		if (rendered != null && rendered) {
+			Div div = new Div();
+			div.add(Attribute.CLASS,"item");
 			
-			H3 h3 = new H3();
-			h3.add(TagUtil.getLocalized(label, getJspContext()));
-			caption.add(h3);
-			
-			if(!StringUtils.isEmpty(description)){
-				P p = new P();
-				p.add(TagUtil.getLocalized(description, getJspContext()));
-				caption.add(p);
+			if(active) {
+				div.add(Attribute.CLASS,"active");
 			}
 			
-			div.add(caption);
+			div.add(TagUtil.getBody(getJspBody()));
+			
+			if(!StringUtils.isEmpty(label)){
+				Div caption = new Div();
+				caption.add(Attribute.CLASS,"carousel-caption");
+				
+				H3 h3 = new H3();
+				h3.add(TagUtil.getLocalized(label, getJspContext()));
+				caption.add(h3);
+				
+				if(!StringUtils.isEmpty(description)){
+					P p = new P();
+					p.add(TagUtil.getLocalized(description, getJspContext()));
+					caption.add(p);
+				}
+				
+				div.add(caption);
+			}
+			TagUtil.out(getJspContext(), div);
 		}
-		TagUtil.out(getJspContext(), div);
 	}
 
 	public String getLabel() {
@@ -74,36 +68,20 @@ public class CarouselItemTag extends SimpleTagSupport {
 		this.description = description;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getAlt() {
-		return alt;
-	}
-
-	public void setAlt(String alt) {
-		this.alt = alt;
-	}
-
-	public Boolean getCdn() {
-		return cdn;
-	}
-
-	public void setCdn(Boolean cdn) {
-		this.cdn = cdn;
-	}
-
 	public Boolean getActive() {
 		return active;
 	}
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Boolean getRendered() {
+		return rendered;
+	}
+
+	public void setRendered(Boolean rendered) {
+		this.rendered = rendered;
 	}
 
 }

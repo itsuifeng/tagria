@@ -84,8 +84,12 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carouselItem active="true" label="Item 1" description="Description 1" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
-				&lt;html:carouselItem label="Item 2" description="Description 2" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:img url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;html:carouselItem/&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:img url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;html:carouselItem/&gt;
 			&lt;/html:carousel&gt; </example>
 	</tag>
 	
@@ -108,34 +112,25 @@ http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>It indicates whether the component must follow a set on the properties cdn.Default: true. Options: true,false</description>
-			<name>cdn</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description>It indicates the label if the component can not be loaded</description>
-			<name>alt</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Indicates the image url</description>
-			<name>url</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description>It indicates whether the component must start activated. Default: false. Options: true,false</description>
 			<name>active</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description>It indicates whether the component should be rendered. Default : true</description>
+			<name>rendered</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<example>
 			&lt;html:carousel&gt;
-				&lt;html:carouselItem active="true" label="Item 1" description="Description 1" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
-				&lt;html:carouselItem label="Item 2" description="Description 2" url="https://jslsolucoes.com/wp-content/uploads/logo.png" alt="image"/&gt;
+				&lt;html:carouselItem active="true" label="Item 1" description="Description 1"&gt;
+					&lt;html:img url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;html:carouselItem/&gt;
+				&lt;html:carouselItem label="Item 2" description="Description 2"&gt;
+					&lt;html:img url="https://jslsolucoes.com/wp-content/uploads/logo.png" width="200" height="200" alt="logo"/&gt;
+				&lt;html:carouselItem/&gt;
 			&lt;/html:carousel&gt; </example>
 	</tag>
 
