@@ -32,7 +32,7 @@ public class Compressor {
 	private static final String THEME = "theme";
 	private static Logger logger = LoggerFactory.getLogger(Compressor.class);
 	private static final String CHARSET = "UTF-8";
-	private List<String> themes = Arrays.asList(new String[] { "default", "green" });
+	private List<String> themes = Arrays.asList(new String[] { "default", "green","blue" });
 	private String source;
 	private Boolean compress;
 	private String destination;
